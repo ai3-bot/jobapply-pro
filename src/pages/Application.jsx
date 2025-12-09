@@ -57,7 +57,9 @@ const PhotoStep = ({ onNext, setGlobalData }) => {
     const [photo, setPhoto] = useState(null);
     const [preview, setPreview] = useState(null);
     const [isUploading, setIsUploading] = useState(false);
+    const [showCamera, setShowCamera] = useState(false);
     const fileInputRef = useRef(null);
+    const videoRef = useRef(null);
   
     const handleFileChange = (e) => {
         const file = e.target.files[0];
@@ -68,6 +70,46 @@ const PhotoStep = ({ onNext, setGlobalData }) => {
                 setPreview(reader.result);
             };
             reader.readAsDataURL(file);
+            setShowCamera(false);
+        }
+    };
+
+    const startCamera = async () => {
+        setShowCamera(true);
+        setPhoto(null);
+        setPreview(null);
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            // Use a small timeout to ensure videoRef is mounted
+            setTimeout(() => {
+                if (videoRef.current) {
+                    videoRef.current.srcObject = stream;
+                }
+            }, 100);
+        } catch (err) {
+            console.error("Camera error", err);
+            alert("ไม่สามารถเข้าถึงกล้องได้");
+            setShowCamera(false);
+        }
+    };
+
+    const capturePhoto = () => {
+        if (videoRef.current) {
+            const canvas = document.createElement('canvas');
+            canvas.width = videoRef.current.videoWidth;
+            canvas.height = videoRef.current.videoHeight;
+            canvas.getContext('2d').drawImage(videoRef.current, 0, 0);
+            
+            // Stop stream
+            const stream = videoRef.current.srcObject;
+            stream?.getTracks().forEach(track => track.stop());
+
+            canvas.toBlob(blob => {
+                const file = new File([blob], "capture.jpg", { type: "image/jpeg" });
+                setPhoto(file);
+                setPreview(URL.createObjectURL(blob));
+                setShowCamera(false);
+            }, 'image/jpeg');
         }
     };
 
@@ -75,13 +117,12 @@ const PhotoStep = ({ onNext, setGlobalData }) => {
         if (!photo) return;
         setIsUploading(true);
         try {
-             // In a real app, upload here. For now we use the local preview or simulate upload
              const { file_url } = await base44.integrations.Core.UploadFile({ file: photo });
              setGlobalData(prev => ({ ...prev, photo_url: file_url }));
              onNext();
         } catch (error) {
             console.error("Upload failed", error);
-            // Fallback for demo if upload fails or is not configured
+            // Fallback logic
             setGlobalData(prev => ({ ...prev, photo_url: preview })); 
             onNext();
         } finally {
@@ -94,37 +135,64 @@ const PhotoStep = ({ onNext, setGlobalData }) => {
             <Card>
                 <CardHeader>
                     <CardTitle className="text-center">ถ่ายรูปหน้าตรง</CardTitle>
-                    <CardDescription className="text-center">กรุณาอัปโหลดรูปถ่ายหน้าตรง สวมชุดสุภาพ ไม่สวมหมวกหรือแว่นตาดำ</CardDescription>
+                    <CardDescription className="text-center">เลือกวิธีนำเข้ารูปภาพของคุณ</CardDescription>
                 </CardHeader>
                 <CardContent className="flex flex-col items-center space-y-6">
-                    <div 
-                        className="w-48 h-64 border-2 border-dashed border-slate-300 rounded-lg flex flex-col items-center justify-center bg-slate-50 cursor-pointer overflow-hidden relative hover:bg-slate-100 transition-colors"
-                        onClick={() => fileInputRef.current?.click()}
-                    >
-                        {preview ? (
+                    
+                    {/* Display Area */}
+                    <div className="w-64 h-80 bg-slate-100 rounded-lg overflow-hidden border-2 border-slate-200 relative flex items-center justify-center">
+                        {showCamera ? (
+                            <div className="relative w-full h-full">
+                                <video ref={videoRef} autoPlay playsInline muted className="w-full h-full object-cover" />
+                                <Button 
+                                    size="sm" 
+                                    className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-red-600 hover:bg-red-700 rounded-full w-12 h-12 flex items-center justify-center p-0"
+                                    onClick={capturePhoto}
+                                >
+                                    <div className="w-4 h-4 bg-white rounded-full" />
+                                </Button>
+                            </div>
+                        ) : preview ? (
                             <img src={preview} alt="Profile Preview" className="w-full h-full object-cover" />
                         ) : (
-                            <>
-                                <Camera className="w-12 h-12 text-slate-400 mb-2" />
-                                <span className="text-sm text-slate-500">คลิกเพื่อถ่าย/เลือกรูป</span>
-                            </>
+                            <div className="text-center text-slate-400 p-4">
+                                <UserCircle className="w-20 h-20 mx-auto mb-2 opacity-50" />
+                                <p>ตัวอย่างรูปภาพ</p>
+                            </div>
                         )}
-                        <input 
-                            type="file" 
-                            ref={fileInputRef} 
-                            className="hidden" 
-                            accept="image/*" 
-                            onChange={handleFileChange} 
-                        />
                     </div>
+
+                    {/* Controls */}
+                    {!showCamera && (
+                        <div className="grid grid-cols-2 gap-4 w-full">
+                            <Button variant="outline" onClick={() => fileInputRef.current?.click()} className="flex gap-2">
+                                <Upload className="w-4 h-4" /> อัปโหลดไฟล์
+                            </Button>
+                            <Button variant="outline" onClick={startCamera} className="flex gap-2">
+                                <Camera className="w-4 h-4" /> เปิดกล้องถ่าย
+                            </Button>
+                        </div>
+                    )}
+
+                    <input 
+                        type="file" 
+                        ref={fileInputRef} 
+                        className="hidden" 
+                        accept="image/*" 
+                        onChange={handleFileChange} 
+                    />
                     
-                    <Button 
-                        onClick={handleUpload} 
-                        disabled={!photo || isUploading}
-                        className="w-full bg-indigo-600 hover:bg-indigo-700"
-                    >
-                        {isUploading ? "กำลังอัปโหลด..." : "ยืนยันรูปถ่าย"}
-                    </Button>
+                    {photo && !showCamera && (
+                        <div className="w-full pt-4 border-t">
+                             <Button 
+                                onClick={handleUpload} 
+                                disabled={isUploading}
+                                className="w-full bg-indigo-600 hover:bg-indigo-700"
+                            >
+                                {isUploading ? "กำลังอัปโหลด..." : "ยืนยันรูปถ่ายนี้"}
+                            </Button>
+                        </div>
+                    )}
                 </CardContent>
             </Card>
         </div>
