@@ -105,10 +105,15 @@ const PhotoStep = ({ onNext, setGlobalData }) => {
             stream?.getTracks().forEach(track => track.stop());
 
             canvas.toBlob(blob => {
-                const file = new File([blob], "capture.jpg", { type: "image/jpeg" });
-                setPhoto(file);
-                setPreview(URL.createObjectURL(blob));
-                setShowCamera(false);
+                if (blob) {
+                    const file = new File([blob], "capture.jpg", { type: "image/jpeg" });
+                    setPhoto(file);
+                    setPreview(URL.createObjectURL(blob));
+                    setShowCamera(false);
+                } else {
+                    console.error("Failed to capture photo");
+                    setShowCamera(false);
+                }
             }, 'image/jpeg');
         }
     };
