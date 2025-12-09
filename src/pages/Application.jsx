@@ -291,9 +291,7 @@ const FormStep4 = ({ data, updateData, setSignature }) => {
 
 const DataFormWizard = ({ onComplete, globalData, setGlobalData }) => {
     const [step, setStep] = useState(1);
-    
-    // Internal state for form steps, synced with parent globalData if needed, 
-    // but simpler to just use globalData structure directly here or local state then sync up
+    const [isSubmitting, setIsSubmitting] = useState(false);
     
     const updateData = (section, field, value) => {
         setGlobalData(prev => ({
@@ -307,7 +305,36 @@ const DataFormWizard = ({ onComplete, globalData, setGlobalData }) => {
 
     const handleNext = () => {
         if (step < 4) setStep(step + 1);
-        else onComplete();
+        else handleSubmitData();
+    };
+
+    const handleSubmitData = async () => {
+        setIsSubmitting(true);
+        try {
+            const initialData = {
+                full_name: `${globalData.personal_data.first_name} ${globalData.personal_data.last_name}`,
+                personal_data: globalData.personal_data,
+                education_data: globalData.education_data,
+                health_data: globalData.health_data,
+                experience_data: globalData.experience_data,
+                photo_url: globalData.photo_url,
+                signature_url: globalData.signature_url,
+                submission_date: new Date().toISOString().split('T')[0],
+                status: 'pending_video' // Intermediate status
+            };
+            
+            const record = await base44.entities.Applicant.create(initialData);
+            
+            // Save the ID for the next step
+            setGlobalData(prev => ({ ...prev, applicant_id: record.id }));
+            
+            onComplete();
+        } catch (error) {
+            console.error("Failed to save initial data", error);
+            alert("ไม่สามารถบันทึกข้อมูลได้ กรุณาลองใหม่อีกครั้ง");
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     const handleBack = () => {
@@ -336,11 +363,12 @@ const DataFormWizard = ({ onComplete, globalData, setGlobalData }) => {
                                    />}
                 </CardContent>
                 <div className="p-6 border-t flex justify-between bg-slate-50 rounded-b-xl">
-                    <Button variant="ghost" onClick={handleBack} disabled={step === 1}>
+                    <Button variant="ghost" onClick={handleBack} disabled={step === 1 || isSubmitting}>
                         <ChevronLeft className="w-4 h-4 mr-2" /> ย้อนกลับ
                     </Button>
-                    <Button onClick={handleNext} className="bg-indigo-600 hover:bg-indigo-700">
-                        {step === 4 ? "บันทึกข้อมูล" : "ถัดไป"} <ChevronRight className="w-4 h-4 ml-2" />
+                    <Button onClick={handleNext} disabled={isSubmitting} className="bg-indigo-600 hover:bg-indigo-700">
+                        {isSubmitting ? "กำลังบันทึก..." : (step === 4 ? "บันทึกและไปต่อ" : "ถัดไป")} 
+                        {!isSubmitting && <ChevronRight className="w-4 h-4 ml-2" />}
                     </Button>
                 </div>
             </Card>
@@ -425,26 +453,16 @@ const VideoInterviewStep = ({ globalData, onFinish }) => {
         
         try {
             // Upload video
-            // Create a File object from Blob
             const file = new File([videoBlob], "interview.webm", { type: "video/webm" });
             const { file_url } = await base44.integrations.Core.UploadFile({ file });
             
-            // Final submission
-            const finalData = {
-                full_name: `${globalData.personal_data.first_name} ${globalData.personal_data.last_name}`,
-                personal_data: globalData.personal_data,
-                education_data: globalData.education_data,
-                health_data: globalData.health_data,
-                experience_data: globalData.experience_data,
-                photo_url: globalData.photo_url,
-                signature_url: globalData.signature_url,
+            // Update the existing applicant record with video and job info
+            await base44.entities.Applicant.update(globalData.applicant_id, {
                 job_position_id: selectedJob,
                 video_response_url: file_url,
-                submission_date: new Date().toISOString().split('T')[0],
-                status: 'pending'
-            };
+                status: 'pending' // Ready for review
+            });
 
-            await base44.entities.Applicant.create(finalData);
             onFinish();
 
         } catch (error) {
