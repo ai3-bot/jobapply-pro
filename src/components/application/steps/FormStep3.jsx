@@ -238,7 +238,7 @@ export default function FormStep3({ data, experienceData, statementData, updateD
             <h3 className="text-lg font-bold text-slate-900 border-b pb-1">คำแถลง (กรุณาระบุตามความจริงเท่านั้น)</h3>
             
             {/* 1. Overtime */}
-            <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
                 <Label className="text-base">1. ท่านสามารถปฏิบัติงานล่วงเวลาได้หรือไม่</Label>
                 <RadioGroup 
                     value={statementData?.can_work_overtime} 
@@ -257,7 +257,7 @@ export default function FormStep3({ data, experienceData, statementData, updateD
             </div>
 
             {/* 2. Legal Cases */}
-            <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
                 <Label className="text-base">2. ท่านเคยเป็นผู้ต้องหาหรือต้องคำพิพากษาในคดีอาญา/แพ่งหรือไม่</Label>
                 <RadioGroup 
                     value={statementData?.has_legal_cases} 
@@ -276,7 +276,7 @@ export default function FormStep3({ data, experienceData, statementData, updateD
             </div>
 
             {/* 3. Drugs */}
-            <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
                 <Label className="text-base">3. ท่านเคยเสพสารเสพติดหรือเคยรับการบำบัด</Label>
                 <RadioGroup 
                     value={statementData?.has_drug_history} 
@@ -296,7 +296,7 @@ export default function FormStep3({ data, experienceData, statementData, updateD
 
             {/* 4. Smoking */}
             <div className="space-y-2">
-                <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
                     <Label className="text-base">4. ในปัจจุบันท่านสูบบุหรี่หรือไม่</Label>
                     <RadioGroup 
                         value={statementData?.smoking_habit?.status} 
@@ -327,7 +327,7 @@ export default function FormStep3({ data, experienceData, statementData, updateD
             </div>
 
             {/* 5. Alcohol */}
-            <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
                 <Label className="text-base">5. ท่านดื่มแอลกอฮอล์หรือไม่</Label>
                 <RadioGroup 
                     value={statementData?.alcohol_habit} 
@@ -351,13 +351,13 @@ export default function FormStep3({ data, experienceData, statementData, updateD
 
             {/* 6. Health Status */}
             <div className="space-y-2">
-                <div className="flex items-start justify-between">
+                <div className="flex items-start gap-4">
                     <Label className="text-base pt-1">6. สุขภาพของท่าน</Label>
                     <div className="flex flex-col gap-2">
                         <RadioGroup 
                             value={statementData?.health_status?.status} 
                             onValueChange={(val) => updateStatementObj('health_status', 'status', val)}
-                            className="flex flex-col gap-2 items-end"
+                            className="flex flex-col gap-2"
                         >
                             <div className="flex items-center space-x-2">
                                 <Label htmlFor="health_good" className="font-normal">แข็งแรงสมบูรณ์ทุกอย่าง</Label>
@@ -387,7 +387,7 @@ export default function FormStep3({ data, experienceData, statementData, updateD
             </div>
 
             {/* 7. Recent Illness */}
-            <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
                 <Label className="text-base">7. ท่านเคยล้มป่วยมากกว่า 3 วันติดต่อกันในรอบ 12 เดือนที่ผ่านมาหรือไม่</Label>
                 <RadioGroup 
                     value={statementData?.recent_major_illness} 
@@ -406,7 +406,7 @@ export default function FormStep3({ data, experienceData, statementData, updateD
             </div>
 
             {/* 8. Contagious Diseases */}
-            <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
                 <Label className="text-base">8. ท่านมีโรคติดต่อร้ายแรงหรือไม่ เช่น กาฬโรค/HIV/Covid-19 อื่นๆ</Label>
                 <RadioGroup 
                     value={statementData?.has_contagious_disease} 
@@ -580,7 +580,7 @@ export default function FormStep3({ data, experienceData, statementData, updateD
             </div>
 
             {/* 11. Criminal Record Consent */}
-            <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
                 <Label className="text-base">11. ท่านยินยอมให้บริษัทฯตรวจสอบประวัติอาชญากรรมหรือไม่</Label>
                 <RadioGroup 
                     value={statementData?.criminal_record_check_consent} 
@@ -599,7 +599,7 @@ export default function FormStep3({ data, experienceData, statementData, updateD
             </div>
 
             {/* 12. Credit Bureau Consent */}
-            <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
                 <Label className="text-base">12. ท่านยินยอมให้บริษัทฯตรวจสอบเครดิตบูโรหรือไม่</Label>
                 <RadioGroup 
                     value={statementData?.credit_bureau_check_consent} 
