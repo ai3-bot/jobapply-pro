@@ -448,37 +448,36 @@ export default function FormStep3({ data, experienceData, statementData, updateD
                 <div className="bg-white p-5 rounded-xl border shadow-sm hover:shadow-md transition-shadow">
                     <div className="space-y-3">
                         <Label className="text-base font-semibold text-slate-800">6. สุขภาพของท่าน</Label>
-                        <div className="w-full bg-slate-50 p-4 rounded-lg border">
-                            <RadioGroup 
-                                value={statementData?.health_status?.status} 
-                                onValueChange={(val) => updateStatementObj('health_status', 'status', val)}
-                                className="grid grid-cols-1 sm:grid-cols-3 gap-6"
-                            >
-                                <label htmlFor="health_good" className="flex items-center gap-3 cursor-pointer">
-                                    <RadioGroupItem value="healthy" id="health_good" className="mt-1" />
-                                    <span className="font-medium leading-normal">แข็งแรงสมบูรณ์ทุกอย่าง</span>
-                                </label>
-                                <label htmlFor="health_no_chronic" className="flex items-center gap-3 cursor-pointer">
-                                    <RadioGroupItem value="no_chronic" id="health_no_chronic" className="mt-1" />
-                                    <span className="font-medium leading-normal">ไม่มีโรคประจำตัว</span>
-                                </label>
-                                <div className="flex flex-col gap-2">
-                                    <label htmlFor="health_chronic" className="flex items-center gap-3 cursor-pointer">
-                                        <RadioGroupItem value="chronic" id="health_chronic" className="mt-1" />
-                                        <span className="font-medium leading-normal">มีโรคประจำตัว</span>
-                                    </label>
-                                    {statementData?.health_status?.status === 'chronic' && (
-                                        <Input 
-                                            id="health_details"
-                                            className="h-9 w-full bg-white animate-in slide-in-from-top-2 fade-in"
-                                            placeholder="ระบุโรคประจำตัว"
-                                            value={statementData?.health_status?.details || ''}
-                                            onChange={(e) => updateStatementObj('health_status', 'details', e.target.value)}
-                                        />
-                                    )}
-                                </div>
-                            </RadioGroup>
-                        </div>
+                        <RadioGroup 
+                            value={statementData?.health_status?.status} 
+                            onValueChange={(val) => updateStatementObj('health_status', 'status', val)}
+                            className="flex flex-wrap gap-3 pt-1"
+                        >
+                            <label htmlFor="health_good" className="flex items-center space-x-2 bg-slate-50 px-4 py-2 rounded-lg border cursor-pointer hover:bg-slate-100 transition-colors">
+                                <RadioGroupItem value="healthy" id="health_good" />
+                                <span className="font-medium">แข็งแรงสมบูรณ์ทุกอย่าง</span>
+                            </label>
+                            <label htmlFor="health_no_chronic" className="flex items-center space-x-2 bg-slate-50 px-4 py-2 rounded-lg border cursor-pointer hover:bg-slate-100 transition-colors">
+                                <RadioGroupItem value="no_chronic" id="health_no_chronic" />
+                                <span className="font-medium">ไม่มีโรคประจำตัว</span>
+                            </label>
+                            <label htmlFor="health_chronic" className="flex items-center space-x-2 bg-slate-50 px-4 py-2 rounded-lg border cursor-pointer hover:bg-slate-100 transition-colors">
+                                <RadioGroupItem value="chronic" id="health_chronic" />
+                                <span className="font-medium">มีโรคประจำตัว</span>
+                            </label>
+                        </RadioGroup>
+
+                        {statementData?.health_status?.status === 'chronic' && (
+                            <div className="flex items-center gap-2 pt-2 animate-in slide-in-from-top-2 fade-in duration-300">
+                                <Input 
+                                    id="health_details"
+                                    className="h-9 w-full max-w-md"
+                                    placeholder="ระบุโรคประจำตัว"
+                                    value={statementData?.health_status?.details || ''}
+                                    onChange={(e) => updateStatementObj('health_status', 'details', e.target.value)}
+                                />
+                            </div>
+                        )}
                     </div>
                 </div>
 
