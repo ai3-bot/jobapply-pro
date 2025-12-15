@@ -256,10 +256,8 @@ export default function FormStep3({ data, experienceData, statementData, referra
 
         {/* Statement Section */}
         <div className="space-y-6 pt-6">
-            <div className="bg-gradient-to-r from-slate-100 to-white p-4 rounded-lg border border-slate-200">
-                <h3 className="text-xl font-bold text-indigo-900">
-                    คำแถลง
-                </h3>
+            <div className="border-b pb-2">
+                <h3 className="text-lg font-bold text-slate-900">คำแถลง (Statement)</h3>
                 <p className="text-slate-500 text-sm mt-1">กรุณาระบุข้อมูลตามความเป็นจริงเพื่อประโยชน์ในการพิจารณา</p>
             </div>
             
@@ -753,12 +751,8 @@ export default function FormStep3({ data, experienceData, statementData, referra
             </div> {/* Closing Statement Section */}
 
             {/* Referral Section */}
-            <div className="space-y-6 pt-6 border-t border-slate-200">
-            <div className="bg-gradient-to-r from-slate-100 to-white p-4 rounded-lg border border-slate-200">
-            <h3 className="text-xl font-bold text-indigo-900">
-                บุคคลอ้างอิง
-            </h3>
-            </div>
+            <div className="space-y-6 pt-6">
+                <h3 className="text-lg font-bold text-slate-900 border-b pb-2">บุคคลอ้างอิง (References)</h3>
 
             <div className="bg-white p-5 rounded-xl border shadow-sm">
             <div className="grid md:grid-cols-2 gap-6">
@@ -799,12 +793,8 @@ export default function FormStep3({ data, experienceData, statementData, referra
             </div>
 
             {/* Family History Section */}
-            <div className="space-y-6 pt-6 border-t border-slate-200">
-            <div className="bg-gradient-to-r from-slate-100 to-white p-4 rounded-lg border border-slate-200">
-            <h3 className="text-xl font-bold text-indigo-900">
-                ประวัติครอบครัว (Family Details)
-            </h3>
-            </div>
+            <div className="space-y-6 pt-6">
+                 <h3 className="text-lg font-bold text-slate-900 border-b pb-2">ประวัติครอบครัว (Family Details)</h3>
 
             <div className="space-y-6">
              {/* Father */}
