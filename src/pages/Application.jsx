@@ -50,6 +50,34 @@ export default function ApplicationPage() {
                 children_count: '',
                 children_caretaker: ''
             },
+        referral_data: {
+            referred_by: '',
+            referred_by_relationship: '',
+            acquaintance_name: '',
+            acquaintance_relationship: ''
+        },
+        parents_data: {
+            father: {
+                name: '',
+                status: 'alive',
+                age: '',
+                nationality: '',
+                occupation: '',
+                phone: '',
+                address: { number: '', moo: '', road: '', subdistrict: '', district: '', province: '', zipcode: '' }
+            },
+            mother: {
+                name: '',
+                status: 'alive',
+                age: '',
+                nationality: '',
+                occupation: '',
+                phone: '',
+                address: { number: '', moo: '', road: '', subdistrict: '', district: '', province: '', zipcode: '' }
+            },
+            siblings_count: '',
+            birth_order: ''
+        },
         education_data: { 
             history: {
                 primary: { level: 'ประถมศึกษา', institute: '', major: '', start_year: '', end_year: '', gpa: '' },

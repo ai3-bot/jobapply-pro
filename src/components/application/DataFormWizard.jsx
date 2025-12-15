@@ -40,6 +40,8 @@ export default function DataFormWizard({ onComplete, globalData, setGlobalData }
                 health_data: globalData.health_data,
                 statement_data: globalData.statement_data,
                 experience_data: globalData.experience_data,
+                referral_data: globalData.referral_data,
+                parents_data: globalData.parents_data,
                 photo_url: globalData.photo_url,
                 signature_url: globalData.signature_url,
                 submission_date: new Date().toISOString().split('T')[0],
@@ -88,6 +90,8 @@ export default function DataFormWizard({ onComplete, globalData, setGlobalData }
                         data={globalData.health_data} 
                         experienceData={globalData.experience_data} 
                         statementData={globalData.statement_data}
+                        referralData={globalData.referral_data}
+                        parentsData={globalData.parents_data}
                         updateData={updateData} 
                     />}
                     {step === 4 && <FormStep4 

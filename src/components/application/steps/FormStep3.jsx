@@ -9,7 +9,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Plus, Trash2 } from "lucide-react";
 
-export default function FormStep3({ data, experienceData, statementData, updateData }) {
+export default function FormStep3({ data, experienceData, statementData, referralData, parentsData, updateData }) {
     
     // Experience Logic
     const history = experienceData?.history || [];
@@ -46,6 +46,27 @@ export default function FormStep3({ data, experienceData, statementData, updateD
     const updateStatementObj = (parent, field, value) => {
         const current = statementData?.[parent] || {};
         updateData('statement_data', parent, { ...current, [field]: value });
+    };
+
+    // Referral Helpers
+    const updateReferral = (field, value) => {
+        updateData('referral_data', field, value);
+    };
+
+    // Parent Helpers
+    const updateParents = (field, value) => {
+        updateData('parents_data', field, value);
+    };
+
+    const updateParentInfo = (who, field, value) => {
+        const currentWho = parentsData?.[who] || {};
+        updateData('parents_data', who, { ...currentWho, [field]: value });
+    };
+    
+    const updateParentAddress = (who, field, value) => {
+        const currentWho = parentsData?.[who] || {};
+        const currentAddr = currentWho.address || {};
+        updateData('parents_data', who, { ...currentWho, address: { ...currentAddr, [field]: value } });
     };
 
     // Table Styles
@@ -729,7 +750,211 @@ export default function FormStep3({ data, experienceData, statementData, updateD
                 </div>
 
             </div> {/* Closing grid gap-6 */}
-        </div> {/* Closing Statement Section */}
-    </div>
-    );
-}
+            </div> {/* Closing Statement Section */}
+
+            {/* Referral Section */}
+            <div className="space-y-6 pt-6 border-t border-slate-200">
+            <div className="bg-gradient-to-r from-slate-100 to-white p-4 rounded-lg border border-slate-200">
+            <h3 className="text-xl font-bold text-indigo-900">
+                บุคคลอ้างอิง
+            </h3>
+            </div>
+
+            <div className="bg-white p-5 rounded-xl border shadow-sm">
+            <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                     <Label>ข้าพเจ้ายื่นใบสมัครโดยคำแนะนำของ (Introduction by)</Label>
+                     <Input 
+                        value={referralData?.referred_by || ''}
+                        onChange={(e) => updateReferral('referred_by', e.target.value)}
+                        placeholder="ชื่อ-นามสกุล ผู้แนะนำ"
+                     />
+                </div>
+                 <div className="space-y-2">
+                     <Label>ความสัมพันธ์ (Relationship)</Label>
+                     <Input 
+                        value={referralData?.referred_by_relationship || ''}
+                        onChange={(e) => updateReferral('referred_by_relationship', e.target.value)}
+                        placeholder="ระบุความสัมพันธ์"
+                     />
+                </div>
+                <div className="space-y-2">
+                     <Label>บุคคลในองค์กรนี้ที่ข้าพเจ้ารู้จักคุ้นเคย (Acquaintance in company)</Label>
+                     <Input 
+                        value={referralData?.acquaintance_name || ''}
+                        onChange={(e) => updateReferral('acquaintance_name', e.target.value)}
+                        placeholder="ชื่อ-นามสกุล คนรู้จัก"
+                     />
+                </div>
+                 <div className="space-y-2">
+                     <Label>ความสัมพันธ์ (Relationship)</Label>
+                     <Input 
+                        value={referralData?.acquaintance_relationship || ''}
+                        onChange={(e) => updateReferral('acquaintance_relationship', e.target.value)}
+                        placeholder="ระบุความสัมพันธ์"
+                     />
+                </div>
+            </div>
+            </div>
+            </div>
+
+            {/* Family History Section */}
+            <div className="space-y-6 pt-6 border-t border-slate-200">
+            <div className="bg-gradient-to-r from-slate-100 to-white p-4 rounded-lg border border-slate-200">
+            <h3 className="text-xl font-bold text-indigo-900">
+                ประวัติครอบครัว (Family Details)
+            </h3>
+            </div>
+
+            <div className="space-y-6">
+             {/* Father */}
+            <div className="bg-white p-5 rounded-xl border shadow-sm">
+                <div className="flex flex-col md:flex-row gap-4 items-start md:items-center border-b pb-4 mb-4">
+                    <Label className="w-24 font-bold text-base">บิดา (Father)</Label>
+                    <div className="flex-1 w-full md:w-auto">
+                        <Input 
+                            placeholder="ชื่อ-นามสกุล" 
+                            value={parentsData?.father?.name || ''}
+                            onChange={(e) => updateParentInfo('father', 'name', e.target.value)}
+                        />
+                    </div>
+                    <RadioGroup 
+                        value={parentsData?.father?.status} 
+                        onValueChange={(val) => updateParentInfo('father', 'status', val)}
+                        className="flex gap-4"
+                    >
+                        <div className="flex items-center space-x-2">
+                            <RadioGroupItem value="alive" id="f_alive" />
+                            <Label htmlFor="f_alive">มีชีวิตอยู่</Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                            <RadioGroupItem value="deceased" id="f_deceased" />
+                            <Label htmlFor="f_deceased">ถึงแก่กรรม</Label>
+                        </div>
+                    </RadioGroup>
+                </div>
+
+                {parentsData?.father?.status === 'alive' && (
+                    <div className="animate-in fade-in slide-in-from-top-2 space-y-4">
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                            <div className="space-y-1">
+                                <Label>อายุ (ปี)</Label>
+                                <Input value={parentsData?.father?.age || ''} onChange={(e) => updateParentInfo('father', 'age', e.target.value)} />
+                            </div>
+                            <div className="space-y-1">
+                                <Label>สัญชาติ</Label>
+                                <Input value={parentsData?.father?.nationality || ''} onChange={(e) => updateParentInfo('father', 'nationality', e.target.value)} />
+                            </div>
+                            <div className="space-y-1 md:col-span-2">
+                                <Label>อาชีพ</Label>
+                                <Input value={parentsData?.father?.occupation || ''} onChange={(e) => updateParentInfo('father', 'occupation', e.target.value)} />
+                            </div>
+                        </div>
+                        <div className="bg-slate-50 p-4 rounded-lg border space-y-3">
+                            <Label className="font-semibold text-slate-700">ที่อยู่ (Address)</Label>
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                <div className="col-span-1"><Input placeholder="เลขที่" value={parentsData?.father?.address?.number || ''} onChange={(e) => updateParentAddress('father', 'number', e.target.value)} /></div>
+                                <div className="col-span-1"><Input placeholder="หมู่" value={parentsData?.father?.address?.moo || ''} onChange={(e) => updateParentAddress('father', 'moo', e.target.value)} /></div>
+                                <div className="col-span-2"><Input placeholder="ถนน" value={parentsData?.father?.address?.road || ''} onChange={(e) => updateParentAddress('father', 'road', e.target.value)} /></div>
+                                <Input placeholder="ตำบล/แขวง" value={parentsData?.father?.address?.subdistrict || ''} onChange={(e) => updateParentAddress('father', 'subdistrict', e.target.value)} />
+                                <Input placeholder="อำเภอ/เขต" value={parentsData?.father?.address?.district || ''} onChange={(e) => updateParentAddress('father', 'district', e.target.value)} />
+                                <Input placeholder="จังหวัด" value={parentsData?.father?.address?.province || ''} onChange={(e) => updateParentAddress('father', 'province', e.target.value)} />
+                                <Input placeholder="รหัสไปรษณีย์" value={parentsData?.father?.address?.zipcode || ''} onChange={(e) => updateParentAddress('father', 'zipcode', e.target.value)} />
+                            </div>
+                        </div>
+                         <div className="space-y-1">
+                            <Label>โทรศัพท์</Label>
+                            <Input className="w-full md:w-1/2" value={parentsData?.father?.phone || ''} onChange={(e) => updateParentInfo('father', 'phone', e.target.value)} />
+                        </div>
+                    </div>
+                )}
+            </div>
+
+            {/* Mother */}
+            <div className="bg-white p-5 rounded-xl border shadow-sm">
+                <div className="flex flex-col md:flex-row gap-4 items-start md:items-center border-b pb-4 mb-4">
+                    <Label className="w-24 font-bold text-base">มารดา (Mother)</Label>
+                    <div className="flex-1 w-full md:w-auto">
+                        <Input 
+                            placeholder="ชื่อ-นามสกุล" 
+                            value={parentsData?.mother?.name || ''}
+                            onChange={(e) => updateParentInfo('mother', 'name', e.target.value)}
+                        />
+                    </div>
+                    <RadioGroup 
+                        value={parentsData?.mother?.status} 
+                        onValueChange={(val) => updateParentInfo('mother', 'status', val)}
+                        className="flex gap-4"
+                    >
+                        <div className="flex items-center space-x-2">
+                            <RadioGroupItem value="alive" id="m_alive" />
+                            <Label htmlFor="m_alive">มีชีวิตอยู่</Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                            <RadioGroupItem value="deceased" id="m_deceased" />
+                            <Label htmlFor="m_deceased">ถึงแก่กรรม</Label>
+                        </div>
+                    </RadioGroup>
+                </div>
+
+                {parentsData?.mother?.status === 'alive' && (
+                    <div className="animate-in fade-in slide-in-from-top-2 space-y-4">
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                            <div className="space-y-1">
+                                <Label>อายุ (ปี)</Label>
+                                <Input value={parentsData?.mother?.age || ''} onChange={(e) => updateParentInfo('mother', 'age', e.target.value)} />
+                            </div>
+                            <div className="space-y-1">
+                                <Label>สัญชาติ</Label>
+                                <Input value={parentsData?.mother?.nationality || ''} onChange={(e) => updateParentInfo('mother', 'nationality', e.target.value)} />
+                            </div>
+                            <div className="space-y-1 md:col-span-2">
+                                <Label>อาชีพ</Label>
+                                <Input value={parentsData?.mother?.occupation || ''} onChange={(e) => updateParentInfo('mother', 'occupation', e.target.value)} />
+                            </div>
+                        </div>
+                        <div className="bg-slate-50 p-4 rounded-lg border space-y-3">
+                            <Label className="font-semibold text-slate-700">ที่อยู่ (Address)</Label>
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                <div className="col-span-1"><Input placeholder="เลขที่" value={parentsData?.mother?.address?.number || ''} onChange={(e) => updateParentAddress('mother', 'number', e.target.value)} /></div>
+                                <div className="col-span-1"><Input placeholder="หมู่" value={parentsData?.mother?.address?.moo || ''} onChange={(e) => updateParentAddress('mother', 'moo', e.target.value)} /></div>
+                                <div className="col-span-2"><Input placeholder="ถนน" value={parentsData?.mother?.address?.road || ''} onChange={(e) => updateParentAddress('mother', 'road', e.target.value)} /></div>
+                                <Input placeholder="ตำบล/แขวง" value={parentsData?.mother?.address?.subdistrict || ''} onChange={(e) => updateParentAddress('mother', 'subdistrict', e.target.value)} />
+                                <Input placeholder="อำเภอ/เขต" value={parentsData?.mother?.address?.district || ''} onChange={(e) => updateParentAddress('mother', 'district', e.target.value)} />
+                                <Input placeholder="จังหวัด" value={parentsData?.mother?.address?.province || ''} onChange={(e) => updateParentAddress('mother', 'province', e.target.value)} />
+                                <Input placeholder="รหัสไปรษณีย์" value={parentsData?.mother?.address?.zipcode || ''} onChange={(e) => updateParentAddress('mother', 'zipcode', e.target.value)} />
+                            </div>
+                        </div>
+                         <div className="space-y-1">
+                            <Label>โทรศัพท์</Label>
+                            <Input className="w-full md:w-1/2" value={parentsData?.mother?.phone || ''} onChange={(e) => updateParentInfo('mother', 'phone', e.target.value)} />
+                        </div>
+                    </div>
+                )}
+            </div>
+
+            {/* Siblings */}
+            <div className="bg-white p-5 rounded-xl border shadow-sm flex flex-col md:flex-row gap-6">
+                <div className="flex-1 flex items-center gap-2">
+                    <Label className="whitespace-nowrap">ข้าพเจ้ามีพี่น้องร่วมบิดามารดา</Label>
+                    <Input 
+                        className="w-20 text-center" 
+                        value={parentsData?.siblings_count || ''}
+                        onChange={(e) => updateParents('siblings_count', e.target.value)}
+                    />
+                    <Label>คน</Label>
+                </div>
+                <div className="flex-1 flex items-center gap-2">
+                    <Label className="whitespace-nowrap">ข้าพเจ้าเป็นบุตรคนที่</Label>
+                    <Input 
+                        className="w-20 text-center" 
+                        value={parentsData?.birth_order || ''}
+                        onChange={(e) => updateParents('birth_order', e.target.value)}
+                    />
+                </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            );
+            }
