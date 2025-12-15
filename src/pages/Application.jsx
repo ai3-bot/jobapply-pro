@@ -309,19 +309,25 @@ const FormStep1 = ({ data, updateData, photo }) => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-6 items-start">
-            <div className="space-y-2">
-                <Label>ชื่อ-สกุล (ภาษาไทย)</Label>
-                <div className="flex gap-2">
-                     <Select value={data.prefix} onValueChange={(v) => updateData('personal_data', 'prefix', v)}>
-                        <SelectTrigger className="w-[80px]"><SelectValue placeholder="คำนำ" /></SelectTrigger>
-                        <SelectContent>
-                            <SelectItem value="นาย">นาย</SelectItem>
-                            <SelectItem value="นาง">นาง</SelectItem>
-                            <SelectItem value="นางสาว">น.ส.</SelectItem>
-                        </SelectContent>
-                    </Select>
-                    <Input placeholder="ชื่อ" value={data.first_name} onChange={(e) => updateData('personal_data', 'first_name', e.target.value)} />
-                    <Input placeholder="สกุล" value={data.last_name} onChange={(e) => updateData('personal_data', 'last_name', e.target.value)} />
+            <div className="space-y-4">
+                <div className="space-y-2">
+                    <Label>ชื่อ-สกุล (ภาษาไทย)</Label>
+                    <div className="flex gap-2">
+                         <Select value={data.prefix} onValueChange={(v) => updateData('personal_data', 'prefix', v)}>
+                            <SelectTrigger className="w-[80px]"><SelectValue placeholder="คำนำ" /></SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="นาย">นาย</SelectItem>
+                                <SelectItem value="นาง">นาง</SelectItem>
+                                <SelectItem value="นางสาว">น.ส.</SelectItem>
+                            </SelectContent>
+                        </Select>
+                        <Input placeholder="ชื่อ" value={data.first_name} onChange={(e) => updateData('personal_data', 'first_name', e.target.value)} />
+                        <Input placeholder="สกุล" value={data.last_name} onChange={(e) => updateData('personal_data', 'last_name', e.target.value)} />
+                    </div>
+                </div>
+                <div className="space-y-2">
+                    <Label>Name in English</Label>
+                    <Input placeholder="Firstname Lastname" value={data.english_name} onChange={(e) => updateData('personal_data', 'english_name', e.target.value)} />
                 </div>
             </div>
 
@@ -335,11 +341,6 @@ const FormStep1 = ({ data, updateData, photo }) => {
                        <img src={photo} alt="Applicant" className="w-full h-full object-cover" />
                   </div>
                 )}
-            </div>
-
-            <div className="md:col-span-2 space-y-2">
-                <Label>Name in English</Label>
-                <Input placeholder="Firstname Lastname" value={data.english_name} onChange={(e) => updateData('personal_data', 'english_name', e.target.value)} />
             </div>
         </div>
 
