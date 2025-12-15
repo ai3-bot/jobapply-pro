@@ -70,6 +70,67 @@ export default function FormStep2({ data, familyData, skillsData, trainingData, 
                      <Label htmlFor="has_children" className="font-normal cursor-pointer text-base">มีบุตรแล้ว</Label>
                  </div>
              </div>
+             
+             {/* Conditional Fields for Married */}
+             {familyData?.marital_status === 'married' && (
+                <div className="bg-slate-50 p-4 rounded-lg border grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+                    <div className="space-y-2">
+                        <Label>ชื่อ-สกุล (สามี/ภรรยา)</Label>
+                        <Input 
+                            value={familyData?.spouse_name || ''} 
+                            onChange={(e) => updateData('family_data', 'spouse_name', e.target.value)}
+                            placeholder="กรุณาระบุชื่อ-สกุล"
+                        />
+                    </div>
+                    <div className="space-y-2">
+                        <Label>อาชีพ</Label>
+                        <Input 
+                            value={familyData?.spouse_occupation || ''} 
+                            onChange={(e) => updateData('family_data', 'spouse_occupation', e.target.value)}
+                            placeholder="กรุณาระบุอาชีพ"
+                        />
+                    </div>
+                    <div className="space-y-2">
+                        <Label>สถานที่ทำงาน</Label>
+                        <Input 
+                            value={familyData?.spouse_workplace || ''} 
+                            onChange={(e) => updateData('family_data', 'spouse_workplace', e.target.value)}
+                            placeholder="กรุณาระบุสถานที่ทำงาน"
+                        />
+                    </div>
+                    <div className="space-y-2">
+                        <Label>เบอร์โทรศัพท์ที่สามารถติดต่อได้</Label>
+                        <Input 
+                            value={familyData?.spouse_phone || ''} 
+                            onChange={(e) => updateData('family_data', 'spouse_phone', e.target.value)}
+                            placeholder="กรุณาระบุเบอร์โทรศัพท์"
+                        />
+                    </div>
+                </div>
+             )}
+
+             {/* Conditional Fields for Children */}
+             {familyData?.has_children === 'yes' && (
+                <div className="bg-slate-50 p-4 rounded-lg border grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+                     <div className="space-y-2">
+                        <Label>จำนวนบุตร (คน)</Label>
+                        <Input 
+                            type="number"
+                            value={familyData?.children_count || ''} 
+                            onChange={(e) => updateData('family_data', 'children_count', e.target.value)}
+                            placeholder="ระบุจำนวนบุตร"
+                        />
+                    </div>
+                    <div className="space-y-2">
+                        <Label>ปัจจุบันอยู่ในความดูแลของบุคคลใด</Label>
+                        <Input 
+                            value={familyData?.children_caretaker || ''} 
+                            onChange={(e) => updateData('family_data', 'children_caretaker', e.target.value)}
+                            placeholder="เช่น คุณย่า / คนอื่น หรือตนเอง"
+                        />
+                    </div>
+                </div>
+             )}
         </div>
 
         {/* 2. Education History */}

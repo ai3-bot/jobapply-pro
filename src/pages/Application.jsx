@@ -40,7 +40,16 @@ export default function ApplicationPage() {
             military_status: '',
             ordination_status: ''
         },
-        family_data: { marital_status: '', has_children: 'no' },
+        family_data: { 
+                marital_status: '', 
+                has_children: 'no',
+                spouse_name: '',
+                spouse_occupation: '',
+                spouse_workplace: '',
+                spouse_phone: '',
+                children_count: '',
+                children_caretaker: ''
+            },
         education_data: { 
             history: {
                 primary: { level: 'ประถมศึกษา', institute: '', major: '', start_year: '', end_year: '', gpa: '' },
