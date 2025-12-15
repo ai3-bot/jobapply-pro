@@ -102,6 +102,18 @@ export default function FormStep1({ data, updateData, photo }) {
                     <Label>Name in English</Label>
                     <Input placeholder="Firstname Lastname" value={data.english_name} onChange={(e) => updateData('personal_data', 'english_name', e.target.value)} />
                 </div>
+                <div className="space-y-2">
+                    <Label>เลขประจำตัวประชาชน (Citizen ID)</Label>
+                    <Input 
+                        placeholder="เลข 13 หลัก" 
+                        value={data.id_card || ''} 
+                        maxLength={13}
+                        onChange={(e) => {
+                            const val = e.target.value.replace(/\D/g, '');
+                            updateData('personal_data', 'id_card', val);
+                        }} 
+                    />
+                </div>
             </div>
             
             {photo && (
@@ -152,7 +164,16 @@ export default function FormStep1({ data, updateData, photo }) {
             </div>
             <div className="space-y-1">
                 <Label>โทรศัพท์มือถือที่ติดต่อได้สะดวก</Label>
-                <Input className="h-9" value={data.mobile_phone} onChange={(e) => updateData('personal_data', 'mobile_phone', e.target.value)} />
+                <Input 
+                    className="h-9" 
+                    value={data.mobile_phone} 
+                    maxLength={10}
+                    placeholder="ตัวเลข 10 หลัก"
+                    onChange={(e) => {
+                        const val = e.target.value.replace(/\D/g, '');
+                        updateData('personal_data', 'mobile_phone', val);
+                    }} 
+                />
             </div>
         </div>
 
@@ -168,7 +189,15 @@ export default function FormStep1({ data, updateData, photo }) {
                  <Input placeholder="ตำบล/แขวง" value={data.registered_address?.subdistrict || ''} onChange={(e) => updateAddress('registered_address', 'subdistrict', e.target.value)} />
                  <Input placeholder="อำเภอ/เขต" value={data.registered_address?.district || ''} onChange={(e) => updateAddress('registered_address', 'district', e.target.value)} />
                  <Input placeholder="จังหวัด" value={data.registered_address?.province || ''} onChange={(e) => updateAddress('registered_address', 'province', e.target.value)} />
-                 <Input placeholder="รหัสไปรษณีย์" value={data.registered_address?.zipcode || ''} onChange={(e) => updateAddress('registered_address', 'zipcode', e.target.value)} />
+                 <Input 
+                    placeholder="รหัสไปรษณีย์" 
+                    value={data.registered_address?.zipcode || ''} 
+                    maxLength={5}
+                    onChange={(e) => {
+                        const val = e.target.value.replace(/\D/g, '');
+                        updateAddress('registered_address', 'zipcode', val);
+                    }} 
+                 />
             </div>
         </div>
 
@@ -200,7 +229,15 @@ export default function FormStep1({ data, updateData, photo }) {
                  <Input placeholder="ตำบล/แขวง" value={data.current_address?.subdistrict || ''} onChange={(e) => updateAddress('current_address', 'subdistrict', e.target.value)} />
                  <Input placeholder="อำเภอ/เขต" value={data.current_address?.district || ''} onChange={(e) => updateAddress('current_address', 'district', e.target.value)} />
                  <Input placeholder="จังหวัด" value={data.current_address?.province || ''} onChange={(e) => updateAddress('current_address', 'province', e.target.value)} />
-                 <Input placeholder="รหัสไปรษณีย์" value={data.current_address?.zipcode || ''} onChange={(e) => updateAddress('current_address', 'zipcode', e.target.value)} />
+                 <Input 
+                    placeholder="รหัสไปรษณีย์" 
+                    value={data.current_address?.zipcode || ''} 
+                    maxLength={5}
+                    onChange={(e) => {
+                        const val = e.target.value.replace(/\D/g, '');
+                        updateAddress('current_address', 'zipcode', val);
+                    }} 
+                 />
             </div>
         </div>
 

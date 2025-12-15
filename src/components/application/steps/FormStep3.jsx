@@ -849,12 +849,29 @@ export default function FormStep3({ data, experienceData, statementData, referra
                                 <Input placeholder="ตำบล/แขวง" value={parentsData?.father?.address?.subdistrict || ''} onChange={(e) => updateParentAddress('father', 'subdistrict', e.target.value)} />
                                 <Input placeholder="อำเภอ/เขต" value={parentsData?.father?.address?.district || ''} onChange={(e) => updateParentAddress('father', 'district', e.target.value)} />
                                 <Input placeholder="จังหวัด" value={parentsData?.father?.address?.province || ''} onChange={(e) => updateParentAddress('father', 'province', e.target.value)} />
-                                <Input placeholder="รหัสไปรษณีย์" value={parentsData?.father?.address?.zipcode || ''} onChange={(e) => updateParentAddress('father', 'zipcode', e.target.value)} />
+                                <Input 
+                                    placeholder="รหัสไปรษณีย์" 
+                                    value={parentsData?.father?.address?.zipcode || ''} 
+                                    maxLength={5}
+                                    onChange={(e) => {
+                                        const val = e.target.value.replace(/\D/g, '');
+                                        updateParentAddress('father', 'zipcode', val);
+                                    }} 
+                                />
                             </div>
                         </div>
                          <div className="space-y-1">
                             <Label>โทรศัพท์</Label>
-                            <Input className="w-full md:w-1/2" value={parentsData?.father?.phone || ''} onChange={(e) => updateParentInfo('father', 'phone', e.target.value)} />
+                            <Input 
+                                className="w-full md:w-1/2" 
+                                value={parentsData?.father?.phone || ''} 
+                                maxLength={10}
+                                placeholder="ตัวเลข 10 หลัก"
+                                onChange={(e) => {
+                                    const val = e.target.value.replace(/\D/g, '');
+                                    updateParentInfo('father', 'phone', val);
+                                }} 
+                            />
                         </div>
                     </div>
                 )}
@@ -912,12 +929,29 @@ export default function FormStep3({ data, experienceData, statementData, referra
                                 <Input placeholder="ตำบล/แขวง" value={parentsData?.mother?.address?.subdistrict || ''} onChange={(e) => updateParentAddress('mother', 'subdistrict', e.target.value)} />
                                 <Input placeholder="อำเภอ/เขต" value={parentsData?.mother?.address?.district || ''} onChange={(e) => updateParentAddress('mother', 'district', e.target.value)} />
                                 <Input placeholder="จังหวัด" value={parentsData?.mother?.address?.province || ''} onChange={(e) => updateParentAddress('mother', 'province', e.target.value)} />
-                                <Input placeholder="รหัสไปรษณีย์" value={parentsData?.mother?.address?.zipcode || ''} onChange={(e) => updateParentAddress('mother', 'zipcode', e.target.value)} />
+                                <Input 
+                                    placeholder="รหัสไปรษณีย์" 
+                                    value={parentsData?.mother?.address?.zipcode || ''} 
+                                    maxLength={5}
+                                    onChange={(e) => {
+                                        const val = e.target.value.replace(/\D/g, '');
+                                        updateParentAddress('mother', 'zipcode', val);
+                                    }} 
+                                />
                             </div>
                         </div>
                          <div className="space-y-1">
                             <Label>โทรศัพท์</Label>
-                            <Input className="w-full md:w-1/2" value={parentsData?.mother?.phone || ''} onChange={(e) => updateParentInfo('mother', 'phone', e.target.value)} />
+                            <Input 
+                                className="w-full md:w-1/2" 
+                                value={parentsData?.mother?.phone || ''} 
+                                maxLength={10}
+                                placeholder="ตัวเลข 10 หลัก"
+                                onChange={(e) => {
+                                    const val = e.target.value.replace(/\D/g, '');
+                                    updateParentInfo('mother', 'phone', val);
+                                }} 
+                            />
                         </div>
                     </div>
                 )}
