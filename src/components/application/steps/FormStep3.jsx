@@ -591,7 +591,7 @@ export default function FormStep3({ data, experienceData, statementData, updateD
                 <div className="bg-white p-5 rounded-xl border shadow-sm hover:shadow-md transition-shadow">
                     <div className="space-y-3">
                         <Label className="text-base font-semibold text-slate-800">10. ท่านมีหนี้สินหรือภาระด้านใด</Label>
-                        <div className="grid sm:grid-cols-2 gap-4 bg-slate-50 p-5 rounded-xl border">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-slate-50 p-5 rounded-xl border">
                             <label htmlFor="debt_outside" className="flex items-center space-x-3 bg-white p-3 rounded-lg border shadow-sm cursor-pointer hover:bg-slate-50 transition-colors">
                                 <Checkbox 
                                     id="debt_outside" 
@@ -632,7 +632,7 @@ export default function FormStep3({ data, experienceData, statementData, updateD
                                 />
                                 <span className="font-normal">เงินกู้ยืมเพื่อการศึกษา กยส.</span>
                             </label>
-                            <div className="flex flex-col gap-2 bg-white p-3 rounded-lg border shadow-sm col-span-1 sm:col-span-2">
+                            <div className="flex flex-col gap-2 bg-white p-3 rounded-lg border shadow-sm col-span-1">
                                 <label htmlFor="debt_other" className="flex items-center space-x-3 cursor-pointer">
                                     <Checkbox 
                                         id="debt_other" 
@@ -651,7 +651,7 @@ export default function FormStep3({ data, experienceData, statementData, updateD
                                     />
                                 )}
                             </div>
-                            <div className="flex items-center gap-3 col-span-1 sm:col-span-2 mt-2 pt-4 border-t border-slate-200">
+                            <div className="flex items-center gap-3 col-span-1 sm:col-span-3 mt-2 pt-4 border-t border-slate-200">
                                  <Label htmlFor="debt_monthly" className="whitespace-nowrap font-medium text-indigo-700">รวมรายการผ่อนชำระต่อเดือน:</Label>
                                  <div className="relative">
                                     <Input 
