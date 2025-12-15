@@ -16,7 +16,7 @@ export default function AgreementStep({ onNext }) {
           <CardDescription>นโยบายความเป็นส่วนตัวสำหรับผู้สมัครงาน</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
-          <div className="h-[500px] overflow-y-auto p-6 bg-slate-50 rounded-md border text-sm text-slate-700 leading-relaxed space-y-4">
+          <div className="h-auto overflow-hidden p-6 bg-slate-50 rounded-md border text-sm text-slate-700 leading-relaxed space-y-4">
             <p className="font-semibold text-slate-900">
               บริษัทตระหนักและให้ความสำคัญต่อการคุ้มครองข้อมูลส่วนบุคคลของท่าน บริษัท เค แอนด์ โอ ซิสเต็มส์ แอนด์ คอนซัลติ้ง จำกัด ได้จัดทำนโยบาย ความเป็นส่วนตัวสำหรับข้อมูลส่วนบุคคลของผู้ใช้บริการบุคคลภายนอก ตามพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 (PDPA) เพื่อแจ้ง ให้ท่านทราบถึงวิธีการในการเก็บรวบรวม ใช้และเปิดเผยข้อมูลส่วนบุคคลของท่านเมื่อเข้าร่วมกิจกรรม
             </p>
