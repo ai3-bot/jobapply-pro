@@ -70,7 +70,7 @@ export default function FormStep1({ data, updateData, photo }) {
                         <Input placeholder="สกุล" value={data.last_name} onChange={(e) => updateData('personal_data', 'last_name', e.target.value)} />
                     </div>
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-2 col-span-2">
                     <Label>Name in English</Label>
                     <Input placeholder="Firstname Lastname" value={data.english_name} onChange={(e) => updateData('personal_data', 'english_name', e.target.value)} />
                 </div>
