@@ -37,6 +37,16 @@ export default function FormStep3({ data, experienceData, updateData }) {
         updateData('experience_data', 'history', newHistory);
     };
 
+    // Statement Helpers
+    const updateStatement = (field, value) => {
+        updateData('statement_data', field, value);
+    };
+
+    const updateStatementObj = (parent, field, value) => {
+        const current = statementData?.[parent] || {};
+        updateData('statement_data', parent, { ...current, [field]: value });
+    };
+
     // Table Styles
     const thClass = "border border-slate-300 bg-slate-100 text-slate-700 h-9 px-2 font-semibold text-center align-middle";
     const tdClass = "border border-slate-300 p-0";
@@ -182,6 +192,33 @@ export default function FormStep3({ data, experienceData, updateData }) {
                 </Table>
             </div>
 
+            {/* Contact Previous Employer */}
+            <div className="pt-4 border-t border-slate-200 mt-4">
+                <Label className="text-base font-medium">ท่านจะยินดีหรือไม่หากทางการบริษัทฯ จะติดต่อสอบถามไปยังบริษัทฯเดิม (บริษัทที่ท่านเคยปฏิบัติงาน)</Label>
+                <div className="flex gap-6 mt-3">
+                    <div className="flex items-center space-x-2">
+                        <Checkbox 
+                            id="contact_allowed" 
+                            checked={experienceData?.contact_previous_employer?.allowed || false}
+                            onCheckedChange={(c) => {
+                                updateData('experience_data', 'contact_previous_employer', { allowed: c, not_allowed: !c });
+                            }}
+                        />
+                        <Label htmlFor="contact_allowed" className="font-normal cursor-pointer">ไม่ขัดข้อง</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                        <Checkbox 
+                            id="contact_not_allowed" 
+                            checked={experienceData?.contact_previous_employer?.not_allowed || false}
+                            onCheckedChange={(c) => {
+                                updateData('experience_data', 'contact_previous_employer', { allowed: !c, not_allowed: c });
+                            }}
+                        />
+                        <Label htmlFor="contact_not_allowed" className="font-normal cursor-pointer">ขัดข้อง</Label>
+                    </div>
+                </div>
+            </div>
+
             <div className="space-y-2 max-w-2xl pt-2">
                 <Label>คติประจำใจในการทำงาน</Label>
                 <Textarea 
@@ -193,40 +230,388 @@ export default function FormStep3({ data, experienceData, updateData }) {
             </div>
         </div>
 
-        {/* Health Data Section */}
-        <div className="space-y-4 pt-4 border-t">
-            <h3 className="text-lg font-bold text-slate-900 border-b pb-2 mb-4">ข้อมูลสุขภาพ (Health Information)</h3>
+        {/* Statement Section */}
+        <div className="space-y-6 border-t pt-5">
+            <h3 className="text-lg font-bold text-slate-900 border-b pb-1">คำแถลง (กรุณาระบุตามความจริงเท่านั้น)</h3>
+            
+            {/* 1. Overtime */}
             <div className="space-y-2">
-                <Label>โรคประจำตัว</Label>
-                <Input value={data.diseases} onChange={(e) => updateData('health_data', 'diseases', e.target.value)} placeholder="ไม่มี ให้ระบุว่า -" />
+                <Label>1. ท่านสามารถปฏิบัติงานล่วงเวลาได้หรือไม่</Label>
+                <RadioGroup 
+                    value={statementData?.can_work_overtime} 
+                    onValueChange={(val) => updateStatement('can_work_overtime', val)}
+                    className="flex gap-6"
+                >
+                    <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="yes" id="ot_yes" />
+                        <Label htmlFor="ot_yes">ได้</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="no" id="ot_no" />
+                        <Label htmlFor="ot_no">ไม่ได้</Label>
+                    </div>
+                </RadioGroup>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-                 <div className="space-y-2">
-                    <Label>การดื่มแอลกอฮอล์</Label>
-                    <Select value={data.alcohol} onValueChange={(v) => updateData('health_data', 'alcohol', v)}>
-                        <SelectTrigger><SelectValue placeholder="เลือก" /></SelectTrigger>
-                        <SelectContent>
-                            <SelectItem value="ไม่ดื่ม">ไม่ดื่ม</SelectItem>
-                            <SelectItem value="ดื่มสังสรรค์">ดื่มสังสรรค์</SelectItem>
-                            <SelectItem value="ดื่มเป็นประจำ">ดื่มเป็นประจำ</SelectItem>
-                        </SelectContent>
-                    </Select>
-                </div>
-                <div className="space-y-2">
-                    <Label>การสูบบุหรี่</Label>
-                     <Select value={data.smoking} onValueChange={(v) => updateData('health_data', 'smoking', v)}>
-                        <SelectTrigger><SelectValue placeholder="เลือก" /></SelectTrigger>
-                        <SelectContent>
-                            <SelectItem value="ไม่สูบ">ไม่สูบ</SelectItem>
-                            <SelectItem value="สูบ">สูบ</SelectItem>
-                        </SelectContent>
-                    </Select>
-                </div>
-            </div>
+
+            {/* 2. Legal Cases */}
             <div className="space-y-2">
-                <Label>ประวัติครอบครัว (โดยย่อ)</Label>
-                <Textarea value={data.family_history} onChange={(e) => updateData('health_data', 'family_history', e.target.value)} placeholder="บิดา/มารดา อาชีพ..." />
+                <Label>2. ท่านเคยเป็นผู้ต้องหาหรือต้องคำพิพากษาในคดีอาญา/แพ่งหรือไม่</Label>
+                <RadioGroup 
+                    value={statementData?.has_legal_cases} 
+                    onValueChange={(val) => updateStatement('has_legal_cases', val)}
+                    className="flex gap-6"
+                >
+                    <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="never" id="legal_never" />
+                        <Label htmlFor="legal_never">ไม่เคย</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="ever" id="legal_ever" />
+                        <Label htmlFor="legal_ever">เคย</Label>
+                    </div>
+                </RadioGroup>
             </div>
+
+            {/* 3. Drugs */}
+            <div className="space-y-2">
+                <Label>3. ท่านเคยเสพสารเสพติดหรือเคยรับการบำบัด</Label>
+                <RadioGroup 
+                    value={statementData?.has_drug_history} 
+                    onValueChange={(val) => updateStatement('has_drug_history', val)}
+                    className="flex gap-6"
+                >
+                    <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="never" id="drug_never" />
+                        <Label htmlFor="drug_never">ไม่เคย</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="ever" id="drug_ever" />
+                        <Label htmlFor="drug_ever">เคย</Label>
+                    </div>
+                </RadioGroup>
+            </div>
+
+            {/* 4. Smoking */}
+            <div className="space-y-2">
+                <Label>4. ในปัจจุบันท่านสูบบุหรี่หรือไม่</Label>
+                <div className="flex flex-col gap-2">
+                    <RadioGroup 
+                        value={statementData?.smoking_habit?.status} 
+                        onValueChange={(val) => updateStatementObj('smoking_habit', 'status', val)}
+                        className="flex gap-6"
+                    >
+                        <div className="flex items-center space-x-2">
+                            <RadioGroupItem value="no" id="smoke_no" />
+                            <Label htmlFor="smoke_no">ไม่สูบ</Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                            <RadioGroupItem value="yes" id="smoke_yes" />
+                            <Label htmlFor="smoke_yes">สูบประจำ</Label>
+                        </div>
+                    </RadioGroup>
+                    {statementData?.smoking_habit?.status === 'yes' && (
+                        <div className="flex items-center gap-2 max-w-sm mt-1 ml-6">
+                            <Label className="whitespace-nowrap font-normal">เฉลี่ยต่อวัน:</Label>
+                            <Input 
+                                className="h-8"
+                                placeholder="ระบุจำนวน"
+                                value={statementData?.smoking_habit?.amount || ''}
+                                onChange={(e) => updateStatementObj('smoking_habit', 'amount', e.target.value)}
+                            />
+                        </div>
+                    )}
+                </div>
+            </div>
+
+            {/* 5. Alcohol */}
+            <div className="space-y-2">
+                <Label>5. ท่านดื่มแอลกอฮอล์หรือไม่</Label>
+                <RadioGroup 
+                    value={statementData?.alcohol_habit} 
+                    onValueChange={(val) => updateStatement('alcohol_habit', val)}
+                    className="flex gap-6"
+                >
+                    <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="no" id="alc_no" />
+                        <Label htmlFor="alc_no">ไม่ดื่ม</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="yes" id="alc_yes" />
+                        <Label htmlFor="alc_yes">ดื่ม</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="sometimes" id="alc_some" />
+                        <Label htmlFor="alc_some">ดื่มบ้าง</Label>
+                    </div>
+                </RadioGroup>
+            </div>
+
+            {/* 6. Health Status */}
+            <div className="space-y-2">
+                <Label>6. สุขภาพของท่าน</Label>
+                <div className="flex flex-col gap-2">
+                    <RadioGroup 
+                        value={statementData?.health_status?.status} 
+                        onValueChange={(val) => updateStatementObj('health_status', 'status', val)}
+                        className="flex flex-col gap-2"
+                    >
+                        <div className="flex items-center space-x-2">
+                            <RadioGroupItem value="healthy" id="health_good" />
+                            <Label htmlFor="health_good">แข็งแรงสมบูรณ์ทุกอย่าง</Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                            <RadioGroupItem value="no_chronic" id="health_no_chronic" />
+                            <Label htmlFor="health_no_chronic">ไม่มีโรคประจำตัว</Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                            <RadioGroupItem value="chronic" id="health_chronic" />
+                            <Label htmlFor="health_chronic">มีโรคประจำตัว</Label>
+                        </div>
+                    </RadioGroup>
+                    {statementData?.health_status?.status === 'chronic' && (
+                        <div className="max-w-md ml-6">
+                            <Input 
+                                className="h-9"
+                                placeholder="ระบุโรคประจำตัว"
+                                value={statementData?.health_status?.details || ''}
+                                onChange={(e) => updateStatementObj('health_status', 'details', e.target.value)}
+                            />
+                        </div>
+                    )}
+                </div>
+            </div>
+
+            {/* 7. Recent Illness */}
+            <div className="space-y-2">
+                <Label>7. ท่านเคยล้มป่วยมากกว่า 3 วันติดต่อกันในรอบ 12 เดือนที่ผ่านมาหรือไม่</Label>
+                <RadioGroup 
+                    value={statementData?.recent_major_illness} 
+                    onValueChange={(val) => updateStatement('recent_major_illness', val)}
+                    className="flex gap-6"
+                >
+                    <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="never" id="ill_never" />
+                        <Label htmlFor="ill_never">ไม่เคย</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="ever" id="ill_ever" />
+                        <Label htmlFor="ill_ever">เคย</Label>
+                    </div>
+                </RadioGroup>
+            </div>
+
+            {/* 8. Contagious Diseases */}
+            <div className="space-y-2">
+                <Label>8. ท่านมีโรคติดต่อร้ายแรงหรือไม่ เช่น กาฬโรค/HIV/Covid-19 อื่นๆ</Label>
+                <RadioGroup 
+                    value={statementData?.has_contagious_disease} 
+                    onValueChange={(val) => updateStatement('has_contagious_disease', val)}
+                    className="flex gap-6"
+                >
+                    <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="no" id="contagious_no" />
+                        <Label htmlFor="contagious_no">ไม่มี</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="yes" id="contagious_yes" />
+                        <Label htmlFor="contagious_yes">มี</Label>
+                    </div>
+                </RadioGroup>
+            </div>
+
+            {/* 9. Physical Defects */}
+            <div className="space-y-3">
+                <Label>9. ท่านมีข้อบกพร่องเกี่ยวกับร่างกาย หรือไม่</Label>
+                <div className="grid sm:grid-cols-2 gap-4 bg-slate-50 p-4 rounded-lg border">
+                    {/* Eyes */}
+                    <div className="flex items-center gap-4">
+                        <Label className="w-16">สายตา</Label>
+                        <RadioGroup 
+                            value={statementData?.physical_conditions?.eyes} 
+                            onValueChange={(val) => updateStatementObj('physical_conditions', 'eyes', val)}
+                            className="flex gap-4"
+                        >
+                            <div className="flex items-center space-x-1">
+                                <RadioGroupItem value="normal" id="eyes_normal" />
+                                <Label htmlFor="eyes_normal" className="font-normal">ปกติ</Label>
+                            </div>
+                            <div className="flex items-center space-x-1">
+                                <RadioGroupItem value="abnormal" id="eyes_abnormal" />
+                                <Label htmlFor="eyes_abnormal" className="font-normal">ไม่ปกติ</Label>
+                            </div>
+                        </RadioGroup>
+                    </div>
+                    
+                    {/* Hearing */}
+                    <div className="flex items-center gap-4">
+                        <Label className="w-16">การฟัง</Label>
+                        <RadioGroup 
+                            value={statementData?.physical_conditions?.hearing} 
+                            onValueChange={(val) => updateStatementObj('physical_conditions', 'hearing', val)}
+                            className="flex gap-4"
+                        >
+                            <div className="flex items-center space-x-1">
+                                <RadioGroupItem value="normal" id="hearing_normal" />
+                                <Label htmlFor="hearing_normal" className="font-normal">ปกติ</Label>
+                            </div>
+                            <div className="flex items-center space-x-1">
+                                <RadioGroupItem value="abnormal" id="hearing_abnormal" />
+                                <Label htmlFor="hearing_abnormal" className="font-normal">ไม่ปกติ</Label>
+                            </div>
+                        </RadioGroup>
+                    </div>
+
+                    {/* Speaking */}
+                    <div className="flex items-center gap-4">
+                        <Label className="w-16">การพูด</Label>
+                        <RadioGroup 
+                            value={statementData?.physical_conditions?.speaking} 
+                            onValueChange={(val) => updateStatementObj('physical_conditions', 'speaking', val)}
+                            className="flex gap-4"
+                        >
+                            <div className="flex items-center space-x-1">
+                                <RadioGroupItem value="normal" id="speak_normal" />
+                                <Label htmlFor="speak_normal" className="font-normal">ปกติ</Label>
+                            </div>
+                            <div className="flex items-center space-x-1">
+                                <RadioGroupItem value="abnormal" id="speak_abnormal" />
+                                <Label htmlFor="speak_abnormal" className="font-normal">ไม่ปกติ</Label>
+                            </div>
+                        </RadioGroup>
+                    </div>
+
+                    {/* Movement */}
+                    <div className="flex items-center gap-4">
+                        <Label className="w-16">การเคลื่อนไหว</Label>
+                        <RadioGroup 
+                            value={statementData?.physical_conditions?.movement} 
+                            onValueChange={(val) => updateStatementObj('physical_conditions', 'movement', val)}
+                            className="flex gap-4"
+                        >
+                            <div className="flex items-center space-x-1">
+                                <RadioGroupItem value="normal" id="move_normal" />
+                                <Label htmlFor="move_normal" className="font-normal">ปกติ</Label>
+                            </div>
+                            <div className="flex items-center space-x-1">
+                                <RadioGroupItem value="abnormal" id="move_abnormal" />
+                                <Label htmlFor="move_abnormal" className="font-normal">ไม่ปกติ</Label>
+                            </div>
+                        </RadioGroup>
+                    </div>
+                </div>
+            </div>
+
+            {/* 10. Debts */}
+            <div className="space-y-3">
+                <Label>10. ท่านมีหนี้สินหรือภาระด้านใด</Label>
+                <div className="grid sm:grid-cols-2 gap-3 bg-slate-50 p-4 rounded-lg border">
+                    <div className="flex items-center space-x-2">
+                        <Checkbox 
+                            id="debt_outside" 
+                            checked={statementData?.debt_status?.outside_system || false}
+                            onCheckedChange={(c) => updateStatementObj('debt_status', 'outside_system', c)}
+                        />
+                        <Label htmlFor="debt_outside" className="font-normal cursor-pointer">กู้นอกระบบ</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                        <Checkbox 
+                            id="debt_inside" 
+                            checked={statementData?.debt_status?.inside_system || false}
+                            onCheckedChange={(c) => updateStatementObj('debt_status', 'inside_system', c)}
+                        />
+                        <Label htmlFor="debt_inside" className="font-normal cursor-pointer">กู้ในระบบ บัตรเครดิต/สินเชื่อต่างๆ</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                        <Checkbox 
+                            id="debt_house" 
+                            checked={statementData?.debt_status?.house || false}
+                            onCheckedChange={(c) => updateStatementObj('debt_status', 'house', c)}
+                        />
+                        <Label htmlFor="debt_house" className="font-normal cursor-pointer">ภาระการผ่อนชำระบ้าน/คอนโด</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                        <Checkbox 
+                            id="debt_car" 
+                            checked={statementData?.debt_status?.car || false}
+                            onCheckedChange={(c) => updateStatementObj('debt_status', 'car', c)}
+                        />
+                        <Label htmlFor="debt_car" className="font-normal cursor-pointer">ภาระการผ่อนส่งรถยนต์ / มอเตอร์ไซค์</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                        <Checkbox 
+                            id="debt_edu" 
+                            checked={statementData?.debt_status?.student_loan || false}
+                            onCheckedChange={(c) => updateStatementObj('debt_status', 'student_loan', c)}
+                        />
+                        <Label htmlFor="debt_edu" className="font-normal cursor-pointer">เงินกู้ยืมเพื่อการศึกษา กยส.</Label>
+                    </div>
+                    <div className="flex items-center gap-2 col-span-1 sm:col-span-2">
+                        <Checkbox 
+                            id="debt_other" 
+                            checked={statementData?.debt_status?.other || false}
+                            onCheckedChange={(c) => updateStatementObj('debt_status', 'other', c)}
+                        />
+                        <Label htmlFor="debt_other" className="font-normal cursor-pointer whitespace-nowrap">อื่นๆ</Label>
+                        {statementData?.debt_status?.other && (
+                            <Input 
+                                className="h-8 w-full" 
+                                placeholder="ระบุ"
+                                value={statementData?.debt_status?.other_details || ''}
+                                onChange={(e) => updateStatementObj('debt_status', 'other_details', e.target.value)}
+                            />
+                        )}
+                    </div>
+                    <div className="flex items-center gap-2 col-span-1 sm:col-span-2 mt-2 pt-2 border-t border-slate-200">
+                         <Label className="whitespace-nowrap">รายการผ่อนเดือนละ</Label>
+                         <Input 
+                            className="h-9 w-32"
+                            placeholder="บาท"
+                            value={statementData?.debt_status?.monthly_payment || ''}
+                            onChange={(e) => updateStatementObj('debt_status', 'monthly_payment', e.target.value)}
+                        />
+                        <span className="text-sm">บาท</span>
+                    </div>
+                </div>
+            </div>
+
+            {/* 11. Criminal Record Consent */}
+            <div className="space-y-2">
+                <Label>11. ท่านยินยอมให้บริษัทฯตรวจสอบประวัติอาชญากรรมหรือไม่</Label>
+                <RadioGroup 
+                    value={statementData?.criminal_record_check_consent} 
+                    onValueChange={(val) => updateStatement('criminal_record_check_consent', val)}
+                    className="flex gap-6"
+                >
+                    <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="agree" id="crim_agree" />
+                        <Label htmlFor="crim_agree">ยินยอม</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="disagree" id="crim_disagree" />
+                        <Label htmlFor="crim_disagree">ไม่ยินยอม</Label>
+                    </div>
+                </RadioGroup>
+            </div>
+
+            {/* 12. Credit Bureau Consent */}
+            <div className="space-y-2">
+                <Label>12. ท่านยินยอมให้บริษัทฯตรวจสอบเครดิตบูโรหรือไม่</Label>
+                <RadioGroup 
+                    value={statementData?.credit_bureau_check_consent} 
+                    onValueChange={(val) => updateStatement('credit_bureau_check_consent', val)}
+                    className="flex gap-6"
+                >
+                    <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="agree" id="credit_agree" />
+                        <Label htmlFor="credit_agree">ยินยอม</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="disagree" id="credit_disagree" />
+                        <Label htmlFor="credit_disagree">ไม่ยินยอม</Label>
+                    </div>
+                </RadioGroup>
+            </div>
+
         </div>
     </div>
     );
