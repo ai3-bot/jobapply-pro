@@ -41,7 +41,50 @@ export default function ApplicationPage() {
             ordination_status: ''
         },
         family_data: { marital_status: '', has_children: 'no' },
-        education_data: { university: '', faculty: '', major: '', gpa: '' },
+        education_data: { 
+            history: {
+                primary: { level: 'ประถมศึกษา', institute: '', major: '', start_year: '', end_year: '', gpa: '' },
+                secondary: { level: 'มัธยมศึกษา', institute: '', major: '', start_year: '', end_year: '', gpa: '' },
+                vocational: { level: 'ปวช.', institute: '', major: '', start_year: '', end_year: '', gpa: '' },
+                diploma: { level: 'ปวส.', institute: '', major: '', start_year: '', end_year: '', gpa: '' },
+                bachelor: { level: 'ปริญญาตรี', institute: '', major: '', start_year: '', end_year: '', gpa: '' },
+                master: { level: 'ปริญญาโท', institute: '', major: '', start_year: '', end_year: '', gpa: '' },
+                doctoral: { level: 'ปริญญาเอก', institute: '', major: '', start_year: '', end_year: '', gpa: '' },
+                current: { level: 'กำลังศึกษา', institute: '', major: '', start_year: '', end_year: '', gpa: '' }
+            }
+        },
+        skills_data: {
+            languages: {
+                thai: '',
+                english: '',
+                chinese: '',
+                other_name: '',
+                other_level: ''
+            },
+            office: {
+                typewriter_thai: false,
+                typewriter_eng: false,
+                calculator: false,
+                fax_copier: false,
+                computer: false
+            },
+            driving: {
+                motorcycle: false,
+                car: false,
+                truck: false,
+                other_name: '',
+                other_check: false
+            },
+            computer_capability: ''
+        },
+        training_data: {
+            history: [
+                { course: '', institute: '', duration: '' },
+                { course: '', institute: '', duration: '' },
+                { course: '', institute: '', duration: '' },
+                { course: '', institute: '', duration: '' }
+            ]
+        },
         health_data: { diseases: '', smoking: '', alcohol: '', family_history: '' },
         experience_data: { last_company: '', position: '', years: '', motto: '' },
         signature_url: ''
