@@ -87,7 +87,7 @@ export default function PhotoStep({ onNext, setGlobalData }) {
     };
 
     return (
-        <div className="max-w-xl mx-auto py-10 px-4">
+        <div className="max-w-3xl mx-auto py-10 px-4">
             <Card>
                 <CardHeader>
                     <CardTitle className="text-center">ถ่ายรูปหน้าตรง</CardTitle>

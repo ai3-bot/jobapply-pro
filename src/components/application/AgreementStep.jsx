@@ -9,7 +9,7 @@ export default function AgreementStep({ onNext }) {
   const [agreed2, setAgreed2] = useState(false);
 
   return (
-    <div className="max-w-3xl mx-auto py-10 px-4">
+    <div className="max-w-5xl mx-auto py-10 px-4">
       <Card>
         <CardHeader>
           <CardTitle className="text-2xl font-bold">ขอความยินยอม</CardTitle>

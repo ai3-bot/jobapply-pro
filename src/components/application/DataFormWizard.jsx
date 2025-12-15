@@ -61,7 +61,7 @@ export default function DataFormWizard({ onComplete, globalData, setGlobalData }
     };
 
     return (
-        <div className="max-w-2xl mx-auto py-10 px-4">
+        <div className="max-w-5xl mx-auto py-10 px-4">
             <Card className="min-h-[600px] flex flex-col">
                 <CardHeader>
                     <CardTitle>กรอกข้อมูลใบสมัคร</CardTitle>
