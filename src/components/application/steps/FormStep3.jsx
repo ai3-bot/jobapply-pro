@@ -238,7 +238,7 @@ export default function FormStep3({ data, experienceData, statementData, updateD
         </div>
 
         {/* Statement Section */}
-        <div className="space-y-6 pt-5">
+        <div className="space-y-6 pt-2">
             <h3 className="text-lg font-bold text-slate-900 border-b pb-1">คำแถลง (กรุณาระบุตามความจริงเท่านั้น)</h3>
             
             {/* 1. Overtime */}
