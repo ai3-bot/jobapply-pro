@@ -236,11 +236,10 @@ export default function FormStep3({ data, experienceData, statementData, updateD
         {/* Statement Section */}
         <div className="space-y-6 pt-6">
             <div className="bg-gradient-to-r from-slate-100 to-white p-4 rounded-lg border border-slate-200">
-                <h3 className="text-xl font-bold text-indigo-900 flex items-center gap-2">
-                    <span className="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">3</span>
+                <h3 className="text-xl font-bold text-indigo-900">
                     คำแถลง
                 </h3>
-                <p className="text-slate-500 text-sm mt-1 ml-10">กรุณาระบุข้อมูลตามความเป็นจริงเพื่อประโยชน์ในการพิจารณา</p>
+                <p className="text-slate-500 text-sm mt-1">กรุณาระบุข้อมูลตามความเป็นจริงเพื่อประโยชน์ในการพิจารณา</p>
             </div>
             
             <div className="grid gap-6">
