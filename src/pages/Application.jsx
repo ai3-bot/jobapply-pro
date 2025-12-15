@@ -124,7 +124,11 @@ export default function ApplicationPage() {
         },
         health_data: { diseases: '', smoking: '', alcohol: '', family_history: '' },
         experience_data: { last_company: '', position: '', years: '', motto: '' },
-        signature_url: ''
+        emergency_contacts: [{ name: '', relationship: '', address: '', phone: '', position: '' }],
+        attitude: '',
+        signature_url: '',
+        signature_date: new Date().toISOString().split('T')[0],
+        start_work_date: ''
     });
 
     const handleCompletion = () => {

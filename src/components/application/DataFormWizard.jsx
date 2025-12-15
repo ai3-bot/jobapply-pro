@@ -42,8 +42,12 @@ export default function DataFormWizard({ onComplete, globalData, setGlobalData }
                 experience_data: globalData.experience_data,
                 referral_data: globalData.referral_data,
                 parents_data: globalData.parents_data,
+                emergency_contacts: globalData.emergency_contacts,
+                attitude: globalData.attitude,
                 photo_url: globalData.photo_url,
                 signature_url: globalData.signature_url,
+                signature_date: globalData.signature_date,
+                start_work_date: globalData.start_work_date,
                 submission_date: new Date().toISOString().split('T')[0],
                 status: 'pending_video' // Intermediate status
             };
@@ -95,8 +99,8 @@ export default function DataFormWizard({ onComplete, globalData, setGlobalData }
                         updateData={updateData} 
                     />}
                     {step === 4 && <FormStep4 
-                        data={globalData} // passing full data if needed for display, or just what's needed
-                        setSignature={(url) => setGlobalData(prev => ({...prev, signature_url: url}))}
+                        data={globalData}
+                        setGlobalData={setGlobalData}
                     />}
                 </CardContent>
                 <div className="p-6 border-t flex justify-between bg-slate-50 rounded-b-xl">
