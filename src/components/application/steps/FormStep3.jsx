@@ -357,18 +357,18 @@ export default function FormStep3({ data, experienceData, statementData, updateD
                         <RadioGroup 
                             value={statementData?.health_status?.status} 
                             onValueChange={(val) => updateStatementObj('health_status', 'status', val)}
-                            className="flex flex-col gap-3"
+                            className="grid grid-cols-1 sm:grid-cols-3 gap-4"
                         >
-                            <div className="flex items-center justify-between sm:justify-start sm:gap-4">
-                                <Label htmlFor="health_good" className="font-normal cursor-pointer flex-1 sm:flex-none">แข็งแรงสมบูรณ์ทุกอย่าง</Label>
+                            <div className="flex items-center justify-between sm:justify-end gap-2">
+                                <Label htmlFor="health_good" className="font-normal cursor-pointer text-right">แข็งแรงสมบูรณ์ทุกอย่าง</Label>
                                 <RadioGroupItem value="healthy" id="health_good" />
                             </div>
-                            <div className="flex items-center justify-between sm:justify-start sm:gap-4">
-                                <Label htmlFor="health_no_chronic" className="font-normal cursor-pointer flex-1 sm:flex-none">ไม่มีโรคประจำตัว</Label>
+                            <div className="flex items-center justify-between sm:justify-end gap-2">
+                                <Label htmlFor="health_no_chronic" className="font-normal cursor-pointer text-right">ไม่มีโรคประจำตัว</Label>
                                 <RadioGroupItem value="no_chronic" id="health_no_chronic" />
                             </div>
-                            <div className="flex items-center justify-between sm:justify-start sm:gap-4">
-                                <Label htmlFor="health_chronic" className="font-normal cursor-pointer flex-1 sm:flex-none">มีโรคประจำตัว</Label>
+                            <div className="flex items-center justify-between sm:justify-end gap-2">
+                                <Label htmlFor="health_chronic" className="font-normal cursor-pointer text-right">มีโรคประจำตัว</Label>
                                 <RadioGroupItem value="chronic" id="health_chronic" />
                             </div>
                         </RadioGroup>
