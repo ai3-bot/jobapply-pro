@@ -632,7 +632,7 @@ export default function FormStep3({ data, experienceData, statementData, updateD
                                 />
                                 <span className="font-normal">เงินกู้ยืมเพื่อการศึกษา กยส.</span>
                             </label>
-                            <div className="sm:col-span-2 flex flex-col gap-2 bg-white p-3 rounded-lg border shadow-sm">
+                            <div className="sm:col-span-6 flex flex-col gap-2 bg-white p-3 rounded-lg border shadow-sm">
                                 <label htmlFor="debt_other" className="flex items-center space-x-3 cursor-pointer">
                                     <Checkbox 
                                         id="debt_other" 
