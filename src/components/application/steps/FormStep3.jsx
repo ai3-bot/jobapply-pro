@@ -352,38 +352,38 @@ export default function FormStep3({ data, experienceData, statementData, updateD
             {/* 6. Health Status */}
             <div className="space-y-2">
                 <div className="flex items-start gap-4">
-                    <Label className="text-base pt-1">6. สุขภาพของท่าน</Label>
+                    <Label className="text-base pt-1 shrink-0">6. สุขภาพของท่าน</Label>
                     <div className="flex flex-col gap-2 w-full">
                         <RadioGroup 
                             value={statementData?.health_status?.status} 
                             onValueChange={(val) => updateStatementObj('health_status', 'status', val)}
-                            className="flex flex-row gap-6 flex-wrap"
+                            className="flex flex-col gap-3"
                         >
-                            <div className="flex items-center space-x-2">
-                                <Label htmlFor="health_good" className="font-normal">แข็งแรงสมบูรณ์ทุกอย่าง</Label>
+                            <div className="flex items-center justify-between sm:justify-start sm:gap-4">
+                                <Label htmlFor="health_good" className="font-normal cursor-pointer flex-1 sm:flex-none">แข็งแรงสมบูรณ์ทุกอย่าง</Label>
                                 <RadioGroupItem value="healthy" id="health_good" />
                             </div>
-                            <div className="flex items-center space-x-2">
-                                <Label htmlFor="health_no_chronic" className="font-normal">ไม่มีโรคประจำตัว</Label>
+                            <div className="flex items-center justify-between sm:justify-start sm:gap-4">
+                                <Label htmlFor="health_no_chronic" className="font-normal cursor-pointer flex-1 sm:flex-none">ไม่มีโรคประจำตัว</Label>
                                 <RadioGroupItem value="no_chronic" id="health_no_chronic" />
                             </div>
-                            <div className="flex items-center space-x-2">
-                                <Label htmlFor="health_chronic" className="font-normal">มีโรคประจำตัว</Label>
+                            <div className="flex items-center justify-between sm:justify-start sm:gap-4">
+                                <Label htmlFor="health_chronic" className="font-normal cursor-pointer flex-1 sm:flex-none">มีโรคประจำตัว</Label>
                                 <RadioGroupItem value="chronic" id="health_chronic" />
                             </div>
                         </RadioGroup>
+                        {statementData?.health_status?.status === 'chronic' && (
+                            <div className="pt-1">
+                                <Input 
+                                    className="h-9 w-full"
+                                    placeholder="ระบุโรคประจำตัว"
+                                    value={statementData?.health_status?.details || ''}
+                                    onChange={(e) => updateStatementObj('health_status', 'details', e.target.value)}
+                                />
+                            </div>
+                        )}
                     </div>
                 </div>
-                {statementData?.health_status?.status === 'chronic' && (
-                    <div className="flex justify-end pt-2">
-                        <Input 
-                            className="h-9 w-1/2"
-                            placeholder="ระบุโรคประจำตัว"
-                            value={statementData?.health_status?.details || ''}
-                            onChange={(e) => updateStatementObj('health_status', 'details', e.target.value)}
-                        />
-                    </div>
-                )}
             </div>
 
             {/* 7. Recent Illness */}
