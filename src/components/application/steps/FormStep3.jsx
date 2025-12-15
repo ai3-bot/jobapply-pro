@@ -48,7 +48,7 @@ export default function FormStep3({ data, experienceData, updateData }) {
         <div className="space-y-4">
             <h3 className="text-lg font-bold text-slate-900 border-b pb-2">ประวัติการทำงาน (Work Experience)</h3>
             <div className="border border-slate-300 rounded-md overflow-hidden">
-                <Table className="min-w-[1000px] border-collapse">
+                <Table className="w-full border-collapse">
                     <TableHeader>
                         <TableRow>
                             <TableHead colSpan={5} className="border border-slate-300 bg-slate-50 p-3 h-auto">
