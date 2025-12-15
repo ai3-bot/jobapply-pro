@@ -353,35 +353,35 @@ export default function FormStep3({ data, experienceData, statementData, updateD
             <div className="space-y-2">
                 <div className="flex items-start gap-4">
                     <Label className="text-base pt-1 shrink-0">6. สุขภาพของท่าน</Label>
-                    <div className="flex flex-col gap-2 w-full">
+                    <div className="w-full">
                         <RadioGroup 
                             value={statementData?.health_status?.status} 
                             onValueChange={(val) => updateStatementObj('health_status', 'status', val)}
-                            className="grid grid-cols-1 sm:grid-cols-3 gap-4"
+                            className="grid grid-cols-1 sm:grid-cols-3 gap-4 items-start"
                         >
-                            <div className="flex items-center justify-between sm:justify-end gap-2">
+                            <div className="flex items-center justify-between sm:justify-end gap-2 h-9">
                                 <Label htmlFor="health_good" className="font-normal cursor-pointer text-right">แข็งแรงสมบูรณ์ทุกอย่าง</Label>
                                 <RadioGroupItem value="healthy" id="health_good" />
                             </div>
-                            <div className="flex items-center justify-between sm:justify-end gap-2">
+                            <div className="flex items-center justify-between sm:justify-end gap-2 h-9">
                                 <Label htmlFor="health_no_chronic" className="font-normal cursor-pointer text-right">ไม่มีโรคประจำตัว</Label>
                                 <RadioGroupItem value="no_chronic" id="health_no_chronic" />
                             </div>
-                            <div className="flex items-center justify-between sm:justify-end gap-2">
-                                <Label htmlFor="health_chronic" className="font-normal cursor-pointer text-right">มีโรคประจำตัว</Label>
-                                <RadioGroupItem value="chronic" id="health_chronic" />
+                            <div className="flex flex-wrap items-center justify-between sm:justify-end gap-2 min-h-9">
+                                <div className="flex items-center gap-2 ml-auto">
+                                    <Label htmlFor="health_chronic" className="font-normal cursor-pointer text-right">มีโรคประจำตัว</Label>
+                                    <RadioGroupItem value="chronic" id="health_chronic" />
+                                </div>
+                                {statementData?.health_status?.status === 'chronic' && (
+                                    <Input 
+                                        className="h-8 w-full sm:w-32"
+                                        placeholder="ระบุ"
+                                        value={statementData?.health_status?.details || ''}
+                                        onChange={(e) => updateStatementObj('health_status', 'details', e.target.value)}
+                                    />
+                                )}
                             </div>
                         </RadioGroup>
-                        {statementData?.health_status?.status === 'chronic' && (
-                            <div className="pt-1">
-                                <Input 
-                                    className="h-9 w-full"
-                                    placeholder="ระบุโรคประจำตัว"
-                                    value={statementData?.health_status?.details || ''}
-                                    onChange={(e) => updateStatementObj('health_status', 'details', e.target.value)}
-                                />
-                            </div>
-                        )}
                     </div>
                 </div>
             </div>
@@ -434,7 +434,7 @@ export default function FormStep3({ data, experienceData, statementData, updateD
                         <RadioGroup 
                             value={statementData?.physical_conditions?.eyes} 
                             onValueChange={(val) => updateStatementObj('physical_conditions', 'eyes', val)}
-                            className="flex gap-4"
+                            className="flex gap-4 items-center"
                         >
                             <div className="flex items-center space-x-1">
                                 <Label htmlFor="eyes_normal" className="font-normal">ปกติ</Label>
@@ -443,6 +443,14 @@ export default function FormStep3({ data, experienceData, statementData, updateD
                             <div className="flex items-center space-x-1">
                                 <Label htmlFor="eyes_abnormal" className="font-normal">ไม่ปกติ</Label>
                                 <RadioGroupItem value="abnormal" id="eyes_abnormal" />
+                                {statementData?.physical_conditions?.eyes === 'abnormal' && (
+                                    <Input 
+                                        className="h-7 w-32 ml-1" 
+                                        placeholder="ระบุ"
+                                        value={statementData?.physical_conditions?.eyes_details || ''}
+                                        onChange={(e) => updateStatementObj('physical_conditions', 'eyes_details', e.target.value)}
+                                    />
+                                )}
                             </div>
                         </RadioGroup>
                     </div>
@@ -453,7 +461,7 @@ export default function FormStep3({ data, experienceData, statementData, updateD
                         <RadioGroup 
                             value={statementData?.physical_conditions?.hearing} 
                             onValueChange={(val) => updateStatementObj('physical_conditions', 'hearing', val)}
-                            className="flex gap-4"
+                            className="flex gap-4 items-center"
                         >
                             <div className="flex items-center space-x-1">
                                 <Label htmlFor="hearing_normal" className="font-normal">ปกติ</Label>
@@ -462,6 +470,14 @@ export default function FormStep3({ data, experienceData, statementData, updateD
                             <div className="flex items-center space-x-1">
                                 <Label htmlFor="hearing_abnormal" className="font-normal">ไม่ปกติ</Label>
                                 <RadioGroupItem value="abnormal" id="hearing_abnormal" />
+                                {statementData?.physical_conditions?.hearing === 'abnormal' && (
+                                    <Input 
+                                        className="h-7 w-32 ml-1" 
+                                        placeholder="ระบุ"
+                                        value={statementData?.physical_conditions?.hearing_details || ''}
+                                        onChange={(e) => updateStatementObj('physical_conditions', 'hearing_details', e.target.value)}
+                                    />
+                                )}
                             </div>
                         </RadioGroup>
                     </div>
@@ -472,7 +488,7 @@ export default function FormStep3({ data, experienceData, statementData, updateD
                         <RadioGroup 
                             value={statementData?.physical_conditions?.speaking} 
                             onValueChange={(val) => updateStatementObj('physical_conditions', 'speaking', val)}
-                            className="flex gap-4"
+                            className="flex gap-4 items-center"
                         >
                             <div className="flex items-center space-x-1">
                                 <Label htmlFor="speak_normal" className="font-normal">ปกติ</Label>
@@ -481,6 +497,14 @@ export default function FormStep3({ data, experienceData, statementData, updateD
                             <div className="flex items-center space-x-1">
                                 <Label htmlFor="speak_abnormal" className="font-normal">ไม่ปกติ</Label>
                                 <RadioGroupItem value="abnormal" id="speak_abnormal" />
+                                {statementData?.physical_conditions?.speaking === 'abnormal' && (
+                                    <Input 
+                                        className="h-7 w-32 ml-1" 
+                                        placeholder="ระบุ"
+                                        value={statementData?.physical_conditions?.speaking_details || ''}
+                                        onChange={(e) => updateStatementObj('physical_conditions', 'speaking_details', e.target.value)}
+                                    />
+                                )}
                             </div>
                         </RadioGroup>
                     </div>
@@ -491,7 +515,7 @@ export default function FormStep3({ data, experienceData, statementData, updateD
                         <RadioGroup 
                             value={statementData?.physical_conditions?.movement} 
                             onValueChange={(val) => updateStatementObj('physical_conditions', 'movement', val)}
-                            className="flex gap-4"
+                            className="flex gap-4 items-center"
                         >
                             <div className="flex items-center space-x-1">
                                 <Label htmlFor="move_normal" className="font-normal">ปกติ</Label>
@@ -500,6 +524,14 @@ export default function FormStep3({ data, experienceData, statementData, updateD
                             <div className="flex items-center space-x-1">
                                 <Label htmlFor="move_abnormal" className="font-normal">ไม่ปกติ</Label>
                                 <RadioGroupItem value="abnormal" id="move_abnormal" />
+                                {statementData?.physical_conditions?.movement === 'abnormal' && (
+                                    <Input 
+                                        className="h-7 w-32 ml-1" 
+                                        placeholder="ระบุ"
+                                        value={statementData?.physical_conditions?.movement_details || ''}
+                                        onChange={(e) => updateStatementObj('physical_conditions', 'movement_details', e.target.value)}
+                                    />
+                                )}
                             </div>
                         </RadioGroup>
                     </div>
