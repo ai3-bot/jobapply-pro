@@ -15,7 +15,8 @@ import { useQuery } from '@tanstack/react-query';
 // --- Sub-components for each step ---
 
 const AgreementStep = ({ onNext }) => {
-  const [agreed, setAgreed] = useState(false);
+  const [agreed1, setAgreed1] = useState(false);
+  const [agreed2, setAgreed2] = useState(false);
 
   return (
     <div className="max-w-3xl mx-auto py-10 px-4">
@@ -74,18 +75,29 @@ const AgreementStep = ({ onNext }) => {
             </div>
           </div>
           
-          <div className="flex items-start space-x-3 pt-4 border-t">
-            <Checkbox id="terms" checked={agreed} onCheckedChange={setAgreed} className="mt-1" />
-            <div className="grid gap-1.5 leading-none">
-                <Label htmlFor="terms" className="text-sm font-medium leading-snug cursor-pointer">
-                    ยินยอมให้บันทึกวิดีโอและเก็บข้อมูลเพื่อวัตถุประสงค์ในการคัดเลือกบุคลากร ตามนโยบายความเป็นส่วนตัวของบริษัท
-                </Label>
+          <div className="space-y-4 pt-4 border-t">
+            <div className="flex items-start space-x-3">
+              <Checkbox id="term1" checked={agreed1} onCheckedChange={setAgreed1} className="mt-1" />
+              <div className="grid gap-1.5 leading-none">
+                  <Label htmlFor="term1" className="text-sm font-medium leading-snug cursor-pointer">
+                      ยินยอมให้เก็บข้อมูล
+                  </Label>
+              </div>
+            </div>
+
+            <div className="flex items-start space-x-3">
+              <Checkbox id="term2" checked={agreed2} onCheckedChange={setAgreed2} className="mt-1" />
+              <div className="grid gap-1.5 leading-none">
+                  <Label htmlFor="term2" className="text-sm font-medium leading-snug cursor-pointer">
+                      ยินยอมให้บันทึกวิดีโอและเก็บข้อมูลเพื่อวัตถุประสงค์ในการคัดเลือกบุคลากร ตามนโยบายความเป็นส่วนตัวของบริษัท
+                  </Label>
+              </div>
             </div>
           </div>
 
           <Button 
             onClick={onNext} 
-            disabled={!agreed} 
+            disabled={!agreed1 || !agreed2} 
             className="w-full mt-4 bg-indigo-600 hover:bg-indigo-700"
           >
             ยืนยันและดำเนินการต่อ
