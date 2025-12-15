@@ -591,8 +591,8 @@ export default function FormStep3({ data, experienceData, statementData, updateD
                 <div className="bg-white p-5 rounded-xl border shadow-sm hover:shadow-md transition-shadow">
                     <div className="space-y-3">
                         <Label className="text-base font-semibold text-slate-800">10. ท่านมีหนี้สินหรือภาระด้านใด</Label>
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-slate-50 p-5 rounded-xl border">
-                            <label htmlFor="debt_outside" className="flex items-center space-x-3 bg-white p-3 rounded-lg border shadow-sm cursor-pointer hover:bg-slate-50 transition-colors">
+                        <div className="grid grid-cols-1 sm:grid-cols-6 gap-4 bg-slate-50 p-5 rounded-xl border">
+                            <label htmlFor="debt_outside" className="sm:col-span-2 flex items-center space-x-3 bg-white p-3 rounded-lg border shadow-sm cursor-pointer hover:bg-slate-50 transition-colors">
                                 <Checkbox 
                                     id="debt_outside" 
                                     checked={statementData?.debt_status?.outside_system || false}
@@ -600,7 +600,7 @@ export default function FormStep3({ data, experienceData, statementData, updateD
                                 />
                                 <span className="font-normal">กู้นอกระบบ</span>
                             </label>
-                            <label htmlFor="debt_inside" className="flex items-center space-x-3 bg-white p-3 rounded-lg border shadow-sm cursor-pointer hover:bg-slate-50 transition-colors">
+                            <label htmlFor="debt_inside" className="sm:col-span-2 flex items-center space-x-3 bg-white p-3 rounded-lg border shadow-sm cursor-pointer hover:bg-slate-50 transition-colors">
                                 <Checkbox 
                                     id="debt_inside" 
                                     checked={statementData?.debt_status?.inside_system || false}
@@ -608,7 +608,7 @@ export default function FormStep3({ data, experienceData, statementData, updateD
                                 />
                                 <span className="font-normal">กู้ในระบบ บัตรเครดิต/สินเชื่อต่างๆ</span>
                             </label>
-                            <label htmlFor="debt_house" className="flex items-center space-x-3 bg-white p-3 rounded-lg border shadow-sm cursor-pointer hover:bg-slate-50 transition-colors">
+                            <label htmlFor="debt_house" className="sm:col-span-2 flex items-center space-x-3 bg-white p-3 rounded-lg border shadow-sm cursor-pointer hover:bg-slate-50 transition-colors">
                                 <Checkbox 
                                     id="debt_house" 
                                     checked={statementData?.debt_status?.house || false}
@@ -616,7 +616,7 @@ export default function FormStep3({ data, experienceData, statementData, updateD
                                 />
                                 <span className="font-normal">ภาระการผ่อนชำระบ้าน/คอนโด</span>
                             </label>
-                            <label htmlFor="debt_car" className="flex items-center space-x-3 bg-white p-3 rounded-lg border shadow-sm cursor-pointer hover:bg-slate-50 transition-colors">
+                            <label htmlFor="debt_car" className="sm:col-span-3 flex items-center space-x-3 bg-white p-3 rounded-lg border shadow-sm cursor-pointer hover:bg-slate-50 transition-colors">
                                 <Checkbox 
                                     id="debt_car" 
                                     checked={statementData?.debt_status?.car || false}
@@ -624,7 +624,7 @@ export default function FormStep3({ data, experienceData, statementData, updateD
                                 />
                                 <span className="font-normal">ภาระการผ่อนส่งรถยนต์ / มอเตอร์ไซค์</span>
                             </label>
-                            <label htmlFor="debt_edu" className="flex items-center space-x-3 bg-white p-3 rounded-lg border shadow-sm cursor-pointer hover:bg-slate-50 transition-colors">
+                            <label htmlFor="debt_edu" className="sm:col-span-3 flex items-center space-x-3 bg-white p-3 rounded-lg border shadow-sm cursor-pointer hover:bg-slate-50 transition-colors">
                                 <Checkbox 
                                     id="debt_edu" 
                                     checked={statementData?.debt_status?.student_loan || false}
@@ -632,7 +632,7 @@ export default function FormStep3({ data, experienceData, statementData, updateD
                                 />
                                 <span className="font-normal">เงินกู้ยืมเพื่อการศึกษา กยส.</span>
                             </label>
-                            <div className="flex flex-col gap-2 bg-white p-3 rounded-lg border shadow-sm col-span-1">
+                            <div className="sm:col-span-2 flex flex-col gap-2 bg-white p-3 rounded-lg border shadow-sm">
                                 <label htmlFor="debt_other" className="flex items-center space-x-3 cursor-pointer">
                                     <Checkbox 
                                         id="debt_other" 
@@ -651,7 +651,7 @@ export default function FormStep3({ data, experienceData, statementData, updateD
                                     />
                                 )}
                             </div>
-                            <div className="flex items-center gap-3 col-span-1 sm:col-span-3 mt-2 pt-4 border-t border-slate-200">
+                            <div className="sm:col-span-6 flex items-center gap-3 mt-2 pt-4 border-t border-slate-200">
                                  <Label htmlFor="debt_monthly" className="whitespace-nowrap font-medium text-indigo-700">รวมรายการผ่อนชำระต่อเดือน:</Label>
                                  <div className="relative">
                                     <Input 
