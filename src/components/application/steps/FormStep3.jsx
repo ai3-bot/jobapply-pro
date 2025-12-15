@@ -181,6 +181,48 @@ export default function FormStep3({ data, experienceData, statementData, updateD
                                         </Button>
                                     </TableCell>
                                 </TableRow>
+                                <TableRow>
+                                    <TableCell colSpan={7} className="p-4 border border-slate-300 bg-white">
+                                        <div className="flex flex-col gap-3">
+                                            <Label className="text-base font-medium">ท่านจะยินดีหรือไม่หากทางการบริษัทฯ จะติดต่อสอบถามไปยังบริษัทฯเดิม (บริษัทที่ท่านเคยปฏิบัติงาน)</Label>
+                                            <div className="flex flex-col gap-3">
+                                                <div className="flex gap-6 items-center">
+                                                    <div className="flex items-center space-x-2">
+                                                        <Checkbox 
+                                                            id="contact_allowed" 
+                                                            checked={experienceData?.contact_previous_employer?.status === 'allowed'}
+                                                            onCheckedChange={(c) => {
+                                                                if (c) updateData('experience_data', 'contact_previous_employer', { status: 'allowed', reason: '' });
+                                                            }}
+                                                        />
+                                                        <Label htmlFor="contact_allowed" className="font-normal cursor-pointer">ไม่ขัดข้อง</Label>
+                                                    </div>
+                                                    <div className="flex items-center space-x-2">
+                                                        <Checkbox 
+                                                            id="contact_not_allowed" 
+                                                            checked={experienceData?.contact_previous_employer?.status === 'not_allowed'}
+                                                            onCheckedChange={(c) => {
+                                                                if (c) updateData('experience_data', 'contact_previous_employer', { ...experienceData?.contact_previous_employer, status: 'not_allowed' });
+                                                            }}
+                                                        />
+                                                        <Label htmlFor="contact_not_allowed" className="font-normal cursor-pointer">ขัดข้อง</Label>
+                                                    </div>
+                                                </div>
+                                                {experienceData?.contact_previous_employer?.status === 'not_allowed' && (
+                                                    <div className="flex items-center gap-2 max-w-lg">
+                                                        <Label className="whitespace-nowrap">โปรดระบุสาเหตุ:</Label>
+                                                        <Input 
+                                                            value={experienceData?.contact_previous_employer?.reason || ''}
+                                                            onChange={(e) => updateData('experience_data', 'contact_previous_employer', { ...experienceData?.contact_previous_employer, reason: e.target.value })}
+                                                            placeholder="ระบุสาเหตุที่ขัดข้อง"
+                                                            className="h-9"
+                                                        />
+                                                    </div>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </TableCell>
+                                </TableRow>
                             </>
                         ) : (
                             <TableRow>
@@ -193,32 +235,7 @@ export default function FormStep3({ data, experienceData, statementData, updateD
                 </Table>
             </div>
 
-            {/* Contact Previous Employer */}
-            <div className="pt-4 border-t border-slate-200 mt-4">
-                <Label className="text-base font-medium">ท่านจะยินดีหรือไม่หากทางการบริษัทฯ จะติดต่อสอบถามไปยังบริษัทฯเดิม (บริษัทที่ท่านเคยปฏิบัติงาน)</Label>
-                <div className="flex gap-6 mt-3">
-                    <div className="flex items-center space-x-2">
-                        <Checkbox 
-                            id="contact_allowed" 
-                            checked={experienceData?.contact_previous_employer?.allowed || false}
-                            onCheckedChange={(c) => {
-                                updateData('experience_data', 'contact_previous_employer', { allowed: c, not_allowed: !c });
-                            }}
-                        />
-                        <Label htmlFor="contact_allowed" className="font-normal cursor-pointer">ไม่ขัดข้อง</Label>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                        <Checkbox 
-                            id="contact_not_allowed" 
-                            checked={experienceData?.contact_previous_employer?.not_allowed || false}
-                            onCheckedChange={(c) => {
-                                updateData('experience_data', 'contact_previous_employer', { allowed: !c, not_allowed: c });
-                            }}
-                        />
-                        <Label htmlFor="contact_not_allowed" className="font-normal cursor-pointer">ขัดข้อง</Label>
-                    </div>
-                </div>
-            </div>
+
 
             <div className="space-y-2 max-w-2xl pt-2">
                 <Label>คติประจำใจในการทำงาน</Label>
