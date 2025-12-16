@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import { base44 } from '@/api/base44Client';
+import moment from 'moment';
 import FormStep1 from './steps/FormStep1';
 import FormStep2 from './steps/FormStep2';
 import FormStep3 from './steps/FormStep3';
@@ -48,7 +49,7 @@ export default function DataFormWizard({ onComplete, globalData, setGlobalData }
                 signature_url: globalData.signature_url,
                 signature_date: globalData.signature_date,
                 start_work_date: globalData.start_work_date,
-                submission_date: new Date().toISOString().split('T')[0],
+                submission_date: moment().format('YYYY-MM-DD'),
                 status: 'pending_video' // Intermediate status
             };
             
