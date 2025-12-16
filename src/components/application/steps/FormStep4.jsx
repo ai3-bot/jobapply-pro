@@ -108,35 +108,35 @@ export default function FormStep4({ data, setGlobalData }) {
                                     <TableCell className={tdClass}>
                                         <Input 
                                             className={inputClass}
-                                            value={contact.name}
+                                            value={contact.name || ''}
                                             onChange={(e) => handleContactChange(index, 'name', e.target.value)}
                                         />
                                     </TableCell>
                                     <TableCell className={tdClass}>
                                         <Input 
                                             className={inputClass}
-                                            value={contact.relationship}
+                                            value={contact.relationship || ''}
                                             onChange={(e) => handleContactChange(index, 'relationship', e.target.value)}
                                         />
                                     </TableCell>
                                     <TableCell className={tdClass}>
                                         <Input 
                                             className={inputClass}
-                                            value={contact.address}
+                                            value={typeof contact.address === 'object' ? '' : (contact.address || '')}
                                             onChange={(e) => handleContactChange(index, 'address', e.target.value)}
                                         />
                                     </TableCell>
                                     <TableCell className={tdClass}>
                                         <Input 
                                             className={inputClass}
-                                            value={contact.phone}
+                                            value={contact.phone || ''}
                                             onChange={(e) => handleContactChange(index, 'phone', e.target.value)}
                                         />
                                     </TableCell>
                                     <TableCell className={tdClass}>
                                         <Input 
                                             className={inputClass}
-                                            value={contact.position}
+                                            value={contact.position || ''}
                                             onChange={(e) => handleContactChange(index, 'position', e.target.value)}
                                         />
                                     </TableCell>
