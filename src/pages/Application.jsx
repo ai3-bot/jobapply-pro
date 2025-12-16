@@ -11,10 +11,19 @@ import VideoInterviewStep from '@/components/application/VideoInterviewStep';
 
 export default function ApplicationPage() {
     const [mainStep, setMainStep] = useState(0); // 0: Agreement, 1: Photo, 2: Form, 3: Video
+    // Get local date string in YYYY-MM-DD format
+    const getLocalDate = () => {
+        const d = new Date();
+        const year = d.getFullYear();
+        const month = String(d.getMonth() + 1).padStart(2, '0');
+        const day = String(d.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    };
+
     const [globalData, setGlobalData] = useState({
         photo_url: '',
         personal_data: { 
-            application_date: new Date().toISOString().split('T')[0],
+            application_date: getLocalDate(),
             position_1: '',
             position_2: '',
             expected_salary: '',
@@ -127,7 +136,7 @@ export default function ApplicationPage() {
         emergency_contacts: [{ name: '', relationship: '', address: '', phone: '', position: '' }],
         attitude: '',
         signature_url: '',
-        signature_date: new Date().toISOString().split('T')[0],
+        signature_date: getLocalDate(),
         start_work_date: ''
     });
 
