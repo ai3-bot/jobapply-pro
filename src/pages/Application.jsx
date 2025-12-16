@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle2 } from "lucide-react";
-import moment from 'moment';
 
 import AgreementStep from '@/components/application/AgreementStep';
 import PhotoStep from '@/components/application/PhotoStep';
@@ -15,7 +14,7 @@ export default function ApplicationPage() {
     const [globalData, setGlobalData] = useState({
         photo_url: '',
         personal_data: { 
-            application_date: moment().format('YYYY-MM-DD'),
+            application_date: new Date().toISOString().split('T')[0],
             position_1: '',
             position_2: '',
             expected_salary: '',
@@ -128,7 +127,7 @@ export default function ApplicationPage() {
         emergency_contacts: [{ name: '', relationship: '', address: '', phone: '', position: '' }],
         attitude: '',
         signature_url: '',
-        signature_date: moment().format('YYYY-MM-DD'),
+        signature_date: new Date().toISOString().split('T')[0],
         start_work_date: ''
     });
 
