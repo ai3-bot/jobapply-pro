@@ -22,6 +22,16 @@ export default function ApplicantDetail({ applicant }) {
     }
 
     const { personal_data } = applicant;
+    // Exclude address objects from main personal data to avoid duplication if we want
+    // But RenderValue handles it fine. Let's keep it simple.
+    
+    // We want to make sure we show everything.
+    const basicInfo = { ...personal_data };
+    // Remove nested addresses from basic info to avoid clutter in the first grid, 
+    // since we show them below explicitly? 
+    // Let's just remove them from basicInfo for cleaner display.
+    delete basicInfo.registered_address;
+    delete basicInfo.current_address;
 
     return (
         <div className="flex-1 flex flex-col h-full overflow-hidden bg-slate-50/30">
@@ -96,8 +106,10 @@ export default function ApplicantDetail({ applicant }) {
 
                             <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
                                 <TabsContent value="personal" className="space-y-6 mt-0">
-                                    <InfoGrid title="ข้อมูลพื้นฐาน" data={personal_data} icon={User} />
-                                    <InfoGrid title="ที่อยู่" data={personal_data?.registered_address} icon={MapPin} />
+                                    <InfoGrid title="ข้อมูลพื้นฐาน" data={basicInfo} icon={User} />
+                                    <InfoGrid title="ที่อยู่ตามทะเบียนบ้าน" data={personal_data?.registered_address} icon={MapPin} />
+                                    <InfoGrid title="ที่อยู่ปัจจุบัน" data={personal_data?.current_address} icon={MapPin} />
+                                    <InfoGrid title="ผู้ติดต่อฉุกเฉิน" data={applicant.emergency_contacts} icon={Phone} />
                                 </TabsContent>
 
                                 <TabsContent value="family" className="space-y-6 mt-0">
