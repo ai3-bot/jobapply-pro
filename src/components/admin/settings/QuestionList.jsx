@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Trash, Plus, Video, Type, List, CheckSquare, Edit2 } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
 import QuestionEditor from './QuestionEditor';
 
 export default function QuestionList({ questions, jobId = null, title = "คำถาม" }) {
@@ -70,7 +71,7 @@ export default function QuestionList({ questions, jobId = null, title = "คำ�
                 />
             )}
 
-            <div className="space-y-2">
+            <div className="space-y-2 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar">
                 {questions.length === 0 && !isAdding && (
                     <div className="text-center p-4 text-slate-400 text-sm bg-slate-50 rounded-lg border border-dashed">
                         ยังไม่มีคำถามในส่วนนี้
@@ -107,27 +108,35 @@ export default function QuestionList({ questions, jobId = null, title = "คำ�
                                     )}
                                 </div>
                             </div>
-                            <div className="flex items-center gap-1">
-                                <Button 
-                                    variant="ghost" 
-                                    size="icon" 
-                                    className="h-8 w-8 text-slate-400 hover:text-indigo-600"
-                                    onClick={() => setEditingId(q.id)}
-                                >
-                                    <Edit2 className="w-4 h-4" />
-                                </Button>
-                                <Button 
-                                    variant="ghost" 
-                                    size="icon" 
-                                    className="h-8 w-8 text-slate-400 hover:text-red-500"
-                                    onClick={() => {
-                                        if (confirm('คุณแน่ใจหรือไม่ที่จะลบคำถามนี้?')) {
-                                            deleteQuestion.mutate(q.id);
-                                        }
-                                    }}
-                                >
-                                    <Trash className="w-4 h-4" />
-                                </Button>
+                            <div className="flex items-center gap-3">
+                                <div className="flex items-center gap-2">
+                                    <Switch 
+                                        checked={q.is_active !== false}
+                                        onCheckedChange={(checked) => updateQuestion.mutate({ id: q.id, is_active: checked })}
+                                    />
+                                </div>
+                                <div className="flex items-center gap-1 border-l pl-2">
+                                    <Button 
+                                        variant="ghost" 
+                                        size="icon" 
+                                        className="h-8 w-8 text-slate-400 hover:text-indigo-600"
+                                        onClick={() => setEditingId(q.id)}
+                                    >
+                                        <Edit2 className="w-4 h-4" />
+                                    </Button>
+                                    <Button 
+                                        variant="ghost" 
+                                        size="icon" 
+                                        className="h-8 w-8 text-slate-400 hover:text-red-500"
+                                        onClick={() => {
+                                            if (confirm('คุณแน่ใจหรือไม่ที่จะลบคำถามนี้?')) {
+                                                deleteQuestion.mutate(q.id);
+                                            }
+                                        }}
+                                    >
+                                        <Trash className="w-4 h-4" />
+                                    </Button>
+                                </div>
                             </div>
                         </div>
                     );

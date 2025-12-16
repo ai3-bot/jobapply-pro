@@ -37,6 +37,11 @@ export default function SettingsPanel() {
         onSuccess: () => queryClient.invalidateQueries(['jobs_admin'])
     });
 
+    const updateJob = useMutation({
+        mutationFn: ({ id, ...data }) => base44.entities.JobPosition.update(id, data),
+        onSuccess: () => queryClient.invalidateQueries(['jobs_admin'])
+    });
+
     const [newJobTitle, setNewJobTitle] = useState("");
     const [openJobId, setOpenJobId] = useState(null);
 
@@ -104,7 +109,7 @@ export default function SettingsPanel() {
                     </Card>
 
                     {/* Jobs List */}
-                    <div className="grid gap-4">
+                    <div className="grid gap-4 max-h-[600px] overflow-y-auto pr-2 custom-scrollbar">
                         {jobs?.map(job => (
                             <Collapsible 
                                 key={job.id} 
@@ -117,21 +122,33 @@ export default function SettingsPanel() {
                                         <button className="flex items-center gap-3 flex-1 text-left">
                                             {openJobId === job.id ? <ChevronDown className="w-5 h-5 text-indigo-500"/> : <ChevronRight className="w-5 h-5 text-slate-400"/>}
                                             <div>
-                                                <h3 className="font-semibold text-slate-900">{job.title}</h3>
+                                                <div className="flex items-center gap-2">
+                                                    <h3 className={`font-semibold ${!job.is_active ? 'text-slate-400' : 'text-slate-900'}`}>{job.title}</h3>
+                                                    {!job.is_active && <Badge variant="secondary" className="text-[10px]">Inactive</Badge>}
+                                                </div>
                                                 <p className="text-sm text-slate-500">{getJobQuestions(job.id).length} คำถามเฉพาะตำแหน่ง</p>
                                             </div>
                                         </button>
                                     </CollapsibleTrigger>
-                                    <Button 
-                                        variant="ghost" 
-                                        size="icon"
-                                        className="text-slate-400 hover:text-red-500"
-                                        onClick={() => {
-                                            if(confirm('คุณแน่ใจหรือไม่ที่จะลบตำแหน่งนี้?')) deleteJob.mutate(job.id);
-                                        }}
-                                    >
-                                        <Trash className="w-4 h-4" />
-                                    </Button>
+                                    <div className="flex items-center gap-3">
+                                        <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
+                                            <Switch 
+                                                checked={job.is_active !== false}
+                                                onCheckedChange={(checked) => updateJob.mutate({ id: job.id, is_active: checked })}
+                                            />
+                                        </div>
+                                        <Button 
+                                            variant="ghost" 
+                                            size="icon"
+                                            className="text-slate-400 hover:text-red-500 border-l pl-2 ml-2"
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                if(confirm('คุณแน่ใจหรือไม่ที่จะลบตำแหน่งนี้?')) deleteJob.mutate(job.id);
+                                            }}
+                                        >
+                                            <Trash className="w-4 h-4" />
+                                        </Button>
+                                    </div>
                                 </div>
 
                                 <CollapsibleContent className="border-t border-slate-100 bg-slate-50/50 p-6 animate-in slide-in-from-top-2">
