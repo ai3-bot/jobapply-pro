@@ -27,7 +27,7 @@ const RenderValue = ({ value, label }) => {
         return (
              <div className="space-y-2 mt-1">
                 {Object.entries(value).map(([k, v]) => {
-                    if (k === 'id' || k.includes('_id')) return null; // Skip IDs in nested views usually
+                    if (k === 'id') return null; // Only skip exact 'id'
                     return (
                         <div key={k} className="flex flex-col sm:flex-row sm:justify-between text-sm border-b last:border-0 border-slate-100 pb-1 last:pb-0">
                             <span className="text-xs font-medium text-slate-500 uppercase tracking-wide pt-1 min-w-[120px]">{k.replace(/_/g, ' ')}</span>
