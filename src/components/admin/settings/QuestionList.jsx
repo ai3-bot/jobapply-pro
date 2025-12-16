@@ -10,12 +10,21 @@ import QuestionEditor from './QuestionEditor';
 export default function QuestionList({ questions, jobId = null, title = "คำถาม" }) {
     const queryClient = useQueryClient();
     const [isAdding, setIsAdding] = useState(false);
+    const [editingId, setEditingId] = useState(null);
 
     const createQuestion = useMutation({
         mutationFn: (data) => base44.entities.Question.create(data),
         onSuccess: () => {
             queryClient.invalidateQueries(['questions_admin']);
             setIsAdding(false);
+        }
+    });
+
+    const updateQuestion = useMutation({
+        mutationFn: ({ id, ...data }) => base44.entities.Question.update(id, data),
+        onSuccess: () => {
+            queryClient.invalidateQueries(['questions_admin']);
+            setEditingId(null);
         }
     });
 
@@ -67,34 +76,62 @@ export default function QuestionList({ questions, jobId = null, title = "คำ�
                         ยังไม่มีคำถามในส่วนนี้
                     </div>
                 )}
-                {questions.map(q => (
-                    <div key={q.id} className="flex items-start justify-between p-3 bg-white rounded-lg border border-slate-200 shadow-sm group hover:border-indigo-200 transition-colors">
-                        <div className="space-y-1">
-                            <div className="font-medium text-slate-800 flex items-center gap-2">
-                                {getIcon(q.answer_type)}
-                                <span>{q.text}</span>
+                {questions.map(q => {
+                    if (editingId === q.id) {
+                        return (
+                            <QuestionEditor 
+                                key={q.id}
+                                initialData={q}
+                                onSave={(data) => updateQuestion.mutate({ id: q.id, ...data })}
+                                onCancel={() => setEditingId(null)}
+                                jobId={jobId}
+                            />
+                        );
+                    }
+
+                    return (
+                        <div key={q.id} className="flex items-start justify-between p-3 bg-white rounded-lg border border-slate-200 shadow-sm group hover:border-indigo-200 transition-colors">
+                            <div className="space-y-1">
+                                <div className="font-medium text-slate-800 flex items-center gap-2">
+                                    {getIcon(q.answer_type)}
+                                    <span>{q.text}</span>
+                                </div>
+                                <div className="flex gap-2">
+                                    <Badge variant="secondary" className="text-[10px] h-5 font-normal">
+                                        {getTypeLabel(q.answer_type)}
+                                    </Badge>
+                                    {(q.answer_type === 'single_choice' || q.answer_type === 'multiple_choice') && (
+                                        <span className="text-xs text-slate-500">
+                                            {q.options?.length || 0} ตัวเลือก
+                                        </span>
+                                    )}
+                                </div>
                             </div>
-                            <div className="flex gap-2">
-                                <Badge variant="secondary" className="text-[10px] h-5 font-normal">
-                                    {getTypeLabel(q.answer_type)}
-                                </Badge>
-                                {(q.answer_type === 'single_choice' || q.answer_type === 'multiple_choice') && (
-                                    <span className="text-xs text-slate-500">
-                                        {q.options?.length || 0} ตัวเลือก
-                                    </span>
-                                )}
+                            <div className="flex items-center gap-1">
+                                <Button 
+                                    variant="ghost" 
+                                    size="icon" 
+                                    className="h-8 w-8 text-slate-400 hover:text-indigo-600"
+                                    onClick={() => setEditingId(q.id)}
+                                >
+                                    <Edit2 className="w-4 h-4" />
+                                </Button>
+                                <Button 
+                                    variant="ghost" 
+                                    size="icon" 
+                                    className="h-8 w-8 text-slate-400 hover:text-red-500"
+                                    onClick={() => {
+                                        if (confirm('คุณแน่ใจหรือไม่ที่จะลบคำถามนี้?')) {
+                                            deleteQuestion.mutate(q.id);
+                                        }
+                                    }}
+                                >
+                                    <Trash className="w-4 h-4" />
+                                </Button>
                             </div>
                         </div>
-                        <Button 
-                            variant="ghost" 
-                            size="icon" 
-                            className="h-8 w-8 text-slate-400 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"
-                            onClick={() => deleteQuestion.mutate(q.id)}
-                        >
-                            <Trash className="w-4 h-4" />
-                        </Button>
-                    </div>
-                ))}
+                    );
+                })}
             </div>
         </div>
     );
