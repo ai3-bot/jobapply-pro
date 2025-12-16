@@ -7,6 +7,7 @@ import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/com
 import { Label } from "@/components/ui/label";
 import { Plus, Trash, Briefcase, HelpCircle, Save } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Badge } from "@/components/ui/badge";
 
 export default function SettingsPanel() {
     const queryClient = useQueryClient();
