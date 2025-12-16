@@ -132,14 +132,48 @@ const ApplicantList = () => {
     );
 };
 
+const RenderValue = ({ value }) => {
+    if (value === null || value === undefined || value === '') return "-";
+    
+    if (typeof value === 'object') {
+        if (Array.isArray(value)) {
+            if (value.length === 0) return "-";
+            return (
+                <div className="space-y-2 mt-1">
+                    {value.map((item, i) => (
+                        <div key={i} className="pl-3 border-l-2 border-slate-100">
+                            <RenderValue value={item} />
+                        </div>
+                    ))}
+                </div>
+            );
+        }
+        
+        // Handle object
+        return (
+             <div className="pl-3 border-l-2 border-slate-100 mt-1 space-y-1">
+                {Object.entries(value).map(([k, v]) => (
+                     <div key={k} className="flex flex-col sm:flex-row sm:gap-2 text-sm">
+                        <span className="text-xs text-slate-400 uppercase min-w-[80px] pt-1">{k.replace(/_/g, ' ')}:</span>
+                        <div className="flex-1"><RenderValue value={v} /></div>
+                     </div>
+                ))}
+            </div>
+        );
+    }
+    return <span className="text-slate-700">{value.toString()}</span>;
+};
+
 const InfoGrid = ({ data }) => {
     if (!data) return <div className="text-slate-400">ไม่มีข้อมูล</div>;
     return (
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {Object.entries(data).map(([key, value]) => (
-                <div key={key} className="space-y-1">
-                    <p className="text-xs font-medium text-slate-500 uppercase">{key.replace(/_/g, ' ')}</p>
-                    <p className="text-sm font-medium">{value || "-"}</p>
+                <div key={key} className="space-y-1 p-2 rounded hover:bg-slate-50 transition-colors">
+                    <p className="text-xs font-bold text-indigo-900 uppercase tracking-wider">{key.replace(/_/g, ' ')}</p>
+                    <div className="text-sm">
+                        <RenderValue value={value} />
+                    </div>
                 </div>
             ))}
         </div>
