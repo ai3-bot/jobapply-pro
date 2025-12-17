@@ -16,9 +16,9 @@ export default function PDFLayout({ applicant }) {
 
     // Helper for dotted line values
     const DataField = ({ label, value, width = "auto", className = "" }) => (
-        <div className={`flex items-end gap-1 ${className}`} style={{ width }}>
-            <span className="font-bold whitespace-nowrap text-[16px] leading-none">{label}</span>
-            <div className="border-b border-dotted border-slate-400 px-1 flex-1 text-center text-[16px] leading-none min-h-[20px] pb-0.5">
+        <div className={`flex items-end gap-2 ${className}`} style={{ width }}>
+            <span className="font-bold whitespace-nowrap text-[16px] leading-snug mb-0.5">{label}</span>
+            <div className="border-b-[1.5px] border-dotted border-slate-400 px-2 flex-1 text-center text-[16px] leading-none self-end pb-1 relative top-[2px]">
                 {value || "-"}
             </div>
         </div>
@@ -227,24 +227,31 @@ export default function PDFLayout({ applicant }) {
 
                 {/* Status Section */}
                 <div className="grid grid-cols-2 gap-4">
+                    {/* Male Status */}
                     <div>
-                        <div className="font-bold mb-0.5 underline">สถานภาพ (ชาย)</div>
-                        <div className="space-y-0.5">
+                        <div className="font-bold mb-1 underline">สถานภาพ (ชาย)</div>
+                        <div className="flex flex-wrap gap-x-4 gap-y-1 mb-1">
                             <CheckBox label="ได้รับการยกเว้นทางทหาร" checked={p.military_status === 'exempted'} />
                             <CheckBox label="เกณฑ์ทหารแล้ว" checked={p.military_status === 'conscripted'} />
+                        </div>
+                        <div className="mb-1">
                             <CheckBox label="ยังไม่ได้รับการเกณฑ์" checked={p.military_status === 'not_yet'} />
                         </div>
-                        <div className="mt-1.5 space-y-0.5">
+                        <div className="flex flex-wrap gap-x-4 gap-y-1">
                              <CheckBox label="ยังไม่สมรส" checked={f.marital_status === 'single'} />
                              <CheckBox label="สมรสแล้ว" checked={f.marital_status === 'married'} />
                         </div>
                     </div>
+
+                    {/* Female Status */}
                     <div>
-                        <div className="font-bold mb-0.5 underline">สถานภาพ (หญิง)</div>
-                        <div className="space-y-0.5">
+                        <div className="font-bold mb-1 underline">สถานภาพ (หญิง)</div>
+                        <div className="flex flex-wrap gap-x-4 gap-y-1 mb-1">
                              <CheckBox label="ไม่อยู่ระหว่างการตั้งครรภ์" />
                              <CheckBox label="มีบุตรแล้ว" checked={f.has_children === 'yes'} />
                              <CheckBox label="ยังไม่มีบุตร" checked={f.has_children === 'no'} />
+                        </div>
+                        <div>
                              <CheckBox label="อยู่ระหว่างการตั้งครรภ์ ระบุ สัปดาห์ที่ตั้งครรภ์" />
                         </div>
                     </div>
