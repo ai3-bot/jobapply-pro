@@ -9,12 +9,16 @@ import {
 } from "lucide-react";
 import InfoGrid from './InfoGrid';
 import PDFLayout from './pdf/PDFLayout';
+import PDFLayoutType2 from './pdf/PDFLayoutType2';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import { useState } from 'react';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 export default function ApplicantDetail({ applicant }) {
     const [generatingPdf, setGeneratingPdf] = useState(false);
+    const [pdfType, setPdfType] = useState('type2'); // Default to Type 2 as requested
+
     if (!applicant) {
         return (
             <div className="flex-1 flex flex-col items-center justify-center h-full text-slate-400 bg-slate-50/50 p-8">
@@ -129,14 +133,23 @@ export default function ApplicantDetail({ applicant }) {
                     </div>
                 </div>
 
-                <div className="flex gap-2">
+                <div className="flex gap-2 items-center">
+                     <Select value={pdfType} onValueChange={setPdfType}>
+                        <SelectTrigger className="w-[140px] h-9">
+                            <SelectValue placeholder="PDF Format" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="type1">Format Standard</SelectItem>
+                            <SelectItem value="type2">Format KO AI</SelectItem>
+                        </SelectContent>
+                    </Select>
                     <Button 
                         variant="outline"
                         onClick={() => handleGeneratePDF('preview')}
                         disabled={generatingPdf}
                     >
                         {generatingPdf ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Eye className="w-4 h-4 mr-2" />}
-                        Preview PDF
+                        Preview
                     </Button>
                     <Button 
                         variant="outline"
@@ -144,7 +157,7 @@ export default function ApplicantDetail({ applicant }) {
                         disabled={generatingPdf}
                     >
                         {generatingPdf ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <FileDown className="w-4 h-4 mr-2" />}
-                        Create PDF
+                        Download
                     </Button>
                     {applicant.video_response_url && (
                         <Button 
@@ -239,8 +252,12 @@ export default function ApplicantDetail({ applicant }) {
             
             {/* Hidden Printable Content */}
             <div id="printable-content" className="fixed left-[-9999px] top-0">
-                <PDFLayout applicant={applicant} />
+                {pdfType === 'type1' ? (
+                    <PDFLayout applicant={applicant} />
+                ) : (
+                    <PDFLayoutType2 applicant={applicant} />
+                )}
             </div>
-        </div>
-    );
-}
+            </div>
+            );
+            }
