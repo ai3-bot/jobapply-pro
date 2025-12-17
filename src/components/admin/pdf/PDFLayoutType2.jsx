@@ -21,8 +21,8 @@ export default function PDFLayoutType2({ applicant }) {
         </div>
     );
 
-    const Field = ({ label, value, width = "auto", labelWidth="auto" }) => (
-        <div className="flex items-end text-[12px] leading-tight" style={{ width }}>
+    const Field = ({ label, value, width = "auto", labelWidth="auto", className = "" }) => (
+        <div className={`flex items-end text-[12px] leading-tight ${className}`} style={{ width: className ? 'auto' : width }}>
             <span className="font-bold text-slate-800 mr-1 whitespace-nowrap" style={{ width: labelWidth }}>{label}</span>
             <div className="flex-1 border-b-[1.5px] border-dotted border-slate-400 text-slate-900 px-2 pb-0.5 text-center truncate relative top-[2px]">
                 {value || "-"}
@@ -166,23 +166,23 @@ export default function PDFLayoutType2({ applicant }) {
                     {/* Left Details */}
                     <div className="col-span-9 space-y-3">
                         <div className="flex gap-2">
-                             <Field label="ชื่อ-สกุล (ภาษาไทย)" value={`${p.prefix || ''} ${p.first_name || ''} ${p.last_name || ''}`} width="60%" />
-                             <Field label="ชื่อเล่น" value={p.thai_nickname} width="40%" />
+                             <Field label="ชื่อ-สกุล (ภาษาไทย)" value={`${p.prefix || ''} ${p.first_name || ''} ${p.last_name || ''}`} className="flex-[3]" />
+                             <Field label="ชื่อเล่น" value={p.thai_nickname} className="flex-[2]" />
                         </div>
                         <div className="flex gap-2">
-                             <Field label="Name in English" value={p.english_name} width="60%" />
-                             <Field label="เบอร์โทรศัพท์" value={p.mobile_phone} width="40%" />
+                             <Field label="Name in English" value={p.english_name} className="flex-[3]" />
+                             <Field label="เบอร์โทรศัพท์" value={p.mobile_phone} className="flex-[2]" />
                         </div>
                         <div className="flex gap-2">
-                            <Field label="วันเดือนปีเกิด" value={p.dob} width="30%" />
-                            <Field label="อายุ" value={p.age} width="15%" />
-                            <Field label="ส่วนสูง" value={p.height} width="20%" />
-                            <Field label="น้ำหนัก" value={p.weight} width="20%" />
-                            <Field label="สัญชาติ" value={p.nationality} width="15%" />
+                            <Field label="วันเดือนปีเกิด" value={p.dob} className="flex-[2]" />
+                            <Field label="อายุ" value={p.age} className="flex-1" />
+                            <Field label="ส่วนสูง" value={p.height} className="flex-1" />
+                            <Field label="น้ำหนัก" value={p.weight} className="flex-1" />
+                            <Field label="สัญชาติ" value={p.nationality} className="flex-[1.5]" />
                         </div>
                         <div className="flex gap-2">
-                            <Field label="ศาสนา" value={p.religion} width="30%" />
-                            <Field label="(Email) อีเมล์ที่ติดต่อได้" value={p.email} width="70%" />
+                            <Field label="ศาสนา" value={p.religion} className="flex-[1.5]" />
+                            <Field label="(Email) อีเมล์ที่ติดต่อได้" value={p.email} className="flex-[3]" />
                         </div>
                     </div>
 
