@@ -235,15 +235,26 @@ export default function VideoInterviewStep({ globalData, onFinish }) {
         if (!question) return <div className="text-center p-10">ไม่พบคำถามทั่วไป (กรุณาติดต่อ Admin) <Button onClick={() => setPhase('job-selection')} className="ml-4">ข้ามไปเลือกตำแหน่ง</Button></div>;
 
         return (
-            <RecordingInterface 
+            <QuestionInterface 
                 title={`คำถามทั่วไปข้อที่ ${currentQuestionIndex + 1} / ${generalQuestions.length}`}
-                questionText={question.text}
+                question={question}
+                
+                // Video props
                 videoUrl={videoUrl}
                 videoPreviewRef={videoPreviewRef}
                 isRecording={isRecording}
                 onStart={startRecording}
                 onStop={stopRecording}
                 onRetry={() => { setVideoUrl(null); setVideoBlob(null); }}
+                
+                // Text/Choice props
+                textAnswer={textAnswer}
+                setTextAnswer={setTextAnswer}
+                selectedOption={selectedOption}
+                setSelectedOption={setSelectedOption}
+                selectedOptions={selectedOptions}
+                setSelectedOptions={setSelectedOptions}
+                
                 onSubmit={handleNextGeneral}
                 uploading={uploading}
                 btnText={currentQuestionIndex < generalQuestions.length - 1 ? "ข้อถัดไป" : "เสร็จสิ้นส่วนที่ 1"}
