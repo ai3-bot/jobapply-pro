@@ -149,15 +149,14 @@ export default function PDFLayoutType2({ applicant }) {
                 
                 {/* Position Row */}
                 <div className="p-3 border-b border-slate-800 bg-slate-50/50">
-                    <div className="flex gap-4 items-end">
+                    <div className="flex gap-4 items-end text-[12px] leading-tight">
                         <div className="font-bold whitespace-nowrap">สมัครงานในตำแหน่ง 1</div>
-                        <div className="border-b-[1.5px] border-dotted border-slate-400 flex-1 px-2 text-center font-medium">{p.position_1}</div>
+                        <div className="border-b-[1.5px] border-dotted border-slate-400 flex-1 px-2 pb-0.5 text-center font-medium relative top-[2px] truncate">{p.position_1}</div>
                         <div className="font-bold whitespace-nowrap">2</div>
-                        <div className="border-b-[1.5px] border-dotted border-slate-400 flex-1 px-2 text-center font-medium">{p.position_2}</div>
+                        <div className="border-b-[1.5px] border-dotted border-slate-400 flex-1 px-2 pb-0.5 text-center font-medium relative top-[2px] truncate">{p.position_2}</div>
                         <div className="font-bold whitespace-nowrap">อัตราเงินเดือนที่ต้องการ</div>
-                        <div className="border-b-[1.5px] border-dotted border-slate-400 w-32 px-2 text-center font-medium">{p.expected_salary}</div>
+                        <div className="border-b-[1.5px] border-dotted border-slate-400 w-32 px-2 pb-0.5 text-center font-medium relative top-[2px] truncate">{p.expected_salary}</div>
                     </div>
-
                 </div>
 
                 {/* Personal Data & Photo */}
