@@ -66,9 +66,9 @@ export default function PDFLayoutType2({ applicant }) {
                 {/* Logo */}
                 <div className="w-[40mm] flex justify-end">
                      {appLogo ? (
-                        <img src={appLogo} alt="Logo" crossOrigin="anonymous" className="h-14 w-auto object-contain" />
+                        <img src={appLogo} alt="Logo" crossOrigin="anonymous" className="h-[80px] w-auto object-contain" />
                     ) : (
-                        <div className="h-14 w-14 bg-slate-100 rounded flex items-center justify-center text-[10px] text-slate-400">LOGO</div>
+                        <div className="h-[80px] w-[80px] bg-slate-100 rounded flex items-center justify-center text-[10px] text-slate-400">LOGO</div>
                     )}
                 </div>
             </div>
