@@ -5,7 +5,7 @@ import { Check } from 'lucide-react';
 
 export default function PDFLayoutType2({ applicant }) {
     const { data: settings } = useQuery({
-        queryKey: ['system_settings_pdf_2'],
+        queryKey: ['system_settings_layout'], // Use same key as Layout to ensure cache hit
         queryFn: () => base44.entities.SystemSetting.list(),
         staleTime: 1000 * 60 * 5 
     });
@@ -35,7 +35,7 @@ export default function PDFLayoutType2({ applicant }) {
             <div className={`w-3 h-3 border border-slate-600 flex items-center justify-center shrink-0 rounded-[1px] ${checked ? 'bg-slate-200' : 'bg-white'}`}>
                 {checked && <div className="w-1.5 h-1.5 bg-slate-800 rounded-[0.5px]" />}
             </div>
-            <span className={`${textSize} text-slate-900 leading-none mt-[1px]`}>{label}</span>
+            <span className={`${textSize} text-slate-900 leading-none -mt-[2px]`}>{label}</span>
         </div>
     );
 
@@ -66,7 +66,7 @@ export default function PDFLayoutType2({ applicant }) {
                 {/* Logo */}
                 <div className="w-[40mm] flex justify-end">
                      {appLogo ? (
-                        <img src={appLogo} alt="Logo" className="h-14 w-auto object-contain" />
+                        <img src={appLogo} alt="Logo" crossOrigin="anonymous" className="h-14 w-auto object-contain" />
                     ) : (
                         <div className="h-14 w-14 bg-slate-100 rounded flex items-center justify-center text-[10px] text-slate-400">LOGO</div>
                     )}
