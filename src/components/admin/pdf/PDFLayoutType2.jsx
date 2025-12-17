@@ -187,8 +187,8 @@ export default function PDFLayoutType2({ applicant }) {
                     </div>
 
                     {/* Photo Box */}
-                    <div className="col-span-2">
-                        <div className="border border-slate-400 w-[50px] h-[66px] flex items-center justify-center bg-slate-50 relative mx-auto">
+                    <div className="col-span-4">
+                        <div className="border border-slate-400 w-[200px] h-[400px] flex items-center justify-center bg-slate-50 relative mx-auto">
                              {applicant.photo_url ? (
                                 <img src={applicant.photo_url} alt="Photo" className="w-full h-full object-cover absolute inset-0" />
                             ) : (
