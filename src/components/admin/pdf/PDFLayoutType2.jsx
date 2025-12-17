@@ -164,7 +164,7 @@ export default function PDFLayoutType2({ applicant }) {
                 <div className="p-3 grid grid-cols-12 gap-4">
                     
                     {/* Left Details */}
-                    <div className="col-span-8 space-y-3">
+                    <div className="col-span-9 space-y-3">
                         <div className="flex gap-2">
                              <Field label="ชื่อ-สกุล (ภาษาไทย)" value={`${p.prefix || ''} ${p.first_name || ''} ${p.last_name || ''}`} width="60%" />
                              <Field label="ชื่อเล่น" value={p.thai_nickname} width="40%" />
@@ -187,8 +187,8 @@ export default function PDFLayoutType2({ applicant }) {
                     </div>
 
                     {/* Photo Box */}
-                    <div className="col-span-4">
-                        <div className="border border-slate-400 w-[200px] h-[400px] flex items-center justify-center bg-slate-50 relative mx-auto">
+                    <div className="col-span-2">
+                        <div className="border border-slate-400 w-[50px] h-[66px] flex items-center justify-center bg-slate-50 relative mx-auto">
                              {applicant.photo_url ? (
                                 <img src={applicant.photo_url} alt="Photo" className="w-full h-full object-cover absolute inset-0" />
                             ) : (
