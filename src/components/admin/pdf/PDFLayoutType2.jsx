@@ -157,7 +157,7 @@ export default function PDFLayoutType2({ applicant }) {
                         <div className="font-bold whitespace-nowrap">อัตราเงินเดือนที่ต้องการ</div>
                         <div className="border-b-[1.5px] border-dotted border-slate-400 w-32 px-2 text-center font-medium">{p.expected_salary}</div>
                     </div>
-                    <div className="text-right text-[10px] text-slate-400 mt-0.5">wpaomgpoewmgeopmo</div>
+
                 </div>
 
                 {/* Personal Data & Photo */}
