@@ -404,7 +404,7 @@ export default function PDFLayoutType2({ applicant }) {
                                             <td className="border-l-[0.5px] border-b-[0.5px] border-slate-400 p-1"><DottedLine value={ed.major} className="border-0 border-b border-dotted" /></td>
                                             <td className="border-l-[0.5px] border-b-[0.5px] border-slate-400 p-1 text-center"><DottedLine value={ed.start_year} className="border-0 border-b border-dotted text-center" /></td>
                                             <td className="border-l-[0.5px] border-b-[0.5px] border-slate-400 p-1 text-center"><DottedLine value={ed.end_year} className="border-0 border-b border-dotted text-center" /></td>
-                                            <td className="border-l-[0.5px] border-b-[0.5px] border-slate-400 p-1 text-center"><DottedLine value={ed.gpa} className="border-0 border-b border-dotted text-center" /></td>
+                                            <td className="border-l-[0.5px] border-b-[0.5px] border-r-[0.5px] border-slate-400 p-1 text-center"><DottedLine value={ed.gpa} className="border-0 border-b border-dotted text-center" /></td>
                                         </tr>
                                     );
                                 })}
