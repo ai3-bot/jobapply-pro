@@ -403,11 +403,11 @@ export default function PDFLayoutType2({ applicant }) {
                                     return (
                                         <tr key={row.k}>
                                             <td className="border-l-[0.5px] border-b-[0.5px] border-slate-400 p-1 bg-slate-50">{row.label}</td>
-                                            <td className="border-l-[0.5px] border-b-[0.5px] border-slate-400 p-1"><DottedLine value={ed.institute} className="border-0 border-b" /></td>
-                                            <td className="border-l-[0.5px] border-b-[0.5px] border-slate-400 p-1"><DottedLine value={ed.major} className="border-0 border-b" /></td>
-                                            <td className="border-l-[0.5px] border-b-[0.5px] border-slate-400 p-1 text-center"><DottedLine value={ed.start_year} className="border-0 border-b text-center" /></td>
-                                            <td className="border-l-[0.5px] border-b-[0.5px] border-slate-400 p-1 text-center"><DottedLine value={ed.end_year} className="border-0 border-b text-center" /></td>
-                                            <td className="border-l-[0.5px] border-b-[0.5px] border-r-[0.5px] border-slate-400 p-1 text-center"><DottedLine value={ed.gpa} className="border-0 border-b text-center" /></td>
+                                            <td className="border-l-[0.5px] border-b-[0.5px] border-slate-400 p-1">{ed.institute || ""}</td>
+                                            <td className="border-l-[0.5px] border-b-[0.5px] border-slate-400 p-1">{ed.major || ""}</td>
+                                            <td className="border-l-[0.5px] border-b-[0.5px] border-slate-400 p-1 text-center">{ed.start_year || ""}</td>
+                                            <td className="border-l-[0.5px] border-b-[0.5px] border-slate-400 p-1 text-center">{ed.end_year || ""}</td>
+                                            <td className="border-l-[0.5px] border-b-[0.5px] border-r-[0.5px] border-slate-400 p-1 text-center">{ed.gpa || ""}</td>
                                         </tr>
                                     );
                                 })}
