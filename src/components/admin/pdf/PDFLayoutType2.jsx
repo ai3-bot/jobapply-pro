@@ -420,7 +420,7 @@ export default function PDFLayoutType2({ applicant }) {
                                  {/* Language */}
                                  <div className="col-span-4 border-r-[0.5px] border-slate-400 p-1 text-center font-bold">ความรู้ในการใช้ภาษา</div>
                                  {/* Office */}
-                                 <div className="col-span-4 border-r-[0.5px] border-slate-400 p-1 text-center font-bold">เครื่องใช้สำนักงาน (เลือก <Check className="inline w-3 h-3"/> )</div>
+                                 <div className="col-span-4 border-r-[0.5px] border-slate-400 p-1 text-center font-bold">เครื่องใช้สำนักงาน (เลือก <Check className="inline w-3 h-3 absolute top-3"/> )</div>
                                  {/* Special */}
                                  <div className="col-span-4 p-1 text-center font-bold">ความสามารถพิเศษอื่นๆ (เลือก <Check className="inline w-3 h-3"/> )</div>
                              </div>
