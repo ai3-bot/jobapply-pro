@@ -263,8 +263,18 @@ export default function PDFLayoutType2({ applicant }) {
                              <div className="font-bold underline mb-2">สถานภาพ (ชาย)</div>
                              <div className="space-y-1.5 pl-1">
                                  <div className="flex gap-4">
-                                     <CheckBox label="ได้รับการยกเว้นทางทหาร" checked={p.military_status === 'exempted'} />
-                                     <CheckBox label="เกณฑ์ทหารแล้ว" checked={p.military_status === 'served'} />
+                                     <div className="relative pl-5 h-4 flex items-center mr-4">
+                                        <div className={`absolute left-0 top-2 w-3 h-3 border border-slate-600 flex items-center justify-center rounded-[1px] ${p.military_status === 'exempted' ? 'bg-slate-200' : 'bg-white'}`}>
+                                            {p.military_status === 'exempted' && <div className="w-1.5 h-1.5 bg-slate-800 rounded-[0.5px]" />}
+                                        </div>
+                                        <span className="text-[11px] text-slate-900">ได้รับการยกเว้นทางทหาร</span>
+                                     </div>
+                                     <div className="relative pl-5 h-4 flex items-center">
+                                        <div className={`absolute left-0 top-2 w-3 h-3 border border-slate-600 flex items-center justify-center rounded-[1px] ${p.military_status === 'served' ? 'bg-slate-200' : 'bg-white'}`}>
+                                            {p.military_status === 'served' && <div className="w-1.5 h-1.5 bg-slate-800 rounded-[0.5px]" />}
+                                        </div>
+                                        <span className="text-[11px] text-slate-900">เกณฑ์ทหารแล้ว</span>
+                                     </div>
                                  </div>
                                  <div className="relative pl-5 h-4 flex items-center">
                                     <div className={`absolute left-0 top-2 w-3 h-3 border border-slate-600 flex items-center justify-center rounded-[1px] ${p.military_status === 'not_served' ? 'bg-slate-200' : 'bg-white'}`}>
@@ -273,8 +283,18 @@ export default function PDFLayoutType2({ applicant }) {
                                     <span className="text-[11px] text-slate-900">ยังไม่ได้รับการเกณฑ์</span>
                                  </div>
                                  <div className="flex gap-4">
-                                     <CheckBox label="ยังไม่สมรส" checked={f.marital_status === 'single'} />
-                                     <CheckBox label="สมรสแล้ว" checked={f.marital_status === 'married'} />
+                                     <div className="relative pl-5 h-4 flex items-center mr-4">
+                                        <div className={`absolute left-0 top-2 w-3 h-3 border border-slate-600 flex items-center justify-center rounded-[1px] ${f.marital_status === 'single' ? 'bg-slate-200' : 'bg-white'}`}>
+                                            {f.marital_status === 'single' && <div className="w-1.5 h-1.5 bg-slate-800 rounded-[0.5px]" />}
+                                        </div>
+                                        <span className="text-[11px] text-slate-900">ยังไม่สมรส</span>
+                                     </div>
+                                     <div className="relative pl-5 h-4 flex items-center">
+                                        <div className={`absolute left-0 top-2 w-3 h-3 border border-slate-600 flex items-center justify-center rounded-[1px] ${f.marital_status === 'married' ? 'bg-slate-200' : 'bg-white'}`}>
+                                            {f.marital_status === 'married' && <div className="w-1.5 h-1.5 bg-slate-800 rounded-[0.5px]" />}
+                                        </div>
+                                        <span className="text-[11px] text-slate-900">สมรสแล้ว</span>
+                                     </div>
                                  </div>
                              </div>
                         </div>
@@ -282,9 +302,23 @@ export default function PDFLayoutType2({ applicant }) {
                              <div className="font-bold underline mb-2">สถานภาพ (หญิง)</div>
                              <div className="space-y-1.5 pl-1">
                                  <div className="flex gap-4">
-                                     <CheckBox label="ไม่อยู่ระหว่างการตั้งครรภ์" width="w-[350px]" />
-                                     <CheckBox label="มีบุตรแล้ว" checked={f.has_children === 'yes'} />
-                                     <CheckBox label="ยังไม่มีบุตร" checked={f.has_children === 'no'} />
+                                     <div className="relative pl-5 h-4 flex items-center mr-4 w-[250px]">
+                                        <div className={`absolute left-0 top-2 w-3 h-3 border border-slate-600 flex items-center justify-center rounded-[1px] bg-white`}>
+                                        </div>
+                                        <span className="text-[11px] text-slate-900">ไม่อยู่ระหว่างการตั้งครรภ์</span>
+                                     </div>
+                                     <div className="relative pl-5 h-4 flex items-center mr-4">
+                                        <div className={`absolute left-0 top-2 w-3 h-3 border border-slate-600 flex items-center justify-center rounded-[1px] ${f.has_children === 'yes' ? 'bg-slate-200' : 'bg-white'}`}>
+                                            {f.has_children === 'yes' && <div className="w-1.5 h-1.5 bg-slate-800 rounded-[0.5px]" />}
+                                        </div>
+                                        <span className="text-[11px] text-slate-900">มีบุตรแล้ว</span>
+                                     </div>
+                                     <div className="relative pl-5 h-4 flex items-center">
+                                        <div className={`absolute left-0 top-2 w-3 h-3 border border-slate-600 flex items-center justify-center rounded-[1px] ${f.has_children === 'no' ? 'bg-slate-200' : 'bg-white'}`}>
+                                            {f.has_children === 'no' && <div className="w-1.5 h-1.5 bg-slate-800 rounded-[0.5px]" />}
+                                        </div>
+                                        <span className="text-[11px] text-slate-900">ยังไม่มีบุตร</span>
+                                     </div>
                                  </div>
                                  <div className="relative pl-5 h-4 flex items-center">
                                     <div className={`absolute left-0 top-2 w-3 h-3 border border-slate-600 flex items-center justify-center rounded-[1px] bg-white`}>
