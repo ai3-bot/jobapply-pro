@@ -377,7 +377,7 @@ export default function PDFLayoutType2({ applicant }) {
 
                     {/* --- Education History --- */}
                     <div>
-                        <div className="text-center font-bold text-[14px] mb-0.5">ประวัติการศึกษา</div>
+                        <div className="text-center font-bold text-[14px] mb-0.5 pb-[1px]">ประวัติการศึกษา</div>
                         <table className="w-full border-collapse text-[11px]">
                             <thead>
                                 <tr className="bg-slate-50 text-center">
