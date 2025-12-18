@@ -16,7 +16,6 @@ export default function PDFLayoutType2({ applicant }) {
     const e = applicant.education_data || { history: {} };
     const s = applicant.skills_data || { languages: {}, office: {}, driving: {} };
     const t = applicant.training_data || { history: [] };
-
     const exp = applicant.experience_data || { history: [], contact_previous_employer: {} };
     const st = applicant.statement_data || {};
     const ref = applicant.referral_data || {};
@@ -539,6 +538,243 @@ export default function PDFLayoutType2({ applicant }) {
                         </table>
                     </div>
 
+                </div>
+            </PageContainer>
+
+            {/* ================= PAGE 3 ================= */}
+            <PageContainer pageNum={3} totalPages={4}>
+                <LogoHeader />
+                <div className="mt-[5mm] space-y-2">
+                     {/* --- Work History --- */}
+                     <div>
+                        <div className="text-center font-bold text-[14px] border-[0.5px] border-slate-400 bg-slate-50 py-1 mb-[-0.5px]">ประวัติการทำงาน</div>
+                        <div className="border-[0.5px] border-slate-400 p-2 mb-[-0.5px]">
+                            <div className="flex gap-8 mb-2">
+                                <CheckBox label="ไม่มีประสบการณ์ทำงาน" checked={exp.has_experience === 'no'} />
+                                <CheckBox label="มีประสบการณ์ทำงานระบุ (เรียงลำดับจากล่าสุด)" checked={exp.has_experience === 'yes'} width="w-auto" />
+                            </div>
+                            
+                            <table className="w-full border-collapse text-[10px]">
+                                <thead>
+                                    <tr className="bg-slate-50 text-center">
+                                        <th rowSpan={2} className="border-[0.5px] border-slate-400 p-1 w-[12%]">วัน/เดือน/ปี<br/>เริ่มงาน - ออก</th>
+                                        <th rowSpan={2} className="border-[0.5px] border-slate-400 p-1 w-[18%]">ชื่อสถานที่ทำงาน</th>
+                                        <th rowSpan={2} className="border-[0.5px] border-slate-400 p-1 w-[18%]">ชื่อ - เบอร์โทร<br/>(นายจ้าง)</th>
+                                        <th rowSpan={2} className="border-[0.5px] border-slate-400 p-1 w-[15%]">ตำแหน่งสุดท้าย</th>
+                                        <th rowSpan={2} className="border-[0.5px] border-slate-400 p-1 w-[15%]">สาเหตุที่ลาออก</th>
+                                        <th colSpan={2} className="border-[0.5px] border-slate-400 p-1">เงินเดือน/บาท</th>
+                                    </tr>
+                                    <tr className="bg-slate-50 text-center">
+                                        <th className="border-[0.5px] border-slate-400 p-1 w-[11%]">เข้า/บาท</th>
+                                        <th className="border-[0.5px] border-slate-400 p-1 w-[11%]">ออก/บาท</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {[0, 1, 2, 3].map((i) => {
+                                        const job = exp.history?.[i] || {};
+                                        return (
+                                            <tr key={i} className="h-[24px]">
+                                                <td className="border-[0.5px] border-slate-400 p-1 text-center">{job.period || ""}</td>
+                                                <td className="border-[0.5px] border-slate-400 p-1">{job.workplace || ""}</td>
+                                                <td className="border-[0.5px] border-slate-400 p-1">{job.employer || ""}</td>
+                                                <td className="border-[0.5px] border-slate-400 p-1 text-center">{job.position || ""}</td>
+                                                <td className="border-[0.5px] border-slate-400 p-1">{job.reason || ""}</td>
+                                                <td className="border-[0.5px] border-slate-400 p-1 text-center">{job.salary_in || ""}</td>
+                                                <td className="border-[0.5px] border-slate-400 p-1 text-center">{job.salary_out || ""}</td>
+                                            </tr>
+                                        );
+                                    })}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div className="border-[0.5px] border-slate-400 p-2 text-[11px]">
+                             <div className="flex gap-2 items-center">
+                                 <span>ท่านจะขัดข้องหรือไม่ถ้าหากทางบริษัทฯ จะติดต่อสอบถามไปยังบริษัทฯ(เดิม)หรือบริษัทฯปัจจุบัน</span>
+                                 <CheckBox label="ไม่ขัดข้อง" checked={exp.contact_previous_employer?.status === 'allowed'} width="w-auto" />
+                                 <CheckBox label="ขัดข้อง" checked={exp.contact_previous_employer?.status === 'not_allowed'} width="w-auto" />
+                             </div>
+                             <div className="flex items-end mt-1">
+                                 <span className="mr-2">เพราะ.......................................................................................................................................................................................................</span>
+                                 {exp.contact_previous_employer?.status === 'not_allowed' && (
+                                     <span className="absolute left-[80mm] -translate-y-1">{exp.contact_previous_employer?.reason}</span>
+                                 )}
+                             </div>
+                        </div>
+                     </div>
+
+                     {/* --- Statement --- */}
+                     <div>
+                        <div className="text-center font-bold text-[14px] border-[0.5px] border-slate-400 bg-slate-50 py-1 mb-[-0.5px]">คำแถลง (กรุณาระบุตามจริงเท่านั้น)</div>
+                        <div className="border-[0.5px] border-slate-400 p-3 text-[11px] space-y-1.5">
+                            <div className="flex gap-2 items-center">
+                                <span className="w-6">1.</span>
+                                <span>ท่านสามารถปฏิบัติงานล่วงเวลาได้หรือไม่</span>
+                                <CheckBox label="ได้" checked={st.can_work_overtime === 'yes'} width="w-auto" />
+                                <CheckBox label="ไม่ได้" checked={st.can_work_overtime === 'no'} width="w-auto" />
+                                <span className="ml-2 flex-1 border-b border-dotted border-slate-400 relative">
+                                    เพราะ
+                                    <span className="absolute left-10 -top-1">{st.can_work_overtime === 'no' ? st.can_work_overtime_reason : ''}</span>
+                                </span>
+                            </div>
+
+                            <div className="flex gap-2 items-center">
+                                <span className="w-6">2.</span>
+                                <span>ท่านเคยเป็นผู้ต้องหาหรือต้องคำพิพากษาในคดีอาญา/แพ่งหรือไม่</span>
+                                <CheckBox label="ไม่เคย" checked={st.has_legal_cases === 'never'} width="w-auto" />
+                                <CheckBox label="เคย" checked={st.has_legal_cases === 'ever'} width="w-auto" />
+                                <span className="ml-1">ด้วยคดี....................................................................................เมื่อปี พ.ศ..............</span>
+                            </div>
+
+                             <div className="flex gap-2 items-center">
+                                <span className="w-6">3.</span>
+                                <span>ท่านเคยเสพสารเสพติดหรือเคยรับการบำบัด</span>
+                                <CheckBox label="ไม่เคย" checked={st.has_drug_history === 'never'} width="w-auto" />
+                                <CheckBox label="เคย" checked={st.has_drug_history === 'ever'} width="w-auto" />
+                                <span>ระบุประเภท.......................................สถานที่บำบัด.............................เมื่อปี พ.ศ..............</span>
+                            </div>
+
+                            <div className="flex gap-2 items-center">
+                                <span className="w-6">4.</span>
+                                <span>ในปัจจุบันท่านสูบบุหรี่หรือไม่</span>
+                                <CheckBox label="ไม่สูบ" checked={st.smoking_habit?.status === 'no'} width="w-auto" />
+                                <CheckBox label="สูบประจำเฉลี่ยต่อวันระบุ..............ม้วน/กล่อง" checked={st.smoking_habit?.status === 'regular'} width="w-auto" />
+                                <CheckBox label="สูบเฉพาะเที่ยว" checked={st.smoking_habit?.status === 'social'} width="w-auto" />
+                                <CheckBox label="สูบบ้างบางครั้ง" checked={st.smoking_habit?.status === 'occasional'} width="w-auto" />
+                            </div>
+
+                            <div className="flex gap-2 items-center">
+                                <span className="w-6">5.</span>
+                                <span>ท่านดื่มแอลกอฮอล์หรือไม่</span>
+                                <CheckBox label="ไม่ดื่ม" checked={st.alcohol_habit === 'no'} width="w-auto" />
+                                <CheckBox label="ดื่ม" checked={st.alcohol_habit === 'yes'} width="w-auto" />
+                                <CheckBox label="ดื่มบ้าง" checked={st.alcohol_habit === 'occasional'} width="w-auto" />
+                                <span>ความถี่...................วัน/ต่อสัปดาห์</span>
+                            </div>
+                            
+                            <div className="flex gap-2 items-center">
+                                <span className="w-6">6.</span>
+                                <span>สุขภาพของท่าน</span>
+                                <CheckBox label="แข็งแรงสมบูรณ์ดีทุกอย่าง" checked={st.health_status?.status === 'good'} width="w-auto" />
+                                <CheckBox label="ไม่มีโรคประจำตัว" checked={st.health_status?.status === 'no_disease'} width="w-auto" />
+                                <CheckBox label="มีโรคประจำตัว ระบุ" checked={st.health_status?.status === 'has_disease'} width="w-auto" />
+                                <span className="border-b border-dotted border-slate-400 flex-1">{st.health_status?.details}</span>
+                            </div>
+
+                            <div className="flex gap-2 items-center">
+                                <span className="w-6">7.</span>
+                                <span>ท่านเคยเจ็บป่วยมากกว่า 3 วันติดต่อกันในรอบ 12 เดือนที่ผ่านมาหรือไม่</span>
+                                <CheckBox label="ไม่เคย" checked={st.recent_major_illness === 'never'} width="w-auto" />
+                                <CheckBox label="เคย" checked={st.recent_major_illness === 'ever'} width="w-auto" />
+                                <span>ระบุโรค.............................................................</span>
+                            </div>
+
+                            <div className="flex gap-2 items-center">
+                                <span className="w-6">8.</span>
+                                <span>ท่านมีโรคติดต่อร้ายแรงหรือไม่ เช่น กาฬโรค/ไข้ทรพิษหรือฝีดาษ/วัณโรค /HIV/Covid-19 อื่นๆ โปรดระบุให้ชัดเจน.......................................................</span>
+                            </div>
+
+                             <div className="flex gap-2 flex-wrap">
+                                <div className="flex items-center gap-2 w-full">
+                                    <span className="w-6">9.</span>
+                                    <span>ท่านมีข้อบกพร่องเกี่ยวกับร่างกาย หรือไม่</span>
+                                    <CheckBox label="สายตาปกติ" checked={st.physical_conditions?.eyes === 'normal'} width="w-auto" />
+                                    <CheckBox label="สายตาไม่ปกติ ระบุ................" checked={st.physical_conditions?.eyes === 'abnormal'} width="w-auto" />
+                                    <CheckBox label="การฟังปกติ" checked={st.physical_conditions?.hearing === 'normal'} width="w-auto" />
+                                    <CheckBox label="การฟังไม่ปกติ ระบุ................" checked={st.physical_conditions?.hearing === 'abnormal'} width="w-auto" />
+                                </div>
+                                <div className="flex items-center gap-2 ml-9">
+                                    <CheckBox label="การพูดปกติ" checked={st.physical_conditions?.speaking === 'normal'} width="w-auto" />
+                                    <CheckBox label="การพูดไม่ปกติ ระบุ............................" checked={st.physical_conditions?.speaking === 'abnormal'} width="w-auto" />
+                                    <CheckBox label="การเคลื่อนไหวปกติ" checked={st.physical_conditions?.movement === 'normal'} width="w-auto" />
+                                    <CheckBox label="การเคลื่อนไหวไม่ปกติ ระบุ............................" checked={st.physical_conditions?.movement === 'abnormal'} width="w-auto" />
+                                </div>
+                            </div>
+
+                            <div className="flex gap-2 flex-wrap items-center">
+                                <span className="w-6">10.</span>
+                                <span>ท่านมีหนี้สินหรือภาระด้านใด อาทิ</span>
+                                <CheckBox label="กู้นอกระบบ" checked={st.debt_status?.outside_system} width="w-auto" />
+                                <CheckBox label="กู้ในระบบ บัตรเครดิต/สินเชื่อต่างๆ" checked={st.debt_status?.inside_system} width="w-auto" />
+                                <CheckBox label="ภาระการผ่อนส่งบ้าน/คอนโด" checked={st.debt_status?.house} width="w-auto" />
+                                <div className="flex items-center ml-9 gap-2 w-full">
+                                    <CheckBox label="ภาระการผ่อนส่งรถยนต์ / รถมอเตอร์ไซค์" checked={st.debt_status?.car} width="w-auto" />
+                                    <CheckBox label="เงินกู้ยืมเพื่อการศึกษา กยศ." checked={st.debt_status?.student_loan} width="w-auto" />
+                                    <CheckBox label="อื่นๆ ระบุ........................" checked={st.debt_status?.other} width="w-auto" />
+                                    <span>รวมภาระต่อเดือน.........................บาท</span>
+                                </div>
+                            </div>
+
+                             <div className="flex gap-2 items-center">
+                                <span className="w-6">11.</span>
+                                <span>ท่านยินยอมให้บริษัทฯตรวจสอบประวัติอาชญากรรมหรือไม่</span>
+                                <CheckBox label="ยินยอม" checked={st.criminal_record_check_consent === 'agree'} width="w-auto" />
+                                <CheckBox label="ไม่ยินยอม เพราะ..............................................................................." checked={st.criminal_record_check_consent === 'disagree'} width="w-auto" />
+                            </div>
+
+                             <div className="flex gap-2 items-center">
+                                <span className="w-6">12.</span>
+                                <span>ท่านยินยอมให้บริษัทฯตรวจสอบเครดิตบูโรหรือไม่</span>
+                                <CheckBox label="ยินยอม" checked={st.credit_bureau_check_consent === 'agree'} width="w-auto" />
+                                <CheckBox label="ไม่ยินยอม เพราะ..............................................................................." checked={st.credit_bureau_check_consent === 'disagree'} width="w-auto" />
+                            </div>
+
+                        </div>
+                     </div>
+
+                     {/* --- Referral --- */}
+                     <div className="border-[0.5px] border-slate-400 p-2 text-[11px] space-y-2">
+                         <div className="flex items-end">
+                            <span>ข้าพเจ้ายื่นใบสมัครโดยการแนะนำของ</span>
+                            <DottedLine value={ref.referred_by} className="flex-1 text-center" />
+                            <span>ความสัมพันธ์</span>
+                            <DottedLine value={ref.referred_by_relationship} className="w-[40mm] text-center" />
+                         </div>
+                         <div className="flex items-end">
+                            <span>บุคคลในองค์กรนี้ที่ข้าพเจ้ารู้จักคุ้นเคย</span>
+                            <DottedLine value={ref.acquaintance_name} className="flex-1 text-center" />
+                            <span>ความสัมพันธ์</span>
+                            <DottedLine value={ref.acquaintance_relationship} className="w-[40mm] text-center" />
+                         </div>
+                     </div>
+
+                     {/* --- Parents --- */}
+                     <div className="border-[0.5px] border-slate-400 p-2 text-[11px] space-y-2">
+                         <div className="font-bold underline text-center text-[12px]">ประวัติครอบครัว</div>
+                         {/* Father */}
+                         <div className="flex flex-wrap items-end gap-1">
+                             <span>ชื่อ-สกุล บิดา</span>
+                             <DottedLine value={par.father?.name} className="w-[50mm]" />
+                             <CheckBox label="ถึงแก่กรรม" checked={par.father?.status === 'deceased'} width="w-[20mm]" textSize="text-[11px]" />
+                             <CheckBox label="มีชีวิตอยู่" checked={par.father?.status === 'alive'} width="w-[18mm]" textSize="text-[11px]" />
+                             <span>อายุ.........ปี</span>
+                             <span>สัญชาติ................อาชีพ...............................ที่อยู่เลขที่...........หมู่..........</span>
+                         </div>
+                         <div className="flex flex-wrap items-end gap-1">
+                             <span>ถนน.................ตำบล/แขวง........................อำเภอ/เขต..........................จังหวัด...........................รหัสไปรษณีย์.....................โทรศัพท์..................................</span>
+                         </div>
+
+                         {/* Mother */}
+                          <div className="flex flex-wrap items-end gap-1">
+                             <span>ชื่อ-สกุล มารดา</span>
+                             <DottedLine value={par.mother?.name} className="w-[48mm]" />
+                             <CheckBox label="ถึงแก่กรรม" checked={par.mother?.status === 'deceased'} width="w-[20mm]" textSize="text-[11px]" />
+                             <CheckBox label="มีชีวิตอยู่" checked={par.mother?.status === 'alive'} width="w-[18mm]" textSize="text-[11px]" />
+                             <span>อายุ.........ปี</span>
+                             <span>สัญชาติ................อาชีพ...............................ที่อยู่เลขที่...........หมู่..........</span>
+                         </div>
+                         <div className="flex flex-wrap items-end gap-1">
+                             <span>ถนน.................ตำบล/แขวง........................อำเภอ/เขต..........................จังหวัด...........................รหัสไปรษณีย์.....................โทรศัพท์..................................</span>
+                         </div>
+
+                         <div className="flex items-end gap-2">
+                            <span>ข้าพเจ้ามีพี่น้องร่วมบิดามารดา</span>
+                            <DottedLine value={par.siblings_count} className="w-[20mm] text-center" />
+                            <span>คน</span>
+                            <span>ข้าพเจ้าเป็นบุตรคนที่</span>
+                            <DottedLine value={par.birth_order} className="w-[20mm] text-center" />
+                            <span className="flex-1 text-right">คน</span>
+                         </div>
+                     </div>
                 </div>
             </PageContainer>
 
