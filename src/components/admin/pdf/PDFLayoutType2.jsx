@@ -498,10 +498,10 @@ export default function PDFLayoutType2({ applicant }) {
                                  </div>
                                  </div>
 
-                                 <div className="p-2 pb-4 border-t-[0.5px] border-slate-400 bg-slate-50/30">
-                                 <div className="font-bold mb-1">ความรู้ความสามารถทางด้านภาษา/โปรแกรมคอมพิวเตอร์:</div>
-                                 <DottedLine value={s.computer_capability} className="mb-2" />
-                                 <DottedLine value="" />
+                                 <div className="p-2 pb-8 border-t-[0.5px] border-slate-400 bg-slate-50/30">
+                                     <div className="font-bold mb-1">ความรู้ความสามารถทางด้านภาษา/โปรแกรมคอมพิวเตอร์:</div>
+                                     <DottedLine value={s.computer_capability} className="mb-2 w-full" />
+                                     <DottedLine value="" className="w-full" />
                                  </div>
                          </div>
                     </div>
