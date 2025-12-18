@@ -35,7 +35,7 @@ export default function PDFLayoutType2({ applicant }) {
 
     const CheckBox = ({ label, checked, textSize="text-[11px]", width="w-[300px]" }) => (
         <div className={`relative pl-5 h-4 flex items-center ${width}`}>
-            <div className={`absolute left-0 top-0.5 w-3 h-3 border border-slate-400 flex items-center justify-center rounded-[1px] ${checked ? 'bg-slate-200' : 'bg-white'}`}>
+            <div className={`absolute left-0 top-0.5 w-3 h-3 border-[0.5px] border-slate-400 flex items-center justify-center rounded-[1px] ${checked ? 'bg-slate-200' : 'bg-white'}`}>
                 {checked && <div className="w-1.5 h-1.5 bg-slate-800 rounded-[0.5px]" />}
             </div>
             <span className={`leading-none absolute bottom-2.5 ${textSize} text-slate-900`}>{label}</span>
@@ -88,7 +88,7 @@ export default function PDFLayoutType2({ applicant }) {
                  {/* --- Top Section --- */}
                 <div className="flex justify-between items-start mb-4">
                     {/* Top Left Box */}
-                    <div className="border border-slate-400 p-2 w-[40mm] text-[11px] space-y-1">
+                    <div className="border-[0.5px] border-slate-400 p-2 w-[40mm] text-[11px] space-y-1">
                         <div className="relative pl-5 h-4 flex items-center">
                             <div className="absolute left-0 top-0.5 w-3 h-3 border border-slate-600 bg-white rounded-[1px]"></div>
                             <span className="leading-none absolute bottom-2.5">Web HR</span>
@@ -133,7 +133,7 @@ export default function PDFLayoutType2({ applicant }) {
                 </div>
 
                 {/* --- HR Section --- */}
-                <div className="border border-slate-400 p-3 mb-2 rounded-sm relative">
+                <div className="border-[0.5px] border-slate-400 p-3 mb-2 rounded-sm relative">
                     <div className="absolute -top-2 left-2 bg-white px-1 font-bold text-[12px]">(สำหรับ จนท.)</div>
                     <div className="grid grid-cols-12 gap-2 mb-3 mt-1">
                         <div className="col-span-4 flex items-end"><span className="font-bold mr-2 pb-1">รหัสพนักงาน</span><DottedLine className="flex-1" /></div>
@@ -161,9 +161,9 @@ export default function PDFLayoutType2({ applicant }) {
                 <div className="text-center font-bold text-[14px] my-2">ประวัติส่วนตัว</div>
 
                 {/* --- Main Info Box --- */}
-                <div className="border border-slate-400 rounded-sm">
+                <div className="border-[0.5px] border-slate-400 rounded-sm">
                     {/* Position Row */}
-                    <div className="p-3 border-b border-slate-400 bg-slate-50/50">
+                    <div className="p-3 border-b-[0.5px] border-slate-400 bg-slate-50/50">
                         <div className="flex gap-4 items-end text-[12px] leading-tight">
                             <div className="font-bold whitespace-nowrap pb-1">สมัครงานในตำแหน่ง 1</div>
                             <div className="border-b-[1.5px] border-dotted border-slate-400 flex-1 px-2 pb-1 text-center font-medium truncate">{p.position_1}</div>
@@ -209,7 +209,7 @@ export default function PDFLayoutType2({ applicant }) {
                     </div>
 
                     {/* Address Section */}
-                    <div className="border-t border-slate-400 p-3 space-y-3">
+                    <div className="border-t-[0.5px] border-slate-400 p-3 space-y-3">
                          <div className="flex flex-wrap gap-x-2 gap-y-1 items-end">
                             <span className="font-bold whitespace-nowrap">ที่อยู่ตามทะเบียนบ้าน</span>
                             <span className="whitespace-nowrap">เลขที่</span> <DottedLine value={p.registered_address?.number} className="w-16 text-center" />
@@ -254,7 +254,7 @@ export default function PDFLayoutType2({ applicant }) {
                     </div>
 
                     {/* Status Section */}
-                    <div className="border-t border-slate-400 p-3">
+                    <div className="border-t-[0.5px] border-slate-400 p-3">
                         <div className="grid grid-cols-2 gap-8">
                             <div>
                                  <div className="font-bold underline mb-2">สถานภาพ (ชาย)</div>
@@ -337,18 +337,18 @@ export default function PDFLayoutType2({ applicant }) {
                 <div className="mt-[20mm] space-y-4">
                     
                     {/* --- Family Status --- */}
-                    <div className="border border-slate-400 p-3 rounded-sm">
+                    <div className="border-[0.5px] border-slate-400 p-3 rounded-sm">
                         <div className="flex items-center gap-2 mb-2">
                              <span className="font-bold underline">สถานะทางครอบครัว</span>
                              <div className="flex gap-4 ml-4 items-end">
                                 <div className="relative pl-5 h-4 flex items-center w-[60px]">
-                                    <div className={`absolute left-0 top-2 w-3 h-3 border border-slate-400 flex items-center justify-center rounded-[1px] ${f.marital_status === 'single' ? 'bg-slate-200' : 'bg-white'}`}>
+                                    <div className={`absolute left-0 top-2 w-3 h-3 border-[0.5px] border-slate-400 flex items-center justify-center rounded-[1px] ${f.marital_status === 'single' ? 'bg-slate-200' : 'bg-white'}`}>
                                         {f.marital_status === 'single' && <div className="w-1.5 h-1.5 bg-slate-800 rounded-[0.5px]" />}
                                     </div>
                                     <span className="text-[11px] text-slate-900 pt-1">โสด</span>
                                 </div>
                                 <div className="relative pl-5 h-4 flex items-center w-[100px]">
-                                    <div className={`absolute left-0 top-2 w-3 h-3 border border-slate-400 flex items-center justify-center rounded-[1px] ${f.marital_status === 'married' ? 'bg-slate-200' : 'bg-white'}`}>
+                                    <div className={`absolute left-0 top-2 w-3 h-3 border-[0.5px] border-slate-400 flex items-center justify-center rounded-[1px] ${f.marital_status === 'married' ? 'bg-slate-200' : 'bg-white'}`}>
                                         {f.marital_status === 'married' && <div className="w-1.5 h-1.5 bg-slate-800 rounded-[0.5px]" />}
                                     </div>
                                     <span className="text-[11px] text-slate-900 pt-1">แต่งงานแล้ว</span>
@@ -378,12 +378,12 @@ export default function PDFLayoutType2({ applicant }) {
                         <table className="w-full border-collapse text-[11px]">
                             <thead>
                                 <tr className="bg-slate-50 text-center">
-                                    <th className="border border-slate-400 p-1 w-[15%]">ระดับ</th>
-                                    <th className="border border-slate-400 p-1 w-[30%]">ชื่อสถานศึกษา</th>
-                                    <th className="border border-slate-400 p-1 w-[25%]">สาขาวิชา</th>
-                                    <th className="border border-slate-400 p-1 w-[10%]">เริ่มปีพ.ศ.</th>
-                                    <th className="border border-slate-400 p-1 w-[10%]">สำเร็จปีพ.ศ.</th>
-                                    <th className="border border-slate-400 p-1 w-[10%]">เกรด<br/>เฉลี่ย</th>
+                                    <th className="border-[0.5px] border-slate-400 p-1 w-[15%]">ระดับ</th>
+                                    <th className="border-[0.5px] border-slate-400 p-1 w-[30%]">ชื่อสถานศึกษา</th>
+                                    <th className="border-[0.5px] border-slate-400 p-1 w-[25%]">สาขาวิชา</th>
+                                    <th className="border-[0.5px] border-slate-400 p-1 w-[10%]">เริ่มปีพ.ศ.</th>
+                                    <th className="border-[0.5px] border-slate-400 p-1 w-[10%]">สำเร็จปีพ.ศ.</th>
+                                    <th className="border-[0.5px] border-slate-400 p-1 w-[10%]">เกรด<br/>เฉลี่ย</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -399,12 +399,12 @@ export default function PDFLayoutType2({ applicant }) {
                                     const ed = e.history?.[row.k] || {};
                                     return (
                                         <tr key={row.k}>
-                                            <td className="border border-slate-400 p-1 bg-slate-50">{row.label}</td>
-                                            <td className="border border-slate-400 p-1"><DottedLine value={ed.institute} className="border-0 border-b border-dotted" /></td>
-                                            <td className="border border-slate-400 p-1"><DottedLine value={ed.major} className="border-0 border-b border-dotted" /></td>
-                                            <td className="border border-slate-400 p-1 text-center"><DottedLine value={ed.start_year} className="border-0 border-b border-dotted text-center" /></td>
-                                            <td className="border border-slate-400 p-1 text-center"><DottedLine value={ed.end_year} className="border-0 border-b border-dotted text-center" /></td>
-                                            <td className="border border-slate-400 p-1 text-center"><DottedLine value={ed.gpa} className="border-0 border-b border-dotted text-center" /></td>
+                                            <td className="border-[0.5px] border-slate-400 p-1 bg-slate-50">{row.label}</td>
+                                            <td className="border-[0.5px] border-slate-400 p-1"><DottedLine value={ed.institute} className="border-0 border-b border-dotted" /></td>
+                                            <td className="border-[0.5px] border-slate-400 p-1"><DottedLine value={ed.major} className="border-0 border-b border-dotted" /></td>
+                                            <td className="border-[0.5px] border-slate-400 p-1 text-center"><DottedLine value={ed.start_year} className="border-0 border-b border-dotted text-center" /></td>
+                                            <td className="border-[0.5px] border-slate-400 p-1 text-center"><DottedLine value={ed.end_year} className="border-0 border-b border-dotted text-center" /></td>
+                                            <td className="border-[0.5px] border-slate-400 p-1 text-center"><DottedLine value={ed.gpa} className="border-0 border-b border-dotted text-center" /></td>
                                         </tr>
                                     );
                                 })}
@@ -415,7 +415,7 @@ export default function PDFLayoutType2({ applicant }) {
                     {/* --- General Skills --- */}
                     <div>
                          <div className="text-center font-bold text-[14px] mb-1">ความสามารถทั่วไป</div>
-                         <div className="border border-slate-400 rounded-sm">
+                         <div className="border-[0.5px] border-slate-400 rounded-sm">
                              <div className="grid grid-cols-12 border-b-[0.5px] border-slate-400">
                                  {/* Language */}
                                  <div className="col-span-4 border-r-[0.5px] border-slate-400 p-1 text-center font-bold">ความรู้ในการใช้ภาษา</div>
@@ -505,10 +505,10 @@ export default function PDFLayoutType2({ applicant }) {
                         <table className="w-full border-collapse text-[11px]">
                             <thead>
                                 <tr className="bg-slate-50 text-center">
-                                    <th className="border border-slate-400 p-1 w-[10%]">ลำดับ</th>
-                                    <th className="border border-slate-400 p-1 w-[35%]">หลักสูตร</th>
-                                    <th className="border border-slate-400 p-1 w-[35%]">สถาบัน</th>
-                                    <th className="border border-slate-400 p-1 w-[20%]">ระยะเวลา</th>
+                                    <th className="border-[0.5px] border-slate-400 p-1 w-[10%]">ลำดับ</th>
+                                    <th className="border-[0.5px] border-slate-400 p-1 w-[35%]">หลักสูตร</th>
+                                    <th className="border-[0.5px] border-slate-400 p-1 w-[35%]">สถาบัน</th>
+                                    <th className="border-[0.5px] border-slate-400 p-1 w-[20%]">ระยะเวลา</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -516,10 +516,10 @@ export default function PDFLayoutType2({ applicant }) {
                                     const tr = t.history?.[i] || {};
                                     return (
                                         <tr key={i} className="h-[28px]">
-                                            <td className="border border-slate-400 p-1 text-center">{i + 1}.</td>
-                                            <td className="border border-slate-400 p-1"><DottedLine value={tr.course} className="border-0 border-b border-dotted" /></td>
-                                            <td className="border border-slate-400 p-1"><DottedLine value={tr.institute} className="border-0 border-b border-dotted" /></td>
-                                            <td className="border border-slate-400 p-1 text-center"><DottedLine value={tr.duration} className="border-0 border-b border-dotted text-center" /></td>
+                                            <td className="border-[0.5px] border-slate-400 p-1 text-center">{i + 1}.</td>
+                                            <td className="border-[0.5px] border-slate-400 p-1"><DottedLine value={tr.course} className="border-0 border-b border-dotted" /></td>
+                                            <td className="border-[0.5px] border-slate-400 p-1"><DottedLine value={tr.institute} className="border-0 border-b border-dotted" /></td>
+                                            <td className="border-[0.5px] border-slate-400 p-1 text-center"><DottedLine value={tr.duration} className="border-0 border-b border-dotted text-center" /></td>
                                         </tr>
                                     );
                                 })}
