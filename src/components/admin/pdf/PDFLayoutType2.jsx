@@ -334,10 +334,10 @@ export default function PDFLayoutType2({ applicant }) {
             {/* ================= PAGE 2 ================= */}
             <PageContainer pageNum={2} totalPages={4}>
                 <LogoHeader />
-                <div className="mt-[20mm] space-y-4">
-                    
+                <div className="mt-[5mm] space-y-2">
+
                     {/* --- Family Status --- */}
-                    <div className="border-[0.5px] border-slate-400 p-3 rounded-sm">
+                    <div className="border-[0.5px] border-slate-400 p-2 rounded-sm">
                         <div className="flex items-center gap-2 mb-2">
                              <span className="font-bold underline">สถานะทางครอบครัว</span>
                              <div className="flex gap-4 ml-4 items-end">
