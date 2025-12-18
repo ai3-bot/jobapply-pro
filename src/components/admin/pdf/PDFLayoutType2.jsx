@@ -334,11 +334,11 @@ export default function PDFLayoutType2({ applicant }) {
             {/* ================= PAGE 2 ================= */}
             <PageContainer pageNum={2} totalPages={4}>
                 <LogoHeader />
-                <div className="mt-[5mm] space-y-2">
+                <div className="mt-[5mm] space-y-1">
 
                     {/* --- Family Status --- */}
-                    <div className="border-[0.5px] border-slate-400 p-2 rounded-sm">
-                        <div className="flex items-center gap-2 mb-2">
+                    <div className="border-[0.5px] border-slate-400 p-2 rounded-sm text-[11px]">
+                        <div className="flex items-center gap-2 mb-1">
                              <span className="font-bold underline">สถานะทางครอบครัว</span>
                              <div className="flex gap-4 ml-4 items-end">
                                 <div className="relative pl-5 h-4 flex items-center w-[60px]">
@@ -374,7 +374,7 @@ export default function PDFLayoutType2({ applicant }) {
 
                     {/* --- Education History --- */}
                     <div>
-                        <div className="text-center font-bold text-[14px] mb-1">ประวัติการศึกษา</div>
+                        <div className="text-center font-bold text-[14px] mb-0.5">ประวัติการศึกษา</div>
                         <table className="w-full border-collapse text-[11px]">
                             <thead>
                                 <tr className="bg-slate-50 text-center">
