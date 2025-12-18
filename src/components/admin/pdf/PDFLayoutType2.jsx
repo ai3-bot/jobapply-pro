@@ -512,9 +512,9 @@ export default function PDFLayoutType2({ applicant }) {
                         <table className="w-full border-collapse text-[11px]">
                             <thead>
                                 <tr className="bg-slate-50 text-center">
-                                    <th className="border-[0.5px] border-slate-400 p-1 w-[10%]">ลำดับ</th>
-                                    <th className="border-[0.5px] border-slate-400 p-1 w-[35%]">หลักสูตร</th>
-                                    <th className="border-[0.5px] border-slate-400 p-1 w-[35%]">สถาบัน</th>
+                                    <th className="border-l-[0.5px] border-b-[0.5px] border-t-[0.5px] border-slate-400 p-1 w-[10%]">ลำดับ</th>
+                                    <th className="border-l-[0.5px] border-b-[0.5px] border-t-[0.5px] border-slate-400 p-1 w-[35%]">หลักสูตร</th>
+                                    <th className="border-l-[0.5px] border-b-[0.5px] border-t-[0.5px] border-slate-400 p-1 w-[35%]">สถาบัน</th>
                                     <th className="border-[0.5px] border-slate-400 p-1 w-[20%]">ระยะเวลา</th>
                                 </tr>
                             </thead>
@@ -523,10 +523,10 @@ export default function PDFLayoutType2({ applicant }) {
                                     const tr = t.history?.[i] || {};
                                     return (
                                         <tr key={i} className="h-[28px]">
-                                            <td className="border-[0.5px] border-slate-400 p-1 text-center">{i + 1}.</td>
-                                            <td className="border-[0.5px] border-slate-400 p-1">{tr.course || ""}</td>
-                                            <td className="border-[0.5px] border-slate-400 p-1">{tr.institute || ""}</td>
-                                            <td className="border-[0.5px] border-slate-400 p-1 text-center">{tr.duration || ""}</td>
+                                            <td className="border-l-[0.5px] border-b-[0.5px] border-slate-400 p-1 text-center">{i + 1}.</td>
+                                            <td className="border-l-[0.5px] border-b-[0.5px] border-slate-400 p-1">{tr.course || ""}</td>
+                                            <td className="border-l-[0.5px] border-b-[0.5px] border-slate-400 p-1">{tr.institute || ""}</td>
+                                            <td className="border-l-[0.5px] border-b-[0.5px] border-r-[0.5px] border-slate-400 p-1 text-center">{tr.duration || ""}</td>
                                         </tr>
                                     );
                                 })}
