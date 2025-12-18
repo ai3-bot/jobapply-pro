@@ -30,8 +30,8 @@ export default function PDFLayoutType2({ applicant }) {
         </div>
     );
 
-    const CheckBox = ({ label, checked, textSize="text-[11px]" }) => (
-        <div className="relative pl-5 h-4 flex items-center w-[300px]">
+    const CheckBox = ({ label, checked, textSize="text-[11px]", width="w-[300px]" }) => (
+        <div className={`relative pl-5 h-4 flex items-center ${width}`}>
             <div className={`absolute left-0 top-0.5 w-3 h-3 border border-slate-600 flex items-center justify-center rounded-[1px] ${checked ? 'bg-slate-200' : 'bg-white'}`}>
                 {checked && <div className="w-1.5 h-1.5 bg-slate-800 rounded-[0.5px]" />}
             </div>
@@ -229,8 +229,8 @@ export default function PDFLayoutType2({ applicant }) {
                      <div className="flex flex-wrap gap-x-2 gap-y-1 items-end pt-2">
                         <span className="font-bold whitespace-nowrap">ที่อยู่ปัจจุบัน เป็น</span>
                         <div className="flex items-center gap-4 px-2">
-                            <CheckBox label="บ้านตนเอง" checked={p.current_address_type === 'own'} />
-                            <CheckBox label="บ้านเช่า / หอพัก" checked={p.current_address_type === 'rent'} />
+                            <CheckBox label="บ้านตนเอง" checked={p.current_address_type === 'own'} width="w-[150px]" />
+                            <CheckBox label="บ้านเช่า / หอพัก" checked={p.current_address_type === 'rent'} width="w-[150px]" />
                         </div>
                      </div>
                      <div className="flex flex-wrap gap-x-2 gap-y-1 items-end">
@@ -267,7 +267,7 @@ export default function PDFLayoutType2({ applicant }) {
                              <div className="font-bold underline mb-2">สถานภาพ (หญิง)</div>
                              <div className="space-y-1.5 pl-1">
                                  <div className="flex gap-4">
-                                     <CheckBox label="ไม่อยู่ระหว่างการตั้งครรภ์" />
+                                     <CheckBox label="ไม่อยู่ระหว่างการตั้งครรภ์" width="w-[350px]" />
                                      <CheckBox label="มีบุตรแล้ว" checked={f.has_children === 'yes'} />
                                      <CheckBox label="ยังไม่มีบุตร" checked={f.has_children === 'no'} />
                                  </div>
