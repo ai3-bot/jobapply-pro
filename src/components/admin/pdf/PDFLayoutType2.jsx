@@ -428,7 +428,7 @@ export default function PDFLayoutType2({ applicant }) {
                                  <div className="col-span-4 p-1 text-center font-bold">ความสามารถพิเศษอื่นๆ (เลือก <Check className="inline w-3 h-3"/> )</div>
                              </div>
                              
-                             <div className="grid grid-cols-12 min-h-[160px]">
+                             <div className="grid grid-cols-12">
                                  {/* Language Table */}
                                  <div className="col-span-4 border-r-[0.5px] border-slate-400 text-[10px]">
                                      <div className="grid grid-cols-4 border-b-[0.5px] border-slate-400 text-center bg-slate-50 h-[40px]">
