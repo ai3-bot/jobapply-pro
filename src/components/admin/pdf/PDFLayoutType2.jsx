@@ -277,7 +277,7 @@ export default function PDFLayoutType2({ applicant }) {
                              <div className="font-bold underline mb-2">สถานภาพ (หญิง)</div>
                              <div className="space-y-1.5 pl-1">
                                  <div className="flex gap-4">
-                                     <CheckBox label="ไม่อยู่ระหว่างการตั้งครรภ์" width="w-[350px]" />
+                                     <CheckBox label="ไม่อยู่ระหว่างการตั้งครรภ์" width="w-[150px]" />
                                      <CheckBox label="มีบุตรแล้ว" checked={f.has_children === 'yes'} />
                                      <CheckBox label="ยังไม่มีบุตร" checked={f.has_children === 'no'} />
                                  </div>
