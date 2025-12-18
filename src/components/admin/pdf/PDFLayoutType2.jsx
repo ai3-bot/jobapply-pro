@@ -233,13 +233,13 @@ export default function PDFLayoutType2({ applicant }) {
                                 <div className={`absolute left-0 top-0.5 w-3 h-3 border border-slate-600 flex items-center justify-center rounded-[1px] ${p.current_address_type === 'own' ? 'bg-slate-200' : 'bg-white'}`}>
                                     {p.current_address_type === 'own' && <div className="w-1.5 h-1.5 bg-slate-800 rounded-[0.5px]" />}
                                 </div>
-                                <span className="leading-none absolute bottom-2.5 text-[11px] text-slate-900">บ้านตนเอง</span>
+                                <span className="text-[11px] text-slate-900">บ้านตนเอง</span>
                             </div>
                             <div className="relative pl-5 h-4 flex items-center w-[150px]">
                                 <div className={`absolute left-0 top-0.5 w-3 h-3 border border-slate-600 flex items-center justify-center rounded-[1px] ${p.current_address_type === 'rent' ? 'bg-slate-200' : 'bg-white'}`}>
                                     {p.current_address_type === 'rent' && <div className="w-1.5 h-1.5 bg-slate-800 rounded-[0.5px]" />}
                                 </div>
-                                <span className="leading-none absolute bottom-2.5 text-[11px] text-slate-900">บ้านเช่า / หอพัก</span>
+                                <span className="text-[11px] text-slate-900">บ้านเช่า / หอพัก</span>
                             </div>
                         </div>
                      </div>
