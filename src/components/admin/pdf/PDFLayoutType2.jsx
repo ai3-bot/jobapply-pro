@@ -762,37 +762,87 @@ export default function PDFLayoutType2({ applicant }) {
                      {/* --- Parents --- */}
                      <div className="border-[0.5px] border-slate-400 p-2 text-[11px] space-y-2">
                          <div className="font-bold underline text-center text-[12px]">ประวัติครอบครัว</div>
+                         
                          {/* Father */}
                          <div className="flex flex-wrap items-end gap-1">
                              <span>ชื่อ-สกุล บิดา</span>
-                             <DottedLine value={par.father?.name} className="w-[50mm]" />
-                             <CheckBox label="ถึงแก่กรรม" checked={par.father?.status === 'deceased'} width="w-[20mm]" textSize="text-[11px]" />
-                             <CheckBox label="มีชีวิตอยู่" checked={par.father?.status === 'alive'} width="w-[18mm]" textSize="text-[11px]" />
-                             <span>อายุ.........ปี</span>
-                             <span>สัญชาติ................อาชีพ...............................ที่อยู่เลขที่...........หมู่..........</span>
+                             <DottedLine value={par.father?.name} className="w-[70mm]" />
+                             <CheckBox label="ถึงแก่กรรม" checked={par.father?.status === 'deceased'} width="w-[22mm]" textSize="text-[11px]" />
+                             <CheckBox label="มีชีวิตอยู่" checked={par.father?.status === 'alive'} width="w-[22mm]" textSize="text-[11px]" />
+                             <span>อายุ</span>
+                             <DottedLine value={par.father?.age} className="w-[15mm] text-center" />
+                             <span>ปี</span>
                          </div>
                          <div className="flex flex-wrap items-end gap-1">
-                             <span>ถนน.................ตำบล/แขวง........................อำเภอ/เขต..........................จังหวัด...........................รหัสไปรษณีย์.....................โทรศัพท์..................................</span>
+                             <span>สัญชาติ</span>
+                             <DottedLine value={par.father?.nationality} className="w-[30mm]" />
+                             <span>อาชีพ</span>
+                             <DottedLine value={par.father?.occupation} className="w-[45mm]" />
+                             <span>ที่อยู่เลขที่</span>
+                             <DottedLine value={par.father?.address?.number} className="w-[25mm]" />
+                             <span>หมู่</span>
+                             <DottedLine value={par.father?.address?.moo} className="w-[15mm]" />
+                         </div>
+                         <div className="flex flex-wrap items-end gap-1">
+                             <span>ถนน</span>
+                             <DottedLine value={par.father?.address?.road} className="w-[30mm]" />
+                             <span>ตำบล/แขวง</span>
+                             <DottedLine value={par.father?.address?.subdistrict} className="w-[35mm]" />
+                             <span>อำเภอ/เขต</span>
+                             <DottedLine value={par.father?.address?.district} className="w-[35mm]" />
+                             <span>จังหวัด</span>
+                             <DottedLine value={par.father?.address?.province} className="w-[35mm]" />
+                         </div>
+                         <div className="flex flex-wrap items-end gap-1">
+                             <span>รหัสไปรษณีย์</span>
+                             <DottedLine value={par.father?.address?.zipcode} className="w-[25mm]" />
+                             <span>โทรศัพท์</span>
+                             <DottedLine value={par.father?.phone} className="flex-1" />
                          </div>
 
                          {/* Mother */}
-                          <div className="flex flex-wrap items-end gap-1">
+                         <div className="flex flex-wrap items-end gap-1 pt-2">
                              <span>ชื่อ-สกุล มารดา</span>
-                             <DottedLine value={par.mother?.name} className="w-[48mm]" />
-                             <CheckBox label="ถึงแก่กรรม" checked={par.mother?.status === 'deceased'} width="w-[20mm]" textSize="text-[11px]" />
-                             <CheckBox label="มีชีวิตอยู่" checked={par.mother?.status === 'alive'} width="w-[18mm]" textSize="text-[11px]" />
-                             <span>อายุ.........ปี</span>
-                             <span>สัญชาติ................อาชีพ...............................ที่อยู่เลขที่...........หมู่..........</span>
+                             <DottedLine value={par.mother?.name} className="w-[68mm]" />
+                             <CheckBox label="ถึงแก่กรรม" checked={par.mother?.status === 'deceased'} width="w-[22mm]" textSize="text-[11px]" />
+                             <CheckBox label="มีชีวิตอยู่" checked={par.mother?.status === 'alive'} width="w-[22mm]" textSize="text-[11px]" />
+                             <span>อายุ</span>
+                             <DottedLine value={par.mother?.age} className="w-[15mm] text-center" />
+                             <span>ปี</span>
                          </div>
                          <div className="flex flex-wrap items-end gap-1">
-                             <span>ถนน.................ตำบล/แขวง........................อำเภอ/เขต..........................จังหวัด...........................รหัสไปรษณีย์.....................โทรศัพท์..................................</span>
+                             <span>สัญชาติ</span>
+                             <DottedLine value={par.mother?.nationality} className="w-[30mm]" />
+                             <span>อาชีพ</span>
+                             <DottedLine value={par.mother?.occupation} className="w-[45mm]" />
+                             <span>ที่อยู่เลขที่</span>
+                             <DottedLine value={par.mother?.address?.number} className="w-[25mm]" />
+                             <span>หมู่</span>
+                             <DottedLine value={par.mother?.address?.moo} className="w-[15mm]" />
+                         </div>
+                         <div className="flex flex-wrap items-end gap-1">
+                             <span>ถนน</span>
+                             <DottedLine value={par.mother?.address?.road} className="w-[30mm]" />
+                             <span>ตำบล/แขวง</span>
+                             <DottedLine value={par.mother?.address?.subdistrict} className="w-[35mm]" />
+                             <span>อำเภอ/เขต</span>
+                             <DottedLine value={par.mother?.address?.district} className="w-[35mm]" />
+                             <span>จังหวัด</span>
+                             <DottedLine value={par.mother?.address?.province} className="w-[35mm]" />
+                         </div>
+                         <div className="flex flex-wrap items-end gap-1">
+                             <span>รหัสไปรษณีย์</span>
+                             <DottedLine value={par.mother?.address?.zipcode} className="w-[25mm]" />
+                             <span>โทรศัพท์</span>
+                             <DottedLine value={par.mother?.phone} className="flex-1" />
                          </div>
 
-                         <div className="flex items-end gap-2">
+                         {/* Siblings */}
+                         <div className="flex items-end gap-2 pt-2">
                             <span>ข้าพเจ้ามีพี่น้องร่วมบิดามารดา</span>
                             <DottedLine value={par.siblings_count} className="w-[20mm] text-center" />
                             <span>คน</span>
-                            <span>ข้าพเจ้าเป็นบุตรคนที่</span>
+                            <span className="ml-4">ข้าพเจ้าเป็นบุตรคนที่</span>
                             <DottedLine value={par.birth_order} className="w-[20mm] text-center" />
                             <span className="flex-1 text-right">คน</span>
                          </div>
