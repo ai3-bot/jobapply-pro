@@ -895,7 +895,7 @@ export default function PDFLayoutType2({ applicant }) {
                         <div className="grid grid-cols-12 gap-2">
                             <div className="col-span-7 text-justify leading-snug">
                                 <p>
-                                    ข้าพเจ้าขอรับรองว่าข้อความที่กรอกในใบสมัครนี้เป็นความจริงทุกประการ และยินยอมให้บริษัทฯ ตรวจสอบประวัติและข้อเท็จจริงจากบุคคลหรือสถานที่ต่างๆ ที่ข้าพเจ้าระบุมาในใบสมัครนี้ ถ้าหากปรากฏในภายหลังว่า ข้าพเจ้าให้ข้อความอันเป็นเท็จ หรือปกปิดความจริงไว้ หรือบิดเบือนข้อเท็จจริง บริษัทฯ มีสิทธิ์บอกเลิกจ้างได้ทันที โดยข้าพเจ้าไม่มีสิทธิ์เรียกร้องค่าชดเชยหรือค่าเสียหายใดๆ ทั้งสิ้น หรือ มีสิทธิ์ไม่รับเข้าทำงาน ถ้าหากยังไม่ได้รับเข้าทำงาน อนึ่ง บริษัทฯ มีสิทธิ์เก็บใบสมัครนี้ไว้เป็นหลักฐานประกอบการพิจารณาได้
+                                    ข้าพเจ้าขอรับรองว่า ข้อความดังกล่าวทั้งหมดในใบสมัครงานและเอกสารแนบนี้เป็นความจริงทุกประการ หลังจากบริษัทฯได้เข้ามาทำงานแล้วหากปรากฏว่า ข้อความในใบสมัครงานและเอกสารแนบที่นำมาแสดงต่างๆ หรือรายละเอียดที่ให้ไว้ไม่เป็นความจริง หรือเป็นเท็จ บริษัทฯ มีสิทธิ์ที่เลิกจ้างข้าพเจ้าได้ โดยไม่ต้องจ่ายเงินชดเชยหรือค่าเสียหายใดๆ ทั้งสิ้น ข้าพเจ้ายินยอมให้บริษัทฯตรวจสอบข้อมูลย้อนหลังจากการทำงานที่เดิม รวมถึงยินยอมให้ตรวจสอบประวัติอาญากรรมและเครดิตบูโรทั้งสิ้น และข้าพเจ้ายินยอมให้แพทย์หรือโรงพยาบาลให้ข้อมูลที่จำเป็นเกี่ยวกับสุขภาพของข้าพเจ้า ซึ่งมีผลกระทบต่อการปฏิบัติงานในบริษัท
                                 </p>
                                 <div className="mt-3 text-right text-[10px]">
                                     <span>ลงนาม</span>
@@ -914,17 +914,21 @@ export default function PDFLayoutType2({ applicant }) {
                                         <span className="text-slate-300 text-[9px]">ลงชื่อ</span>
                                     )}
                                 </div>
+                                <div className="text-center mb-1">
+                                    <span className="text-[9px]">ตัวบรรจง</span>
+                                </div>
                                 <div className="flex items-end gap-1">
-                                    <span className="whitespace-nowrap text-[9px]">ชื่อ</span>
+                                    <span className="whitespace-nowrap text-[9px]">(</span>
                                     <DottedLine value={applicant.full_name} className="flex-1" />
+                                    <span className="whitespace-nowrap text-[9px]">)</span>
                                 </div>
                                 <div className="flex items-end gap-1">
                                     <span className="whitespace-nowrap text-[9px]">วันที่</span>
                                     <DottedLine value={applicant.signature_date} className="flex-1" />
                                 </div>
-                                <div className="flex items-end gap-1">
-                                    <span className="whitespace-nowrap text-[9px]">วันที่เริ่มงาน</span>
-                                    <DottedLine value={applicant.start_work_date} className="flex-1" />
+                                <div className="text-[9px] mt-2">
+                                    <span>ข้าพเจ้าพร้อมปฏิบัติงานกับบริษัทฯ ในวันที่</span>
+                                    <DottedLine value={applicant.start_work_date} className="inline-block w-32 ml-1" />
                                 </div>
                             </div>
                         </div>
