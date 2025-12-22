@@ -544,8 +544,8 @@ export default function PDFLayoutType2({ applicant }) {
 
             {/* ================= PAGE 3 ================= */}
             <PageContainer pageNum={3} totalPages={4}>
-                <LogoHeader height="h-[90px]" />
-                <div className="mt-[calc(5mm-20px)] space-y-1 relative z-0">
+                <LogoHeader />
+                <div className="mt-[5mm] space-y-1">
 
                      {/* --- Work History --- */}
                      <div>
