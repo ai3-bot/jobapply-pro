@@ -849,34 +849,34 @@ export default function PDFLayoutType2({ applicant }) {
                     <div className="text-[11px] mb-1">
                         <span className="font-bold">กรณี <span className="underline">ฉุกเฉิน เร่งด่วน</span> สามารถติดต่อบุคคลอ้างอิงได้ที่</span>
                     </div>
-                    <table className="w-full border-collapse text-[10px] border-[0.5px] border-slate-400">
+                    <table className="w-full border-collapse text-[10px]">
                         <thead>
                             <tr className="bg-slate-50">
-                                <th className="border-[0.5px] border-slate-400 p-1 text-center w-[20%]">ชื่อ-สกุล</th>
-                                <th className="border-[0.5px] border-slate-400 p-1 text-center w-[15%]">ความสัมพันธ์</th>
-                                <th className="border-[0.5px] border-slate-400 p-1 text-center w-[30%]">ที่อยู่/ที่ทำงาน</th>
-                                <th className="border-[0.5px] border-slate-400 p-1 text-center w-[20%]">โทรศัพท์</th>
+                                <th className="border-l-[0.5px] border-b-[0.5px] border-t-[0.5px] border-slate-400 p-1 text-center w-[20%]">ชื่อ-สกุล</th>
+                                <th className="border-l-[0.5px] border-b-[0.5px] border-t-[0.5px] border-slate-400 p-1 text-center w-[15%]">ความสัมพันธ์</th>
+                                <th className="border-l-[0.5px] border-b-[0.5px] border-t-[0.5px] border-slate-400 p-1 text-center w-[30%]">ที่อยู่/ที่ทำงาน</th>
+                                <th className="border-l-[0.5px] border-b-[0.5px] border-t-[0.5px] border-slate-400 p-1 text-center w-[20%]">โทรศัพท์</th>
                                 <th className="border-[0.5px] border-slate-400 p-1 text-center w-[15%]">ตำแหน่ง</th>
                             </tr>
                         </thead>
                         <tbody>
                             {applicant.emergency_contacts?.slice(0, 2).map((contact, idx) => (
                                 <tr key={idx} className="h-[24px]">
-                                    <td className="border-[0.5px] border-slate-400 p-1">{contact.name || ""}</td>
-                                    <td className="border-[0.5px] border-slate-400 p-1 text-center">{contact.relationship || ""}</td>
-                                    <td className="border-[0.5px] border-slate-400 p-1">{contact.address || ""}</td>
-                                    <td className="border-[0.5px] border-slate-400 p-1 text-center">{contact.phone || ""}</td>
-                                    <td className="border-[0.5px] border-slate-400 p-1 text-center">{contact.position || ""}</td>
+                                    <td className="border-l-[0.5px] border-b-[0.5px] border-slate-400 p-1 text-center">{contact.name || ""}</td>
+                                    <td className="border-l-[0.5px] border-b-[0.5px] border-slate-400 p-1 text-center">{contact.relationship || ""}</td>
+                                    <td className="border-l-[0.5px] border-b-[0.5px] border-slate-400 p-1 text-center">{contact.address || ""}</td>
+                                    <td className="border-l-[0.5px] border-b-[0.5px] border-slate-400 p-1 text-center">{contact.phone || ""}</td>
+                                    <td className="border-l-[0.5px] border-b-[0.5px] border-r-[0.5px] border-slate-400 p-1 text-center">{contact.position || ""}</td>
                                 </tr>
                             ))}
                             {(!applicant.emergency_contacts || applicant.emergency_contacts.length < 2) && 
                                 [...Array(2 - (applicant.emergency_contacts?.length || 0))].map((_, idx) => (
                                     <tr key={`empty-${idx}`} className="h-[24px]">
-                                        <td className="border-[0.5px] border-slate-400 p-1"></td>
-                                        <td className="border-[0.5px] border-slate-400 p-1"></td>
-                                        <td className="border-[0.5px] border-slate-400 p-1"></td>
-                                        <td className="border-[0.5px] border-slate-400 p-1"></td>
-                                        <td className="border-[0.5px] border-slate-400 p-1"></td>
+                                        <td className="border-l-[0.5px] border-b-[0.5px] border-slate-400 p-1 text-center"></td>
+                                        <td className="border-l-[0.5px] border-b-[0.5px] border-slate-400 p-1 text-center"></td>
+                                        <td className="border-l-[0.5px] border-b-[0.5px] border-slate-400 p-1 text-center"></td>
+                                        <td className="border-l-[0.5px] border-b-[0.5px] border-slate-400 p-1 text-center"></td>
+                                        <td className="border-l-[0.5px] border-b-[0.5px] border-r-[0.5px] border-slate-400 p-1 text-center"></td>
                                     </tr>
                                 ))
                             }
