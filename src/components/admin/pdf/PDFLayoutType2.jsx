@@ -766,71 +766,71 @@ export default function PDFLayoutType2({ applicant }) {
                          {/* Father - 3 lines */}
                          <div className="flex flex-wrap items-end gap-1">
                              <span>ชื่อ-สกุล บิดา</span>
-                             <DottedLine value={par.father?.name} className="w-[50mm] relative top-[2px]" />
+                             <DottedLine value={par.father?.name} className="w-[50mm] relative top-[3px]" />
                              <CheckBox label="ถึงแก่กรรม" checked={par.father?.status === 'deceased'} width="w-[22mm]" textSize="text-[11px]" />
                              <CheckBox label="มีชีวิตอยู่" checked={par.father?.status === 'alive'} width="w-[22mm]" textSize="text-[11px]" />
                              <span>อายุ</span>
-                             <DottedLine value={par.father?.age} className="w-[12mm] text-center relative top-[2px]" />
+                             <DottedLine value={par.father?.age} className="w-[12mm] text-center relative top-[3px]" />
                              <span>ปี</span>
                              <span>สัญชาติ</span>
-                             <DottedLine value={par.father?.nationality} className="w-[25mm] relative top-[2px]" />
+                             <DottedLine value={par.father?.nationality} className="w-[25mm] relative top-[3px]" />
                          </div>
                          <div className="flex flex-wrap items-end gap-1">
                              <span>อาชีพ</span>
-                             <DottedLine value={par.father?.occupation} className="w-[35mm] relative top-[2px]" />
+                             <DottedLine value={par.father?.occupation} className="w-[35mm] relative top-[3px]" />
                              <span>ที่อยู่เลขที่</span>
-                             <DottedLine value={par.father?.address?.number} className="w-[18mm] relative top-[2px]" />
+                             <DottedLine value={par.father?.address?.number} className="w-[18mm] relative top-[3px]" />
                              <span>หมู่</span>
-                             <DottedLine value={par.father?.address?.moo} className="w-[12mm] relative top-[2px]" />
+                             <DottedLine value={par.father?.address?.moo} className="w-[12mm] relative top-[3px]" />
                              <span>ตำบล/แขวง</span>
-                             <DottedLine value={par.father?.address?.subdistrict} className="w-[30mm] relative top-[2px]" />
+                             <DottedLine value={par.father?.address?.subdistrict} className="w-[30mm] relative top-[3px]" />
                              <span>ถนน</span>
-                             <DottedLine value={par.father?.address?.road} className="w-[30mm] relative top-[2px]" />
+                             <DottedLine value={par.father?.address?.road} className="w-[30mm] relative top-[3px]" />
                          </div>
                          <div className="flex flex-wrap items-end gap-1">
                              <span>อำเภอ/เขต</span>
-                             <DottedLine value={par.father?.address?.district} className="w-[30mm] relative top-[2px]" />
+                             <DottedLine value={par.father?.address?.district} className="w-[30mm] relative top-[3px]" />
                              <span>จังหวัด</span>
-                             <DottedLine value={par.father?.address?.province} className="w-[30mm] relative top-[2px]" />
+                             <DottedLine value={par.father?.address?.province} className="w-[30mm] relative top-[3px]" />
                              <span>รหัสไปรษณีย์</span>
-                             <DottedLine value={par.father?.address?.zipcode} className="w-[20mm] relative top-[2px]" />
+                             <DottedLine value={par.father?.address?.zipcode} className="w-[20mm] relative top-[3px]" />
                              <span>โทรศัพท์</span>
-                             <DottedLine value={par.father?.phone} className="flex-1 relative top-[2px]" />
+                             <DottedLine value={par.father?.phone} className="flex-1 relative top-[3px]" />
                          </div>
 
                          {/* Mother - 3 lines */}
                          <div className="flex flex-wrap items-end gap-1 pt-2">
                              <span>ชื่อ-สกุล มารดา</span>
-                             <DottedLine value={par.mother?.name} className="w-[48mm] relative top-[2px]" />
+                             <DottedLine value={par.mother?.name} className="w-[48mm] relative top-[3px]" />
                              <CheckBox label="ถึงแก่กรรม" checked={par.mother?.status === 'deceased'} width="w-[22mm]" textSize="text-[11px]" />
                              <CheckBox label="มีชีวิตอยู่" checked={par.mother?.status === 'alive'} width="w-[22mm]" textSize="text-[11px]" />
                              <span>อายุ</span>
-                             <DottedLine value={par.mother?.age} className="w-[12mm] text-center relative top-[2px]" />
+                             <DottedLine value={par.mother?.age} className="w-[12mm] text-center relative top-[3px]" />
                              <span>ปี</span>
                              <span>สัญชาติ</span>
-                             <DottedLine value={par.mother?.nationality} className="w-[25mm] relative top-[2px]" />
+                             <DottedLine value={par.mother?.nationality} className="w-[25mm] relative top-[3px]" />
                          </div>
                          <div className="flex flex-wrap items-end gap-1">
                              <span>อาชีพ</span>
-                             <DottedLine value={par.mother?.occupation} className="w-[35mm] relative top-[2px]" />
+                             <DottedLine value={par.mother?.occupation} className="w-[35mm] relative top-[3px]" />
                              <span>ที่อยู่เลขที่</span>
-                             <DottedLine value={par.mother?.address?.number} className="w-[18mm] relative top-[2px]" />
+                             <DottedLine value={par.mother?.address?.number} className="w-[18mm] relative top-[3px]" />
                              <span>หมู่</span>
-                             <DottedLine value={par.mother?.address?.moo} className="w-[12mm] relative top-[2px]" />
+                             <DottedLine value={par.mother?.address?.moo} className="w-[12mm] relative top-[3px]" />
                              <span>ตำบล/แขวง</span>
-                             <DottedLine value={par.mother?.address?.subdistrict} className="w-[30mm] relative top-[2px]" />
+                             <DottedLine value={par.mother?.address?.subdistrict} className="w-[30mm] relative top-[3px]" />
                              <span>ถนน</span>
-                             <DottedLine value={par.mother?.address?.road} className="w-[30mm] relative top-[2px]" />
+                             <DottedLine value={par.mother?.address?.road} className="w-[30mm] relative top-[3px]" />
                          </div>
                          <div className="flex flex-wrap items-end gap-1">
                              <span>อำเภอ/เขต</span>
-                             <DottedLine value={par.mother?.address?.district} className="w-[30mm] relative top-[2px]" />
+                             <DottedLine value={par.mother?.address?.district} className="w-[30mm] relative top-[3px]" />
                              <span>จังหวัด</span>
-                             <DottedLine value={par.mother?.address?.province} className="w-[30mm] relative top-[2px]" />
+                             <DottedLine value={par.mother?.address?.province} className="w-[30mm] relative top-[3px]" />
                              <span>รหัสไปรษณีย์</span>
-                             <DottedLine value={par.mother?.address?.zipcode} className="w-[20mm] relative top-[2px]" />
+                             <DottedLine value={par.mother?.address?.zipcode} className="w-[20mm] relative top-[3px]" />
                              <span>โทรศัพท์</span>
-                             <DottedLine value={par.mother?.phone} className="flex-1 relative top-[2px]" />
+                             <DottedLine value={par.mother?.phone} className="flex-1 relative top-[3px]" />
                          </div>
 
                          {/* Siblings */}
