@@ -607,7 +607,7 @@ export default function PDFLayoutType2({ applicant }) {
                                             </div>
                                             <div>
                                                 <span className="relative top-[-2px]">เพราะ</span>
-                                                <span className="border-b border-dotted border-slate-400 inline-block w-[700px] px-2 pb-1">{exp.contact_previous_employer?.status === 'not_allowed' ? exp.contact_previous_employer?.reason : ''}</span>
+                                                <span className="border-b border-dotted border-slate-400 inline-block w-[700px] px-2 pb-0.5">{exp.contact_previous_employer?.status === 'not_allowed' ? exp.contact_previous_employer?.reason : ''}</span>
                                             </div>
                                         </div>
                                     </td>
