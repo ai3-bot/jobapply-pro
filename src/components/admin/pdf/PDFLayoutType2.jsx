@@ -551,7 +551,7 @@ export default function PDFLayoutType2({ applicant }) {
                             <thead>
                                 <tr>
                                     <th colSpan={5} className="border-r-[0.5px] border-b-[0.5px] border-slate-400 p-2 align-top">
-                                        <div className="text-center font-bold text-[12px] underline mb-2">ประวัติการทำงาน</div>
+                                        <div className="text-center font-bold text-[12px] underline mb-1">ประวัติการทำงาน</div>
                                         <div className="flex justify-center gap-6 font-normal">
                                             <div className="relative pl-5 h-4 flex items-center">
                                                 <div className={`absolute left-0 top-2.5 w-3 h-3 border-[0.5px] border-slate-400 flex items-center justify-center rounded-[1px] ${exp.has_experience === 'no' ? 'bg-slate-200' : 'bg-white'}`}>
@@ -607,7 +607,7 @@ export default function PDFLayoutType2({ applicant }) {
                                             </div>
                                             <div className="flex">
                                                 <span className="relative top-[-2px]">เพราะ</span>
-                                                <span className="border-b border-dotted border-slate-400 inline-block w-[600px] px-2 pb-0.5">{exp.contact_previous_employer?.status === 'not_allowed' ? exp.contact_previous_employer?.reason : ''}</span>
+                                                <span className="border-b border-dotted border-slate-400 inline-block w-[600px] px-2 pb-1">{exp.contact_previous_employer?.status === 'not_allowed' ? exp.contact_previous_employer?.reason : ''}</span>
                                             </div>
                                         </div>
                                     </td>
