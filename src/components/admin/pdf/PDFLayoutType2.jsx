@@ -551,7 +551,7 @@ export default function PDFLayoutType2({ applicant }) {
                         <div className="h-[60px] w-[80px] bg-slate-100 rounded flex items-center justify-center text-[10px] text-slate-400">LOGO</div>
                     )}
                 </div>
-                <div className="mt-[calc(5mm-10px)] space-y-2 relative z-0">
+                <div className="mt-[calc(5mm-15px)] space-y-1 relative z-0">
 
                      {/* --- Work History --- */}
                      <div>
