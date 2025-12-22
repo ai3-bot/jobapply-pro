@@ -550,14 +550,24 @@ export default function PDFLayoutType2({ applicant }) {
                         <table className="w-full border-collapse border-[0.5px] border-slate-400 text-[10px]">
                             <thead>
                                 <tr>
-                                    <th colSpan={5} className="border-r-[0.5px] border-b-[0.5px] border-slate-400 p-2">
+                                    <th colSpan={5} className="border-r-[0.5px] border-b-[0.5px] border-slate-400 p-2 align-top">
                                         <div className="text-center font-bold text-[12px] underline mb-2">ประวัติการทำงาน</div>
-                                        <div className="flex justify-center gap-6 font-normal">
-                                            <CheckBox label="ไม่มีประสบการณ์ทำงาน" checked={exp.has_experience === 'no'} width="w-auto" />
-                                            <CheckBox label="มีประสบการณ์ทำงานระบุ (เรียงลำดับจากล่าสุด)" checked={exp.has_experience === 'yes'} width="w-auto" />
+                                        <div className="flex justify-center gap-4 font-normal text-[10px]">
+                                            <div className="relative pl-5 h-5 flex items-center">
+                                                <div className={`absolute left-0 top-1 w-3 h-3 border-[0.5px] border-slate-400 flex items-center justify-center rounded-[1px] ${exp.has_experience === 'no' ? 'bg-slate-200' : 'bg-white'}`}>
+                                                    {exp.has_experience === 'no' && <div className="w-1.5 h-1.5 bg-slate-800 rounded-[0.5px]" />}
+                                                </div>
+                                                <span className="text-slate-900 pt-1">ไม่มีประสบการณ์ทำงาน</span>
+                                            </div>
+                                            <div className="relative pl-5 h-5 flex items-center">
+                                                <div className={`absolute left-0 top-1 w-3 h-3 border-[0.5px] border-slate-400 flex items-center justify-center rounded-[1px] ${exp.has_experience === 'yes' ? 'bg-slate-200' : 'bg-white'}`}>
+                                                    {exp.has_experience === 'yes' && <div className="w-1.5 h-1.5 bg-slate-800 rounded-[0.5px]" />}
+                                                </div>
+                                                <span className="text-slate-900 pt-1">มีประสบการณ์ทำงานระบุ (เรียงลำดับจากล่าสุด)</span>
+                                            </div>
                                         </div>
                                     </th>
-                                    <th colSpan={2} className="border-b-[0.5px] border-slate-400 p-1 align-middle text-center font-bold text-[11px]">
+                                    <th colSpan={2} className="border-b-[0.5px] border-slate-400 p-2 align-middle text-center font-bold text-[11px]">
                                         เงินเดือน/บาท
                                     </th>
                                 </tr>
