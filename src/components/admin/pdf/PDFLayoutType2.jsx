@@ -78,12 +78,12 @@ export default function PDFLayoutType2({ applicant }) {
         );
     };
 
-    const LogoHeader = () => (
-         <div className="absolute top-[-2mm] right-[10mm] w-[40mm] flex justify-end">
+    const LogoHeader = ({ topOffset = "top-[-2mm]", height = "h-[60px]", zIndex = "" }) => (
+         <div className={`absolute ${topOffset} right-[10mm] w-[40mm] flex justify-end ${zIndex}`}>
              {appLogo ? (
-                <img src={appLogo} alt="Logo" crossOrigin="anonymous" className="h-[60px] w-auto object-contain" />
+                <img src={appLogo} alt="Logo" crossOrigin="anonymous" className={`${height} w-auto object-contain`} />
             ) : (
-                <div className="h-[60px] w-[80px] bg-slate-100 rounded flex items-center justify-center text-[10px] text-slate-400">LOGO</div>
+                <div className={`${height} w-[80px] bg-slate-100 rounded flex items-center justify-center text-[10px] text-slate-400`}>LOGO</div>
             )}
         </div>
     );
@@ -544,13 +544,7 @@ export default function PDFLayoutType2({ applicant }) {
 
             {/* ================= PAGE 3 ================= */}
             <PageContainer pageNum={3} totalPages={4}>
-                <div className="absolute top-[calc(-12mm-10px)] right-[10mm] w-[40mm] flex justify-end z-[9999]">
-                     {appLogo ? (
-                        <img src={appLogo} alt="Logo" crossOrigin="anonymous" className="h-[90px] w-auto object-contain" />
-                    ) : (
-                        <div className="h-[60px] w-[80px] bg-slate-100 rounded flex items-center justify-center text-[10px] text-slate-400">LOGO</div>
-                    )}
-                </div>
+                <LogoHeader topOffset="top-[calc(-12mm-10px)]" height="h-[90px]" zIndex="z-[9999]" />
                 <div className="mt-[calc(5mm-20px)] space-y-1 relative z-0">
 
                      {/* --- Work History --- */}
