@@ -95,7 +95,7 @@ export default function PDFLayout({ applicant }) {
     return (
         <div className="flex flex-col items-center">
             {/* ================= PAGE 1 ================= */}
-            <PageContainer pageNum={1} totalPages={4} showLogo={false}>
+            <PageContainer pageNum={1} totalPages={4} showLogo={true}>
                  {/* --- Top Section --- */}
                 <div className="flex justify-between items-start mb-4">
                     {/* Top Left Box */}
@@ -343,7 +343,7 @@ export default function PDFLayout({ applicant }) {
             </PageContainer>
 
             {/* ================= PAGE 2 ================= */}
-            <PageContainer pageNum={2} totalPages={4}>
+            <PageContainer pageNum={2} totalPages={4} showLogo={true}>
                 <div className="mt-[5mm] space-y-1">
                     {/* --- Family Status --- */}
                     <div className="border-[0.5px] border-slate-400 p-2 rounded-sm text-[11px]">
@@ -537,7 +537,7 @@ export default function PDFLayout({ applicant }) {
             </PageContainer>
 
             {/* ================= PAGE 3 ================= */}
-            <PageContainer pageNum={3} totalPages={4} pageHeight="297mm">
+            <PageContainer pageNum={3} totalPages={4} pageHeight="297mm" showLogo={true}>
                 <div className="mt-[5mm] space-y-1">
                      {/* --- Work History --- */}
                      <div>
@@ -831,7 +831,7 @@ export default function PDFLayout({ applicant }) {
             </PageContainer>
 
             {/* ================= PAGE 4 ================= */}
-            <PageContainer pageNum={4} totalPages={4} pageHeight="292mm" logoTopOffset="top-[-32mm]">
+            <PageContainer pageNum={4} totalPages={4} pageHeight="292mm" showLogo={true} logoTopOffset="top-[-32mm]">
                 <div className="mt-[-15mm] space-y-1">
                     {/* Emergency Contact Table */}
                     <div className="text-[11px] mb-1">
