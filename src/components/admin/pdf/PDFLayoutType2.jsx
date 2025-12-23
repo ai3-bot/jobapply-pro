@@ -46,15 +46,16 @@ export default function PDFLayoutType2({ applicant }) {
         </div>
     );
 
-    const PageContainer = ({ children, pageNum, totalPages = 4 }) => {
+    const PageContainer = ({ children, pageNum, totalPages = 4, pageHeight = '297mm' }) => {
         const footerBottom = pageNum === 2 ? 'bottom-[20mm]' : pageNum === 3 || pageNum === 4 ? 'bottom-[25mm]' : 'bottom-[10mm]';
         return (
             <div 
                 className="bg-white text-slate-900 p-[10mm] mx-auto relative text-[12px] font-sans mb-8 shadow-sm print:shadow-none print:mb-0"
                 style={{ 
                     width: '210mm', 
-                    minHeight: '29mm',
-                    height: '29mm',
+                    minHeight: pageHeight,
+                    height: pageHeight,
+                    maxHeight: pageHeight,
                     fontFamily: 'Sarabun, sans-serif',
                     pageBreakAfter: 'always',
                     overflow: 'hidden'
@@ -543,7 +544,7 @@ export default function PDFLayoutType2({ applicant }) {
             </PageContainer>
 
             {/* ================= PAGE 3 ================= */}
-            <PageContainer pageNum={3} totalPages={4}>
+            <PageContainer pageNum={3} totalPages={4} pageHeight="287mm">
                 <LogoHeader />
                 <div className="mt-[5mm] space-y-1">
 
@@ -841,7 +842,7 @@ export default function PDFLayoutType2({ applicant }) {
             </PageContainer>
 
             {/* ================= PAGE 4 ================= */}
-            <PageContainer pageNum={4} totalPages={4}>
+            <PageContainer pageNum={4} totalPages={4} pageHeight="277mm">
                 <LogoHeader />
                 <div className="mt-[50mm] space-y-1">
                     
