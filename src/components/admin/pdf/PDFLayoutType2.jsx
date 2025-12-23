@@ -544,7 +544,7 @@ export default function PDFLayoutType2({ applicant }) {
             </PageContainer>
 
             {/* ================= PAGE 3 ================= */}
-            <PageContainer pageNum={3} totalPages={4} pageHeight="297mm">
+            <PageContainer pageNum={3} totalPages={4}>
                 <div className="mt-[5mm] space-y-1">
 
                      {/* --- Work History --- */}
@@ -841,7 +841,7 @@ export default function PDFLayoutType2({ applicant }) {
             </PageContainer>
 
             {/* ================= PAGE 4 ================= */}
-            <PageContainer pageNum={4} totalPages={4} pageHeight="297mm" logoTopOffset="top-[-32mm]">
+            <PageContainer pageNum={4} totalPages={4} logoTopOffset="top-[-2mm]">
                 <div className="mt-[-15mm] space-y-1">
                     
                     {/* Emergency Contact Table */}
