@@ -898,12 +898,12 @@ export default function PDFLayoutType2({ applicant }) {
                             </p>
                         </div>
                         
-                        <div className="text-center mb-3">
+                        <div className="text-right mb-3">
                             <div className="font-bold mb-2">ข้าพเจ้าขอลงนามรับรองการให้ข้อมูลตามจริงทุกประการ</div>
                         </div>
 
-                        <div className="text-center space-y-2">
-                            <div className="flex justify-center items-center gap-2">
+                        <div className="text-right space-y-2">
+                            <div className="flex justify-end items-center gap-2">
                                 <span>ลงชื่อ</span>
                                 <div className="border border-slate-300 w-[200px] h-[50px] inline-flex items-center justify-center bg-slate-50">
                                     {applicant.signature_url ? (
@@ -915,18 +915,18 @@ export default function PDFLayoutType2({ applicant }) {
                                 <span>ผู้สมัคร</span>
                             </div>
                             
-                            <div className="flex justify-center items-end gap-2">
+                            <div className="flex justify-end items-end gap-2">
                                 <span>ตัวบรรจง (</span>
                                 <DottedLine value={applicant.full_name} className="w-[250px]" />
                                 <span>)</span>
                             </div>
                             
-                            <div className="flex justify-center items-end gap-2">
+                            <div className="flex justify-end items-end gap-2">
                                 <span>วันที่</span>
                                 <DottedLine value={applicant.signature_date} className="w-[200px]" />
                             </div>
                             
-                            <div className="flex justify-center items-end gap-2">
+                            <div className="flex justify-end items-end gap-2">
                                 <span>ข้าพเจ้าพร้อมปฏิบัติงานกับบริษัทฯ ในวันที่</span>
                                 <DottedLine value={applicant.start_work_date} className="w-[200px]" />
                             </div>
