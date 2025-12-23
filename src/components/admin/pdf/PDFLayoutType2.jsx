@@ -842,7 +842,7 @@ export default function PDFLayoutType2({ applicant }) {
 
             {/* ================= PAGE 4 ================= */}
             <PageContainer pageNum={4} totalPages={4}>
-                <LogoHeader topOffset="top-[-5mm]" />
+                <LogoHeader />
                 <div className="mt-[5mm] space-y-1">
                     
                     {/* Emergency Contact Table */}
