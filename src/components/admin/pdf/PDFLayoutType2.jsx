@@ -23,7 +23,7 @@ export default function PDFLayoutType2({ applicant }) {
 
     // --- Helpers ---
     const DottedLine = ({ value, className = "", center = false }) => (
-        <div className={`border-b-[1.5px] border-dotted border-slate-400 px-1 pb-1 min-h-[1.4em] ${center ? 'text-center' : ''} ${className}`}>
+        <div className={`border-b-[1.5px] border-dotted border-slate-400 px-1 pb-2 min-h-[1.4em] ${center ? 'text-center' : ''} ${className}`}>
             {value || ""}
         </div>
     );
