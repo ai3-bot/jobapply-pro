@@ -917,7 +917,7 @@ export default function PDFLayoutType2({ applicant }) {
                             
                             <div className="flex justify-end items-end gap-2">
                                 <span className="relative top-[1px]">ตัวบรรจง (</span>
-                                <DottedLine value={applicant.full_name} className="w-[200px] relative top-[1px] text-center" />
+                                <DottedLine value={applicant.full_name} className="w-[200px] relative top-[5px] text-center" />
                                 <span className="relative top-[1px]">)</span>
                             </div>
                             
