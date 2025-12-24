@@ -906,17 +906,16 @@ export default function PDFLayoutType2({ applicant }) {
                         <div className="text-right space-y-2">
                             <div className="flex justify-end items-center gap-2">
                                 <span>ลงชื่อ</span>
-                                {applicant.signature_url ? (
-                                    <div className="inline-flex flex-col items-center w-[200px]">
-                                        <img src={applicant.signature_url} alt="Signature" crossOrigin="anonymous" className="max-h-[40px] object-contain mb-1" />
-                                        <div className="border-b-[1.5px] border-dotted border-slate-400 w-full"></div>
-                                    </div>
-                                ) : (
-                                    <div className="border-b-[1.5px] border-dotted border-slate-400 w-[200px] h-[50px] inline-block"></div>
-                                )}
+                                <div className="border border-slate-300 w-[200px] h-[50px] inline-flex items-center justify-center bg-slate-50">
+                                    {applicant.signature_url ? (
+                                        <img src={applicant.signature_url} alt="Signature" className="max-h-[40px] object-contain" />
+                                    ) : (
+                                        <span className="text-slate-300 text-[9px]">ลงชื่อ</span>
+                                    )}
+                                </div>
                                 <span>ผู้สมัคร</span>
                             </div>
-
+                            
                             <div className="flex justify-end items-end gap-2">
                                 <span className="relative top-[1px]">ตัวบรรจง (</span>
                                 <DottedLine value={applicant.full_name} className="w-[200px] relative top-[1px] text-center" />
@@ -992,9 +991,9 @@ export default function PDFLayoutType2({ applicant }) {
                                 ) : (
                                     <div className="border-b-[1px] border-dotted border-slate-400 w-32 h-10"></div>
                                 )}
-                                <div className="text-center text-[8px]">({admin.approvals?.recruiter?.name || "..........................."})</div>
+                                <div className="text-center text-[8px]">({admin.approvals?.recruiter?.name || "..........................................."})</div>
                             </div>
-                            <div className="text-center text-[8px]">วันที่ {admin.approvals?.recruiter?.date || "......./......./......."}</div>
+                            <div className="text-center text-[8px]">วันที่ {admin.approvals?.recruiter?.date || ".........../.........../..........."}</div>
                         </div>
                         
                         <div className="border-[0.5px] border-slate-400 border-l-0 p-1.5">
@@ -1013,9 +1012,9 @@ export default function PDFLayoutType2({ applicant }) {
                                 ) : (
                                     <div className="border-b-[1px] border-dotted border-slate-400 w-32 h-10"></div>
                                 )}
-                                <div className="text-center text-[8px]">({admin.approvals?.committee?.name || "..........................."})</div>
+                                <div className="text-center text-[8px]">({admin.approvals?.committee?.name || "..........................................."})</div>
                             </div>
-                            <div className="text-center text-[8px]">วันที่ {admin.approvals?.committee?.date || "......./......./......."}</div>
+                            <div className="text-center text-[8px]">วันที่ {admin.approvals?.committee?.date || ".........../.........../..........."}</div>
                         </div>
                         
                         <div className="border-[0.5px] border-slate-400 border-l-0 p-1.5">
@@ -1034,9 +1033,9 @@ export default function PDFLayoutType2({ applicant }) {
                                 ) : (
                                     <div className="border-b-[1px] border-dotted border-slate-400 w-32 h-10"></div>
                                 )}
-                                <div className="text-center text-[8px]">({admin.approvals?.hr_manager?.name || "..........................."})</div>
+                                <div className="text-center text-[8px]">({admin.approvals?.hr_manager?.name || "..........................................."})</div>
                             </div>
-                            <div className="text-center text-[8px]">วันที่ {admin.approvals?.hr_manager?.date || "......./......./......."}</div>
+                            <div className="text-center text-[8px]">วันที่ {admin.approvals?.hr_manager?.date || ".........../.........../..........."}</div>
                         </div>
 
                         {/* Second Row - 2 columns */}
@@ -1056,9 +1055,9 @@ export default function PDFLayoutType2({ applicant }) {
                                 ) : (
                                     <div className="border-b-[1px] border-dotted border-slate-400 w-32 h-10"></div>
                                 )}
-                                <div className="text-center text-[8px]">({admin.approvals?.department_head?.name || "..........................."})</div>
+                                <div className="text-center text-[8px]">({admin.approvals?.department_head?.name || "..........................................."})</div>
                             </div>
-                            <div className="text-center text-[8px]">วันที่ {admin.approvals?.department_head?.date || "......./......./......."}</div>
+                            <div className="text-center text-[8px]">วันที่ {admin.approvals?.department_head?.date || ".........../.........../..........."}</div>
                         </div>
 
                         <div className="border-[0.5px] border-slate-400 border-l-0 border-t-0 p-1.5 col-span-2">
