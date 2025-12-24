@@ -10,6 +10,7 @@ import {
 import InfoGrid from './InfoGrid';
 import PDFLayoutType2 from './pdf/PDFLayoutType2';
 import AdminDataForm from './AdminDataForm';
+import ResponsesModal from './ResponsesModal';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import { useState } from 'react';
@@ -19,6 +20,7 @@ import { base44 } from '@/api/base44Client';
 export default function ApplicantDetail({ applicant }) {
     const [generatingPdf, setGeneratingPdf] = useState(false);
     const [showAdminForm, setShowAdminForm] = useState(false);
+    const [showResponses, setShowResponses] = useState(false);
     const queryClient = useQueryClient();
 
     const updateAdminDataMutation = useMutation({
@@ -147,7 +149,17 @@ export default function ApplicantDetail({ applicant }) {
                     </div>
                 </div>
 
-                <div className="flex gap-2 items-center">
+                <div className="flex gap-2 items-center flex-wrap">
+                    {applicant.responses && applicant.responses.length > 0 && (
+                        <Button 
+                            variant="outline"
+                            onClick={() => setShowResponses(true)}
+                            className="bg-indigo-50 border-indigo-200 hover:bg-indigo-100"
+                        >
+                            <FileText className="w-4 h-4 mr-2" />
+                            ดูคำตอบ ({applicant.responses.length})
+                        </Button>
+                    )}
                     <Button 
                         variant="outline"
                         onClick={() => setShowAdminForm(true)}
@@ -283,6 +295,14 @@ export default function ApplicantDetail({ applicant }) {
                     applicant={applicant}
                     onSave={handleSaveAdminData}
                     onCancel={() => setShowAdminForm(false)}
+                />
+            )}
+
+            {/* Responses Modal */}
+            {showResponses && (
+                <ResponsesModal 
+                    applicant={applicant}
+                    onClose={() => setShowResponses(false)}
                 />
             )}
             </div>
