@@ -299,13 +299,23 @@ export default function AdminDataForm({ applicant, onSave, onCancel }) {
                                     label="ลงชื่อผู้ดำเนินการ"
                                 />
                             </div>
-                            <div>
-                                <Label>วันที่</Label>
-                                <Input 
-                                    type="date"
-                                    value={getField('approvals.recruiter.date')}
-                                    onChange={(e) => updateField('approvals.recruiter.date', e.target.value)}
-                                />
+                            <div className="space-y-4">
+                                <div>
+                                    <Label>ชื่อ-นามสกุล (ตัวบรรจง)</Label>
+                                    <Input 
+                                        value={getField('approvals.recruiter.name')}
+                                        onChange={(e) => updateField('approvals.recruiter.name', e.target.value)}
+                                        placeholder="ชื่อ-นามสกุล"
+                                    />
+                                </div>
+                                <div>
+                                    <Label>วันที่</Label>
+                                    <Input 
+                                        type="date"
+                                        value={getField('approvals.recruiter.date')}
+                                        onChange={(e) => updateField('approvals.recruiter.date', e.target.value)}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -337,13 +347,23 @@ export default function AdminDataForm({ applicant, onSave, onCancel }) {
                                     label="ลงชื่อกรรมการ"
                                 />
                             </div>
-                            <div>
-                                <Label>วันที่</Label>
-                                <Input 
-                                    type="date"
-                                    value={getField('approvals.committee.date')}
-                                    onChange={(e) => updateField('approvals.committee.date', e.target.value)}
-                                />
+                            <div className="space-y-4">
+                                <div>
+                                    <Label>ชื่อ-นามสกุล (ตัวบรรจง)</Label>
+                                    <Input 
+                                        value={getField('approvals.committee.name')}
+                                        onChange={(e) => updateField('approvals.committee.name', e.target.value)}
+                                        placeholder="ชื่อ-นามสกุล"
+                                    />
+                                </div>
+                                <div>
+                                    <Label>วันที่</Label>
+                                    <Input 
+                                        type="date"
+                                        value={getField('approvals.committee.date')}
+                                        onChange={(e) => updateField('approvals.committee.date', e.target.value)}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -375,13 +395,23 @@ export default function AdminDataForm({ applicant, onSave, onCancel }) {
                                     label="ลงชื่อผู้จัดการฝ่ายบุคคล"
                                 />
                             </div>
-                            <div>
-                                <Label>วันที่</Label>
-                                <Input 
-                                    type="date"
-                                    value={getField('approvals.hr_manager.date')}
-                                    onChange={(e) => updateField('approvals.hr_manager.date', e.target.value)}
-                                />
+                            <div className="space-y-4">
+                                <div>
+                                    <Label>ชื่อ-นามสกุล (ตัวบรรจง)</Label>
+                                    <Input 
+                                        value={getField('approvals.hr_manager.name')}
+                                        onChange={(e) => updateField('approvals.hr_manager.name', e.target.value)}
+                                        placeholder="ชื่อ-นามสกุล"
+                                    />
+                                </div>
+                                <div>
+                                    <Label>วันที่</Label>
+                                    <Input 
+                                        type="date"
+                                        value={getField('approvals.hr_manager.date')}
+                                        onChange={(e) => updateField('approvals.hr_manager.date', e.target.value)}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -413,13 +443,23 @@ export default function AdminDataForm({ applicant, onSave, onCancel }) {
                                     label="ลงชื่อหัวหน้าแผนก"
                                 />
                             </div>
-                            <div>
-                                <Label>วันที่</Label>
-                                <Input 
-                                    type="date"
-                                    value={getField('approvals.department_head.date')}
-                                    onChange={(e) => updateField('approvals.department_head.date', e.target.value)}
-                                />
+                            <div className="space-y-4">
+                                <div>
+                                    <Label>ชื่อ-นามสกุล (ตัวบรรจง)</Label>
+                                    <Input 
+                                        value={getField('approvals.department_head.name')}
+                                        onChange={(e) => updateField('approvals.department_head.name', e.target.value)}
+                                        placeholder="ชื่อ-นามสกุล"
+                                    />
+                                </div>
+                                <div>
+                                    <Label>วันที่</Label>
+                                    <Input 
+                                        type="date"
+                                        value={getField('approvals.department_head.date')}
+                                        onChange={(e) => updateField('approvals.department_head.date', e.target.value)}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
