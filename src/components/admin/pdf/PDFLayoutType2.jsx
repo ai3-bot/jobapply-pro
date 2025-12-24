@@ -976,87 +976,58 @@ export default function PDFLayoutType2({ applicant }) {
                     </div>
 
                     {/* Approval Section */}
-                    <div className="grid grid-cols-4 gap-0 text-[9px]">
-                        {/* First Row - 4 columns */}
+                    <div className="grid grid-cols-3 gap-0 text-[9px]">
+                        {/* First Row - 3 columns */}
                         <div className="border-[0.5px] border-slate-400 p-1.5">
-                            <div className="font-bold text-center mb-1 pb-1 border-b border-slate-300 text-[8px]">1. เจ้าหน้าที่สรรหาว่าจ้าง</div>
-                            <div className="text-center mb-2 text-[8px]">ผู้ดำเนินการ</div>
-                            <div className="mb-0.5 text-center text-[8px]">ลงชื่อ<DottedLine value={admin.approvals?.recruiter?.signature} className="inline-block w-28 ml-1 align-middle relative top-[4px]" /></div>
-                            <div className="mb-0.5 text-center text-[8px]">(<DottedLine value={admin.approvals?.recruiter?.signature} className="inline-block w-28 ml-1 align-middle relative top-[4px]" />)</div>
-                            <div className="mb-1 text-center text-[8px]">วันที่<DottedLine value={admin.approvals?.recruiter?.date} className="inline-block w-28 ml-1 align-middle relative top-[4px]" /></div>
+                            <div className="font-bold text-center mb-1 pb-1 border-b border-slate-300">เจ้าหน้าที่สรรหาว่าจ้าง</div>
+                            <div className="text-center mb-3">ผู้ดำเนินการ</div>
+                            <div className="mb-0.5 text-center">ลงชื่อ<DottedLine value={admin.approvals?.recruiter?.signature} className="inline-block w-40 ml-1 align-middle relative top-[4px]" /></div>
+                            <div className="mb-0.5 text-center">(<DottedLine value={admin.approvals?.recruiter?.signature} className="inline-block w-40 ml-1 align-middle relative top-[4px]" />)</div>
+                            <div className="mb-1 text-center">วันที่<DottedLine value={admin.approvals?.recruiter?.date} className="inline-block w-40 ml-1 align-middle relative top-[4px]" /></div>
                         </div>
                         
                         <div className="border-[0.5px] border-slate-400 border-l-0 p-1.5">
-                            <div className="font-bold text-center mb-1 pb-1 border-b border-slate-300 text-[8px]">2. กรรมการ</div>
-                            <div className="flex gap-1 mb-1 justify-center text-[7px]">
-                                <CheckBox label="อนุมัติรับ" checked={admin.approvals?.committee?.decision === 'approved'} width="w-auto" textSize="text-[7px]" />
-                                <CheckBox label="ไม่รับ" checked={admin.approvals?.committee?.decision === 'rejected'} width="w-auto" textSize="text-[7px]" />
+                            <div className="font-bold text-center mb-1 pb-1 border-b border-slate-300">กรรมการ</div>
+                            <div className="flex gap-2 mb-1 justify-center">
+                                <CheckBox label="อนุมัติรับ" checked={admin.approvals?.committee?.decision === 'approved'} width="w-auto" textSize="text-[9px]" />
+                                <CheckBox label="ไม่รับ" checked={admin.approvals?.committee?.decision === 'rejected'} width="w-auto" textSize="text-[9px]" />
                             </div>
-                            <div className="mb-0.5 text-center text-[8px]">ลงชื่อ<DottedLine value={admin.approvals?.committee?.signature} className="inline-block w-28 ml-1 align-middle relative top-[4px]" /></div>
-                            <div className="mb-0.5 text-center text-[8px]">(<DottedLine value={admin.approvals?.committee?.signature} className="inline-block w-28 ml-1 align-middle relative top-[4px]" />)</div>
-                            <div className="text-center text-[8px]">วันที่<DottedLine value={admin.approvals?.committee?.date} className="inline-block w-28 ml-1 align-middle relative top-[4px]" /></div>
+                            <div className="mb-0.5 text-center">ลงชื่อ<DottedLine value={admin.approvals?.committee?.signature} className="inline-block w-40 ml-1 align-middle relative top-[4px]" /></div>
+                            <div className="mb-0.5 text-center">(<DottedLine value={admin.approvals?.committee?.signature} className="inline-block w-40 ml-1 align-middle relative top-[4px]" />)</div>
+                            <div className="text-center">วันที่<DottedLine value={admin.approvals?.committee?.date} className="inline-block w-40 ml-1 align-middle relative top-[4px]" /></div>
                         </div>
                         
                         <div className="border-[0.5px] border-slate-400 border-l-0 p-1.5">
-                            <div className="font-bold text-center mb-2 pb-1 border-b border-slate-300 text-[8px]">3. ผู้จัดการฝ่ายบุคคล</div>
-                            <div className="mb-0.5 text-center text-[8px]">ลงชื่อ<DottedLine value={admin.approvals?.hr_manager?.signature} className="inline-block w-28 ml-1 align-middle relative top-[4px]" /></div>
-                            <div className="mb-0.5 text-center text-[8px]">(<DottedLine value={admin.approvals?.hr_manager?.signature} className="inline-block w-28 ml-1 align-middle relative top-[4px]" />)</div>
-                            <div className="mb-1 text-center text-[8px]">วันที่<DottedLine value={admin.approvals?.hr_manager?.date} className="inline-block w-28 ml-1 align-middle relative top-[4px]" /></div>
+                            <div className="font-bold text-center mb-3 pb-1 border-b border-slate-300">ผู้จัดการฝ่ายบุคคล</div>
+                            <div className="mb-0.5 text-center">ลงชื่อ<DottedLine value={admin.approvals?.hr_manager?.signature} className="inline-block w-40 ml-1 align-middle relative top-[4px]" /></div>
+                            <div className="mb-0.5 text-center">(<DottedLine value={admin.approvals?.hr_manager?.signature} className="inline-block w-40 ml-1 align-middle relative top-[4px]" />)</div>
+                            <div className="mb-1 text-center">วันที่<DottedLine value={admin.approvals?.hr_manager?.date} className="inline-block w-40 ml-1 align-middle relative top-[4px]" /></div>
                         </div>
 
-                        <div className="border-[0.5px] border-slate-400 border-l-0 p-1.5">
-                            <div className="font-bold text-center mb-1 pb-1 border-b border-slate-300 text-[8px]">4. หัวหน้าแผนก/หัวหน้างานต้นสังกัด</div>
-                            <div className="flex gap-1 mb-1 justify-center text-[7px]">
-                                <CheckBox label="อนุมัติรับ" checked={admin.approvals?.department_head?.decision === 'approved'} width="w-auto" textSize="text-[7px]" />
-                                <CheckBox label="ไม่รับ" checked={admin.approvals?.department_head?.decision === 'rejected'} width="w-auto" textSize="text-[7px]" />
-                            </div>
-                            <div className="mb-0.5 text-center text-[8px]">ลงชื่อ<DottedLine value={admin.approvals?.department_head?.signature} className="inline-block w-28 ml-1 align-middle relative top-[4px]" /></div>
-                            <div className="mb-0.5 text-center text-[8px]">(<DottedLine value={admin.approvals?.department_head?.signature} className="inline-block w-28 ml-1 align-middle relative top-[4px]" />)</div>
-                            <div className="text-center text-[8px]">วันที่<DottedLine value={admin.approvals?.department_head?.date} className="inline-block w-28 ml-1 align-middle relative top-[4px]" /></div>
-                        </div>
-
-                        {/* Second Row - 4 columns */}
+                        {/* Second Row - 2 columns */}
                         <div className="border-[0.5px] border-slate-400 border-t-0 p-1.5">
-                            <div className="font-bold text-center mb-2 pb-1 border-b border-slate-300 text-[8px]">5. ตำแหน่งที่ 5</div>
-                            <div className="mb-0.5 text-center text-[8px]">ลงชื่อ<DottedLine value="" className="inline-block w-28 ml-1 align-middle relative top-[4px]" /></div>
-                            <div className="mb-0.5 text-center text-[8px]">(<DottedLine value="" className="inline-block w-28 ml-1 align-middle relative top-[4px]" />)</div>
-                            <div className="mb-1 text-center text-[8px]">วันที่<DottedLine value="" className="inline-block w-28 ml-1 align-middle relative top-[4px]" /></div>
+                            <div className="font-bold text-center mb-1 pb-1 border-b border-slate-300">หัวหน้าแผนก/หัวหน้างานต้นสังกัด</div>
+                            <div className="flex gap-2 mb-1 mt-1 justify-center">
+                                <CheckBox label="อนุมัติรับ" checked={admin.approvals?.department_head?.decision === 'approved'} width="w-auto" textSize="text-[9px]" />
+                                <CheckBox label="ไม่รับ" checked={admin.approvals?.department_head?.decision === 'rejected'} width="w-auto" textSize="text-[9px]" />
+                            </div>
+                            <div className="mb-0.5 text-center">ลงชื่อ<DottedLine value={admin.approvals?.department_head?.signature} className="inline-block w-40 ml-1 align-middle relative top-[4px]" /></div>
+                            <div className="mb-0.5 text-center">(<DottedLine value={admin.approvals?.department_head?.signature} className="inline-block w-40 ml-1 align-middle relative top-[4px]" />)</div>
+                            <div className="text-center">วันที่<DottedLine value={admin.approvals?.department_head?.date} className="inline-block w-40 ml-1 align-middle relative top-[4px] mb-3" /></div>
                         </div>
 
-                        <div className="border-[0.5px] border-slate-400 border-l-0 border-t-0 p-1.5">
-                            <div className="font-bold text-center mb-2 pb-1 border-b border-slate-300 text-[8px]">6. ตำแหน่งที่ 6</div>
-                            <div className="mb-0.5 text-center text-[8px]">ลงชื่อ<DottedLine value="" className="inline-block w-28 ml-1 align-middle relative top-[4px]" /></div>
-                            <div className="mb-0.5 text-center text-[8px]">(<DottedLine value="" className="inline-block w-28 ml-1 align-middle relative top-[4px]" />)</div>
-                            <div className="mb-1 text-center text-[8px]">วันที่<DottedLine value="" className="inline-block w-28 ml-1 align-middle relative top-[4px]" /></div>
+                        <div className="border-[0.5px] border-slate-400 border-l-0 border-t-0 p-1.5 col-span-2">
+                            <div className="font-bold text-center mb-1 pb-1 border-b border-slate-300">ความเห็นกรรมการผู้อนุมัติ หรือผู้ดำเนินการกระทำแทน</div>
+                            <div className="flex gap-4 mb-1 justify-start">
+                                <span>ผลการพิจารณา</span>
+                                <CheckBox label="ผ่าน" checked={admin.approvals?.final_decision?.result === 'passed'} width="w-auto" textSize="text-[9px]" />
+                                <CheckBox label="ไม่ผ่าน" checked={admin.approvals?.final_decision?.result === 'failed'} width="w-auto" textSize="text-[9px]" />
+                                <CheckBox label="รอพิจารณา" checked={admin.approvals?.final_decision?.result === 'pending'} width="w-auto" textSize="text-[9px]" />
+                            </div>
+                            <div className="mb-0.5">สังกัด/แผนก<DottedLine value={admin.approvals?.final_decision?.department} className="inline-block w-24 ml-1 align-middle relative top-[4px]" />รับพิจารณา ตำแหน่ง<DottedLine value={admin.approvals?.final_decision?.position} className="inline-block w-24 ml-1 align-middle relative top-[4px]" /></div>
+                            <div className="mb-0.5">อัตราเงินเดือน<DottedLine value={admin.approvals?.final_decision?.salary} className="inline-block w-60 ml-1 align-middle relative top-[4px]" /></div>
+                            <div>เหตุผลการพิจารณาอื่นๆ<DottedLine value={admin.approvals?.final_decision?.other_reason} className="inline-block w-60 ml-1 align-middle relative top-[4px] mb-2" /></div>
                         </div>
-
-                        <div className="border-[0.5px] border-slate-400 border-l-0 border-t-0 p-1.5">
-                            <div className="font-bold text-center mb-2 pb-1 border-b border-slate-300 text-[8px]">7. ตำแหน่งที่ 7</div>
-                            <div className="mb-0.5 text-center text-[8px]">ลงชื่อ<DottedLine value="" className="inline-block w-28 ml-1 align-middle relative top-[4px]" /></div>
-                            <div className="mb-0.5 text-center text-[8px]">(<DottedLine value="" className="inline-block w-28 ml-1 align-middle relative top-[4px]" />)</div>
-                            <div className="mb-1 text-center text-[8px]">วันที่<DottedLine value="" className="inline-block w-28 ml-1 align-middle relative top-[4px]" /></div>
-                        </div>
-
-                        <div className="border-[0.5px] border-slate-400 border-l-0 border-t-0 p-1.5">
-                            <div className="font-bold text-center mb-2 pb-1 border-b border-slate-300 text-[8px]">8. ตำแหน่งที่ 8</div>
-                            <div className="mb-0.5 text-center text-[8px]">ลงชื่อ<DottedLine value="" className="inline-block w-28 ml-1 align-middle relative top-[4px]" /></div>
-                            <div className="mb-0.5 text-center text-[8px]">(<DottedLine value="" className="inline-block w-28 ml-1 align-middle relative top-[4px]" />)</div>
-                            <div className="mb-1 text-center text-[8px]">วันที่<DottedLine value="" className="inline-block w-28 ml-1 align-middle relative top-[4px]" /></div>
-                        </div>
-                    </div>
-                    
-                    {/* Final Decision Section */}
-                    <div className="border-[0.5px] border-slate-400 border-t-0 p-2 text-[9px]">
-                        <div className="font-bold text-center mb-1 pb-1 border-b border-slate-300">ความเห็นกรรมการผู้อนุมัติ หรือผู้ดำเนินการกระทำแทน</div>
-                        <div className="flex gap-4 mb-1 justify-start">
-                            <span>ผลการพิจารณา</span>
-                            <CheckBox label="ผ่าน" checked={admin.approvals?.final_decision?.result === 'passed'} width="w-auto" textSize="text-[9px]" />
-                            <CheckBox label="ไม่ผ่าน" checked={admin.approvals?.final_decision?.result === 'failed'} width="w-auto" textSize="text-[9px]" />
-                            <CheckBox label="รอพิจารณา" checked={admin.approvals?.final_decision?.result === 'pending'} width="w-auto" textSize="text-[9px]" />
-                        </div>
-                        <div className="mb-0.5">สังกัด/แผนก<DottedLine value={admin.approvals?.final_decision?.department} className="inline-block w-24 ml-1 align-middle relative top-[4px]" />รับพิจารณา ตำแหน่ง<DottedLine value={admin.approvals?.final_decision?.position} className="inline-block w-24 ml-1 align-middle relative top-[4px]" /></div>
-                        <div className="mb-0.5">อัตราเงินเดือน<DottedLine value={admin.approvals?.final_decision?.salary} className="inline-block w-60 ml-1 align-middle relative top-[4px]" /></div>
-                        <div>เหตุผลการพิจารณาอื่นๆ<DottedLine value={admin.approvals?.final_decision?.other_reason} className="inline-block w-60 ml-1 align-middle relative top-[4px] mb-2" /></div>
                     </div>
 
                 </div>
