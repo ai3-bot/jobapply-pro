@@ -999,7 +999,7 @@ export default function PDFLayoutType2({ applicant }) {
                         </div>
 
                         {/* Second Row - 2 columns */}
-                        <div className="border-[0.5px] border-slate-400 border-t-0 p-1.5 pb-3">
+                        <div className="border-[0.5px] border-slate-400 border-t-0 p-1.5">
                             <div className="font-bold text-center mb-1 pb-1 border-b border-slate-300">หัวหน้าแผนก/หัวหน้างานต้นสังกัด</div>
                             <div className="flex gap-2 mb-1 mt-1 justify-center">
                                 <CheckBox label="อนุมัติรับ" width="w-auto" textSize="text-[9px]" />
@@ -1010,7 +1010,7 @@ export default function PDFLayoutType2({ applicant }) {
                             <div className="text-center">วันที่<DottedLine className="inline-block w-40 ml-1 align-middle relative top-[4px]" /></div>
                         </div>
 
-                        <div className="border-[0.5px] border-slate-400 border-l-0 border-t-0 p-1.5 pb-3 col-span-2">
+                        <div className="border-[0.5px] border-slate-400 border-l-0 border-t-0 p-1.5 col-span-2">
                             <div className="font-bold text-center mb-1 pb-1 border-b border-slate-300">ความเห็นกรรมการผู้อนุมัติ หรือผู้ดำเนินการกระทำแทน</div>
                             <div className="flex gap-4 mb-1 justify-start">
                                 <span>ผลการพิจารณา</span>
