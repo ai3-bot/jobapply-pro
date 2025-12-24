@@ -6,6 +6,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Save, X } from "lucide-react";
+import SignaturePad from './SignaturePad';
 
 export default function AdminDataForm({ applicant, onSave, onCancel }) {
     const [adminData, setAdminData] = useState(applicant.admin_data || {
@@ -291,10 +292,11 @@ export default function AdminDataForm({ applicant, onSave, onCancel }) {
                         <h3 className="font-semibold text-sm border-b pb-2">5. เจ้าหน้าที่สรรหาว่าจ้าง</h3>
                         <div className="grid grid-cols-2 gap-4">
                             <div>
-                                <Label>ลงชื่อ</Label>
-                                <Input 
-                                    value={getField('approvals.recruiter.signature')}
-                                    onChange={(e) => updateField('approvals.recruiter.signature', e.target.value)}
+                                <Label>ลายเซ็น</Label>
+                                <SignaturePad 
+                                    signatureUrl={getField('approvals.recruiter.signature')}
+                                    onSave={(url) => updateField('approvals.recruiter.signature', url)}
+                                    label="ลงชื่อผู้ดำเนินการ"
                                 />
                             </div>
                             <div>
@@ -328,10 +330,11 @@ export default function AdminDataForm({ applicant, onSave, onCancel }) {
                         </RadioGroup>
                         <div className="grid grid-cols-2 gap-4">
                             <div>
-                                <Label>ลงชื่อ</Label>
-                                <Input 
-                                    value={getField('approvals.committee.signature')}
-                                    onChange={(e) => updateField('approvals.committee.signature', e.target.value)}
+                                <Label>ลายเซ็น</Label>
+                                <SignaturePad 
+                                    signatureUrl={getField('approvals.committee.signature')}
+                                    onSave={(url) => updateField('approvals.committee.signature', url)}
+                                    label="ลงชื่อกรรมการ"
                                 />
                             </div>
                             <div>
@@ -365,10 +368,11 @@ export default function AdminDataForm({ applicant, onSave, onCancel }) {
                         </RadioGroup>
                         <div className="grid grid-cols-2 gap-4">
                             <div>
-                                <Label>ลงชื่อ</Label>
-                                <Input 
-                                    value={getField('approvals.hr_manager.signature')}
-                                    onChange={(e) => updateField('approvals.hr_manager.signature', e.target.value)}
+                                <Label>ลายเซ็น</Label>
+                                <SignaturePad 
+                                    signatureUrl={getField('approvals.hr_manager.signature')}
+                                    onSave={(url) => updateField('approvals.hr_manager.signature', url)}
+                                    label="ลงชื่อผู้จัดการฝ่ายบุคคล"
                                 />
                             </div>
                             <div>
@@ -402,10 +406,11 @@ export default function AdminDataForm({ applicant, onSave, onCancel }) {
                         </RadioGroup>
                         <div className="grid grid-cols-2 gap-4">
                             <div>
-                                <Label>ลงชื่อ</Label>
-                                <Input 
-                                    value={getField('approvals.department_head.signature')}
-                                    onChange={(e) => updateField('approvals.department_head.signature', e.target.value)}
+                                <Label>ลายเซ็น</Label>
+                                <SignaturePad 
+                                    signatureUrl={getField('approvals.department_head.signature')}
+                                    onSave={(url) => updateField('approvals.department_head.signature', url)}
+                                    label="ลงชื่อหัวหน้าแผนก"
                                 />
                             </div>
                             <div>
