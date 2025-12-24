@@ -194,6 +194,7 @@ export default function ApplicantDetail({ applicant }) {
                                 <TabsTrigger value="education" className="gap-2 px-4 py-2"><GraduationCap className="w-4 h-4"/> การศึกษา & ทักษะ</TabsTrigger>
                                 <TabsTrigger value="work" className="gap-2 px-4 py-2"><Briefcase className="w-4 h-4"/> ประสบการณ์ทำงาน</TabsTrigger>
                                 <TabsTrigger value="health" className="gap-2 px-4 py-2"><HeartPulse className="w-4 h-4"/> สุขภาพ & อื่นๆ</TabsTrigger>
+                                <TabsTrigger value="admin" className="gap-2 px-4 py-2"><FileText className="w-4 h-4"/> ข้อมูล Admin</TabsTrigger>
                             </TabsList>
 
                             <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -255,6 +256,15 @@ export default function ApplicantDetail({ applicant }) {
                                             </div>
                                         </div>
                                     </div>
+                                </TabsContent>
+
+                                <TabsContent value="admin" className="space-y-6 mt-0">
+                                    <InfoGrid title="ระบบ HR" data={applicant.admin_data?.hr_systems} icon={FileText} />
+                                    <InfoGrid title="ข้อมูล HR" data={applicant.admin_data?.hr_info} icon={FileText} />
+                                    <InfoGrid title="เอกสารประกอบ" data={applicant.admin_data?.documents} icon={FileText} />
+                                    <InfoGrid title="ผลการทดสอบ" data={applicant.admin_data?.test_results} icon={FileText} />
+                                    <InfoGrid title="การสัมภาษณ์" data={applicant.admin_data?.interview} icon={FileText} />
+                                    <InfoGrid title="การอนุมัติ" data={applicant.admin_data?.approvals} icon={FileText} />
                                 </TabsContent>
                             </div>
                         </Tabs>
