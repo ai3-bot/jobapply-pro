@@ -980,40 +980,80 @@ export default function PDFLayoutType2({ applicant }) {
                         {/* First Row - 3 columns */}
                         <div className="border-[0.5px] border-slate-400 p-1.5">
                             <div className="font-bold text-center mb-1 pb-1 border-b border-slate-300">เจ้าหน้าที่สรรหาว่าจ้าง</div>
-                            <div className="text-center mb-3">ผู้ดำเนินการ</div>
-                            <div className="mb-0.5 text-center">ลงชื่อ<DottedLine value={admin.approvals?.recruiter?.signature} className="inline-block w-40 ml-1 align-middle relative top-[4px]" /></div>
-                            <div className="mb-0.5 text-center">(<DottedLine value={admin.approvals?.recruiter?.signature} className="inline-block w-40 ml-1 align-middle relative top-[4px]" />)</div>
-                            <div className="mb-1 text-center">วันที่<DottedLine value={admin.approvals?.recruiter?.date} className="inline-block w-40 ml-1 align-middle relative top-[4px]" /></div>
+                            <div className="text-center mb-2">ผู้ดำเนินการ</div>
+                            <div className="flex flex-col items-center gap-1 mb-1">
+                                <span className="text-[8px]">ลงชื่อ</span>
+                                <div className="border border-slate-300 w-32 h-10 flex items-center justify-center bg-slate-50">
+                                    {admin.approvals?.recruiter?.signature ? (
+                                        <span className="text-[8px] text-slate-700">{admin.approvals.recruiter.signature}</span>
+                                    ) : (
+                                        <span className="text-slate-300 text-[7px]">ลงชื่อ</span>
+                                    )}
+                                </div>
+                                <div className="text-center text-[8px]">({admin.approvals?.recruiter?.signature || "..........................."})</div>
+                            </div>
+                            <div className="text-center text-[8px]">วันที่ {admin.approvals?.recruiter?.date || "......./......./......."}</div>
                         </div>
                         
                         <div className="border-[0.5px] border-slate-400 border-l-0 p-1.5">
                             <div className="font-bold text-center mb-1 pb-1 border-b border-slate-300">กรรมการ</div>
-                            <div className="flex gap-2 mb-1 justify-center">
+                            <div className="flex gap-2 mb-2 justify-center">
                                 <CheckBox label="อนุมัติรับ" checked={admin.approvals?.committee?.decision === 'approved'} width="w-auto" textSize="text-[9px]" />
                                 <CheckBox label="ไม่รับ" checked={admin.approvals?.committee?.decision === 'rejected'} width="w-auto" textSize="text-[9px]" />
                             </div>
-                            <div className="mb-0.5 text-center">ลงชื่อ<DottedLine value={admin.approvals?.committee?.signature} className="inline-block w-40 ml-1 align-middle relative top-[4px]" /></div>
-                            <div className="mb-0.5 text-center">(<DottedLine value={admin.approvals?.committee?.signature} className="inline-block w-40 ml-1 align-middle relative top-[4px]" />)</div>
-                            <div className="text-center">วันที่<DottedLine value={admin.approvals?.committee?.date} className="inline-block w-40 ml-1 align-middle relative top-[4px]" /></div>
+                            <div className="flex flex-col items-center gap-1 mb-1">
+                                <span className="text-[8px]">ลงชื่อ</span>
+                                <div className="border border-slate-300 w-32 h-10 flex items-center justify-center bg-slate-50">
+                                    {admin.approvals?.committee?.signature ? (
+                                        <span className="text-[8px] text-slate-700">{admin.approvals.committee.signature}</span>
+                                    ) : (
+                                        <span className="text-slate-300 text-[7px]">ลงชื่อ</span>
+                                    )}
+                                </div>
+                                <div className="text-center text-[8px]">({admin.approvals?.committee?.signature || "..........................."})</div>
+                            </div>
+                            <div className="text-center text-[8px]">วันที่ {admin.approvals?.committee?.date || "......./......./......."}</div>
                         </div>
                         
                         <div className="border-[0.5px] border-slate-400 border-l-0 p-1.5">
-                            <div className="font-bold text-center mb-3 pb-1 border-b border-slate-300">ผู้จัดการฝ่ายบุคคล</div>
-                            <div className="mb-0.5 text-center">ลงชื่อ<DottedLine value={admin.approvals?.hr_manager?.signature} className="inline-block w-40 ml-1 align-middle relative top-[4px]" /></div>
-                            <div className="mb-0.5 text-center">(<DottedLine value={admin.approvals?.hr_manager?.signature} className="inline-block w-40 ml-1 align-middle relative top-[4px]" />)</div>
-                            <div className="mb-1 text-center">วันที่<DottedLine value={admin.approvals?.hr_manager?.date} className="inline-block w-40 ml-1 align-middle relative top-[4px]" /></div>
+                            <div className="font-bold text-center mb-2 pb-1 border-b border-slate-300">ผู้จัดการฝ่ายบุคคล</div>
+                            <div className="flex gap-2 mb-2 justify-center">
+                                <CheckBox label="อนุมัติรับ" checked={admin.approvals?.hr_manager?.decision === 'approved'} width="w-auto" textSize="text-[9px]" />
+                                <CheckBox label="ไม่รับ" checked={admin.approvals?.hr_manager?.decision === 'rejected'} width="w-auto" textSize="text-[9px]" />
+                            </div>
+                            <div className="flex flex-col items-center gap-1 mb-1">
+                                <span className="text-[8px]">ลงชื่อ</span>
+                                <div className="border border-slate-300 w-32 h-10 flex items-center justify-center bg-slate-50">
+                                    {admin.approvals?.hr_manager?.signature ? (
+                                        <span className="text-[8px] text-slate-700">{admin.approvals.hr_manager.signature}</span>
+                                    ) : (
+                                        <span className="text-slate-300 text-[7px]">ลงชื่อ</span>
+                                    )}
+                                </div>
+                                <div className="text-center text-[8px]">({admin.approvals?.hr_manager?.signature || "..........................."})</div>
+                            </div>
+                            <div className="text-center text-[8px]">วันที่ {admin.approvals?.hr_manager?.date || "......./......./......."}</div>
                         </div>
 
                         {/* Second Row - 2 columns */}
                         <div className="border-[0.5px] border-slate-400 border-t-0 p-1.5">
                             <div className="font-bold text-center mb-1 pb-1 border-b border-slate-300">หัวหน้าแผนก/หัวหน้างานต้นสังกัด</div>
-                            <div className="flex gap-2 mb-1 mt-1 justify-center">
+                            <div className="flex gap-2 mb-2 justify-center">
                                 <CheckBox label="อนุมัติรับ" checked={admin.approvals?.department_head?.decision === 'approved'} width="w-auto" textSize="text-[9px]" />
                                 <CheckBox label="ไม่รับ" checked={admin.approvals?.department_head?.decision === 'rejected'} width="w-auto" textSize="text-[9px]" />
                             </div>
-                            <div className="mb-0.5 text-center">ลงชื่อ<DottedLine value={admin.approvals?.department_head?.signature} className="inline-block w-40 ml-1 align-middle relative top-[4px]" /></div>
-                            <div className="mb-0.5 text-center">(<DottedLine value={admin.approvals?.department_head?.signature} className="inline-block w-40 ml-1 align-middle relative top-[4px]" />)</div>
-                            <div className="text-center">วันที่<DottedLine value={admin.approvals?.department_head?.date} className="inline-block w-40 ml-1 align-middle relative top-[4px] mb-3" /></div>
+                            <div className="flex flex-col items-center gap-1 mb-1">
+                                <span className="text-[8px]">ลงชื่อ</span>
+                                <div className="border border-slate-300 w-32 h-10 flex items-center justify-center bg-slate-50">
+                                    {admin.approvals?.department_head?.signature ? (
+                                        <span className="text-[8px] text-slate-700">{admin.approvals.department_head.signature}</span>
+                                    ) : (
+                                        <span className="text-slate-300 text-[7px]">ลงชื่อ</span>
+                                    )}
+                                </div>
+                                <div className="text-center text-[8px]">({admin.approvals?.department_head?.signature || "..........................."})</div>
+                            </div>
+                            <div className="text-center text-[8px]">วันที่ {admin.approvals?.department_head?.date || "......./......./......."}</div>
                         </div>
 
                         <div className="border-[0.5px] border-slate-400 border-l-0 border-t-0 p-1.5 col-span-2">
