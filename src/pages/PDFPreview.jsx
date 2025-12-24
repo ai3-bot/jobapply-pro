@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Button } from "@/components/ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+
 import { Download, Printer, Loader2 } from "lucide-react";
 import PDFLayoutType2 from '../components/admin/pdf/PDFLayoutType2';
 import jsPDF from 'jspdf';
