@@ -173,7 +173,7 @@ export default function PDFLayoutType2({ applicant }) {
                         <CheckBox label="สำเนาบุ๊คแบงค์" checked={admin.documents?.bank_book_copy} />
                         <CheckBox label="หนังสือรับรองการทำงาน (ถ้ามี)" checked={admin.documents?.work_cert} />
                         <CheckBox label="JD" checked={admin.documents?.jd} />
-                        <CheckBox label="หนังสือยินยอมข้อมตกลงให้ประมวลผลเก็บรวบรวมหรือเปิดเผยข้อมูลส่วนบุคคล (PDPA)" checked={admin.documents?.pdpa_consent} />
+                        <CheckBox label="หนังสือยินยอมข้อมตกลงให้ประมวลผลเก็บรวบรวมหรือเปิดเผยข้อมูลส่วนบุคคล (PDPA)" checked={admin.documents?.pdpa_consent} width="col-span-2" />
                         <CheckBox label={`เอกสาร Support อื่นๆ ${admin.documents?.other_support_details ? admin.documents.other_support_details : '.......................................'}`} checked={admin.documents?.other_support} />
                     </div>
                 </div>
