@@ -93,7 +93,7 @@ export default function PDFLayoutType2({ applicant }) {
     return (
         <div className="flex flex-col items-center">
             {/* ================= PAGE 1 ================= */}
-            <PageContainer pageNum={1} totalPages={4} showLogo={false}>
+            <PageContainer pageNum={1} totalPages={4} showLogo={true} pageHeight="300mm">
                  {/* --- Top Section --- */}
                 <div className="flex justify-between items-start mb-4">
                     {/* Top Left Box */}
@@ -123,15 +123,6 @@ export default function PDFLayoutType2({ applicant }) {
                     {/* Center Title */}
                     <div className="flex-1 text-center pt-2">
                         <h1 className="text-2xl font-bold text-slate-900 underline underline-offset-4">ใบสมัครงาน</h1>
-                    </div>
-
-                    {/* Logo */}
-                    <div className="w-[40mm] flex justify-end">
-                         {appLogo ? (
-                            <img src={appLogo} alt="Logo" crossOrigin="anonymous" className="h-[80px] w-auto object-contain" />
-                        ) : (
-                            <div className="h-[80px] w-[80px] bg-slate-100 rounded flex items-center justify-center text-[10px] text-slate-400">LOGO</div>
-                        )}
                     </div>
                 </div>
 
