@@ -99,26 +99,22 @@ export default function PDFLayoutType2({ applicant }) {
                     {/* Top Left Box */}
                     <div className="border-[0.5px] border-slate-400 p-2 w-[40mm] text-[11px] space-y-1">
                         <div className="relative pl-5 h-4 flex items-center">
-                            <div className={`absolute left-0 top-0.5 w-3 h-3 border border-slate-600 rounded-[1px] ${admin.hr_systems?.web_hr ? 'bg-slate-200' : 'bg-white'}`}>
-                                {admin.hr_systems?.web_hr && <div className="w-1.5 h-1.5 bg-slate-800 rounded-[0.5px]" />}
+                            <div className={`absolute left-0 top-0.5 w-3 h-3 border border-slate-600 rounded-[1px] ${admin.hr_systems?.web_hr ? 'bg-slate-800' : 'bg-white'}`}>
                             </div>
                             <span className="leading-none absolute bottom-2.5">Web HR</span>
                         </div>
                         <div className="relative pl-5 h-4 flex items-center">
-                            <div className={`absolute left-0 top-0.5 w-3 h-3 border border-slate-600 rounded-[1px] ${admin.hr_systems?.sps_in ? 'bg-slate-200' : 'bg-white'}`}>
-                                {admin.hr_systems?.sps_in && <div className="w-1.5 h-1.5 bg-slate-800 rounded-[0.5px]" />}
+                            <div className={`absolute left-0 top-0.5 w-3 h-3 border border-slate-600 rounded-[1px] ${admin.hr_systems?.sps_in ? 'bg-slate-800' : 'bg-white'}`}>
                             </div>
                             <span className="leading-none absolute bottom-2.5">สปส.(เข้า){admin.hr_systems?.sps_in_details ? admin.hr_systems.sps_in_details : '......'}</span>
                         </div>
                         <div className="relative pl-5 h-4 flex items-center">
-                            <div className={`absolute left-0 top-0.5 w-3 h-3 border border-slate-600 rounded-[1px] ${admin.hr_systems?.b_plus ? 'bg-slate-200' : 'bg-white'}`}>
-                                {admin.hr_systems?.b_plus && <div className="w-1.5 h-1.5 bg-slate-800 rounded-[0.5px]" />}
+                            <div className={`absolute left-0 top-0.5 w-3 h-3 border border-slate-600 rounded-[1px] ${admin.hr_systems?.b_plus ? 'bg-slate-800' : 'bg-white'}`}>
                             </div>
                             <span className="leading-none absolute bottom-2.5">B-plus</span>
                         </div>
                         <div className="relative pl-5 h-4 flex items-center">
-                            <div className={`absolute left-0 top-0.5 w-3 h-3 border border-slate-600 rounded-[1px] ${admin.hr_systems?.sps_out ? 'bg-slate-200' : 'bg-white'}`}>
-                                {admin.hr_systems?.sps_out && <div className="w-1.5 h-1.5 bg-slate-800 rounded-[0.5px]" />}
+                            <div className={`absolute left-0 top-0.5 w-3 h-3 border border-slate-600 rounded-[1px] ${admin.hr_systems?.sps_out ? 'bg-slate-800' : 'bg-white'}`}>
                             </div>
                             <span className="leading-none absolute bottom-2.5">สปส.(ออก){admin.hr_systems?.sps_out_details ? admin.hr_systems.sps_out_details : '......'}</span>
                         </div>
