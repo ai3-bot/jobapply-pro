@@ -983,14 +983,15 @@ export default function PDFLayoutType2({ applicant }) {
                             <div className="text-center mb-2">ผู้ดำเนินการ</div>
                             <div className="flex flex-col items-center gap-1 mb-1">
                                 <span className="text-[8px]">ลงชื่อ</span>
-                                <div className="border border-slate-300 w-32 h-10 flex items-center justify-center bg-slate-50">
-                                    {admin.approvals?.recruiter?.signature ? (
-                                        <span className="text-[8px] text-slate-700">{admin.approvals.recruiter.signature}</span>
-                                    ) : (
-                                        <span className="text-slate-300 text-[7px]">ลงชื่อ</span>
-                                    )}
-                                </div>
-                                <div className="text-center text-[8px]">({admin.approvals?.recruiter?.signature || "..........................."})</div>
+                                {admin.approvals?.recruiter?.signature ? (
+                                    <div className="flex flex-col items-center w-32">
+                                        <img src={admin.approvals.recruiter.signature} alt="Signature" crossOrigin="anonymous" className="max-h-10 object-contain mb-1" />
+                                        <div className="border-b-[1px] border-dotted border-slate-400 w-full"></div>
+                                    </div>
+                                ) : (
+                                    <div className="border-b-[1px] border-dotted border-slate-400 w-32 h-10"></div>
+                                )}
+                                <div className="text-center text-[8px]">({admin.approvals?.recruiter?.name || "..........................."})</div>
                             </div>
                             <div className="text-center text-[8px]">วันที่ {admin.approvals?.recruiter?.date || "......./......./......."}</div>
                         </div>
@@ -1003,14 +1004,15 @@ export default function PDFLayoutType2({ applicant }) {
                             </div>
                             <div className="flex flex-col items-center gap-1 mb-1">
                                 <span className="text-[8px]">ลงชื่อ</span>
-                                <div className="border border-slate-300 w-32 h-10 flex items-center justify-center bg-slate-50">
-                                    {admin.approvals?.committee?.signature ? (
-                                        <span className="text-[8px] text-slate-700">{admin.approvals.committee.signature}</span>
-                                    ) : (
-                                        <span className="text-slate-300 text-[7px]">ลงชื่อ</span>
-                                    )}
-                                </div>
-                                <div className="text-center text-[8px]">({admin.approvals?.committee?.signature || "..........................."})</div>
+                                {admin.approvals?.committee?.signature ? (
+                                    <div className="flex flex-col items-center w-32">
+                                        <img src={admin.approvals.committee.signature} alt="Signature" crossOrigin="anonymous" className="max-h-10 object-contain mb-1" />
+                                        <div className="border-b-[1px] border-dotted border-slate-400 w-full"></div>
+                                    </div>
+                                ) : (
+                                    <div className="border-b-[1px] border-dotted border-slate-400 w-32 h-10"></div>
+                                )}
+                                <div className="text-center text-[8px]">({admin.approvals?.committee?.name || "..........................."})</div>
                             </div>
                             <div className="text-center text-[8px]">วันที่ {admin.approvals?.committee?.date || "......./......./......."}</div>
                         </div>
@@ -1023,14 +1025,15 @@ export default function PDFLayoutType2({ applicant }) {
                             </div>
                             <div className="flex flex-col items-center gap-1 mb-1">
                                 <span className="text-[8px]">ลงชื่อ</span>
-                                <div className="border border-slate-300 w-32 h-10 flex items-center justify-center bg-slate-50">
-                                    {admin.approvals?.hr_manager?.signature ? (
-                                        <span className="text-[8px] text-slate-700">{admin.approvals.hr_manager.signature}</span>
-                                    ) : (
-                                        <span className="text-slate-300 text-[7px]">ลงชื่อ</span>
-                                    )}
-                                </div>
-                                <div className="text-center text-[8px]">({admin.approvals?.hr_manager?.signature || "..........................."})</div>
+                                {admin.approvals?.hr_manager?.signature ? (
+                                    <div className="flex flex-col items-center w-32">
+                                        <img src={admin.approvals.hr_manager.signature} alt="Signature" crossOrigin="anonymous" className="max-h-10 object-contain mb-1" />
+                                        <div className="border-b-[1px] border-dotted border-slate-400 w-full"></div>
+                                    </div>
+                                ) : (
+                                    <div className="border-b-[1px] border-dotted border-slate-400 w-32 h-10"></div>
+                                )}
+                                <div className="text-center text-[8px]">({admin.approvals?.hr_manager?.name || "..........................."})</div>
                             </div>
                             <div className="text-center text-[8px]">วันที่ {admin.approvals?.hr_manager?.date || "......./......./......."}</div>
                         </div>
@@ -1044,14 +1047,15 @@ export default function PDFLayoutType2({ applicant }) {
                             </div>
                             <div className="flex flex-col items-center gap-1 mb-1">
                                 <span className="text-[8px]">ลงชื่อ</span>
-                                <div className="border border-slate-300 w-32 h-10 flex items-center justify-center bg-slate-50">
-                                    {admin.approvals?.department_head?.signature ? (
-                                        <span className="text-[8px] text-slate-700">{admin.approvals.department_head.signature}</span>
-                                    ) : (
-                                        <span className="text-slate-300 text-[7px]">ลงชื่อ</span>
-                                    )}
-                                </div>
-                                <div className="text-center text-[8px]">({admin.approvals?.department_head?.signature || "..........................."})</div>
+                                {admin.approvals?.department_head?.signature ? (
+                                    <div className="flex flex-col items-center w-32">
+                                        <img src={admin.approvals.department_head.signature} alt="Signature" crossOrigin="anonymous" className="max-h-10 object-contain mb-1" />
+                                        <div className="border-b-[1px] border-dotted border-slate-400 w-full"></div>
+                                    </div>
+                                ) : (
+                                    <div className="border-b-[1px] border-dotted border-slate-400 w-32 h-10"></div>
+                                )}
+                                <div className="text-center text-[8px]">({admin.approvals?.department_head?.name || "..........................."})</div>
                             </div>
                             <div className="text-center text-[8px]">วันที่ {admin.approvals?.department_head?.date || "......./......./......."}</div>
                         </div>
