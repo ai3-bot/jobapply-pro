@@ -970,7 +970,7 @@ export default function PDFLayoutType2({ applicant }) {
                     </div>
 
                     {/* Approval Section */}
-                    <div className="grid grid-cols-5 gap-2 text-[9px]">
+                    <div className="grid grid-cols-3 gap-2 text-[9px]">
                         {/* First Row - 3 columns */}
                         <div className="border-[0.5px] border-slate-400 p-2">
                             <div className="font-bold text-center mb-2">เจ้าหน้าที่สรรหาว่าจ้าง</div>
@@ -1003,7 +1003,7 @@ export default function PDFLayoutType2({ applicant }) {
                         </div>
 
                         {/* Second Row - 2 columns */}
-                        <div className="border-[0.5px] border-slate-400 border-l-0 border-t-0 p-2">
+                        <div className="border-[0.5px] border-slate-400 border-t-0 p-2">
                             <div className="font-bold text-center mb-2">หัวหน้าแผนก/หัวหน้างานต้นสังกัด</div>
                             <div className="flex gap-2 mb-2">
                                 <CheckBox label="อนุมัติรับ" width="w-auto" textSize="text-[9px]" />
