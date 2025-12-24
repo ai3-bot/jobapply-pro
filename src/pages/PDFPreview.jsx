@@ -4,7 +4,6 @@ import { base44 } from '@/api/base44Client';
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Download, Printer, Loader2 } from "lucide-react";
-import PDFLayout from '../components/admin/pdf/PDFLayout';
 import PDFLayoutType2 from '../components/admin/pdf/PDFLayoutType2';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
@@ -12,7 +11,7 @@ import html2canvas from 'html2canvas';
 export default function PDFPreview() {
     const urlParams = new URLSearchParams(window.location.search);
     const applicantId = urlParams.get('id');
-    const [pdfType, setPdfType] = useState('type2');
+
     const [generatingPdf, setGeneratingPdf] = useState(false);
 
     const { data: applicant, isLoading } = useQuery({
@@ -105,15 +104,6 @@ export default function PDFPreview() {
                 <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
                     <div className="flex items-center gap-3">
                         <h1 className="font-bold text-lg text-slate-800">PDF Preview: {applicant.full_name}</h1>
-                        <Select value={pdfType} onValueChange={setPdfType}>
-                            <SelectTrigger className="w-[140px]">
-                                <SelectValue />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="type1">Format Standard</SelectItem>
-                                <SelectItem value="type2">Format KO AI</SelectItem>
-                            </SelectContent>
-                        </Select>
                     </div>
                     <div className="flex gap-2">
                         <Button variant="outline" onClick={handlePrint}>
@@ -139,11 +129,7 @@ export default function PDFPreview() {
             {/* PDF Content */}
             <div className="pt-24 pb-8">
                 <div id="pdf-content">
-                    {pdfType === 'type1' ? (
-                        <PDFLayout applicant={applicant} />
-                    ) : (
-                        <PDFLayoutType2 applicant={applicant} />
-                    )}
+                    <PDFLayoutType2 applicant={applicant} />
                 </div>
             </div>
         </div>
