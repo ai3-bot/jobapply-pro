@@ -13,6 +13,7 @@ export default function PDPADocument({ applicant, signatureUrl, signatureDate, f
     const p = applicant?.personal_data || {};
 
     return (
+        <>
         <div 
             className="bg-white text-slate-900 mx-auto relative text-[14px] font-sans p-[20mm] shadow-sm print:shadow-none"
             style={{ 
@@ -206,5 +207,6 @@ export default function PDPADocument({ applicant, signatureUrl, signatureDate, f
                 www.ko.in.th Strategy . AI . DX . Sustainability
             </div>
         </div>
+        </>
     );
 }
