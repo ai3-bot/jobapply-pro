@@ -286,11 +286,11 @@ export default function PDPADocument({ applicant, signatureUrl, signatureDate, f
 
         {/* Page 4 */}
         <div 
-            className="pdpa-page bg-white text-slate-900 mx-auto relative text-[14px] font-sans p-[20mm] shadow-sm print:shadow-none mt-8"
+            className="pdpa-page bg-white text-slate-900 mx-auto relative text-[16px] font-sans p-[20mm] shadow-sm print:shadow-none mt-8"
             style={{ 
                 width: '210mm', 
                 minHeight: '297mm',
-                fontFamily: 'Sarabun, sans-serif',
+                fontFamily: 'TH Sarabun New, Sarabun, sans-serif',
                 pageBreakBefore: 'always'
             }}
         >
@@ -305,7 +305,7 @@ export default function PDPADocument({ applicant, signatureUrl, signatureDate, f
 
             {/* Content */}
             <div className="space-y-3">
-                <p className="text-justify leading-relaxed ml-4">
+                <p className="text-justify leading-[1.4] ml-4">
                   มาตรการรักษาความมั ่นคงปลอดภัยที ่รัดกุมเพื ่อป้องกันเหตุละเมิดข้อมูลส่วนบุคคล โดยระบบรักษาความมั ่นคง
                   ปลอดภัยขั้นต่ำ อาทิ ระบบและมาตรการที่มีประสิทธิภาพเพื่อป้องกันการเข้าถึงข้อมูลส่วนบุคคลโดยไม่มีสิทธ
                 </p>
@@ -326,28 +326,20 @@ export default function PDPADocument({ applicant, signatureUrl, signatureDate, f
                     </p>
                 </div>
 
-                <p className="text-justify leading-relaxed">
-                    <p className="text-justify leading-[1.4]">5. ในกรณีที่บริษัท เค แอนด์ โอซิสเต็มส์ แอนด์ คอนซัลติ้ง จำกัด มีความจำเป็นต้องส่งหรือโอนข้อมูลส่วนบุคคลไปยังต่างประเทศ 
+                <p className="text-justify leading-[1.4]">5. ในกรณีที่บริษัท เค แอนด์ โอซิสเต็มส์ แอนด์ คอนซัลติ้ง จำกัด มีความจำเป็นต้องส่งหรือโอนข้อมูลส่วนบุคคลไปยังต่างประเทศ 
                     (ถ้ามี)  ข้าพเจ้ายินยอมให้บริษัท เค แอนด์ โอซิสเต็มส์ แอนด์ คอนซัลติ้ง จำกัด สามารถดำเนินการส่งข้อมูลได</p>
-                </p>
 
-                <p className="text-justify leading-relaxed">
-                    <p className="text-justify leading-[1.4]">6. วิธีเพิกถอนความยินยอมและผลการเพิกถอนความยินยอม ข้าพเจ้าอาจเพิกถอนความยินยอมทั้งหมดหรือส่วนใดส่วนหนึ่งตาม
+                <p className="text-justify leading-[1.4]">6. วิธีเพิกถอนความยินยอมและผลการเพิกถอนความยินยอม ข้าพเจ้าอาจเพิกถอนความยินยอมทั้งหมดหรือส่วนใดส่วนหนึ่งตาม
                     หนังสือฉบับนี้โดยข้าพเจ้าจะแจ้งให้บริษัท เค แอนด์ โอซิสเต็มส์ แอนด์ คอนซัลติ้ง จำกัด ทราบเป็นหนังสือและบริษัท เค แอนด์ 
                     โอซิสเต็มส์ แอนด์ คอนซัลติ้ง จำกัด อาจทราบถึงเหตุผลแห่งการนั้น</p>
-                </p>
 
-                <p className="text-justify leading-relaxed">
-                    <p className="text-justify leading-[1.4]">7. การเพิกถอนความยินยอมของข้าพเจ้าไม่มีผลกระทบต่อการดำเนินการใดๆ ที ่บริษัท เค แอนด์ โอซิสเต็มส์ แอนด์ คอนซัลติ้ง
+                <p className="text-justify leading-[1.4]">7. การเพิกถอนความยินยอมของข้าพเจ้าไม่มีผลกระทบต่อการดำเนินการใดๆ ที ่บริษัท เค แอนด์ โอซิสเต็มส์ แอนด์ คอนซัลติ้ง
                     จำกัด ได้ดำเนินการไปแล้ว</p>
-                </p>
 
-                <p className="text-justify leading-relaxed">
-                    <p className="text-justify leading-[1.4]">8. ในกรณีที่ การเพิกถอนความยินยอมเกิดผลกระทบต่อสิทธิหรือหน้าที่ใดๆของข้าพเจ้า ข้าพเจ้ายอมรับผลกระทบที่เกิดขึ้นจาก
+                <p className="text-justify leading-[1.4]">8. ในกรณีที่ การเพิกถอนความยินยอมเกิดผลกระทบต่อสิทธิหรือหน้าที่ใดๆของข้าพเจ้า ข้าพเจ้ายอมรับผลกระทบที่เกิดขึ้นจาก
                     การนั้นได้</p>
-                </p>
 
-                <p className="text-justify leading-relaxed ml-4">
+                <p className="text-justify leading-[1.4] ml-4">
                     ข้าพเจ้าขอยืนยันว่าข้อมูลส่วนบุคคลที่ให้ไว้กับบริษัท เค แอนด์ โอซิสเต็มส์ แอนด์ คอนซัลติ้ง จำกัด เป็นข้อมูลที่ถูกต้องแท้จริง
                     หากเกิดความเสียหายใดๆ อันเนื่องมาจากการให้ข้อมูลที่ไม่ถูกต้อง ข้าพเจ้าจะรับผิดชอบในความเสียหายที่เกิดขึ้น
                 </p>
