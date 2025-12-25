@@ -8,6 +8,7 @@ import { useQuery } from '@tanstack/react-query';
 
 export default function Layout({ children }) {
   const [user, setUser] = React.useState(null);
+  const [isEmployeeLoggedIn, setIsEmployeeLoggedIn] = React.useState(false);
   const location = useLocation();
 
   React.useEffect(() => {
@@ -20,6 +21,10 @@ export default function Layout({ children }) {
       }
     };
     checkAuth();
+    
+    // Check if employee is logged in
+    const employeeId = localStorage.getItem('user_applicant_id');
+    setIsEmployeeLoggedIn(!!employeeId);
   }, [location]);
   
   // Fetch Logo
@@ -74,7 +79,7 @@ export default function Layout({ children }) {
           </Link>
 
           <div className="flex items-center gap-4">
-            {user ? (
+            {!isEmployeeLoggedIn && user ? (
               <div className="flex items-center gap-3">
                 <Link to="/admin">
                     <Button variant="ghost" className="text-sm font-medium">
@@ -83,14 +88,13 @@ export default function Layout({ children }) {
                 </Link>
                 <div className="flex items-center gap-2 pl-3 border-l border-slate-200">
                   <UserCircle className="w-5 h-5 text-slate-500" />
-                  <span className="text-sm font-medium hidden sm:block">{user.first_name || user.email}</span>
+                  <span className="text-sm font-medium hidden sm:block">{user.full_name || user.email}</span>
                   <Button variant="ghost" size="icon" onClick={handleLogout} title="Logout">
                     <LogOut className="w-4 h-4 text-slate-500" />
                   </Button>
                 </div>
               </div>
-            ) : (
-               !isApplicantPage && (
+            ) : !isEmployeeLoggedIn && !isApplicantPage ? (
                   <Button 
                     onClick={handleLogin}
                     variant="ghost"
@@ -99,8 +103,7 @@ export default function Layout({ children }) {
                     <LogIn className="w-4 h-4" />
                     <span>Admin Login</span>
                   </Button>
-               )
-            )}
+            ) : null}
           </div>
         </div>
       </header>
