@@ -39,8 +39,8 @@ export default function PDPADocument({ applicant, signatureUrl, signatureDate, f
 
             {/* Date and Place */}
             <div className="mb-6 text-center leading-relaxed">
-                <div>เขียนที่ <span className="border-b border-dotted border-slate-400 inline-block min-w-[300px] text-center px-2">{formData.writtenAt || ''}</span></div>
-                <div>เมื่อวันที่ <span className="border-b border-dotted border-slate-400 inline-block min-w-[200px] text-center px-2">
+                <div>เขียนที่ <span className="border-b border-dotted border-slate-400 inline-block min-w-[300px] text-end px-2">{formData.writtenAt || ''}</span></div>
+                <div>เมื่อวันที่ <span className="border-b border-dotted border-slate-400 inline-block min-w-[200px] text-end px-2">
                     {formData.writtenDate ? new Date(formData.writtenDate).toLocaleDateString('th-TH', { day: 'numeric', month: 'long', year: 'numeric' }) : ''}
                 </span></div>
             </div>
