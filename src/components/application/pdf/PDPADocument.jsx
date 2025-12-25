@@ -15,11 +15,11 @@ export default function PDPADocument({ applicant, signatureUrl, signatureDate, f
     return (
         <>
         <div 
-            className="pdpa-page bg-white text-slate-900 mx-auto relative text-[14px] font-sans p-[20mm] shadow-sm print:shadow-none"
+            className="pdpa-page bg-white text-slate-900 mx-auto relative text-[12px] font-sans p-[20mm] shadow-sm print:shadow-none"
             style={{ 
                 width: '210mm', 
                 minHeight: '297mm',
-                fontFamily: 'Sarabun, sans-serif'
+                fontFamily: 'TH Sarabun New, Sarabun, sans-serif'
             }}
         >
             {/* Header with Logo */}
@@ -32,13 +32,13 @@ export default function PDPADocument({ applicant, signatureUrl, signatureDate, f
             </div>
 
             {/* Title */}
-            <div className="text-center mb-8">
-                <h1 className="text-[16px] font-bold mb-2">หนังสือยินยอมข้อตกลงให้ประมวลผลเก็บรวบรวมหรือเปิดเผยข้อมูลส่วนบุคคล</h1>
-                <h2 className="text-[14px] font-semibold">Personal Data Protection Act (PDPA)</h2>
+            <div className="text-center mb-6">
+                <h1 className="text-[14px] font-bold mb-1">หนังสือยินยอมข้อตกลงให้ประมวลผลเก็บรวบรวมหรือเปิดเผยข้อมูลส่วนบุคคล</h1>
+                <h2 className="text-[12px] font-semibold">Personal Data Protection Act (PDPA)</h2>
             </div>
 
             {/* Date and Place */}
-            <div className="mb-6 leading-relaxed flex flex-col items-end">
+            <div className="mb-4 leading-[1.4] flex flex-col items-end">
                 <div>เขียนที่ <span className="border-b border-dotted border-slate-400 inline-block min-w-[300px] text-center px-2">{formData.writtenAt || ''}</span></div>
                 <div>เมื่อวันที่ <span className="border-b border-dotted border-slate-400 inline-block min-w-[200px] text-center px-2">
                     {formData.writtenDate ? new Date(formData.writtenDate).toLocaleDateString('th-TH', { day: 'numeric', month: 'long', year: 'numeric' }) : ''}
@@ -46,14 +46,14 @@ export default function PDPADocument({ applicant, signatureUrl, signatureDate, f
             </div>
 
             {/* Introduction */}
-            <div className="mb-6 text-justify leading-relaxed">
+            <div className="mb-4 text-justify leading-[1.4]">
                 <p className="indent-8 mb-2">
                     การเก็บรวบรวมข้อมูลส่วนบุคคลในนามของบริษัท เค แอนด์ โอ ซิสเต็มส์ แอนด์ คอนซัลติ้ง จำกัด เป็นผู ้ควบคุมข้อมูลส่วนบุคคล ในกรณีที่ผู้ควบคุมข้อมูลส่วนบุคคลประมวลผลข้อมูลส่วนบุคคลเป็นผู้เก็บรวบรวมข้อมูลส่วนบุคคลของ พนักงาน/ผู้มาติดต่อ สมัครงาน รับทราบถึงวัตถุประสงค์ของการยินยอม กรอกแบบฟอร์มให้ความยินยอมในการเก็บรวบรวม ใช้และเปิดเผยข้อมูลส่วนบุคคลตามแบบและวิธีการที่ทางผู้ควบคุมข้อมูลส่วนบุคคลกำหนดก่อนที่จะมีการเก็บรวมรวมใช้และเปิดเผยข้อมูลส่วนบุคคลนั้น
                 </p>
             </div>
 
             {/* Applicant Information */}
-            <div className="mb-6">
+            <div className="mb-4">
                 <p className="mb-3">
                     ข้าพเจ้า (นาย/นาง/นางสาว) <span className="border-b border-dotted border-slate-400 inline-block w-[150px] text-center">{applicant?.full_name || ''}</span> 
                     เลขบัตรประจำตัวประชาชน <span className="border-b border-dotted border-slate-400 inline-block w-[150px] text-center">{p.id_card || ''}</span>
@@ -64,12 +64,12 @@ export default function PDPADocument({ applicant, signatureUrl, signatureDate, f
             </div>
 
             {/* List of Personal Data */}
-            <div className="mb-6">
-                <p className="font-bold mb-3 underline">รายละเอียดข้อมูลส่วนบุคคลสำหรับการประมวลผลข้อมูลส่วนบุคคล</p>
+            <div className="mb-4">
+                <p className="font-bold mb-2 underline">รายละเอียดข้อมูลส่วนบุคคลสำหรับการประมวลผลข้อมูลส่วนบุคคล</p>
                 <p className="mb-2">1. ประเภทของข้อมูลส่วนบุคคลและข้อมูลส่วนบุคคลที่มีความอ่อนไหวเป็นพิเศษ ที ่จะมีการเข้าถึง เก็บรวบรวม ใช้ ส่งต่อและ</p>
                 <p className="mb-2">เปิดเผย ได้แก่</p>
 
-                <div className="ml-8 space-y-1">
+                <div className="ml-6 space-y-0.5">
                     <p>1.1 ข้อมูลบัตรประจำตัวประชาชน</p>
                     <p>1.2 ข้อมูลทะเบียนบ้าน</p>
                     <p>1.3 เอกสารการเปลี่ยนชื่อ-สกุล</p>
@@ -102,11 +102,11 @@ export default function PDPADocument({ applicant, signatureUrl, signatureDate, f
 
         {/* Page 2 */}
         <div 
-            className="pdpa-page bg-white text-slate-900 mx-auto relative text-[14px] font-sans p-[20mm] shadow-sm print:shadow-none mt-8"
+            className="pdpa-page bg-white text-slate-900 mx-auto relative text-[12px] font-sans p-[20mm] shadow-sm print:shadow-none mt-8"
             style={{ 
                 width: '210mm', 
                 minHeight: '297mm',
-                fontFamily: 'Sarabun, sans-serif',
+                fontFamily: 'TH Sarabun New, Sarabun, sans-serif',
                 pageBreakBefore: 'always'
             }}
         >
@@ -120,7 +120,7 @@ export default function PDPADocument({ applicant, signatureUrl, signatureDate, f
             </div>
 
             {/* Continued List */}
-            <div className="mb-6 ml-8 space-y-1">
+            <div className="mb-4 ml-6 space-y-0.5">
                 <p>1.16 หนังสือรับรองการเกณฑ์ทหาร</p>
                 <p>1.17 ที่อยู่ / เบอร์โทร / Email / line ID</p>
                 <p>1.18 ข้อมูลตามชุดสมัครงาน</p>
@@ -144,9 +144,9 @@ export default function PDPADocument({ applicant, signatureUrl, signatureDate, f
             </div>
 
             {/* Section 1 */}
-            <div className="mb-6">
-                <p className="font-bold mb-3">1. ทั้งสองฝ่ายตกลงกันดังนี้</p>
-                <div className="ml-8 text-justify leading-relaxed space-y-3">
+            <div className="mb-4">
+                <p className="font-bold mb-2">1. ทั้งสองฝ่ายตกลงกันดังนี้</p>
+                <div className="ml-6 text-justify leading-[1.4] space-y-2">
                     <p className="mb-2">
                       <span className="font-bold">กฎหมายคุ ้มครองข้อมูลส่วนบุคคล</span> หมายถึง กฎหมาย กฎระเบียบ กฏเกณฑ์ ประกาศ รวมถึงแต่ไม่จำกัดเพียง
                       พระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 (และตามที่จะได้มีการแก้ไขในภายหน้า) กฎ ระเบียบที่จะออก
@@ -186,11 +186,11 @@ export default function PDPADocument({ applicant, signatureUrl, signatureDate, f
 
         {/* Page 3 */}
         <div 
-            className="pdpa-page bg-white text-slate-900 mx-auto relative text-[14px] font-sans p-[20mm] shadow-sm print:shadow-none mt-8"
+            className="pdpa-page bg-white text-slate-900 mx-auto relative text-[12px] font-sans p-[20mm] shadow-sm print:shadow-none mt-8"
             style={{ 
                 width: '210mm', 
                 minHeight: '297mm',
-                fontFamily: 'Sarabun, sans-serif',
+                fontFamily: 'TH Sarabun New, Sarabun, sans-serif',
                 pageBreakBefore: 'always'
             }}
         >
@@ -304,23 +304,23 @@ export default function PDPADocument({ applicant, signatureUrl, signatureDate, f
             </div>
 
             {/* Content */}
-            <div className="space-y-4">
+            <div className="space-y-3">
                 <p className="text-justify leading-relaxed ml-4">
                   มาตรการรักษาความมั ่นคงปลอดภัยที ่รัดกุมเพื ่อป้องกันเหตุละเมิดข้อมูลส่วนบุคคล โดยระบบรักษาความมั ่นคง
                   ปลอดภัยขั้นต่ำ อาทิ ระบบและมาตรการที่มีประสิทธิภาพเพื่อป้องกันการเข้าถึงข้อมูลส่วนบุคคลโดยไม่มีสิทธ
                 </p>
 
                 <div>
-                    <p className="font-bold mb-2">3.2 การรักษาความลับของข้อมูลส่วนบุคคล</p>
-                    <p className="text-justify leading-relaxed ml-4">
+                    <p className="font-bold mb-1.5">3.2 การรักษาความลับของข้อมูลส่วนบุคคล</p>
+                    <p className="text-justify leading-[1.4] ml-4">
                       นอกเหนือจากหน้าที่รักษาความลับตามที่ระบุไว้ในสัญญาแล้ว ผู้ประมวลผลข้อมูลส่วนบุคคลมีหน้าที่ต้องรักษาความลับ
                       ของข้อมูลส่วนบุคคลอย่างเคร่งครัดภายใต้ข้อตกลงเรื่องการรักษาความลับที่จัดทำขึ้นเป็นลายลักษณ์อักษร
                     </p>
                 </div>
 
                 <div>
-                    <p className="font-bold mb-2">4. สิทธิในการตรวจสอบ</p>
-                    <p className="text-justify leading-relaxed ml-4">
+                    <p className="font-bold mb-1.5">4. สิทธิในการตรวจสอบ</p>
+                    <p className="text-justify leading-[1.4] ml-4">
                       ผู้ประมวลผลข้อมูลส่วนบุคคลตกลงให้ผู้ควบคุมข้อมูลส่วนบุคคลมีสิทธิในการตรวจสอบ ออดิท ระบบปฏิบัติการ มาตรการและ
                       ระบบรักษาความปลอดภัยของข้อมูลส่วนบุคคลของผู้ประมวลผลข้อมูลส่วนบุคคลได
                     </p>
@@ -356,7 +356,7 @@ export default function PDPADocument({ applicant, signatureUrl, signatureDate, f
                     ข้าพเจ้าได้อ่านและเข้าใจข้อความดังกล่าวโดยตลอดแล้วจึงได้ลงลายมือชื่อไว้เป็นสำคัญต่อหน้าพยาน
                 </p>
 
-                <div className="text-center mt-6 leading-relaxed">
+                <div className="text-center mt-4 leading-[1.4]">
                     <div className="mb-2">ลงชื่อ
                         {signatureUrl ? (
                             <span className="inline-block mx-2">
