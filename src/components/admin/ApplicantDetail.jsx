@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { 
-    Video, User, GraduationCap, Briefcase, HeartPulse, 
+    User, GraduationCap, Briefcase, HeartPulse, 
     FileText, Phone, MapPin, Calendar, Mail, FileDown, Eye, Loader2
 } from "lucide-react";
 import InfoGrid from './InfoGrid';
@@ -183,15 +183,6 @@ export default function ApplicantDetail({ applicant }) {
                         {generatingPdf ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <FileDown className="w-4 h-4 mr-2" />}
                         Download
                     </Button>
-                    {applicant.video_response_url && (
-                        <Button 
-                            className="bg-indigo-600 hover:bg-indigo-700 shadow-sm"
-                            onClick={() => window.open(applicant.video_response_url, '_blank')}
-                        >
-                            <Video className="w-4 h-4 mr-2" /> 
-                            ดูวิดีโอสัมภาษณ์
-                        </Button>
-                    )}
                 </div>
             </div>
 
