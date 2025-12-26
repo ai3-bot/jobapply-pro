@@ -49,7 +49,7 @@ export default function FMH19Document({ applicant, signatureUrl, signatureDate, 
             {/* Recipient */}
             <div className="mb-1 text-justify leading-[1.4]">
                 <p className="indent-8">
-                    ข้าพเจ้า นาย/นาง/นางสาว <span className="border-b border-dotted border-slate-400 inline-block min-w-[400px] text-center px-2">{applicant?.full_name || ''}</span>
+                    ข้าพเจ้า นาย/นาง/นางสาว <span className={`border-b border-dotted border-slate-400 inline-block min-w-[400px] text-center px-2 ${applicant?.full_name ? 'pb-1' : ''}`} style={{ verticalAlign: 'baseline', ...(!applicant?.full_name && { minHeight: '1.2em' }) }}>{applicant?.full_name || '\u00A0'}</span>
                 </p>
                 <p>
                     ได้รับการว่าจ้างจาก บริษัท เค แอนด์โอ ซิสเต็มส์ แอนด์ คอนซัลติ้ง จำกัด ที่ตั้งสำนักงานใหญ่ เลขที่ 15,17 ซอยกรุง 
