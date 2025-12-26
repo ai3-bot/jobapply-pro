@@ -862,6 +862,16 @@ export default function EmploymentContractDocument({ applicant, formData = {} })
                 )}
             </div>
 
+            {/* Company Seal Area */}
+            <div className="flex justify-center mb-16">
+                <div className="w-[120px] h-[120px] rounded-full border-2 border-slate-300 flex items-center justify-center text-center">
+                    <div>
+                        <p className="text-[14px] font-bold">ประทับ</p>
+                        <p className="text-[14px]">ตราบริษัท</p>
+                    </div>
+                </div>
+            </div>
+
             {/* Main Signatures Section */}
             <div className="mb-12 leading-[1.4]">
                 <div className="grid grid-cols-2 gap-8">
@@ -876,31 +886,6 @@ export default function EmploymentContractDocument({ applicant, formData = {} })
                     <div className="text-center">
                         <div className="mb-2">ลงชื่อ<span className="inline-block border-b border-dotted border-slate-400 w-[200px] mx-2" style={{ verticalAlign: 'baseline', minHeight: '40px', display: 'inline-block' }}>&nbsp;</span>ลูกจ้าง</div>
                         <p className="mb-2">({applicant?.full_name || '…………………………………..………………………'})</p>
-                    </div>
-                </div>
-            </div>
-
-            {/* Company Seal Area */}
-            <div className="flex justify-center mb-16">
-                <div className="w-[120px] h-[120px] rounded-full border-2 border-slate-300 flex items-center justify-center text-center">
-                    <div>
-                        <p className="text-[14px] font-bold">ประทับ</p>
-                        <p className="text-[14px]">ตราบริษัท</p>
-                    </div>
-                </div>
-            </div>
-
-            {/* Company Representative Details */}
-            <div className="mb-12 leading-[1.4] text-center">
-                <div className="grid grid-cols-2 gap-8">
-                    <div>
-                        <p>ลงชื่อ<span className="inline-block border-b border-dotted border-slate-400 w-[200px] mx-2" style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>&nbsp;</span>นายจ้าง+นายจ้าง</p>
-                        <p>(บริษัท เค แอนด์ โอ ซิสเต็มส์ แอนด์ คอนซัลติ้ง จำกัด)</p>
-                        <p>โดย <span className="font-bold underline">นายกฤษณ์พงษ์ สุคันโธ หรือนิล</span> กรรมการผู้มีอำนาจลงนาม</p>
-                    </div>
-                    <div>
-                        <p>ลงชื่อ<span className="inline-block border-b border-dotted border-slate-400 w-[200px] mx-2" style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>&nbsp;</span>ลูกจ้าง</p>
-                        <p>({applicant?.full_name || '...................................................................'})</p>
                     </div>
                 </div>
             </div>
