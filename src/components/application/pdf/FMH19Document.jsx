@@ -56,17 +56,17 @@ export default function FMH19Document({ applicant, signatureUrl, signatureDate, 
                     ธนบุรี 4 ถนนกรุงธนบุรี แขวงบางลำภูล่าง เขตคลองสาน กรุงเทพมหานคร 10600 โทร. 662-860-6618
                     FAX. 662-860-6617 ซึ่งต่อไปนี้ในสัญญานี้เรียกว่า “บริษัท”ให้เริ่มปฏิบัติงานในวันที่ <span className="border-b border-dotted border-slate-400 inline-block min-w-[250px] text-center px-2">ตำแหน่ง</span>
                     <span className="border-b border-dotted border-slate-400 inline-block min-w-[250px] text-center px-2">{formData.position || ''}</span> แผนก
-                    <span className="border-b border-dotted border-slate-400 inline-block min-w-[200px] text-center px-2">{formData.department || ''}</span>
+                    <span className="border-b border-dotted border-slate-400 inline-block min-w-[200px] text-center px-2">{formData.department || ''}</span> ตกลงและ
                 </p>
             </div>
 
             {/* Terms */}
             <div className="mb-4 text-justify leading-[1.4] space-y-2">
                 <p className="indent-8">
-                    ตระหนักและเข้าข้อเปลี่ยนแปลงอบรมดำเนินการขัดในความรับผิดชอบของผู้จัดเองฝังผู้อำนวยความรู้จักดีในอบรม ต้องเหนื่อยต่างเหนื่อยด้วยใจศรัทธาแล้ว เพื่อให้บรรดาความรู้ความข่าวและเทคโนโลยีใหม่ทางได้ทำงานยังบริหารข้อมาบางใน งงเงียงถังหรือผู้งงทางหลักษกร่วมมำสุลยเบราฟอกอยล์ในทุลก่านบางหลังอคทักจากใจต่างข้างด้วยบงคปร้องย้อนด้วยทับยวดใจบวง
+                    ยินยอมเข้ารับการฝึกอบรม “หลักสูตรปฐมนิเทศพนักงานใหม่” ตามระเบียบของบริษัทฯ มีกำหนดระยะเวลาการฝึกอบรม 3 วัน(ไม่นับรวมวันหยุด) เริ่มตั้งแต่วันที่.................................ถึง วันที่..................................โดยไม่ได้รับค่าจ้างหรือค่าตอบแทนใดๆ เพื่อเป็นการเตรียมความพร้อมให้กับพนักงานใหม่ก่อนเริ่มปฏิบัติงานจริง โดยการฝึกอบรมแบ่ง
                 </p>
                 
-                <p className="font-bold">ข้าพเจ้าได้อ่านเระบบสรุปและเกณฑุณะดังนี้</p>
+                <p className="font-bold">ออกเป็น 4 หัวข้อหลัก ดังนี้</p>
 
                 <div className="ml-6 space-y-1.5">
                     <p>1. ความสนใจในเรียบรับครงของสถิ พัฒนามาครุยหงสัปดกัตพัฒนา 4 ทุปหสกงและ อย่าปหนาก</p>
