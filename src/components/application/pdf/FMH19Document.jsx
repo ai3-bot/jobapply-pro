@@ -40,9 +40,9 @@ export default function FMH19Document({ applicant, signatureUrl, signatureDate, 
 
             {/* Date */}
             <div className="mb-6 leading-[1.4] flex justify-end">
-                <div>วันที่ <span className="border-b border-dotted border-slate-400 inline-block min-w-[50px] text-center px-2 align-baseline">{formData.day || ''}</span> 
-                เดือน <span className="border-b border-dotted border-slate-400 inline-block min-w-[100px] text-center px-2 align-baseline">{formData.month || ''}</span> 
-                พ.ศ. <span className="border-b border-dotted border-slate-400 inline-block min-w-[50px] text-center px-2 align-baseline">{formData.year || ''}</span>
+                <div>วันที่ <span className={`border-b border-dotted border-slate-400 inline-block min-w-[50px] text-center px-2 ${formData.day ? 'pb-1' : ''}`} style={{ verticalAlign: 'baseline', ...(!formData.day && { minHeight: '1.2em' }) }}>{formData.day || '\u00A0'}</span> 
+                เดือน <span className={`border-b border-dotted border-slate-400 inline-block min-w-[100px] text-center px-2 ${formData.month ? 'pb-1' : ''}`} style={{ verticalAlign: 'baseline', ...(!formData.month && { minHeight: '1.2em' }) }}>{formData.month || '\u00A0'}</span> 
+                พ.ศ. <span className={`border-b border-dotted border-slate-400 inline-block min-w-[50px] text-center px-2 ${formData.year ? 'pb-1' : ''}`} style={{ verticalAlign: 'baseline', ...(!formData.year && { minHeight: '1.2em' }) }}>{formData.year || '\u00A0'}</span>
                 </div>
             </div>
 
@@ -114,7 +114,7 @@ export default function FMH19Document({ applicant, signatureUrl, signatureDate, 
             {/* HR Person Certification */}
             <div className="mb-8 text-center leading-[1.4]">
                 <p className="mb-8">
-                    โดย <span className="border-b border-dotted border-slate-400 inline-block min-w-[300px] text-center px-2 align-baseline">{formData.hrPerson || ''}</span> กรรมการผู้มีอำนาจลงนามแทน
+                    โดย <span className={`border-b border-dotted border-slate-400 inline-block min-w-[300px] text-center px-2 ${formData.hrPerson ? 'pb-1' : ''}`} style={{ verticalAlign: 'baseline', ...(!formData.hrPerson && { minHeight: '1.2em' }) }}>{formData.hrPerson || '\u00A0'}</span> กรรมการผู้มีอำนาจลงนามแทน
                 </p>
             </div>
 
