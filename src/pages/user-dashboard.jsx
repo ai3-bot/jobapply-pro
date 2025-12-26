@@ -58,7 +58,7 @@ export default function UserDashboard() {
     const documents = [
         { id: 1, name: 'PDPA', description: 'หนังสือยินยอมข้อมูลส่วนบุคคล', link: '/pdpa-form' },
         { id: 2, name: 'FM-HRD-19', description: 'แบบฟอร์มการเข้าทำงาน', link: '/fm-hrd-19' },
-        { id: 3, name: 'สัญญาจ้าง', description: 'สัญญาจ้างงาน', link: null },
+        { id: 3, name: 'สัญญาจ้าง', description: 'สัญญาจ้างงาน', link: '/employment-contract' },
         { id: 4, name: 'FM-HRD-27', description: 'แบบฟอร์มประเมินผล', link: null },
         { id: 5, name: 'FM-HRD-30', description: 'แบบฟอร์มข้อมูลพนักงาน', link: null },
         { id: 6, name: 'หนังสือมอบอำนาจในการตรวจประวัติอาชญากรรม', description: 'หนังสือมอบอำนาจตรวจประวัติ', link: null },
