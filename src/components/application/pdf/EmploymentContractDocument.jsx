@@ -148,8 +148,7 @@ export default function EmploymentContractDocument({ applicant, formData = {} })
                 <p className="mb-2">2.3 ในการดำเนินการจ่ายค่าตอบแทนการทำงานให้แก่ลูกจ้างตามข้อ 2.1 และข้อ 2.2 บริษัทฯตกลงที่จะจ่ายค่าตอบแทนการ
                     ทำงานให้แก่ลูกจ้างวันสุดท้ายของทุกสิ้นเดือนในทุกๆเดือน ตัวอย่าง เช่น วันสุดท้ายของวันสิ้นเดือนตรงกับวันเสาร์ เงินค่าจ้างจะออกวันเสาร์ 
                     ถ้ากรณีวันสุดท้ายของวันสิ้นเดือนตรงกันวันอาทิตย์ จะเลื่อนเข้ามาออกวันเสาร์ แต่ถ้ากรณีวันสุดท้ายของวันสิ้นเดือนตรงกันวันศุกร์ เงิน
-                    ค่าจ้างจะออกวันศุกร์ ทั้งนี้ปฏิทินในแต่ละเดือนจำนวนวันไม่เท่ากัน เพราะฉะนั้นให้ถือเป็นวันสุดท้ายของวันสิ้นเดือนในเดือนนั้นๆ โดยลูกจ้าง
-                    ตกลงยินยอมให้บริษัทฯจ่ายค่าตอบแทนการทำงานให้แก่ลูกจ้างโดยวิธีการโอนเงินผ่านบัญชีธนาคาร<span className={`border-b border-dotted border-slate-400 inline-block min-w-[150px] text-center px-2 ${formData.bankName ? 'pb-1' : ''}`}>{formData.bankName || ''}</span>บัญชีเลขที่ 
+                    ค่าจ้างจะออกวันศุกร์ ทั้งนี้ปฏิทินในแต่ละเดือนจำนวนวันไม่เท่ากัน เพราะฉะนั้นให้ถือเFป็นวันสุดท้ายของวันสิ้นเดือนในเดือนนั้นๆ โดยลูกจ้าง ตกลงยินยอมให้บริษัทฯจ่ายค่าตอบแทนการทำงานให้แก่ลูกจ้างโดยวิธีการโอนเงินผ่านบัญชีธนาคาร<span className={`border-b border-dotted border-slate-400 inline-block min-w-[150px] text-center px-2 ${formData.bankName ? 'pb-1' : ''}`}>{formData.bankName || ''}</span>บัญชีเลขที่ 
                     <span className={`border-b border-dotted border-slate-400 inline-block min-w-[200px] text-center px-2 ${formData.accountNumber ? 'pb-1' : ''}`}>{formData.accountNumber || ''}</span> ชื่อบัญชี <span className={`border-b border-dotted border-slate-400 inline-block min-w-[250px] text-center px-2 ${formData.accountName ? 'pb-1' : ''}`}>{formData.accountName || ''}</span> และ/หรือจ่ายค่าตอบแทนการทำงานโดย
                     วิธีการอื่นใดภายใต้หลักเกณฑ์เงื่อนไขตามที่บริษัทฯเห็นสมควรกำหนดโดยไม่ต้องได้รับความยินยอมจากลูกจ้าง</p>
             </div>
