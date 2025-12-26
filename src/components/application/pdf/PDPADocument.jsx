@@ -55,7 +55,7 @@ export default function PDPADocument({ applicant, signatureUrl, signatureDate, f
             {/* Applicant Information */}
             <div className="mb-4">
                 <p className="mb-3">
-                    ข้าพเจ้า (นาย/นาง/นางสาว) <span className={`border-b border-dotted border-slate-400 inline-block w-[150px] text-center ${applicant?.full_name ? '' : 'pb-2'}`} style={{ verticalAlign: 'baseline' }}>{applicant?.full_name || ''}</span> 
+                    ข้าพเจ้า (นาย/นาง/นางสาว) <span className={`border-b border-dotted border-slate-400 inline-block w-[150px] text-center ${applicant?.full_name ? 'pb-1' : 'pb-1'}`} style={{ verticalAlign: 'baseline' }}>{applicant?.full_name || ''}</span> 
                     เลขบัตรประจำตัวประชาชน <span className={`border-b border-dotted border-slate-400 inline-block w-[150px] text-center ${p.id_card ? '' : 'pb-2'}`} style={{ verticalAlign: 'baseline' }}>{p.id_card || ''}</span>
                 </p>
                 <p>
