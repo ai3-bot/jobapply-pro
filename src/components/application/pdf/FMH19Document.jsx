@@ -89,8 +89,8 @@ export default function FMH19Document({ applicant, signatureUrl, signatureDate, 
             <div className="mb-6 leading-[1.4]">
                 <div className="grid grid-cols-2 gap-8">
                     <div className="text-center">
-                        <div className="mb-2">ลงชื่อ
-                            <span className="inline-block border-b border-dotted border-slate-400 w-[160px] h-[40px] mx-2 align-baseline"></span>
+                        <div className="mb-2 whitespace-nowrap">ลงชื่อ
+                            <span className="inline-block border-b border-dotted border-slate-400 w-[120px] h-[40px] mx-2 align-baseline"></span>
                             บริษัท/นายจ้าง
                         </div>
                         <p>({formData.authorizedPerson || '...............................................'})</p>
