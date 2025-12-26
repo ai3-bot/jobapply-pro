@@ -106,14 +106,106 @@ export default function EmploymentContractDocument({ applicant, formData = {} })
                 </div>
             </div>
 
-                        {/* Footer */}
-                        <div className="absolute bottom-[10mm] right-[10mm] text-[10px] text-slate-500">
-                        หน้าที่ 1 | 9
-                        </div>
-                        <div className="absolute bottom-[10mm] left-[50%] -translate-x-1/2 text-[9px] text-slate-400 text-center">
-                        FM-HRD-11 Rev.01 17/02/66<br/>
-                        www.ko.in.th Strategy . AI . DX . Sustainability
-                        </div>
-                        </div>
-                        );
-                        }
+            {/* Footer */}
+            <div className="absolute bottom-[10mm] right-[10mm] text-[10px] text-slate-500">
+                หน้าที่ 1 | 9
+            </div>
+            <div className="absolute bottom-[10mm] left-[50%] -translate-x-1/2 text-[9px] text-slate-400 text-center">
+                FM-HRD-11 Rev.01 17/02/66<br/>
+                www.ko.in.th Strategy . AI . DX . Sustainability
+            </div>
+        </div>
+
+        {/* Page 2 */}
+        <div 
+            className="pdpa-page bg-white text-slate-900 mx-auto relative text-[12px] font-sans p-[20mm] shadow-sm print:shadow-none mt-8"
+            style={{ 
+                width: '210mm', 
+                minHeight: '297mm',
+                fontFamily: 'TH Sarabun New, Sarabun, sans-serif',
+                pageBreakBefore: 'always'
+            }}
+        >
+            {/* Header with Logo */}
+            <div className="flex justify-end mb-8">
+                {appLogo ? (
+                    <img src={appLogo} alt="Logo" crossOrigin="anonymous" className="h-[100px] w-auto object-contain" />
+                ) : (
+                    <div className="h-[100px] w-[100px] bg-slate-100 rounded flex items-center justify-center text-[10px] text-slate-400">LOGO</div>
+                )}
+            </div>
+
+            {/* Clause 2.2 */}
+            <div className="mb-4 leading-[1.4]">
+                <p className="text-justify">2.2  ลูกจ้างรายเดือน เดือนละ<span className={`border-b border-dotted border-slate-400 inline-block min-w-[120px] text-center px-2 ${formData.monthlyRate ? 'pb-1' : ''}`}>{formData.monthlyRate || ''}</span> บาท (<span className={`border-b border-dotted border-slate-400 inline-block min-w-[280px] text-center px-2 ${formData.monthlyRateText ? 'pb-1' : ''}`}>{formData.monthlyRateText || ''}</span>บาทถ้วน) และสวัสดิการอื่นๆตามความ
+                    เหมาะสม(ถ้ามี) ทั้งนี้ ลูกจ้างตกลงยินยอมให้บริษัทฯนำเงินค่าจ้างของลูกจ้างเพื่อนำไปส่งเงินสมทบประกันสังคม และเงินภาษีอื่นๆ(ถ้ามี) 
+                    ชำระตามอัตราที่กฎหมายกำหนด ก่อนทำจ่ายค่าจ้างให้แก่ลูกจ้างทุกๆเดือน โดยบริษัทฯไม่ต้องบอกกล่าวล่วงหน้า</p>
+            </div>
+
+            {/* Clause 2.3 */}
+            <div className="mb-4 leading-[1.4] text-justify">
+                <p className="mb-2">2.3 ในการดำเนินการจ่ายค่าตอบแทนการทำงานให้แก่ลูกจ้างตามข้อ 2.1 และข้อ 2.2 บริษัทฯตกลงที่จะจ่ายค่าตอบแทนการ
+                    ทำงานให้แก่ลูกจ้างวันสุดท้ายของทุกสิ้นเดือนในทุกๆเดือน ตัวอย่าง เช่น วันสุดท้ายของวันสิ้นเดือนตรงกับวันเสาร์ เงินค่าจ้างจะออกวันเสาร์ 
+                    ถ้ากรณีวันสุดท้ายของวันสิ้นเดือนตรงกันวันอาทิตย์ จะเลื่อนเข้ามาออกวันเสาร์ แต่ถ้ากรณีวันสุดท้ายของวันสิ้นเดือนตรงกันวันศุกร์ เงิน
+                    ค่าจ้างจะออกวันศุกร์ ทั้งนี้ปฏิทินในแต่ละเดือนจำนวนวันไม่เท่ากัน เพราะฉะนั้นให้ถือเป็นวันสุดท้ายของวันสิ้นเดือนในเดือนนั้นๆ โดยลูกจ้าง
+                    ตกลงยินยอมให้บริษัทฯจ่ายค่าตอบแทนการทำงานให้แก่ลูกจ้างโดยวิธีการโอนเงินผ่านบัญชีธนาคาร<span className={`border-b border-dotted border-slate-400 inline-block min-w-[150px] text-center px-2 ${formData.bankName ? 'pb-1' : ''}`}>{formData.bankName || ''}</span>บัญชีเลขที่ 
+                    <span className={`border-b border-dotted border-slate-400 inline-block min-w-[200px] text-center px-2 ${formData.accountNumber ? 'pb-1' : ''}`}>{formData.accountNumber || ''}</span> ชื่อบัญชี <span className={`border-b border-dotted border-slate-400 inline-block min-w-[250px] text-center px-2 ${formData.accountName ? 'pb-1' : ''}`}>{formData.accountName || ''}</span> และ/หรือจ่ายค่าตอบแทนการทำงานโดย
+                    วิธีการอื่นใดภายใต้หลักเกณฑ์เงื่อนไขตามที่บริษัทฯเห็นสมควรกำหนดโดยไม่ต้องได้รับความยินยอมจากลูกจ้าง</p>
+            </div>
+
+            {/* Clause 2.4 */}
+            <div className="mb-4 leading-[1.4] text-justify">
+                <p className="mb-2">2.4 คู่สัญญาทั้งสองฝ่ายตกลงว่า เพื่อมิให้การดำเนินกิจการของบริษัทฯหยุดชะงัก และ/หรือเกิดความเสียหายใดๆที่อาจเกิดขึ้นได้
+                    จากการที่ลูกจ้างถูกเลิกจ้าง, การลาออกถูกต้องแต่สะสางงานไม่แล้วเสร็จตามข้อกำหนด, ลาออกกะทันหันแจ้งลาออกน้อยกว่า 30 วันและ/
+                    หรือตามเงื่อนไขการลาออกข้อ 4.5 และข้อ 4.6 หรือสัญญาจ้างต้องสิ้นสุดลงตามระยะโครงการ หรือไม่ว่าเพราะสาเหตุใดๆลูกจ้างตกลง
+                    ยินยอมให้บริษัทฯจ่ายค่าตอบแทนการทำงานงวดสุดท้ายให้กับลูกจ้างโดยวิธีการจ่ายให้ใน ลักษณะเช็คขีดคร่อม  ชื่อบัญชี 
+                    <span className={`border-b border-dotted border-slate-400 inline-block min-w-[300px] text-center px-2 ${formData.checkAccountName ? 'pb-1' : ''}`}>{formData.checkAccountName || ''}</span> ให้กับลูกจ้างเข้ามารับเช็คดังกล่าว ณ ที่ทำการของบริษัทฯด้วยตนเองในวันและเวลา
+                    ทำการที่มิใช่วันเสาร์/วันอาทิตย์ รวมถึงวันหยุดนักขัตฤกษ์ ซึ่งเช็คจะออกประมาณวันที่ 5 ของเดือน กรณีตรงวันหยุดเลื่อนออกในวัน
+                    ทำงานปกติ โดยฝ่ายบุคคลจะเป็นผู้ติดต่อประสานงานไปทางโทรศัพท์เพื่อแจ้งให้ลูกจ้างทราบก่อนเดินทางมารับเช็คดังกล่าว หากเช็ค
+                    ดังกล่าวยังไม่ได้รับการอนุมัติตามขั้นตอนการตรวจสอบของบริษัทฯ หรือโดยวิธีการอื่นใดภายใต้หลักเกณฑ์และเงื่อนไขตามที่บริษัทฯกำหนด
+                    โดยไม่จำเป็นต้องได้รับความยินยอมจากลูกจ้าง</p>
+
+                <p className="indent-8">ลูกจ้างตกลงว่าก่อนที่ลูกจ้างจะรับค่าตอบแทนการทำงานในงวดสุดท้ายจากบริษัทฯตามวรรคก่อน ลูกจ้างมีหน้าที่จะต้องสรุปงานที่
+                    อยู่ภายในความรับผิดชอบของลูกจ้างที่มีอยู่ ณ ปัจจุบันและรายงานให้กับผู้บังคับบัญชาทราบ  พร้อมทั้งส่งมอบงานในส่วนที่ลูกจ้าง
+                    รับผิดชอบอยู่ทั้งทางตรง และทางอ้อมทั้งหมด  ให้แก่บริษัทฯ หรือบุคคล (พนักงาน)ที่บริษัทฯมอบหมายให้มารับหน้าที่ต่อจากลูกจ้าง  และ
+                    ลูกจ้างจะต้องส่งมอบคืนทรัพย์สินใดๆของบริษัทฯที่อยู่ในความครอบครองของลูกจ้างให้แล้วเสร็จตามเงื่อนไขที่ระบุไว้ในสัญญาฉบับนี้ กรณีที่
+                    ลูกจ้างเพิกเฉยไม่ดำเนินการบริษัทฯมีสิทธิที่จะยึดหน่วงค่าตอบแทนการทำงานงวดสุดท้ายได้จนกว่าลูกจ้างจะดำเนินการให้แล้วเสร็จ</p>
+            </div>
+
+            {/* Clause 3 */}
+            <div className="mb-4 leading-[1.4]">
+                <p className="font-bold mb-2">ข้อ 3. การประเมินประสิทธิในการทำงาน</p>
+                <p className="mb-2">3.1 ระยะเวลาการทดลองงาน<span className={`border-b border-dotted border-slate-400 inline-block min-w-[150px] text-center px-2 ${formData.probationDays ? 'pb-1' : ''}`}>{formData.probationDays || ''}</span>วัน  และ/หรือระยะเวลาการประเมินตามเงื่อนไขของบริษัทฯ</p>
+                <p className="text-justify">3.2 เพื่อติดตามผลการปฏิบัติงานของลูกจ้าง บริษัทฯจะพิจารณาประเมินผลการปฏิบัติหน้าที่และพฤติกรรมอื่นๆโดยรวมทุกๆ
+                    เดือน งานที่ลูกจ้างได้รับมอบหมายต้องทำให้แล้วเสร็จวันต่อวัน ไม่มีงานค้าง และไม่มีงานซุกซ่อนเป็นเหตุให้บริษัทฯได้รับความเสียหายหาก
+                    บริษัทฯพบว่าลูกจ้างได้กระทำการใดๆอันมีลักษณะเป็นการละเมิดต่อสัญญาการจ้างงาน หรือพบข้อผิดพลาดในการทำงานประมาณเลินเล่อ
+                    เป็นเหตุให้บริษัทฯได้รับความเสียหาย ไม่ตรงตามวัตถุประสงค์ของการปฏิบัติงาน งานไม่มีคุณภาพและไม่มีประสิทธิภาพในการทำงาน งาน
+                    ไม่ได้ตามเป้าหมายที่กำหนด ขาดการงานรายงานผลโดยไม่มีเหตุอันควร และ/หรือพบข้อร้องเรียนจากผู้บังคับบัญชา ,ลูกค้า หรือผู้เกี่ยวข้อง
+                    หลายส่วนงาน รวมถึงกระทำผิดฝ่าฝืน ระเบียบ คำสั่ง ประกาศ ใดๆของบริษัทฯ เป็นต้น ให้ถือว่า ลูกจ้างไม่มีคุณสมบัติเพียงพอต่อบริษัทฯ 
+                    บริษัทฯมีสิทธิเลิกจ้างลูกจ้างได้ทันทีโดยไม่ต้องบอกกล่าวล่วงหน้า และบริษัทฯไม่ต้องจ่ายเงินค่าชดเชย และค่าเสียหายใด ๆ ทั้งสิ้น</p>
+            </div>
+
+            {/* Signatures */}
+            <div className="mb-6 leading-[1.4] mt-8">
+                <div className="grid grid-cols-2 gap-8">
+                    <div className="text-center">
+                        <div className="mb-2">ลงชื่อ<span className="inline-block border-b border-dotted border-slate-400 w-[125px] mx-2" style={{ verticalAlign: 'baseline', minHeight: '40px', display: 'inline-block' }}>&nbsp;</span>บริษัทฯ/นายจ้าง</div>
+                    </div>
+                    <div className="text-center">
+                        <div className="mb-2">ลงชื่อ<span className="inline-block border-b border-dotted border-slate-400 w-[200px] mx-2" style={{ verticalAlign: 'baseline', minHeight: '40px', display: 'inline-block' }}>&nbsp;</span>ลูกจ้าง</div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Footer */}
+            <div className="absolute bottom-[10mm] right-[10mm] text-[10px] text-slate-500">
+                หน้าที่ 2 | 9
+            </div>
+            <div className="absolute bottom-[10mm] left-[50%] -translate-x-1/2 text-[9px] text-slate-400 text-center">
+                FM-HRD-11 Rev.01 17/02/66<br/>
+                www.ko.in.th Strategy . AI . DX . Sustainability
+            </div>
+        </div>
+        </>
+    );
+}
