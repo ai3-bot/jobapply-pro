@@ -45,8 +45,10 @@ export default function PDPADocument({ applicant, signatureUrl, signatureDate, f
 
             {/* Date and Place */}
             <div className="mb-4 leading-[1.4] flex flex-col items-end">
-                
-                <DottedLine className="flex w-12" value="เขียนที่"/>
+                <div className="flex items-baseline gap-2">
+                    <span>เขียนที่</span>
+                    <DottedLine value={formData.writtenAt} className="min-w-[300px]" center />
+                </div>
                 <div>เมื่อวันที่ <span className={`border-b border-dotted border-slate-400 inline-block min-w-[200px] text-center px-2 ${formData.writtenDate ? 'pb-1' : ''}`} style={{ verticalAlign: 'baseline' }}>
                     {formData.writtenDate ? new Date(formData.writtenDate).toLocaleDateString('th-TH', { day: 'numeric', month: 'long', year: 'numeric' }) : ''}
                 </span></div>
