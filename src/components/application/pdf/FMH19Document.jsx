@@ -15,7 +15,7 @@ export default function FMH19Document({ applicant, signatureUrl, signatureDate, 
     return (
         <>
         <div 
-            className="pdpa-page bg-white text-slate-900 mx-auto relative text-[14px] font-sans p-[20mm] shadow-sm print:shadow-none"
+            className="pdpa-page bg-white text-slate-900 mx-auto relative text-[16px] font-sans p-[20mm] shadow-sm print:shadow-none"
             style={{ 
                 width: '210mm', 
                 minHeight: '297mm',
@@ -33,9 +33,9 @@ export default function FMH19Document({ applicant, signatureUrl, signatureDate, 
 
             {/* Title */}
             <div className="text-center mb-6">
-                <h1 className="text-[14px] font-bold mb-1">หนังสือตกลงเข้ารับการทำเรียกอบรม</h1>
-                <h2 className="text-[14px] font-bold">"หลักสูตรปฐมนิเทศพนักงานใหม่"</h2>
-                <p className="text-[14px] mt-2">(แบบคำขอแบบหนึ่งฉบับสูตร 14 ข้อ)</p>
+                <h1 className="text-[16px] font-bold mb-1">หนังสือตกลงเข้ารับการทำเรียกอบรม</h1>
+                <h2 className="text-[16px] font-bold">"หลักสูตรปฐมนิเทศพนักงานใหม่"</h2>
+                <p className="text-[16px] mt-2">(แบบคำขอแบบหนึ่งฉบับสูตร 14 ข้อ)</p>
             </div>
 
             {/* Date */}
@@ -120,7 +120,7 @@ export default function FMH19Document({ applicant, signatureUrl, signatureDate, 
 
         {/* Page 2 */}
         <div 
-            className="pdpa-page bg-white text-slate-900 mx-auto relative text-[14px] font-sans p-[20mm] shadow-sm print:shadow-none mt-8"
+            className="pdpa-page bg-white text-slate-900 mx-auto relative text-[16px] font-sans p-[20mm] shadow-sm print:shadow-none mt-8"
             style={{ 
                 width: '210mm', 
                 minHeight: '297mm',
