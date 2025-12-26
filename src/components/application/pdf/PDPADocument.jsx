@@ -39,8 +39,8 @@ export default function PDPADocument({ applicant, signatureUrl, signatureDate, f
 
             {/* Date and Place */}
             <div className="mb-4 leading-[1.4] flex flex-col items-end">
-                <div>เขียนที่ <span className="border-b border-dotted border-slate-400 inline-block min-w-[300px] text-center px-2" style={{ verticalAlign: 'baseline', ...(formData.writtenAt ? { marginBottom: '0.25rem' } : { minHeight: '1.4em' }) }}>{formData.writtenAt || '\u00A0'}</span></div>
-                <div>เมื่อวันที่ <span className="border-b border-dotted border-slate-400 inline-block min-w-[200px] text-center px-2" style={{ verticalAlign: 'baseline', ...(formData.writtenDate ? { marginBottom: '0.25rem' } : { minHeight: '1.4em' }) }}>
+                <div>เขียนที่ <span className={`border-b border-dotted border-slate-400 inline-block min-w-[300px] text-center px-2 ${formData.writtenAt ? 'pb-1' : ''}`} style={{ verticalAlign: 'baseline', ...(!formData.writtenAt && { minHeight: '1.4em' }) }}>{formData.writtenAt || '\u00A0'}</span></div>
+                <div>เมื่อวันที่ <span className={`border-b border-dotted border-slate-400 inline-block min-w-[200px] text-center px-2 ${formData.writtenDate ? 'pb-1' : ''}`} style={{ verticalAlign: 'baseline', ...(!formData.writtenDate && { minHeight: '1.4em' }) }}>
                     {formData.writtenDate ? new Date(formData.writtenDate).toLocaleDateString('th-TH', { day: 'numeric', month: 'long', year: 'numeric' }) : '\u00A0'}
                 </span></div>
             </div>
@@ -55,11 +55,11 @@ export default function PDPADocument({ applicant, signatureUrl, signatureDate, f
             {/* Applicant Information */}
             <div className="mb-4">
                 <p className="mb-3">
-                    ข้าพเจ้า (นาย/นาง/นางสาว) <span className="border-b border-dotted border-slate-400 inline-block w-[150px] text-center" style={{ verticalAlign: 'baseline', ...(applicant?.full_name ? { marginBottom: '0.25rem' } : { minHeight: '1.4em' }) }}>{applicant?.full_name || '\u00A0'}</span> 
-                    เลขบัตรประจำตัวประชาชน <span className="border-b border-dotted border-slate-400 inline-block w-[150px] text-center" style={{ verticalAlign: 'baseline', ...(p.id_card ? { marginBottom: '0.25rem' } : { minHeight: '1.4em' }) }}>{p.id_card || '\u00A0'}</span>
+                    ข้าพเจ้า (นาย/นาง/นางสาว) <span className={`border-b border-dotted border-slate-400 inline-block w-[150px] text-center ${applicant?.full_name ? 'pb-1' : ''}`} style={{ verticalAlign: 'baseline', ...(!applicant?.full_name && { minHeight: '1.4em' }) }}>{applicant?.full_name || '\u00A0'}</span> 
+                    เลขบัตรประจำตัวประชาชน <span className={`border-b border-dotted border-slate-400 inline-block w-[150px] text-center ${p.id_card ? 'pb-1' : ''}`} style={{ verticalAlign: 'baseline', ...(!p.id_card && { minHeight: '1.4em' }) }}>{p.id_card || '\u00A0'}</span>
                 </p>
                 <p>
-                    เบอร์โทร <span className="border-b border-dotted border-slate-400 inline-block w-[100px] text-center" style={{ verticalAlign: 'baseline', ...(p.mobile_phone ? { marginBottom: '0.25rem' } : { minHeight: '1.4em' }) }}>{p.mobile_phone || '\u00A0'}</span> Line ID <span className="border-b border-dotted border-slate-400 inline-block w-[150px] text-center" style={{ verticalAlign: 'baseline', ...(formData.lineId ? { marginBottom: '0.25rem' } : { minHeight: '1.4em' }) }}>{formData.lineId || '\u00A0'}</span> เป็นเจ้าของมูลส่วนบุคคล ข้าพเจ้า ยินยอมให้ใช้หรือเปิดเผยข้อมูล ส่วนบุคคลที่เกี่ยวข้องกับข้าพเจ้า ถือเป็น ข้อตกลงให้ประมวลผลข้อมูลส่วนบุคคล ให้กับ บริษัท เค แอนด์ โอ ซิส เต็มส์ แอนด์ คอนซัลติ้ง จำกัด เพื่อจัดเก็บ รวบรวมข้อมูล ประกอบการพิจารณาคัดเลือกเข้าทำงาน รวมถึงตลอดระยะเวลาที่เป็น พนักงานบริษัทฯ และกรณีที่สิ้นสุดการเป็นพนักงานของบริษัทฯ เป็นระยะเวลาสองปี ดังต่อไปนี้
+                    เบอร์โทร <span className={`border-b border-dotted border-slate-400 inline-block w-[100px] text-center ${p.mobile_phone ? 'pb-1' : ''}`} style={{ verticalAlign: 'baseline', ...(!p.mobile_phone && { minHeight: '1.4em' }) }}>{p.mobile_phone || '\u00A0'}</span> Line ID <span className={`border-b border-dotted border-slate-400 inline-block w-[150px] text-center ${formData.lineId ? 'pb-1' : ''}`} style={{ verticalAlign: 'baseline', ...(!formData.lineId && { minHeight: '1.4em' }) }}>{formData.lineId || '\u00A0'}</span> เป็นเจ้าของมูลส่วนบุคคล ข้าพเจ้า ยินยอมให้ใช้หรือเปิดเผยข้อมูล ส่วนบุคคลที่เกี่ยวข้องกับข้าพเจ้า ถือเป็น ข้อตกลงให้ประมวลผลข้อมูลส่วนบุคคล ให้กับ บริษัท เค แอนด์ โอ ซิส เต็มส์ แอนด์ คอนซัลติ้ง จำกัด เพื่อจัดเก็บ รวบรวมข้อมูล ประกอบการพิจารณาคัดเลือกเข้าทำงาน รวมถึงตลอดระยะเวลาที่เป็น พนักงานบริษัทฯ และกรณีที่สิ้นสุดการเป็นพนักงานของบริษัทฯ เป็นระยะเวลาสองปี ดังต่อไปนี้
                 </p>
             </div>
 
