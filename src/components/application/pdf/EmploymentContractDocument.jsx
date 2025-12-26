@@ -98,7 +98,7 @@ export default function EmploymentContractDocument({ applicant, formData = {} })
             <div className="mb-6 leading-[1.4] mt-8">
                 <div className="grid grid-cols-2 gap-8">
                     <div className="text-center">
-                        <div className="mb-2">ลงชื่อ<span className="inline-block border-b border-dotted border-slate-400 w-[155px] mx-2" style={{ verticalAlign: 'baseline', minHeight: '40px', display: 'inline-block' }}>&nbsp;</span>บริษัทฯ/นายจ้าง</div>
+                        <div className="mb-2">ลงชื่อ<span className="inline-block border-b border-dotted border-slate-400 w-[125px] mx-2" style={{ verticalAlign: 'baseline', minHeight: '40px', display: 'inline-block' }}>&nbsp;</span>บริษัทฯ/นายจ้าง</div>
                     </div>
                     <div className="text-center">
                         <div className="mb-2">ลงชื่อ<span className="inline-block border-b border-dotted border-slate-400 w-[200px] mx-2" style={{ verticalAlign: 'baseline', minHeight: '40px', display: 'inline-block' }}>&nbsp;</span>ลูกจ้าง</div>
