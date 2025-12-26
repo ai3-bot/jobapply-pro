@@ -13,6 +13,7 @@ export default function EmploymentContractDocument({ applicant, formData = {} })
     const p = applicant?.personal_data || {};
 
     return (
+        <>
         <div 
             className="pdpa-page bg-white text-slate-900 mx-auto relative text-[12px] font-sans p-[20mm] shadow-sm print:shadow-none"
             style={{ 
