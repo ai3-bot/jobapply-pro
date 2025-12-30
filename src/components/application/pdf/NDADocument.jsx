@@ -409,60 +409,103 @@ export default function NDADocument({ applicant, formData = {} }) {
                 )}
             </div>
 
-            {/* Clause 7 */}
-            <div className="mb-4 leading-[1.4]">
-                <p className="font-bold mb-2">ข้อ 7  การใช้อุปกรณ์อิเล็กทรอนิกส์และการเข้าถึงข้อมูล</p>
-            </div>
-
-            {/* Clause 7.1 */}
-            <div className="mb-3 leading-[1.4] text-justify">
-                <p>7.1 พนักงานตกลงว่าจะใช้อุปกรณ์อิเล็กทรอนิกส์ที่บริษัทจัดให้เท่านั้น และจะไม่นำอุปกรณ์ส่วนตัวมาใช้ในการ
-                    ปฏิบัติงาน เว้นแต่ได้รับอนุญาตเป็นลายลักษณ์อักษรจากบริษัท</p>
-            </div>
-
-            {/* Clause 7.2 */}
-            <div className="mb-4 leading-[1.4] text-justify">
-                <p>7.2 พนักงานตกลงว่าจะไม่เข้าถึงข้อมูลที่ไม่เกี่ยวข้องกับหน้าที่การทำงานของตน และจะไม่พยายามเข้าถึง
-                    ระบบหรือข้อมูลที่ไม่ได้รับอนุญาต</p>
-            </div>
-
             {/* Clause 8 */}
             <div className="mb-4 leading-[1.4]">
-                <p className="font-bold mb-2">ข้อ 8  การรับรองและการยอมรับ</p>
+                <p className="font-bold mb-2">ข้อ 8  ข้อยกเว้นในการรักษาความลับ</p>
+                <p className="text-justify">ข้อมูลลับใด ๆ จะไม่ถือว่าเป็นความลับ หากพนักงานสามารถพิสูจน์ได้ว่าข้อมูลดังกล่าว</p>
             </div>
 
-            {/* Clause 8.1 */}
+            <div className="mb-4 leading-[1.4] text-justify ml-6">
+                <p>ก. เป็นหรือได้กลายเป็นสาธารณะในภายหลัง โดยไม่ได้เกิดจากความผิดของพนักงาน</p>
+                <p>ข. ได้รับการเปิดเผยโดยบุคคลอื่นที่มิใช่พนักงานหรือบริษัทโดยชอบด้วยกฎหมาย</p>
+                <p>ค. ได้รับอนุญาตจากบริษัทหรือคู่ค้า/ลูกค้าให้เปิดเผยได้เป็นลายลักษณ์อักษร</p>
+            </div>
+
+            {/* Clause 9 */}
+            <div className="mb-4 leading-[1.4]">
+                <p className="font-bold mb-2">ข้อ 9  การบังคับใช้สัญญา</p>
+            </div>
+
+            {/* Clause 9.1 */}
             <div className="mb-3 leading-[1.4] text-justify">
-                <p>8.1 พนักงานรับรองว่าได้อ่านและเข้าใจข้อกำหนดในสัญญาฉบับนี้ทั้งหมดแล้ว และยินยอมผูกพันตาม
-                    ข้อกำหนดดังกล่าวโดยสมัครใจ</p>
+                <p>9.1 หากข้อกำหนดใดในสัญญาฉบับนี้ขัดหรือแย้งกับกฎหมายและไม่สามารถบังคับใช้ได้ ให้ถือว่าข้อกำหนด
+                    ดังกล่าวเป็นโมฆะเฉพาะในส่วนที่ขัดต่อกฎหมายเท่านั้น แต่จะไม่กระทบต่อความถูกต้องและความมีผล
+                    บังคับของข้อกำหนดอื่น ๆ ในสัญญาฉบับนี้</p>
             </div>
 
-            {/* Clause 8.2 */}
+            {/* Clause 9.2 */}
             <div className="mb-4 leading-[1.4] text-justify">
-                <p>8.2 พนักงานรับทราบว่าการฝ่าฝืนข้อกำหนดในสัญญาฉบับนี้อาจก่อให้เกิดความเสียหายร้ายแรง และอาจมีความผิด
-                    ทางอาญาตามกฎหมายที่เกี่ยวข้อง</p>
+                <p>9.2 บริษัทและพนักงานตกลงร่วมกันว่า หากมีการพิพาท โต้แย้ง หรือเรียกร้องใด ๆ อันเกิดจากหรือ
+                    เกี่ยวข้องกับสัญญาฉบับนี้ ให้พยายามเจรจาไกล่เกลี่ยโดยสุจริต หากตกลงกันไม่ได้ ให้ดำเนินการตาม
+                    กระบวนการตามกฎหมายต่อไป</p>
             </div>
 
-            {/* Final Statement */}
+            {/* Clause 10 */}
+            <div className="mb-4 leading-[1.4]">
+                <p className="font-bold mb-2">ข้อ 10  บทบัญญัติทั่วไป</p>
+            </div>
+
+            {/* Clause 10.1 */}
+            <div className="mb-3 leading-[1.4] text-justify">
+                <p>10.1 สัญญาฉบับนี้จัดทำขึ้นเป็นลายลักษณ์อักษรภาษาไทย และจะถูกตีความและบังคับใช้ตามกฎหมายไทย 
+                    ในกรณีที่มีการแปลสัญญาฉบับนี้เป็นภาษาต่างประเทศ ให้ยึดถือต้นฉบับภาษาไทยเป็นหลัก</p>
+            </div>
+
+            {/* Clause 10.2 */}
+            <div className="mb-3 leading-[1.4] text-justify">
+                <p>10.2 พนักงานไม่สามารถโอนสิทธิหรือหน้าที่ใด ๆ ภายใต้สัญญาฉบับนี้ให้แก่บุคคลภายนอกได้ เว้นแต่จะ
+                    ได้รับความยินยอมเป็นลายลักษณ์อักษรจากบริษัท</p>
+            </div>
+
+            {/* Clause 10.3 */}
+            <div className="mb-3 leading-[1.4] text-justify">
+                <p>10.3 การที่ฝ่ายใดฝ่ายหนึ่งไม่ใช้สิทธิ หรืองดเว้นการใช้สิทธิใด ๆ ตามสัญญาฉบับนี้ในบางโอกาส จะไม่ถือว่า
+                    เป็นการสละสิทธิหรือก่อให้เกิดการหมดสิทธิแต่อย่างใด</p>
+            </div>
+
+            {/* Clause 10.4 */}
+            <div className="mb-4 leading-[1.4] text-justify">
+                <p>10.4 พนักงานรับทราบว่า บริษัทให้ความสำคัญกับความปลอดภัยด้านข้อมูล (Information Security) และ
+                    ได้จัดทำนโยบายและมาตรการภายในเพื่อป้องกันการรั่วไหลของข้อมูล ดังนั้น พนักงานต้องปฏิบัติตาม
+                    นโยบายดังกล่าวโดยเคร่งครัด</p>
+            </div>
+
+            {/* Clause 11 */}
+            <div className="mb-4 leading-[1.4]">
+                <p className="font-bold mb-2">ข้อ 11 การลงนามและผลผูกพัน</p>
+            </div>
+
+            {/* Clause 11.1 */}
+            <div className="mb-3 leading-[1.4] text-justify">
+                <p>11.1 สัญญาฉบับนี้มีผลผูกพันฝ่ายบริษัทและพนักงาน เมื่อทั้งสองฝ่ายลงนามในสัญญา และให้มีผลต่อเนื่อง
+                    ไปตลอดระยะเวลาที่พนักงานยังคงปฏิบัติงานในบริษัท รวมถึงหลังสิ้นสุดการจ้างงานตามที่ระบุในข้อ 
+                    6.2</p>
+            </div>
+
+            {/* Clause 11.2 */}
             <div className="mb-6 leading-[1.4] text-justify">
-                <p className="mb-2">สัญญานี้ทำขึ้นเป็นสองฉบับ มีข้อความถูกต้องตรงกัน ทั้งสองฝ่ายได้อ่านและเข้าใจข้อความในสัญญานี้
-                    โดยตลอดดีแล้ว เห็นว่าถูกต้องตรงตามเจตนาของตน จึงลงลายมือชื่อไว้เป็นหลักฐานสำคัญต่อหน้าพยาน 
-                    และต่างยึดถือไว้ฝ่ายละฉบับ</p>
+                <p>11.2 ทั้งสองฝ่ายยอมรับว่าการละเมิดข้อตกลงตามสัญญานี้ อาจส่งผลให้ฝ่ายที่ได้รับความเสียหายเรียกร้อง
+                    ค่าเสียหายหรือใช้มาตรการทางกฎหมายใด ๆ เพื่อคุ้มครองสิทธิและประโยชน์ของตน</p>
+            </div>
+
+            {/* Company Info Line */}
+            <div className="mb-6 leading-[1.4] text-center">
+                <p className="font-bold">บริษัท เค แอนด์ โอ ซิสเต็มส์ แอนด์ คอนซัลติ้ง จำกัด</p>
             </div>
 
             {/* Signatures */}
-            <div className="mb-12 leading-[1.4] mt-8">
+            <div className="mb-8 leading-[1.4]">
                 <div className="grid grid-cols-2 gap-8">
                     {/* Company Signature */}
-                    <div className="text-center">
-                        <div className="mb-2">ลงชื่อ<span className="inline-block border-b border-dotted border-slate-400 w-[125px] mx-2" style={{ verticalAlign: 'baseline', minHeight: '40px', display: 'inline-block' }}>&nbsp;</span>บริษัทฯ</div>
-                        <p className="mb-2">(บริษัท เค แอนด์ โอ ซิสเต็มส์ แอนด์ คอนซัลติ้ง จำกัด)</p>
-                        <p className="mb-4">โดย นายกฤษณ์พงษ์ สุคันโธ กรรมการผู้มีอำนาจลงนาม</p>
+                    <div>
+                        <p className="mb-2">ลงชื่อ<span className="inline-block border-b border-dotted border-slate-400 w-[180px] mx-2" style={{ verticalAlign: 'baseline', minHeight: '40px', display: 'inline-block' }}>&nbsp;</span>กรรมการผู้มีอำนาจลงนาม</p>
+                        <p className="mb-2 text-center">(<span className="inline-block border-b border-dotted border-slate-400 w-[250px]" style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>&nbsp;</span>)</p>
+                        <p className="mb-2">วันที่<span className="inline-block border-b border-dotted border-slate-400 w-[200px] mx-2" style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>&nbsp;</span></p>
                     </div>
 
                     {/* Employee Signature */}
-                    <div className="text-center">
-                        <div className="mb-2">
+                    <div>
+                        <p className="mb-2">
                             ลงชื่อ
                             {applicant?.signature_url ? (
                                 <img src={applicant.signature_url} alt="signature" crossOrigin="anonymous" className="inline-block h-[40px] object-contain mx-2" style={{ verticalAlign: 'baseline' }} />
@@ -470,22 +513,9 @@ export default function NDADocument({ applicant, formData = {} }) {
                                 <span className="inline-block border-b border-dotted border-slate-400 w-[200px] mx-2" style={{ verticalAlign: 'baseline', minHeight: '40px', display: 'inline-block' }}>&nbsp;</span>
                             )}
                             พนักงาน
-                        </div>
-                        <p className="mb-2">({applicant?.full_name || '…………………………………..………………………'})</p>
-                    </div>
-                </div>
-            </div>
-
-            {/* Witnesses Section */}
-            <div className="mb-6 leading-[1.4] text-center">
-                <div className="grid grid-cols-2 gap-8">
-                    <div>
-                        <p>ลงชื่อ<span className="inline-block border-b border-dotted border-slate-400 w-[200px] mx-2" style={{ verticalAlign: 'baseline', minHeight: '40px', display: 'inline-block' }}>&nbsp;</span>พยาน</p>
-                        <p>(....................................................................)</p>
-                    </div>
-                    <div>
-                        <p>ลงชื่อ<span className="inline-block border-b border-dotted border-slate-400 w-[200px] mx-2" style={{ verticalAlign: 'baseline', minHeight: '40px', display: 'inline-block' }}>&nbsp;</span>พยาน</p>
-                        <p>(....................................................................)</p>
+                        </p>
+                        <p className="mb-2 text-center">(<span className="inline-block border-b border-dotted border-slate-400 w-[250px]" style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>{applicant?.full_name || ''}</span>)</p>
+                        <p className="mb-2">วันที่<span className="inline-block border-b border-dotted border-slate-400 w-[200px] mx-2" style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>&nbsp;</span></p>
                     </div>
                 </div>
             </div>
