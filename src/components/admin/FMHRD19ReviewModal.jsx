@@ -16,6 +16,8 @@ export default function FMHRD19ReviewModal({ applicant, isOpen, onClose }) {
     const queryClient = useQueryClient();
     const [generatingPdf, setGeneratingPdf] = useState(false);
     const [companyData, setCompanyData] = useState({
+        authorizedPerson: applicant?.fmhrd19_document?.company_data?.authorizedPerson || '',
+        hrPerson: applicant?.fmhrd19_document?.company_data?.hrPerson || '',
         witnessName1: applicant?.fmhrd19_document?.company_data?.witnessName1 || '',
         witness1Signature: applicant?.fmhrd19_document?.company_data?.witness1Signature || '',
         witnessName2: applicant?.fmhrd19_document?.company_data?.witnessName2 || '',
@@ -97,7 +99,29 @@ export default function FMHRD19ReviewModal({ applicant, isOpen, onClose }) {
                 <div className="space-y-4">
                     {/* Admin Form */}
                     <div className="bg-slate-50 p-4 rounded-lg space-y-4">
-                        <h3 className="font-semibold text-lg">กรอกข้อมูลพยาน</h3>
+                        <h3 className="font-semibold text-lg">กรอกข้อมูลบริษัทและพยาน</h3>
+                        
+                        <div>
+                            <Label>กรรมการผู้มีอำนาจลงนามแทน (บริษัท)</Label>
+                            <Input
+                                value={companyData.authorizedPerson}
+                                onChange={(e) => setCompanyData({ ...companyData, authorizedPerson: e.target.value })}
+                                placeholder="ชื่อ-สกุล กรรมการผู้มีอำนาจฝ่ายบริษัท"
+                            />
+                        </div>
+
+                        <div>
+                            <Label>กรรมการผู้มีอำนาจลงนามแทน (HR)</Label>
+                            <Input
+                                value={companyData.hrPerson}
+                                onChange={(e) => setCompanyData({ ...companyData, hrPerson: e.target.value })}
+                                placeholder="ชื่อ-สกุล กรรมการผู้มีอำนาจฝ่าย HR"
+                            />
+                        </div>
+
+                        <div className="border-t pt-4">
+                            <h4 className="font-medium mb-3">ข้อมูลพยาน</h4>
+                        </div>
                         
                         <div>
                             <Label>ชื่อพยานคนที่ 1</Label>
