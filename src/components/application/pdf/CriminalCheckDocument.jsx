@@ -31,7 +31,7 @@ export default function CriminalCheckDocument({ applicant, formData = {} }) {
             </div>
 
             {/* Content */}
-            <div className="space-y-4 text-justify">
+            <div className="space-y-2 text-justify">
                 <p>
                     ทำที่ <span className="border-b border-dotted border-slate-400 inline-block min-w-[400px] text-center">{companyData.companyLocation || formData.companyLocation || '\u00A0'}</span>
                 </p>
