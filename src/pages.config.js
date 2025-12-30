@@ -6,8 +6,9 @@ import employmentContract from './pages/employment-contract';
 import fmHrd19 from './pages/fm-hrd-19';
 import fmHrd27 from './pages/fm-hrd-27';
 import pdpaForm from './pages/pdpa-form';
-import userDashboard from './pages/user-dashboard';
 import userLogin from './pages/user-login';
+import userDashboard from './pages/user-dashboard';
+import criminalCheckForm from './pages/criminal-check-form';
 import __Layout from './Layout.jsx';
 
 
@@ -20,8 +21,9 @@ export const PAGES = {
     "fm-hrd-19": fmHrd19,
     "fm-hrd-27": fmHrd27,
     "pdpa-form": pdpaForm,
-    "user-dashboard": userDashboard,
     "user-login": userLogin,
+    "user-dashboard": userDashboard,
+    "criminal-check-form": criminalCheckForm,
 }
 
 export const pagesConfig = {
