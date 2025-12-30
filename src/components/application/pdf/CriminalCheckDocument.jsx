@@ -40,10 +40,10 @@ export default function CriminalCheckDocument({ applicant, formData = {} }) {
                     <h1 className="text-[16px] font-bold text-center mb-4">หนังสือมอบอำนาจ</h1>
                     <div className="text-right space-y-1">
                         <p>
-                            ทำที่ <span className="border-b border-dotted border-slate-400 inline-block min-w-[250px] text-center">{companyData.companyLocation || formData.companyLocation || '\u00A0'}</span>
+                            ทำที่ <span className="border-b border-dotted border-slate-400 inline-block min-w-[200px] text-center">{companyData.companyLocation || formData.companyLocation || '\u00A0'}</span>
                         </p>
                         <p>
-                            วันที่ <span className="border-b border-dotted border-slate-400 inline-block min-w-[250px] text-center">{companyData.poaDate || formData.poaDate || '\u00A0'}</span>
+                            วันที่ <span className="border-b border-dotted border-slate-400 inline-block min-w-[200px] text-center">{companyData.poaDate || formData.poaDate || '\u00A0'}</span>
                         </p>
                     </div>
                 </div>
