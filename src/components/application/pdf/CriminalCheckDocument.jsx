@@ -25,19 +25,34 @@ export default function CriminalCheckDocument({ applicant, formData = {} }) {
                 lineHeight: '1.5'
             }}
         >
-            {/* Title */}
-            <div className="text-center mb-6">
-                <h1 className="text-[16px] font-bold">หนังสือมอบอำนาจ</h1>
+            {/* Title and Date Section */}
+            <div className="mb-6 relative">
+                <div className="flex items-start gap-4">
+                    {/* Stamp Box */}
+                    <div className="border-2 border-slate-400 w-[120px] h-[100px] flex-shrink-0 flex items-center justify-center">
+                        <div className="text-center text-[12px] text-slate-500">
+                            <p>ติดอากรแสตมป์</p>
+                            <p>30 บาท</p>
+                        </div>
+                    </div>
+                    
+                    {/* Title and Date */}
+                    <div className="flex-1">
+                        <h1 className="text-[16px] font-bold text-center mb-4">หนังสือมอบอำนาจ</h1>
+                        <div className="text-right space-y-1">
+                            <p>
+                                ทำที่ <span className="border-b border-dotted border-slate-400 inline-block min-w-[250px] text-center">{companyData.companyLocation || formData.companyLocation || '\u00A0'}</span>
+                            </p>
+                            <p>
+                                วันที่ <span className="border-b border-dotted border-slate-400 inline-block min-w-[250px] text-center">{companyData.poaDate || formData.poaDate || '\u00A0'}</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             {/* Content */}
             <div className="space-y-2 text-justify">
-                <p>
-                    ทำที่ <span className="border-b border-dotted border-slate-400 inline-block min-w-[400px] text-center">{companyData.companyLocation || formData.companyLocation || '\u00A0'}</span>
-                </p>
-                <p>
-                    วันที่ <span className="border-b border-dotted border-slate-400 inline-block min-w-[400px] text-center">{companyData.poaDate || formData.poaDate || '\u00A0'}</span>
-                </p>
                 <p>
                     ข้าพเจ้า <span className="border-b border-dotted border-slate-400 inline-block min-w-[450px] text-center">{applicant?.full_name || '\u00A0'}</span> บัตรประจำตัวประชาชนเลขที่ <span className="border-b border-dotted border-slate-400 inline-block min-w-[200px] text-center">{p.id_card || '\u00A0'}</span>
                 </p>
@@ -127,19 +142,21 @@ export default function CriminalCheckDocument({ applicant, formData = {} }) {
             <div className="my-6 border-t-2 border-slate-300"></div>
 
             {/* Title for second document */}
-            <div className="text-center mb-4">
-                <h1 className="text-[16px] font-bold">หนังสือยินยอมในการเข้าตรวจดูข้อมูลข่าวสารส่วนบุคคล (ประวัติอาชญากรรม)</h1>
-                <h2 className="text-[14px] font-bold">(ผ่านหน่วยงาน/บริษัท)</h2>
+            <div className="mb-4">
+                <h1 className="text-[16px] font-bold text-center mb-2">หนังสือยินยอมในการเข้าตรวจดูข้อมูลข่าวสารส่วนบุคคล (ประวัติอาชญากรรม)</h1>
+                <h2 className="text-[14px] font-bold text-center mb-3">(ผ่านหน่วยงาน/บริษัท)</h2>
+                <div className="text-right space-y-1">
+                    <p>
+                        ทำที่ <span className="border-b border-dotted border-slate-400 inline-block min-w-[250px] text-center">{companyData.companyLocation || formData.companyLocation || '\u00A0'}</span>
+                    </p>
+                    <p>
+                        วันที่ <span className="border-b border-dotted border-slate-400 inline-block min-w-[250px] text-center">{companyData.consentDate || formData.consentDate || '\u00A0'}</span>
+                    </p>
+                </div>
             </div>
 
             {/* Content */}
             <div className="space-y-2 text-justify">
-                <p>
-                    ทำที่ <span className="border-b border-dotted border-slate-400 inline-block min-w-[400px] text-center">{companyData.companyLocation || formData.companyLocation || '\u00A0'}</span>
-                </p>
-                <p>
-                    วันที่ <span className="border-b border-dotted border-slate-400 inline-block min-w-[400px] text-center">{companyData.consentDate || formData.consentDate || '\u00A0'}</span>
-                </p>
                 <p className="font-semibold">เรียน ผู้บังคับการกองทะเบียนประวัติอาชญากร</p>
                 <p>
                     ข้าพเจ้า (นาย/นาง/น.ส.) <span className="border-b border-dotted border-slate-400 inline-block min-w-[400px] text-center">{applicant?.full_name || '\u00A0'}</span> บัตรประจำตัวประชาชนเลขที่ <span className="border-b border-dotted border-slate-400 inline-block min-w-[200px] text-center">{p.id_card || '\u00A0'}</span>
