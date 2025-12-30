@@ -12,6 +12,7 @@ export default function NDADocument({ applicant, formData = {} }) {
     const appLogo = settings?.find(s => s.key === 'app_logo')?.value;
     const p = applicant?.personal_data || {};
     const currentAddr = p.current_address || {};
+    const companyData = applicant?.nda_document?.company_data || {};
 
     return (
         <>
@@ -498,9 +499,17 @@ export default function NDADocument({ applicant, formData = {} }) {
                 <div className="grid grid-cols-3 gap-8">
                     {/* Company Signature */}
                     <div className="col-span-2">
-                        <p className="mb-2">ลงชื่อ<span className="inline-block border-b border-dotted border-slate-400 w-[180px] mx-2" style={{ verticalAlign: 'baseline', minHeight: '40px', display: 'inline-block' }}>&nbsp;</span>กรรมการผู้มีอำนาจลงนาม</p>
-                        <p className="mb-2 ml-3">(<span className="inline-block border-b border-dotted border-slate-400 w-[180px]" style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>&nbsp;</span>)</p>
-                        <p className="mb-2">วันที่<span className="inline-block border-b border-dotted border-slate-400 w-[200px] mx-2" style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>&nbsp;</span></p>
+                        <p className="mb-2">
+                            ลงชื่อ
+                            {companyData.companySignature ? (
+                                <img src={companyData.companySignature} alt="signature" crossOrigin="anonymous" className="inline-block h-[40px] object-contain mx-2" style={{ verticalAlign: 'baseline' }} />
+                            ) : (
+                                <span className="inline-block border-b border-dotted border-slate-400 w-[180px] mx-2" style={{ verticalAlign: 'baseline', minHeight: '40px', display: 'inline-block' }}>&nbsp;</span>
+                            )}
+                            กรรมการผู้มีอำนาจลงนาม
+                        </p>
+                        <p className="mb-2 ml-3">(<span className={`inline-block border-b border-dotted border-slate-400 w-[200px] ${companyData.signerName ? 'text-center' : ''}`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>{companyData.signerName || '\u00A0'}</span>)</p>
+                        <p className="mb-2">วันที่<span className={`inline-block border-b border-dotted border-slate-400 w-[200px] mx-2 ${companyData.companySignDate ? 'text-center' : ''}`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>{companyData.companySignDate || '\u00A0'}</span></p>
                     </div>
 
                     {/* Employee Signature */}
@@ -515,7 +524,7 @@ export default function NDADocument({ applicant, formData = {} }) {
                             พนักงาน
                         </p>
                         <p className="mb-2 text-center">(<span className="inline-block border-b border-dotted border-slate-400 w-[250px]" style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>{applicant?.full_name || ''}</span>)</p>
-                        <p className="mb-2">วันที่<span className="inline-block border-b border-dotted border-slate-400 w-[200px] mx-2" style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>&nbsp;</span></p>
+                        <p className="mb-2">วันที่<span className={`inline-block border-b border-dotted border-slate-400 w-[200px] mx-2 ${formData.employeeSignDate ? 'text-center' : ''}`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>{formData.employeeSignDate || '\u00A0'}</span></p>
                     </div>
                 </div>
             </div>

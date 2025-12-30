@@ -1,24 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { FileDown, Eye, Loader2, ArrowLeft } from "lucide-react";
+import { FileDown, Eye, Loader2, ArrowLeft, Send } from "lucide-react";
 import { useNavigate } from 'react-router-dom';
 import NDADocument from '@/components/application/pdf/NDADocument';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import toast from 'react-hot-toast';
 
 export default function FMHRD27Page() {
     const navigate = useNavigate();
+    const queryClient = useQueryClient();
     const [applicantId, setApplicantId] = useState(null);
     const [generatingPdf, setGeneratingPdf] = useState(false);
     const [showForm, setShowForm] = useState(false);
     const [formData, setFormData] = useState({
         contractDate: '',
-        signerName: '',
-        companySignature: '',
-        companySignDate: '',
         employeeSignDate: ''
     });
 
@@ -39,6 +38,31 @@ export default function FMHRD27Page() {
         },
         enabled: !!applicantId
     });
+
+    const submitMutation = useMutation({
+        mutationFn: async (data) => {
+            return await base44.entities.Applicant.update(applicantId, data);
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries(['user_applicant', applicantId]);
+            toast.success('ส่งเอกสารเรียบร้อยแล้ว');
+            navigate('/user-dashboard');
+        },
+        onError: () => {
+            toast.error('เกิดข้อผิดพลาดในการส่งเอกสาร');
+        }
+    });
+
+    const handleSubmit = () => {
+        const ndaData = {
+            nda_document: {
+                status: 'submitted',
+                employee_data: formData,
+                submitted_date: new Date().toISOString()
+            }
+        };
+        submitMutation.mutate(ndaData);
+    };
 
     const handleGeneratePDF = async (action) => {
         const pages = document.querySelectorAll('.pdpa-page');
@@ -107,7 +131,7 @@ export default function FMHRD27Page() {
                             onClick={() => setShowForm(true)}
                             className="bg-indigo-600 hover:bg-indigo-700"
                         >
-                            กรอกข้อมูล
+                            กรอกเอกสาร
                         </Button>
                         <Button 
                             variant="outline"
@@ -118,12 +142,12 @@ export default function FMHRD27Page() {
                             Preview
                         </Button>
                         <Button 
-                            onClick={() => handleGeneratePDF('download')}
-                            disabled={generatingPdf}
+                            onClick={handleSubmit}
+                            disabled={submitMutation.isPending}
                             className="bg-green-600 hover:bg-green-700"
                         >
-                            {generatingPdf ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <FileDown className="w-4 h-4 mr-2" />}
-                            ดาวน์โหลด PDF
+                            {submitMutation.isPending ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Send className="w-4 h-4 mr-2" />}
+                            ส่งเอกสาร
                         </Button>
                     </div>
                 </div>
@@ -159,46 +183,6 @@ export default function FMHRD27Page() {
                                         type="date"
                                         value={formData.contractDate}
                                         onChange={(e) => setFormData({ ...formData, contractDate: e.target.value })}
-                                        className="w-full px-3 py-2 border border-slate-300 rounded-md"
-                                    />
-                                </div>
-
-                                <div>
-                                    <label className="block text-sm font-medium text-slate-700 mb-2">ชื่อกรรมการผู้มีอำนาจลงนาม</label>
-                                    <input
-                                        type="text"
-                                        value={formData.signerName}
-                                        onChange={(e) => setFormData({ ...formData, signerName: e.target.value })}
-                                        className="w-full px-3 py-2 border border-slate-300 rounded-md"
-                                        placeholder="ระบุชื่อกรรมการ"
-                                    />
-                                </div>
-
-                                <div>
-                                    <label className="block text-sm font-medium text-slate-700 mb-2">ลายเซ็นกรรมการ (อัพโหลดรูปภาพ)</label>
-                                    <input
-                                        type="file"
-                                        accept="image/*"
-                                        onChange={async (e) => {
-                                            const file = e.target.files?.[0];
-                                            if (file) {
-                                                const { file_url } = await base44.integrations.Core.UploadFile({ file });
-                                                setFormData({ ...formData, companySignature: file_url });
-                                            }
-                                        }}
-                                        className="w-full px-3 py-2 border border-slate-300 rounded-md"
-                                    />
-                                    {formData.companySignature && (
-                                        <img src={formData.companySignature} alt="Company signature" className="mt-2 h-20 object-contain border rounded" />
-                                    )}
-                                </div>
-
-                                <div>
-                                    <label className="block text-sm font-medium text-slate-700 mb-2">วันที่ลงนาม (บริษัท)</label>
-                                    <input
-                                        type="date"
-                                        value={formData.companySignDate}
-                                        onChange={(e) => setFormData({ ...formData, companySignDate: e.target.value })}
                                         className="w-full px-3 py-2 border border-slate-300 rounded-md"
                                     />
                                 </div>
