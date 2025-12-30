@@ -464,7 +464,7 @@ export default function NDADocument({ applicant, formData = {} }) {
             </div>
 
             {/* Clause 10.4 */}
-            <div className="mb-4 leading-[1.4] text-justify">
+            <div className="mb-4 pl-4 leading-[1.4] text-justify">
                 <p>10.4 พนักงานรับทราบว่า บริษัทให้ความสำคัญกับความปลอดภัยด้านข้อมูล (Information Security) และ
                     ได้จัดทำนโยบายและมาตรการภายในเพื่อป้องกันการรั่วไหลของข้อมูล ดังนั้น พนักงานต้องปฏิบัติตาม
                     นโยบายดังกล่าวโดยเคร่งครัด</p>
