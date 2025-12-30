@@ -15,8 +15,9 @@ import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import NDAReviewModal from '@/components/admin/NDAReviewModal';
 import PDPAReviewModal from '@/components/admin/PDPAReviewModal';
 import FMHRD19ReviewModal from '@/components/admin/FMHRD19ReviewModal';
+import CriminalCheckReviewModal from '@/components/admin/CriminalCheckReviewModal';
 
-function DocumentsView({ onReviewNDA, onReviewPDPA, onReviewFMHRD19 }) {
+function DocumentsView({ onReviewNDA, onReviewPDPA, onReviewFMHRD19, onReviewCriminalCheck }) {
     const { data: applicants = [], isLoading } = useQuery({
         queryKey: ['applicants'],
         queryFn: () => base44.entities.Applicant.list()
@@ -32,6 +33,10 @@ function DocumentsView({ onReviewNDA, onReviewPDPA, onReviewFMHRD19 }) {
     
     const fmhrd19Docs = applicants.filter(a => 
         a.fmhrd19_document?.status === 'submitted' || a.fmhrd19_document?.status === 'completed'
+    );
+    
+    const criminalCheckDocs = applicants.filter(a => 
+        a.criminal_check_document?.status === 'submitted' || a.criminal_check_document?.status === 'completed'
     );
 
     if (isLoading) {
@@ -203,6 +208,59 @@ function DocumentsView({ onReviewNDA, onReviewPDPA, onReviewFMHRD19 }) {
                         </div>
                     )}
                 </div>
+
+                {/* Criminal Check Documents */}
+                <div>
+                    <h2 className="text-2xl font-bold text-slate-800 mb-4">หนังสือมอบอำนาจและยินยอมตรวจประวัติอาชญากรรม</h2>
+                    {criminalCheckDocs.length === 0 ? (
+                        <Card>
+                            <CardContent className="p-8 text-center text-slate-500">
+                                ยังไม่มีเอกสารที่ส่งมา
+                            </CardContent>
+                        </Card>
+                    ) : (
+                        <div className="grid grid-cols-1 gap-4">
+                            {criminalCheckDocs.map(applicant => (
+                                <Card key={applicant.id} className="hover:shadow-md transition-shadow">
+                                    <CardContent className="p-6">
+                                        <div className="flex items-center justify-between">
+                                            <div className="flex items-center gap-4">
+                                                <div className="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center">
+                                                    <FileCheck className="w-6 h-6 text-amber-600" />
+                                                </div>
+                                                <div>
+                                                    <h3 className="font-semibold text-lg">{applicant.full_name}</h3>
+                                                    <p className="text-sm text-slate-500">
+                                                        ส่งเมื่อ: {applicant.criminal_check_document?.submitted_date ? 
+                                                            new Date(applicant.criminal_check_document.submitted_date).toLocaleDateString('th-TH', {
+                                                                year: 'numeric',
+                                                                month: 'long',
+                                                                day: 'numeric',
+                                                                hour: '2-digit',
+                                                                minute: '2-digit'
+                                                            }) : '-'
+                                                        }
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div className="flex items-center gap-3">
+                                                <Badge variant={applicant.criminal_check_document?.status === 'completed' ? 'success' : 'default'}>
+                                                    {applicant.criminal_check_document?.status === 'completed' ? 'เสร็จสิ้น' : 'รอดำเนินการ'}
+                                                </Badge>
+                                                <Button 
+                                                    onClick={() => onReviewCriminalCheck(applicant)}
+                                                    size="sm"
+                                                >
+                                                    กรอกข้อมูลและเซ็น
+                                                </Button>
+                                            </div>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            ))}
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     );
@@ -216,6 +274,7 @@ export default function AdminPage() {
     const [reviewingApplicant, setReviewingApplicant] = useState(null);
     const [reviewingPDPA, setReviewingPDPA] = useState(null);
     const [reviewingFMHRD19, setReviewingFMHRD19] = useState(null);
+    const [reviewingCriminalCheck, setReviewingCriminalCheck] = useState(null);
 
     useEffect(() => {
         const checkAccess = async () => {
@@ -299,6 +358,7 @@ export default function AdminPage() {
                         onReviewNDA={setReviewingApplicant}
                         onReviewPDPA={setReviewingPDPA}
                         onReviewFMHRD19={setReviewingFMHRD19}
+                        onReviewCriminalCheck={setReviewingCriminalCheck}
                     />
                 ) : (
                     <div className="h-full overflow-y-auto">
@@ -326,6 +386,13 @@ export default function AdminPage() {
                 applicant={reviewingFMHRD19}
                 isOpen={!!reviewingFMHRD19}
                 onClose={() => setReviewingFMHRD19(null)}
+            />
+
+            {/* Criminal Check Review Modal */}
+            <CriminalCheckReviewModal 
+                applicant={reviewingCriminalCheck}
+                isOpen={!!reviewingCriminalCheck}
+                onClose={() => setReviewingCriminalCheck(null)}
             />
         </div>
     );
