@@ -26,14 +26,31 @@ export default function EmploymentContractPage() {
         district: '',
         province: '',
         zipcode: '',
-        emergencyContact: '',
-        purpose: '',
-        startDate: '',
+        startDay: '',
+        startMonth: '',
         startYear: '',
-        endDate: '',
+        endDay: '',
+        endMonth: '',
         endYear: '',
+        workStartDay: '',
+        workStartMonth: '',
+        workStartYear: '',
+        position: '',
+        department: '',
+        division: '',
+        workTimeStart: '',
+        workTimeEnd: '',
+        workTimeAlt1: '',
+        workTimeAlt2: '',
         dailyRate: '',
-        dailyRateText: ''
+        dailyRateText: '',
+        monthlyRate: '',
+        monthlyRateText: '',
+        bankName: '',
+        accountNumber: '',
+        accountName: '',
+        checkAccountName: '',
+        probationDays: ''
     });
 
     useEffect(() => {
@@ -191,107 +208,367 @@ export default function EmploymentContractPage() {
                             <CardHeader className="border-b bg-slate-50">
                                 <CardTitle>กรอกข้อมูลสัญญาจ้างงาน</CardTitle>
                             </CardHeader>
-                            <CardContent className="p-6 space-y-4">
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div>
-                                        <label className="block text-sm font-medium text-slate-700 mb-2">วันที่ทำสัญญา</label>
-                                        <input
-                                            type="date"
-                                            value={formData.contractDate}
-                                            onChange={(e) => setFormData({ ...formData, contractDate: e.target.value })}
-                                            className="w-full px-3 py-2 border border-slate-300 rounded-md"
-                                        />
+                            <CardContent className="p-6 space-y-6">
+                                <div className="space-y-4">
+                                    <h3 className="font-semibold text-slate-800">ข้อมูลทั่วไป</h3>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 mb-2">วันที่ทำสัญญา</label>
+                                            <input
+                                                type="date"
+                                                value={formData.contractDate}
+                                                onChange={(e) => setFormData({ ...formData, contractDate: e.target.value })}
+                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                            />
+                                        </div>
                                     </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-slate-700 mb-2">บ้านเลขที่</label>
-                                        <input
-                                            type="text"
-                                            value={formData.houseNumber}
-                                            onChange={(e) => setFormData({ ...formData, houseNumber: e.target.value })}
-                                            className="w-full px-3 py-2 border border-slate-300 rounded-md"
-                                        />
+                                </div>
+
+                                <div className="space-y-4 border-t pt-4">
+                                    <h3 className="font-semibold text-slate-800">ที่อยู่ปัจจุบัน (ถ้าต่างจากที่กรอกไว้)</h3>
+                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 mb-2">บ้านเลขที่</label>
+                                            <input
+                                                type="text"
+                                                value={formData.houseNumber}
+                                                onChange={(e) => setFormData({ ...formData, houseNumber: e.target.value })}
+                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                                placeholder="ถ้าต่างจากที่กรอก"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 mb-2">หมู่</label>
+                                            <input
+                                                type="text"
+                                                value={formData.moo}
+                                                onChange={(e) => setFormData({ ...formData, moo: e.target.value })}
+                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 mb-2">ซอย</label>
+                                            <input
+                                                type="text"
+                                                value={formData.soi}
+                                                onChange={(e) => setFormData({ ...formData, soi: e.target.value })}
+                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 mb-2">ถนน</label>
+                                            <input
+                                                type="text"
+                                                value={formData.road}
+                                                onChange={(e) => setFormData({ ...formData, road: e.target.value })}
+                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 mb-2">ตำบล/แขวง</label>
+                                            <input
+                                                type="text"
+                                                value={formData.subdistrict}
+                                                onChange={(e) => setFormData({ ...formData, subdistrict: e.target.value })}
+                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 mb-2">อำเภอ/เขต</label>
+                                            <input
+                                                type="text"
+                                                value={formData.district}
+                                                onChange={(e) => setFormData({ ...formData, district: e.target.value })}
+                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 mb-2">จังหวัด</label>
+                                            <input
+                                                type="text"
+                                                value={formData.province}
+                                                onChange={(e) => setFormData({ ...formData, province: e.target.value })}
+                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 mb-2">รหัสไปรษณีย์</label>
+                                            <input
+                                                type="text"
+                                                value={formData.zipcode}
+                                                onChange={(e) => setFormData({ ...formData, zipcode: e.target.value })}
+                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                            />
+                                        </div>
                                     </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-slate-700 mb-2">หมู่</label>
-                                        <input
-                                            type="text"
-                                            value={formData.moo}
-                                            onChange={(e) => setFormData({ ...formData, moo: e.target.value })}
-                                            className="w-full px-3 py-2 border border-slate-300 rounded-md"
-                                        />
+                                </div>
+
+                                <div className="space-y-4 border-t pt-4">
+                                    <h3 className="font-semibold text-slate-800">ระยะเวลาและตำแหน่ง</h3>
+                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 mb-2">วันที่เริ่มโครงการ</label>
+                                            <input
+                                                type="text"
+                                                value={formData.startDay}
+                                                onChange={(e) => setFormData({ ...formData, startDay: e.target.value })}
+                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                                placeholder="วันที่"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 mb-2">เดือน</label>
+                                            <input
+                                                type="text"
+                                                value={formData.startMonth}
+                                                onChange={(e) => setFormData({ ...formData, startMonth: e.target.value })}
+                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                                placeholder="เดือน"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 mb-2">พ.ศ.</label>
+                                            <input
+                                                type="text"
+                                                value={formData.startYear}
+                                                onChange={(e) => setFormData({ ...formData, startYear: e.target.value })}
+                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                                placeholder="2568"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 mb-2">วันที่สิ้นสุด</label>
+                                            <input
+                                                type="text"
+                                                value={formData.endDay}
+                                                onChange={(e) => setFormData({ ...formData, endDay: e.target.value })}
+                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 mb-2">เดือน</label>
+                                            <input
+                                                type="text"
+                                                value={formData.endMonth}
+                                                onChange={(e) => setFormData({ ...formData, endMonth: e.target.value })}
+                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 mb-2">พ.ศ.</label>
+                                            <input
+                                                type="text"
+                                                value={formData.endYear}
+                                                onChange={(e) => setFormData({ ...formData, endYear: e.target.value })}
+                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                            />
+                                        </div>
                                     </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-slate-700 mb-2">ซอย</label>
-                                        <input
-                                            type="text"
-                                            value={formData.soi}
-                                            onChange={(e) => setFormData({ ...formData, soi: e.target.value })}
-                                            className="w-full px-3 py-2 border border-slate-300 rounded-md"
-                                        />
+
+                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 mb-2">วันที่เริ่มงาน</label>
+                                            <input
+                                                type="text"
+                                                value={formData.workStartDay}
+                                                onChange={(e) => setFormData({ ...formData, workStartDay: e.target.value })}
+                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 mb-2">เดือน</label>
+                                            <input
+                                                type="text"
+                                                value={formData.workStartMonth}
+                                                onChange={(e) => setFormData({ ...formData, workStartMonth: e.target.value })}
+                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 mb-2">พ.ศ.</label>
+                                            <input
+                                                type="text"
+                                                value={formData.workStartYear}
+                                                onChange={(e) => setFormData({ ...formData, workStartYear: e.target.value })}
+                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                            />
+                                        </div>
                                     </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-slate-700 mb-2">ถนน</label>
-                                        <input
-                                            type="text"
-                                            value={formData.road}
-                                            onChange={(e) => setFormData({ ...formData, road: e.target.value })}
-                                            className="w-full px-3 py-2 border border-slate-300 rounded-md"
-                                        />
+
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 mb-2">ตำแหน่ง</label>
+                                            <input
+                                                type="text"
+                                                value={formData.position}
+                                                onChange={(e) => setFormData({ ...formData, position: e.target.value })}
+                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 mb-2">หน่วยงาน</label>
+                                            <input
+                                                type="text"
+                                                value={formData.department}
+                                                onChange={(e) => setFormData({ ...formData, department: e.target.value })}
+                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 mb-2">แผนก/ฝ่าย</label>
+                                            <input
+                                                type="text"
+                                                value={formData.division}
+                                                onChange={(e) => setFormData({ ...formData, division: e.target.value })}
+                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 mb-2">ระยะทดลองงาน (วัน)</label>
+                                            <input
+                                                type="text"
+                                                value={formData.probationDays}
+                                                onChange={(e) => setFormData({ ...formData, probationDays: e.target.value })}
+                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                                placeholder="เช่น 120"
+                                            />
+                                        </div>
                                     </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-slate-700 mb-2">ตำบล/แขวง</label>
-                                        <input
-                                            type="text"
-                                            value={formData.subdistrict}
-                                            onChange={(e) => setFormData({ ...formData, subdistrict: e.target.value })}
-                                            className="w-full px-3 py-2 border border-slate-300 rounded-md"
-                                        />
+                                </div>
+
+                                <div className="space-y-4 border-t pt-4">
+                                    <h3 className="font-semibold text-slate-800">เวลาทำงาน</h3>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 mb-2">เวลาเข้างาน</label>
+                                            <input
+                                                type="text"
+                                                value={formData.workTimeStart}
+                                                onChange={(e) => setFormData({ ...formData, workTimeStart: e.target.value })}
+                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                                placeholder="เช่น 08:00"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 mb-2">เวลาออกงาน</label>
+                                            <input
+                                                type="text"
+                                                value={formData.workTimeEnd}
+                                                onChange={(e) => setFormData({ ...formData, workTimeEnd: e.target.value })}
+                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                                placeholder="เช่น 17:00"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 mb-2">เวลาเข้างาน (ทางเลือก 2)</label>
+                                            <input
+                                                type="text"
+                                                value={formData.workTimeAlt1}
+                                                onChange={(e) => setFormData({ ...formData, workTimeAlt1: e.target.value })}
+                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 mb-2">เวลาออกงาน (ทางเลือก 2)</label>
+                                            <input
+                                                type="text"
+                                                value={formData.workTimeAlt2}
+                                                onChange={(e) => setFormData({ ...formData, workTimeAlt2: e.target.value })}
+                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                            />
+                                        </div>
                                     </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-slate-700 mb-2">อำเภอ/เขต</label>
-                                        <input
-                                            type="text"
-                                            value={formData.district}
-                                            onChange={(e) => setFormData({ ...formData, district: e.target.value })}
-                                            className="w-full px-3 py-2 border border-slate-300 rounded-md"
-                                        />
+                                </div>
+
+                                <div className="space-y-4 border-t pt-4">
+                                    <h3 className="font-semibold text-slate-800">ค่าจ้าง</h3>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 mb-2">ค่าจ้างรายวัน (ตัวเลข)</label>
+                                            <input
+                                                type="text"
+                                                value={formData.dailyRate}
+                                                onChange={(e) => setFormData({ ...formData, dailyRate: e.target.value })}
+                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                                placeholder="เช่น 300"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 mb-2">ค่าจ้างรายวัน (ตัวอักษร)</label>
+                                            <input
+                                                type="text"
+                                                value={formData.dailyRateText}
+                                                onChange={(e) => setFormData({ ...formData, dailyRateText: e.target.value })}
+                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                                placeholder="สามร้อยบาทถ้วน"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 mb-2">ค่าจ้างรายเดือน (ตัวเลข)</label>
+                                            <input
+                                                type="text"
+                                                value={formData.monthlyRate}
+                                                onChange={(e) => setFormData({ ...formData, monthlyRate: e.target.value })}
+                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                                placeholder="เช่น 15000"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 mb-2">ค่าจ้างรายเดือน (ตัวอักษร)</label>
+                                            <input
+                                                type="text"
+                                                value={formData.monthlyRateText}
+                                                onChange={(e) => setFormData({ ...formData, monthlyRateText: e.target.value })}
+                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                                placeholder="หนึ่งหมื่นห้าพันบาทถ้วน"
+                                            />
+                                        </div>
                                     </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-slate-700 mb-2">จังหวัด</label>
-                                        <input
-                                            type="text"
-                                            value={formData.province}
-                                            onChange={(e) => setFormData({ ...formData, province: e.target.value })}
-                                            className="w-full px-3 py-2 border border-slate-300 rounded-md"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-slate-700 mb-2">รหัสไปรษณีย์</label>
-                                        <input
-                                            type="text"
-                                            value={formData.zipcode}
-                                            onChange={(e) => setFormData({ ...formData, zipcode: e.target.value })}
-                                            className="w-full px-3 py-2 border border-slate-300 rounded-md"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-slate-700 mb-2">ค่าจ้างต่อวัน (บาท)</label>
-                                        <input
-                                            type="text"
-                                            value={formData.dailyRate}
-                                            onChange={(e) => setFormData({ ...formData, dailyRate: e.target.value })}
-                                            className="w-full px-3 py-2 border border-slate-300 rounded-md"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-slate-700 mb-2">ค่าจ้างต่อวัน (ตัวอักษร)</label>
-                                        <input
-                                            type="text"
-                                            value={formData.dailyRateText}
-                                            onChange={(e) => setFormData({ ...formData, dailyRateText: e.target.value })}
-                                            className="w-full px-3 py-2 border border-slate-300 rounded-md"
-                                            placeholder="เช่น สามร้อยบาทถ้วน"
-                                        />
+                                </div>
+
+                                <div className="space-y-4 border-t pt-4">
+                                    <h3 className="font-semibold text-slate-800">ข้อมูลธนาคาร</h3>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 mb-2">ธนาคาร</label>
+                                            <input
+                                                type="text"
+                                                value={formData.bankName}
+                                                onChange={(e) => setFormData({ ...formData, bankName: e.target.value })}
+                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                                placeholder="เช่น ธนาคารกสิกรไทย"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 mb-2">เลขบัญชี</label>
+                                            <input
+                                                type="text"
+                                                value={formData.accountNumber}
+                                                onChange={(e) => setFormData({ ...formData, accountNumber: e.target.value })}
+                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                                placeholder="xxx-x-xxxxx-x"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 mb-2">ชื่อบัญชี</label>
+                                            <input
+                                                type="text"
+                                                value={formData.accountName}
+                                                onChange={(e) => setFormData({ ...formData, accountName: e.target.value })}
+                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                                placeholder="ชื่อ-สกุล ตามบัญชี"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 mb-2">ชื่อบัญชี (สำหรับเช็ค)</label>
+                                            <input
+                                                type="text"
+                                                value={formData.checkAccountName}
+                                                onChange={(e) => setFormData({ ...formData, checkAccountName: e.target.value })}
+                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                                placeholder="ชื่อสำหรับเช็คขีดคร่อม"
+                                            />
+                                        </div>
                                     </div>
                                 </div>
 
