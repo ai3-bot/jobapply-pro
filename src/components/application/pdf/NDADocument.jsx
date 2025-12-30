@@ -1,4 +1,4 @@
-import React from 'react';
+ทสทimport React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 
@@ -499,7 +499,7 @@ export default function NDADocument({ applicant, formData = {} }) {
                     {/* Company Signature */}
                     <div className="col-span-2">
                         <p className="mb-2">ลงชื่อ<span className="inline-block border-b border-dotted border-slate-400 w-[180px] mx-2" style={{ verticalAlign: 'baseline', minHeight: '40px', display: 'inline-block' }}>&nbsp;</span>กรรมการผู้มีอำนาจลงนาม</p>
-                        <p className="mb-2">(<span className="inline-block border-b border-dotted border-slate-400 w-[200px]" style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>&nbsp;</span>)</p>
+                        <p className="mb-2 ml-3">(<span className="inline-block border-b border-dotted border-slate-400 w-[200px]" style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>&nbsp;</span>)</p>
                         <p className="mb-2">วันที่<span className="inline-block border-b border-dotted border-slate-400 w-[200px] mx-2" style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>&nbsp;</span></p>
                     </div>
 
