@@ -11,7 +11,11 @@ export default function FMHRD30Document({ applicant }) {
     
     const appLogo = settings?.find(s => s.key === 'app_logo')?.value;
 
+    const personalData = applicant?.personal_data || {};
+
     return (
+        <>
+        {/* Page 1 */}
         <div 
             className="pdpa-page bg-white text-slate-900 mx-auto relative text-[14px] font-sans shadow-sm print:shadow-none"
             style={{ 
@@ -127,5 +131,98 @@ export default function FMHRD30Document({ applicant }) {
                 www.ko.in.th Strategy . AI . DX . Sustainability
             </div>
         </div>
+
+        {/* Page 2 - หนังสือยินยอมให้หักเงินเดือน */}
+        <div 
+            className="pdpa-page bg-white text-slate-900 mx-auto relative text-[14px] font-sans shadow-sm print:shadow-none mt-8"
+            style={{ 
+                padding: '20mm',
+                width: '210mm', 
+                minHeight: '297mm',
+                fontFamily: 'TH Sarabun New, Sarabun, sans-serif',
+                lineHeight: '1.6'
+            }}
+        >
+            {/* Header with Logo */}
+            <div className="flex justify-end mb-6">
+                {appLogo ? (
+                    <img src={appLogo} alt="Logo" crossOrigin="anonymous" className="h-[60px] w-auto object-contain" />
+                ) : (
+                    <div className="h-[60px] w-[100px] bg-slate-100 rounded flex items-center justify-center text-[10px] text-slate-400">LOGO</div>
+                )}
+            </div>
+
+            {/* Title */}
+            <div className="text-center mb-6">
+                <h1 className="text-[18px] font-bold mb-4">หนังสือยินยอมให้หักเงินเดือน</h1>
+                <div className="text-right mb-4">
+                    <p>วันที่ <span className="inline-block border-b border-dotted border-slate-400 min-w-[200px] text-center">&nbsp;</span></p>
+                </div>
+            </div>
+
+            {/* Subject */}
+            <div className="mb-4">
+                <p><strong>เรื่อง</strong> ยินยอมให้หักเงินเดือนเพื่อนำส่งการตรวจประวัติอาชญากรรม</p>
+            </div>
+
+            {/* Recipient */}
+            <div className="mb-4">
+                <p><strong>เรียน</strong> พนักงานทุกท่าน</p>
+            </div>
+
+            {/* Employee Information */}
+            <div className="mb-4">
+                <p className="mb-2">
+                    ข้าพเจ้า นาย/นาง/นางสาว/อื่นๆ <span className={`border-b border-dotted border-slate-400 inline-block min-w-[300px] text-center px-2 ${applicant?.full_name ? 'pb-1' : ''}`}>{applicant?.full_name || '\u00A0'}</span> รหัสพนักงาน <span className="inline-block border-b border-dotted border-slate-400 min-w-[100px] text-center">&nbsp;</span>
+                </p>
+                <p>
+                    เป็นพนักงานประจำตำแหน่ง <span className={`border-b border-dotted border-slate-400 inline-block min-w-[150px] text-center px-2 ${personalData.position_1 ? 'pb-1' : ''}`}>{personalData.position_1 || '\u00A0'}</span> แผนก <span className="inline-block border-b border-dotted border-slate-400 min-w-[150px] text-center">&nbsp;</span> เริ่มงานเมื่อวันที่ <span className="inline-block border-b border-dotted border-slate-400 min-w-[120px] text-center">&nbsp;</span>
+                </p>
+            </div>
+
+            {/* Content */}
+            <div className="space-y-3 text-justify">
+                <p className="indent-8">
+                    ข้าพเจ้าขอทำหนังสือฉบับนี้มอบไว้ให้แก่ บริษัท เค แอนด์ โอ ซิสเต็มส์ แอนด์ คอนซัลติ้ง จำกัด มีข้อความดังต่อไปนี้
+                </p>
+
+                <p className="indent-8">
+                    ข้าพเจ้ายินยอมให้บริษัท เค แอนด์ โอ ซิสเต็มส์ แอนด์ คอนซัลติ้ง จำกัด หักเงินเดือนจำนวน 130 บาท เพื่อนำส่งตรวจประวัติอาชญากรรม ให้กับบริษัทฯ ดังนี้
+                </p>
+
+                <div className="ml-8 space-y-1">
+                    <p>- ค่าตรวจประวัติอาชญากรรม ท่านละ 100 บาท</p>
+                    <p>- หนังสือมอบอำนาจ (ค่าแสตมป์อากรท่านละ 30 บาท)</p>
+                    <p>- รวมเป็นท่านละ 130 บาท ทางบริษัทจะหักจากรอบเงินเดือนแรกของพนักงาน</p>
+                </div>
+
+                <p className="indent-8 mt-4">
+                    หนังสือยินยอมฉบับนี้ทำขึ้นโดยความสมัครใจ และข้าพเจ้าได้ตรวจสอบข้อความและถ้อยคำในหนังสือนี้ทั้งหมดแล้ว ตรงตามเจตนารมณ์ของข้าพเจ้าทุกประการ จึงลงลายมือชื่อไว้เป็นหลักฐาน
+                </p>
+            </div>
+
+            {/* Signature */}
+            <div className="mt-16 text-center">
+                <p className="mb-2">
+                    (ลงชื่อ) 
+                    {applicant?.signature_url ? (
+                        <img src={applicant.signature_url} alt="Employee signature" crossOrigin="anonymous" className="inline-block h-[40px] object-contain mx-2" />
+                    ) : (
+                        <span className="inline-block border-b border-dotted border-slate-400 w-[200px] mx-2" style={{ minHeight: '40px', display: 'inline-block' }}>&nbsp;</span>
+                    )}
+                    ผู้ให้ความยินยอม
+                </p>
+                <p className="mb-2">({applicant?.full_name || '........................................'})</p>
+                <p>ตำแหน่ง <span className="inline-block border-b border-dotted border-slate-400 min-w-[200px] text-center">&nbsp;</span></p>
+                <p>วันที่ <span className="inline-block border-b border-dotted border-slate-400 min-w-[50px] text-center">&nbsp;</span> เดือน <span className="inline-block border-b border-dotted border-slate-400 min-w-[100px] text-center">&nbsp;</span> พ.ศ. <span className="inline-block border-b border-dotted border-slate-400 min-w-[80px] text-center">&nbsp;</span></p>
+            </div>
+
+            {/* Footer */}
+            <div className="absolute bottom-[10mm] left-[50%] -translate-x-1/2 text-[9px] text-slate-400 text-center">
+                FM-HRD-30 Rev.00<br/>
+                www.ko.in.th Strategy . AI . DX . Sustainability
+            </div>
+        </div>
+        </>
     );
 }
