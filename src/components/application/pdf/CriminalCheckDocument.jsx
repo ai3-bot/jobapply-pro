@@ -26,7 +26,7 @@ export default function CriminalCheckDocument({ applicant, formData = {} }) {
             }}
         >
             {/* Title and Date Section */}
-            <div className="mb-6 relative" style={{ minHeight: '90px' }}>
+            <div className="mb-3 relative" style={{ minHeight: '90px' }}>
                 {/* Stamp Box - Absolute positioned on left */}
                 <div className="absolute left-0 top-[-5px] border-2 border-slate-400 w-[180px] h-[70px] flex items-center justify-center">
                     <div className="text-center text-[12px] text-slate-500">
