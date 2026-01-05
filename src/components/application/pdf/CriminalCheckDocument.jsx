@@ -70,7 +70,7 @@ export default function CriminalCheckDocument({ applicant, formData = {} }) {
                         {applicant?.signature_url ? (
                             <img src={applicant.signature_url} alt="Employee signature" crossOrigin="anonymous" className="inline-block h-[40px] object-contain mx-2" />
                         ) : (
-                            <span className="inline-block border-b border-dotted border-slate-400 w-[170px] mx-2" style={{ minHeight: '40px', display: 'inline-block' }}>&nbsp;</span>
+                            <span className="inline-block border-b border-dotted border-slate-400 w-[140px] mx-2" style={{ minHeight: '40px', display: 'inline-block' }}>&nbsp;</span>
                         )}
                         ผู้มอบอำนาจ
                     </p>
@@ -82,7 +82,7 @@ export default function CriminalCheckDocument({ applicant, formData = {} }) {
                         {companyData.receiverSignature ? (
                             <img src={companyData.receiverSignature} alt="Receiver signature" crossOrigin="anonymous" className="inline-block h-[40px] object-contain mx-2" />
                         ) : (
-                            <span className="inline-block border-b border-dotted border-slate-400 w-[170px] mx-2" style={{ minHeight: '40px', display: 'inline-block' }}>&nbsp;</span>
+                            <span className="inline-block border-b border-dotted border-slate-400 w-[140px] mx-2" style={{ minHeight: '40px', display: 'inline-block' }}>&nbsp;</span>
                         )}
                         ผู้รับมอบอำนาจ
                     </p>
@@ -98,11 +98,11 @@ export default function CriminalCheckDocument({ applicant, formData = {} }) {
                         {companyData.witness1Signature ? (
                             <img src={companyData.witness1Signature} alt="Witness 1" crossOrigin="anonymous" className="inline-block h-[40px] object-contain mx-2" />
                         ) : (
-                            <span className="inline-block border-b border-dotted border-slate-400 w-[200px] mx-2" style={{ minHeight: '40px', display: 'inline-block' }}>&nbsp;</span>
+                            <span className="inline-block border-b border-dotted border-slate-400 w-[140px] mx-2" style={{ minHeight: '40px', display: 'inline-block' }}>&nbsp;</span>
                         )}
                         พยาน
                     </p>
-                    <p>({companyData.witnessName1 || '........................................'})</p>
+                    <p>({companyData.witnessName1 || '...................................'})</p>
                 </div>
                 <div className="text-center">
                     <p className="mb-2">
@@ -110,11 +110,11 @@ export default function CriminalCheckDocument({ applicant, formData = {} }) {
                         {companyData.witness2Signature ? (
                             <img src={companyData.witness2Signature} alt="Witness 2" crossOrigin="anonymous" className="inline-block h-[40px] object-contain mx-2" />
                         ) : (
-                            <span className="inline-block border-b border-dotted border-slate-400 w-[200px] mx-2" style={{ minHeight: '40px', display: 'inline-block' }}>&nbsp;</span>
+                            <span className="inline-block border-b border-dotted border-slate-400 w-[140px] mx-2" style={{ minHeight: '40px', display: 'inline-block' }}>&nbsp;</span>
                         )}
                         พยาน
                     </p>
-                    <p>({companyData.witnessName2 || '........................................'})</p>
+                    <p>({companyData.witnessName2 || '...................................'})</p>
                 </div>
             </div>
 
