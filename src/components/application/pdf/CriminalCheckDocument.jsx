@@ -130,7 +130,7 @@ export default function CriminalCheckDocument({ applicant, formData = {} }) {
                 <div>
                     <h1 className="text-[16px] font-bold text-center mb-2">หนังสือยินยอมในการเข้าตรวจดูข้อมูลข่าวสารส่วนบุคคล (ประวัติอาชญากรรม)</h1>
                     <h2 className="text-[14px] font-bold text-center mb-3">(ผ่านหน่วยงาน/บริษัท)</h2>
-                    <div className="text-right absolute top-[10px] right-0 space-y-1">
+                    <div className="text-right absolute top-[17px] right-0 space-y-1">
                         <p>
                             ทำที่ <span className="border-b border-dotted border-slate-400 inline-block min-w-[200px] text-center">{companyData.companyLocation || formData.companyLocation || '\u00A0'}</span>
                         </p>
@@ -149,13 +149,13 @@ export default function CriminalCheckDocument({ applicant, formData = {} }) {
                 </p>
                 <p className="font-semibold">โดยหนังสือฉบับนี้</p>
                 <p>
-                    1. ข้าพเจ้ายินยอมให้ <span className="border-b border-dotted border-slate-400 inline-block min-w-[300px] text-center">{companyData.companyName || formData.companyName || '\u00A0'}</span> ซึ่งเป็นหน่วยงานของรัฐหรือบริษัทสำนักงานตั้งอยู่ที่ <span className="border-b border-dotted border-slate-400 inline-block min-w-[500px] text-center">{companyData.companyAddress || formData.companyAddress || '\u00A0'}</span>
+                    ๑. ข้าพเจ้ายินยอมให้ <span className="border-b border-dotted border-slate-400 inline-block min-w-[300px] text-center">{companyData.companyName || formData.companyName || '\u00A0'}</span> ซึ่งเป็นหน่วยงานของรัฐหรือบริษัทสำนักงานตั้งอยู่ที่ <span className="border-b border-dotted border-slate-400 inline-block min-w-[500px] text-center">{companyData.companyAddress || formData.companyAddress || '\u00A0'}</span>
                 </p>
                 <p className="indent-8">
                     ซึ่งเป็นหน่วยงาน ที่ข้าพเจ้าได้ขออนุญาต หรือสมัครงาน มีสิทธิ์ดำเนินการใด ๆ เข้าตรวจดูข้อมูล ข่าวสารส่วนบุคคล (ประวัติอาชญากรรม) ของข้าพเจ้าเพื่อวัตถุประสงค์ <span className="border-b border-dotted border-slate-400 inline-block min-w-[300px] text-center">{formData.purpose || '\u00A0'}</span>
                 </p>
                 <p>
-                    2. ข้าพเจ้ายินยอมให้สำนักงานตำรวจแห่งชาติ หรือสำนักงานพิสูจน์หลักฐานตำรวจ หรือ กองทะเบียนประวัติอาชญากร หรือเจ้าหน้าที่ตรวจสอบประวัติ ดำเนินการจัดเก็บข้อมูล และลายพิมพ์นิ้วมือของข้าพเจ้า รวมทั้งเปิดเผยข้อมูลของข้าพเจ้าแก่หน่วยงานของรัฐเพื่อใช้ขออนุญาต หรือสมัครงานตามอำนาจหน้าที่ของหน่วยงานของรัฐนั้น หรือบริษัทที่ข้าพเจ้าใช้สมัครงาน และดำเนินการใด ๆ ที่เกี่ยวข้องได้ ข้าพเจ้าจะไม่เรียกร้อง ร้องเรียน หรือฟ้องร้องทั้งในความผิดทางแพ่ง ทางอาญา และทางปกครอง
+                    ๒. ข้าพเจ้ายินยอมให้สำนักงานตำรวจแห่งชาติ หรือสำนักงานพิสูจน์หลักฐานตำรวจ หรือ กองทะเบียนประวัติอาชญากร หรือเจ้าหน้าที่ตรวจสอบประวัติ ดำเนินการจัดเก็บข้อมูล และลายพิมพ์นิ้วมือของข้าพเจ้า รวมทั้งเปิดเผยข้อมูลของข้าพเจ้าแก่หน่วยงานของรัฐเพื่อใช้ขออนุญาต หรือสมัครงานตามอำนาจหน้าที่ของหน่วยงานของรัฐนั้น หรือบริษัทที่ข้าพเจ้าใช้สมัครงาน และดำเนินการใด ๆ ที่เกี่ยวข้องได้ ข้าพเจ้าจะไม่เรียกร้อง ร้องเรียน หรือฟ้องร้องทั้งในความผิดทางแพ่ง ทางอาญา และทางปกครอง
                 </p>
                 <p className="indent-8">
                     ข้าพเจ้าได้เข้าใจข้อความในหนังสือยินยอมฉบับนี้โดยตลอดแล้ว จึงได้ลงลายมือชื่อไว้เป็นหลักฐาน ณ วันเดือนปี ที่ระบุข้างต้น
