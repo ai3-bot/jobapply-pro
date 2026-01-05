@@ -9,6 +9,7 @@ import fmHrd27 from './pages/fm-hrd-27';
 import pdpaForm from './pages/pdpa-form';
 import userDashboard from './pages/user-dashboard';
 import userLogin from './pages/user-login';
+import fmHrd30 from './pages/fm-hrd-30';
 import __Layout from './Layout.jsx';
 
 
@@ -24,6 +25,7 @@ export const PAGES = {
     "pdpa-form": pdpaForm,
     "user-dashboard": userDashboard,
     "user-login": userLogin,
+    "fm-hrd-30": fmHrd30,
 }
 
 export const pagesConfig = {
