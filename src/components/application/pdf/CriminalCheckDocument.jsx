@@ -130,7 +130,7 @@ export default function CriminalCheckDocument({ applicant, formData = {} }) {
                 <div>
                     <h1 className="text-[16px] font-bold text-center mb-2">หนังสือยินยอมในการเข้าตรวจดูข้อมูลข่าวสารส่วนบุคคล (ประวัติอาชญากรรม)</h1>
                     <h2 className="text-[14px] font-bold text-center mb-3">(ผ่านหน่วยงาน/บริษัท)</h2>
-                    <div className="text-right absolute top-[6px] right-0 space-y-1">
+                    <div className="text-right absolute top-[25px] right-0 space-y-1">
                         <p>
                             ทำที่ <span className="border-b border-dotted border-slate-400 inline-block min-w-[200px] text-center">{companyData.companyLocation || formData.companyLocation || '\u00A0'}</span>
                         </p>
