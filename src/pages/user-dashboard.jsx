@@ -61,10 +61,9 @@ export default function UserDashboard() {
         { id: 3, name: 'สัญญาจ้าง', description: 'สัญญาจ้างงาน', link: '/employment-contract' },
         { id: 4, name: 'FM-HRD-27', description: 'สัญญา NDA (ไม่เปิดเผยข้อมูล)', link: '/fm-hrd-27' },
         { id: 5, name: 'FM-HRD-30', description: 'การตรวจประวัติอาชญากรรม', link: '/fm-hrd-30' },
-        { id: 6, name: 'หนังสือยินยอมให้หักเงินเดือน', description: 'ยินยอมหักเงินเดือนตรวจประวัติอาชญากรรม', link: '/salary-deduction-form' },
-        { id: 7, name: 'หนังสือมอบอำนาจในการตรวจประวัติอาชญากรรม', description: 'หนังสือมอบอำนาจตรวจประวัติ', link: '/criminal-check-form' },
-        { id: 8, name: 'แบบสปส.', description: 'แบบฟอร์มประกันสังคม', link: null },
-        { id: 9, name: 'ใบขอเอาประกัน', description: 'แบบฟอร์มประกันสังคม', link: null }
+        { id: 6, name: 'หนังสือมอบอำนาจในการตรวจประวัติอาชญากรรม', description: 'หนังสือมอบอำนาจตรวจประวัติ', link: '/criminal-check-form' },
+        { id: 7, name: 'แบบสปส.', description: 'แบบฟอร์มประกันสังคม', link: null },
+        { id: 8, name: 'ใบขอเอาประกัน', description: 'แบบฟอร์มประกันสังคม', link: null }
     ];
 
     return (
