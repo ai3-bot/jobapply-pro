@@ -38,8 +38,8 @@ export default function CriminalCheckDocument({ applicant, formData = {} }) {
                 
                 {/* Title and Date */}
                 <div>
-                    <h1 className="text-[16px] font-bold text-center mb-4 pt-10">หนังสือมอบอำนาจ</h1>
-                    <div className="text-right space-y-1 absolute right-0 top-[10px]">
+                    <h1 className="text-[16px] font-bold text-center mb-4 pt-5">หนังสือมอบอำนาจ</h1>
+                    <div className="text-right space-y-1 absolute right-0 top-[15px]">
                         <p>
                             ทำที่ <span className="border-b border-dotted border-slate-400 inline-block min-w-[200px] text-center">{companyData.companyLocation || formData.companyLocation || '\u00A0'}</span>
                         </p>
@@ -127,15 +127,17 @@ export default function CriminalCheckDocument({ applicant, formData = {} }) {
 
             {/* Title for second document */}
             <div className="mb-1 mt-2">
-                <h1 className="text-[16px] font-bold text-center mb-2">หนังสือยินยอมในการเข้าตรวจดูข้อมูลข่าวสารส่วนบุคคล (ประวัติอาชญากรรม)</h1>
-                <h2 className="text-[14px] font-bold text-center mb-3">(ผ่านหน่วยงาน/บริษัท)</h2>
-                <div className="text-right absolute top-[200px] right-[15px] space-y-1">
-                    <p>
-                        ทำที่ <span className="border-b border-dotted border-slate-400 inline-block min-w-[200px] text-center">{companyData.companyLocation || formData.companyLocation || '\u00A0'}</span>
-                    </p>
-                    <p>
-                        วันที่ <span className="border-b border-dotted border-slate-400 inline-block min-w-[200px] text-center">{companyData.poaDate || formData.poaDate || '\u00A0'}</span>
-                    </p>
+                <div>
+                    <h1 className="text-[16px] font-bold text-center mb-2">หนังสือยินยอมในการเข้าตรวจดูข้อมูลข่าวสารส่วนบุคคล (ประวัติอาชญากรรม)</h1>
+                    <h2 className="text-[14px] font-bold text-center mb-3">(ผ่านหน่วยงาน/บริษัท)</h2>
+                    <div className="text-right absolute top-[10px] right-[15px] space-y-1">
+                        <p>
+                            ทำที่ <span className="border-b border-dotted border-slate-400 inline-block min-w-[200px] text-center">{companyData.companyLocation || formData.companyLocation || '\u00A0'}</span>
+                        </p>
+                        <p>
+                            วันที่ <span className="border-b border-dotted border-slate-400 inline-block min-w-[200px] text-center">{companyData.poaDate || formData.poaDate || '\u00A0'}</span>
+                        </p>
+                    </div>
                 </div>
             </div>
 
