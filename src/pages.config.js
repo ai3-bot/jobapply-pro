@@ -6,10 +6,10 @@ import criminalCheckForm from './pages/criminal-check-form';
 import employmentContract from './pages/employment-contract';
 import fmHrd19 from './pages/fm-hrd-19';
 import fmHrd27 from './pages/fm-hrd-27';
+import fmHrd30 from './pages/fm-hrd-30';
 import pdpaForm from './pages/pdpa-form';
 import userDashboard from './pages/user-dashboard';
 import userLogin from './pages/user-login';
-import fmHrd30 from './pages/fm-hrd-30';
 import __Layout from './Layout.jsx';
 
 
@@ -22,10 +22,10 @@ export const PAGES = {
     "employment-contract": employmentContract,
     "fm-hrd-19": fmHrd19,
     "fm-hrd-27": fmHrd27,
+    "fm-hrd-30": fmHrd30,
     "pdpa-form": pdpaForm,
     "user-dashboard": userDashboard,
     "user-login": userLogin,
-    "fm-hrd-30": fmHrd30,
 }
 
 export const pagesConfig = {

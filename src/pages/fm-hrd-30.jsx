@@ -15,6 +15,13 @@ export default function FMHRD30Page() {
     const queryClient = useQueryClient();
     const [applicantId, setApplicantId] = useState(null);
     const [generatingPdf, setGeneratingPdf] = useState(false);
+    const [showForm, setShowForm] = useState(false);
+    const [formData, setFormData] = useState({
+        prefix: '',
+        employeeId: '',
+        position: '',
+        signaturePosition: ''
+    });
 
     useEffect(() => {
         const id = localStorage.getItem('user_applicant_id');
@@ -118,6 +125,12 @@ export default function FMHRD30Page() {
                     </Button>
                     <div className="flex gap-2">
                         <Button 
+                            onClick={() => setShowForm(true)}
+                            className="bg-indigo-600 hover:bg-indigo-700"
+                        >
+                            กรอกเอกสาร
+                        </Button>
+                        <Button 
                             variant="outline"
                             onClick={() => handleGeneratePDF('preview')}
                             disabled={generatingPdf}
@@ -143,12 +156,79 @@ export default function FMHRD30Page() {
                     <CardContent className="p-0">
                         <div className="overflow-auto max-h-[800px] bg-slate-100 p-8 flex justify-center">
                             <div id="fmhrd30-content">
-                                <FMHRD30Document applicant={applicant} />
+                                <FMHRD30Document applicant={applicant} formData={formData} />
                             </div>
                         </div>
                     </CardContent>
                 </Card>
             </div>
-        </div>
-    );
-}
+
+            {/* Form Modal */}
+            {showForm && (
+                <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+                    <Card className="w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+                        <CardHeader className="border-b bg-slate-50">
+                            <CardTitle>กรอกข้อมูลส่วนพนักงาน</CardTitle>
+                        </CardHeader>
+                        <CardContent className="p-6 space-y-6">
+                            <div className="space-y-4">
+                                <h3 className="font-semibold text-slate-800">ข้อมูลส่วนตัว</h3>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label className="block text-sm font-medium text-slate-700 mb-2">คำนำหน้า (นาย/นาง/นางสาว)</label>
+                                        <input
+                                            type="text"
+                                            value={formData.prefix}
+                                            onChange={(e) => setFormData({ ...formData, prefix: e.target.value })}
+                                            className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                            placeholder="เช่น นาย"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-sm font-medium text-slate-700 mb-2">รหัสพนักงาน</label>
+                                        <input
+                                            type="text"
+                                            value={formData.employeeId}
+                                            onChange={(e) => setFormData({ ...formData, employeeId: e.target.value })}
+                                            className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                            placeholder="รหัสพนักงาน"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-sm font-medium text-slate-700 mb-2">ตำแหน่ง</label>
+                                        <input
+                                            type="text"
+                                            value={formData.position}
+                                            onChange={(e) => setFormData({ ...formData, position: e.target.value })}
+                                            className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                            placeholder="ตำแหน่งงาน"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-sm font-medium text-slate-700 mb-2">ตำแหน่ง (ที่ลายเซ็น)</label>
+                                        <input
+                                            type="text"
+                                            value={formData.signaturePosition}
+                                            onChange={(e) => setFormData({ ...formData, signaturePosition: e.target.value })}
+                                            className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                            placeholder="ตำแหน่งที่ลายเซ็น"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="flex justify-end gap-2 pt-4">
+                                <Button 
+                                    variant="outline"
+                                    onClick={() => setShowForm(false)}
+                                >
+                                    ปิด
+                                </Button>
+                            </div>
+                        </CardContent>
+                    </Card>
+                </div>
+            )}
+            </div>
+            );
+            }
