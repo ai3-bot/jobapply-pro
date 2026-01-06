@@ -7,10 +7,10 @@ import employmentContract from './pages/employment-contract';
 import fmHrd19 from './pages/fm-hrd-19';
 import fmHrd27 from './pages/fm-hrd-27';
 import fmHrd30 from './pages/fm-hrd-30';
+import insuranceEnrollment from './pages/insurance-enrollment';
 import pdpaForm from './pages/pdpa-form';
 import userDashboard from './pages/user-dashboard';
 import userLogin from './pages/user-login';
-import insuranceEnrollment from './pages/insurance-enrollment';
 import __Layout from './Layout.jsx';
 
 
@@ -24,10 +24,10 @@ export const PAGES = {
     "fm-hrd-19": fmHrd19,
     "fm-hrd-27": fmHrd27,
     "fm-hrd-30": fmHrd30,
+    "insurance-enrollment": insuranceEnrollment,
     "pdpa-form": pdpaForm,
     "user-dashboard": userDashboard,
     "user-login": userLogin,
-    "insurance-enrollment": insuranceEnrollment,
 }
 
 export const pagesConfig = {

@@ -169,10 +169,14 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
                                 <p>ชื่อผู้รับประโยชน์<br/>Beneficiary</p>
                                 <p>ความสัมพันธ์<br/>Relationship</p>
                             </div>
-                            {Array(5).fill('').map((_, idx) => (
+                            {(formData.beneficiaries || Array(5).fill({ name: '', relationship: '' })).map((ben, idx) => (
                                 <div key={idx} className="grid grid-cols-2 gap-3">
-                                    <div className="border-b border-dotted border-slate-400 min-h-[28px]"></div>
-                                    <div className="border-b border-dotted border-slate-400 min-h-[28px]"></div>
+                                    <div className="border-b border-dotted border-slate-400 min-h-[28px] px-1">
+                                        {ben.name || '\u00A0'}
+                                    </div>
+                                    <div className="border-b border-dotted border-slate-400 min-h-[28px] px-1">
+                                        {ben.relationship || '\u00A0'}
+                                    </div>
                                 </div>
                             ))}
                         </div>
@@ -199,11 +203,23 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
                     </div>
                     <div className="flex flex-col gap-6 justify-center">
                         <div className="text-center">
-                            <div className="border-b border-slate-400 min-h-[40px] mb-2 mx-8"></div>
+                            <div className="border-b border-slate-400 min-h-[40px] mb-2 mx-8 flex items-center justify-center">
+                                {formData.signatureDate ? new Date(formData.signatureDate).toLocaleDateString('th-TH', { 
+                                    year: 'numeric', 
+                                    month: 'long', 
+                                    day: 'numeric' 
+                                }) : '\u00A0'}
+                            </div>
                             <p>วันที่ Date</p>
                         </div>
                         <div className="text-center">
-                            <div className="border-b border-slate-400 min-h-[50px] mb-2 mx-4"></div>
+                            <div className="border-b border-slate-400 min-h-[50px] mb-2 mx-4 flex items-center justify-center">
+                                {applicant?.signature_url ? (
+                                    <img src={applicant.signature_url} alt="Signature" crossOrigin="anonymous" className="h-[40px] object-contain" />
+                                ) : (
+                                    '\u00A0'
+                                )}
+                            </div>
                             <p>ลายเซ็นพนักงานผู้สมัคร / ผู้เอาประกันภัย</p>
                             <p>Signature of Employee</p>
                         </div>

@@ -17,7 +17,16 @@ export default function InsuranceEnrollmentPage() {
     const [generatingPdf, setGeneratingPdf] = useState(false);
     const [showForm, setShowForm] = useState(false);
     const [formData, setFormData] = useState({
-        employerName: ''
+        employerName: '',
+        beneficiaries: [
+            { name: '', relationship: '' },
+            { name: '', relationship: '' },
+            { name: '', relationship: '' },
+            { name: '', relationship: '' },
+            { name: '', relationship: '' }
+        ],
+        signatureDate: '',
+        signatureUrl: ''
     });
 
     useEffect(() => {
@@ -185,6 +194,52 @@ export default function InsuranceEnrollmentPage() {
                                             onChange={(e) => setFormData({ ...formData, employerName: e.target.value })}
                                             className="w-full px-3 py-2 border border-slate-300 rounded-md"
                                             placeholder="เช่น บริษัท เค แอนด์ โอ ซิสเต็มส์ แอนด์ คอนซัลติ้ง จำกัด"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <h3 className="font-semibold text-slate-800 mb-3">ผู้รับประโยชน์</h3>
+                                        {formData.beneficiaries.map((ben, idx) => (
+                                            <div key={idx} className="grid grid-cols-2 gap-3 mb-3">
+                                                <div>
+                                                    <label className="block text-sm text-slate-600 mb-1">ชื่อผู้รับประโยชน์ {idx + 1}</label>
+                                                    <input
+                                                        type="text"
+                                                        value={ben.name}
+                                                        onChange={(e) => {
+                                                            const newBeneficiaries = [...formData.beneficiaries];
+                                                            newBeneficiaries[idx].name = e.target.value;
+                                                            setFormData({ ...formData, beneficiaries: newBeneficiaries });
+                                                        }}
+                                                        className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                                        placeholder="ชื่อ-นามสกุล"
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <label className="block text-sm text-slate-600 mb-1">ความสัมพันธ์</label>
+                                                    <input
+                                                        type="text"
+                                                        value={ben.relationship}
+                                                        onChange={(e) => {
+                                                            const newBeneficiaries = [...formData.beneficiaries];
+                                                            newBeneficiaries[idx].relationship = e.target.value;
+                                                            setFormData({ ...formData, beneficiaries: newBeneficiaries });
+                                                        }}
+                                                        className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                                        placeholder="เช่น บิดา, มารดา, คู่สมรส"
+                                                    />
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-sm font-medium text-slate-700 mb-2">วันที่</label>
+                                        <input
+                                            type="date"
+                                            value={formData.signatureDate}
+                                            onChange={(e) => setFormData({ ...formData, signatureDate: e.target.value })}
+                                            className="w-full px-3 py-2 border border-slate-300 rounded-md"
                                         />
                                     </div>
                                 </div>
