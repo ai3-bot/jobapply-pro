@@ -119,7 +119,7 @@ export default function FMHRD30Document({ applicant }) {
                 <p className="mb-12">
                     ลงชื่อ: <span className="inline-block border-b border-dotted border-slate-400 w-[200px] mx-2" style={{ minHeight: '40px', display: 'inline-block' }}>&nbsp;</span> (ผู้อนุมัติ)
                 </p>
-                <p>( นายกฤษณ์พงษ์ สุคันโธ )</p>
+                <p>( <span className="inline-block border-b border-dotted border-slate-400 min-w-[250px] text-center">&nbsp;</span> )</p>
                 <p>กรรมการผู้จัดการ</p>
             </div>
 
