@@ -6,7 +6,7 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
 
     return (
         <div 
-            className="pdpa-page bg-white text-slate-900 mx-auto relative shadow-sm print:shadow-none"
+            className="pdpa-page bg-white mx-auto relative shadow-sm print:shadow-none"
             style={{ 
                 fontSize: "18px",
                 padding: '6mm',
