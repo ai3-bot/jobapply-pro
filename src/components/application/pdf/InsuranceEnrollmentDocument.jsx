@@ -73,7 +73,7 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
                     <div className="border border-slate-900 p-2">
                         <div className="grid grid-cols-4 gap-2">
                             {/* Sex */}
-                            <div>
+                            <div className="border-r">
                                 <p className="text-[14px] mb-1">เพศ Sex</p>
                                 <div className="space-y-1">
                                     <label className="flex items-center gap-1 text-[14px]">
@@ -88,7 +88,7 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
                             </div>
 
                             {/* Status */}
-                            <div>
+                            <div className="border-r">
                                 <p className="text-[14px] mb-1 invisible">.</p>
                                 <div className="space-y-1">
                                     <label className="flex items-center gap-1 text-[14px]">
@@ -103,7 +103,7 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
                             </div>
 
                             {/* Date of Birth */}
-                            <div>
+                            <div className="border-r">
                                 <p className="text-[14px] mb-1">วัน เดือน ปี เกิด</p>
                                 <p className="text-[12px] mb-1">Date of Birth</p>
                                 <div className="flex gap-1 mt-2">
