@@ -24,7 +24,7 @@ export default function FMHRD30Document({ applicant }) {
                 width: '210mm', 
                 minHeight: '297mm',
                 fontFamily: 'TH Sarabun New, Sarabun, sans-serif',
-                lineHeight: '1.6'
+                lineHeight: '1'
             }}
         >
             {/* Header with Logo */}
