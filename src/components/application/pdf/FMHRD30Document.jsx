@@ -105,24 +105,26 @@ export default function FMHRD30Document({ applicant }) {
                 </p>
             </div>
 
-            {/* Contact */}
-            <div>
-                <div className="mt-4">
-                    <p className="font-semibold">ติดต่อสอบถามเพิ่มเติม</p>
-                    <p>แผนก HRD: นางสาวณัฎฐณิชา มาวงศ์</p>
-                    <p>E-mail: hr@ko.in.th</p>
+            {/* Contact and Signature - Grid Layout */}
+            <div className="grid grid-cols-2 gap-8 mt-8">
+                {/* Contact - Left */}
+                <div>
+                    <div>
+                        <p className="font-semibold">ติดต่อสอบถามเพิ่มเติม</p>
+                        <p>แผนก HRD: นางสาวณัฎฐณิชา มาวงศ์</p>
+                        <p>E-mail: hr@ko.in.th</p>
+                    </div>
+                    <p className="mt-4">จึงเรียนมาเพื่อทราบโดยทั่วกัน</p>
                 </div>
 
-                <p className="mt-4">จึงเรียนมาเพื่อทราบโดยทั่วกัน</p>
-            </div>
-
-            {/* Signature */}
-            <div className="mt-8 text-center">
-                <p className="mb-12">
-                    ลงชื่อ: <span className="inline-block border-b border-dotted border-slate-400 w-[200px] mx-2" style={{ minHeight: '40px', display: 'inline-block' }}>&nbsp;</span> (ผู้อนุมัติ)
-                </p>
-                <p>( <span className="inline-block border-b border-dotted border-slate-400 min-w-[250px] text-center">&nbsp;</span> )</p>
-                <p>กรรมการผู้จัดการ</p>
+                {/* Signature - Right */}
+                <div className="text-center">
+                    <p className="mb-12">
+                        ลงชื่อ: <span className="inline-block border-b border-dotted border-slate-400 w-[200px] mx-2" style={{ minHeight: '40px', display: 'inline-block' }}>&nbsp;</span> (ผู้อนุมัติ)
+                    </p>
+                    <p>( <span className="inline-block border-b border-dotted border-slate-400 min-w-[250px] text-center">&nbsp;</span> )</p>
+                    <p>กรรมการผู้จัดการ</p>
+                </div>
             </div>
 
             {/* Footer */}
