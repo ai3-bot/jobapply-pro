@@ -40,10 +40,10 @@ export default function FMHRD30Document({ applicant }) {
             <div className="text-center mb-6">
                 <h1 className="text-[24px] font-bold mb-4">การตรวจประวัติอาชญากรรม</h1>
                 <div className="text-right mb-1">
-                    <p>วันที่ <span className="inline-block border-b border-dotted border-slate-400 min-w-[200px] text-center">&nbsp;</span></p>
+                    <p>วันที่ <span className="inline-block min-w-[200px] text-center">&nbsp;</span></p>
                 </div>
                 <div className="text-right mb-4">
-                    <p><strong>เลขที่ประกาศ:</strong> <span className="inline-block border-b border-dotted border-slate-400 min-w-[150px] text-center">&nbsp;</span></p>
+                    <p><strong>เลขที่ประกาศ:</strong> <span className="inline-block min-w-[150px] text-center">&nbsp;</span></p>
                 </div>
             </div>
 
@@ -120,8 +120,8 @@ export default function FMHRD30Document({ applicant }) {
 
                 {/* Signature - Right */}
                 <div className="text-center">
-                    <p className="mt-4">จึงเรียนมาเพื่อทราบโดยทั่วกัน</p>
-                    <p className="mb-12">
+                    <p className="mt-12">จึงเรียนมาเพื่อทราบโดยทั่วกัน</p>
+                    <p className="mb-6">
                         ลงชื่อ: <span className="inline-block border-b border-dotted border-slate-400 w-[200px] mx-2" style={{ minHeight: '40px', display: 'inline-block' }}>&nbsp;</span> (ผู้อนุมัติ)
                     </p>
                     <p>( <span className="inline-block border-b border-dotted border-slate-400 min-w-[250px] text-center">&nbsp;</span> )</p>
