@@ -57,9 +57,9 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
                     <div className="border border-slate-900 p-1">
                         <div className="mb-1">
                             <p className="">เลขที่บัตรประชาชน</p>
-                            <div className="flex items-center gap-2">
+                            <div className="flex items-center justify-between">
                                 <p className="">ID Card</p>
-                                <div className="flex justify-between">
+                                <div className="flex">
                                     {(personalData.id_card || '').split('').concat(Array(13).fill('')).slice(0, 13).map((digit, idx) => (
                                         <div key={idx} className="py-1 px-1.5 border border-slate-400 flex items-center justify-center text-center text-[12px]">
                                             {digit}
