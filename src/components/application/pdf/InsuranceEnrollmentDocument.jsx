@@ -119,7 +119,7 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
                                 <p className=" mb-1">วัน เดือน ปี เกิด</p>
                                 <p className=" mb-1">Date of Birth</p>
                                 <div className="flex mt-2">
-                                    {Array(8).fill('').map((_, idx) => (
+                                    {Array(6).fill('').map((_, idx) => (
                                         <div key={idx} className="p-1 border border-slate-400"></div>
                                     ))}
                                 </div>
@@ -131,7 +131,7 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
                                 <p className=" mb-1">วันที่เริ่มทำงาน</p>
                                 <p className=" mb-1">Date of employment</p>
                                 <div className="flex mt-2">
-                                    {Array(8).fill('').map((_, idx) => (
+                                    {Array(6).fill('').map((_, idx) => (
                                         <div key={idx} className="p-1 border border-slate-400"></div>
                                     ))}
                                 </div>
