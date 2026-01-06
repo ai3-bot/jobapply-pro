@@ -53,7 +53,7 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
                     </div>
 
                     {/* ID Card */}
-                    <div className="border border-slate-900 p-2">
+                    <div className="border border-slate-900 p-1">
                         <div className="mb-1">
                             <p className="text-[14px]">เลขที่บัตรประชาชน</p>
                             <div className="flex items-center gap-2">
