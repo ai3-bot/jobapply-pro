@@ -164,7 +164,7 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
                         <p className=" mb-2">โปรดแจ้งผู้รับประโยชน์และระบุความสัมพันธ์</p>
                         <p className=" mb-2">* กรณีที่มีการแก้ไข ขีดฆ่า ขูดลบ โปรดเซ็นชื่อกำกับด้วย</p>
                         
-                        <div className="space-y-1 text-[12px]">
+                        <div className="space-y-1">
                             <div className="grid grid-cols-2 gap-1">
                                 <p>ชื่อผู้รับประโยชน์<br/>Beneficiary</p>
                                 <p>ความสัมพันธ์<br/>Relationship</p>
@@ -181,7 +181,7 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
             </div>
 
             {/* Terms and Conditions */}
-            <div className="border border-slate-900 p-3 mb-4 text-[13px] text-justify leading-tight">
+            <div className="p-3 mb-4 text-justify leading-tight">
                 <p className="mb-2">ในกรณีที่ท่านมีส่วนออกเงินสมทบสำหรับตัวท่านเอง และผู้อยู่ในอุปการะของท่าน โปรดอ่านข้อความข้างล่างนี้ :</p>
                 <p className="indent-8">
                     ณ ที่นี้ ข้าพเจ้าตกลง และรับใบสมัครขอเอาประกันภัยพนักงาน และจำนวนเงินเอาประกันภัยกลุ่มที่ข้าพเจ้ามีสิทธิภายใต้สัญญาที่ออกโดย บริษัท เอไอเอ จำกัด และข้าพเจ้าอนุญาตให้นายจ้างหักเงินรายได้ของข้าพเจ้า เพื่อชำระเบี้ยประกันภัยส่วนของข้าพเจ้า ข้าพเจ้าสงวนสิทธิที่จะไม่อนุญาตให้นายจ้างหักเงินรายได้ของข้าพเจ้าเมื่อไรก็ได้ โดยแจ้งให้บริษัททราบล่วงหน้าเป็นลายลักษณ์อักษร อนึ่ง เป็นที่ตกลงและเข้าใจว่าสิทธิดังกล่าวข้างต้นจะมีผลก็ต่อเมื่อได้แจ้งให้นายจ้างทราบเป็นลายลักษณ์อักษรล่วงหน้า 30 วัน และการคุ้มครองตามกรมธรรม์ประกันภัยกลุ่มที่ข้าพเจ้ามีส่วนร่วมออกเงินสมทบจะสิ้นสุดลงตั้งแต่วันที่ไม่ได้หักเงินรายได้ของข้าพเจ้า
@@ -189,18 +189,22 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
             </div>
 
             {/* Dependent Coverage Notice */}
-            <div className="border border-slate-900 p-3 mb-6 text-[13px]">
+            <div className="p-3 mb-6">
                 <div className="grid grid-cols-2 gap-4">
-                    <div>
+                    <div className="border border-dotted border-slate-400">
                         <p className="mb-1">ถ้าท่านประสงค์ให้มีประกันภัยผู้อยู่ในอุปการะ โปรดกรอกใบสมัครขอเอาประกันภัยผู้อยู่ในอุปการะด้วย</p>
                         <p className="text-[11px] italic">If you are provided with dependent coverage and are enrolling your dependents, please complete a "Dependent Enrollment Form".</p>
                     </div>
-                    <div className="text-right">
-                        <div className="border-b border-dotted border-slate-400 min-h-[30px] mb-2"></div>
-                        <p className="text-[12px]">วันที่ Date</p>
-                        <div className="border-b border-dotted border-slate-400 min-h-[40px] mt-4 mb-2"></div>
-                        <p className="text-[12px]">ลายเซ็นพนักงานผู้สมัคร / ผู้เอาประกันภัย</p>
-                        <p className="text-[11px]">Signature of Employee</p>
+                    <div className="flex">
+                        <div className="items-center">
+                            <div className="border-b border border-slate-400 min-h-[30px] mb-2"></div>
+                            <p className="">วันที่ Date</p>
+                        </div>
+                        <div className="items-center">
+                            <div className="border-b border border-slate-400 min-h-[40px] mt-4 mb-2"></div>
+                            <p className="">ลายเซ็นพนักงานผู้สมัคร / ผู้เอาประกันภัย</p>
+                            <p className="">Signature of Employee</p>
+                        </div>
                     </div>
                 </div>
             </div>
