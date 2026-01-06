@@ -17,7 +17,7 @@ export default function FMHRD30Document({ applicant }) {
         <>
         {/* Page 1 */}
         <div 
-            className="pdpa-page bg-white text-slate-900 mx-auto relative text-[14px] font-sans shadow-sm print:shadow-none"
+            className="pdpa-page bg-white text-slate-900 mx-auto relative shadow-sm print:shadow-none"
             style={{ 
                 fontSize: "18px" ,
                 padding: '20mm',
@@ -138,13 +138,14 @@ export default function FMHRD30Document({ applicant }) {
 
         {/* Page 2 - หนังสือยินยอมให้หักเงินเดือน */}
         <div 
-            className="pdpa-page bg-white text-slate-900 mx-auto relative text-[14px] font-sans shadow-sm print:shadow-none mt-8"
+            className="pdpa-page bg-white text-slate-900 mx-auto relative shadow-sm print:shadow-none mt-8"
             style={{ 
+                fontSize: "18px" ,
                 padding: '20mm',
                 width: '210mm', 
                 minHeight: '297mm',
                 fontFamily: 'TH Sarabun New, Sarabun, sans-serif',
-                lineHeight: '1.6'
+                lineHeight: '1.2'
             }}
         >
             {/* Header with Logo */}
@@ -206,7 +207,7 @@ export default function FMHRD30Document({ applicant }) {
             </div>
 
             {/* Signature */}
-            <div className="mt-16 text-center">
+            <div className="mt-16 text-end">
                 <p className="mb-2">
                     (ลงชื่อ) 
                     {applicant?.signature_url ? (
