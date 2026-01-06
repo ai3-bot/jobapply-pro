@@ -74,13 +74,13 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
                         <div className="grid grid-cols-4 gap-2">
                             {/* Sex */}
                             <div className="border-r">
-                                <p className="text-[14px] mb-1">เพศ Sex</p>
+                                <p className=" mb-1">เพศ Sex</p>
                                 <div className="space-y-1">
-                                    <label className="flex items-center gap-1 text-[14px]">
+                                    <label className="flex items-center gap-1 ">
                                         <input type="checkbox" checked={personalData.gender === 'male'} readOnly className="w-4 h-4" />
                                         <span>ชาย Male</span>
                                     </label>
-                                    <label className="flex items-center gap-1 text-[14px]">
+                                    <label className="flex items-center gap-1 ">
                                         <input type="checkbox" checked={personalData.gender === 'female'} readOnly className="w-4 h-4" />
                                         <span>หญิง Female</span>
                                     </label>
@@ -89,13 +89,13 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
 
                             {/* Status */}
                             <div className="border-r">
-                                <p className="text-[14px] mb-1 invisible">.</p>
+                                <p className=" mb-1 invisible">.</p>
                                 <div className="space-y-1">
-                                    <label className="flex items-center gap-1 text-[14px]">
+                                    <label className="flex items-center gap-1 ">
                                         <input type="checkbox" className="w-4 h-4" />
                                         <span>โสด Single</span>
                                     </label>
-                                    <label className="flex items-center gap-1 text-[14px]">
+                                    <label className="flex items-center gap-1 ">
                                         <input type="checkbox" className="w-4 h-4" />
                                         <span>สมรส Married</span>
                                     </label>
@@ -104,26 +104,26 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
 
                             {/* Date of Birth */}
                             <div className="border-r">
-                                <p className="text-[14px] mb-1">วัน เดือน ปี เกิด</p>
-                                <p className="text-[12px] mb-1">Date of Birth</p>
+                                <p className=" mb-1">วัน เดือน ปี เกิด</p>
+                                <p className=" mb-1">Date of Birth</p>
                                 <div className="flex mt-2">
                                     {Array(8).fill('').map((_, idx) => (
                                         <div key={idx} className="p-2 border border-slate-400"></div>
                                     ))}
                                 </div>
-                                <p className="text-[10px] mt-1">ว D ด M ป Y</p>
+                                <p className="mt-1">ว D ด M ป Y</p>
                             </div>
 
                             {/* Date of Employment */}
                             <div>
-                                <p className="text-[14px] mb-1">วันที่เริ่มทำงาน</p>
-                                <p className="text-[12px] mb-1">Date of employment</p>
+                                <p className=" mb-1">วันที่เริ่มทำงาน</p>
+                                <p className=" mb-1">Date of employment</p>
                                 <div className="flex mt-2">
                                     {Array(8).fill('').map((_, idx) => (
                                         <div key={idx} className="p-2 border border-slate-400"></div>
                                     ))}
                                 </div>
-                                <p className="text-[10px] mt-1">ว D ด M ป Y</p>
+                                <p className="mt-1">ว D ด M ป Y</p>
                             </div>
                         </div>
                     </div>
