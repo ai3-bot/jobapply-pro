@@ -39,10 +39,10 @@ export default function FMHRD30Document({ applicant }) {
             <div className="text-center mb-6">
                 <h1 className="text-[18px] font-bold mb-4">การตรวจประวัติอาชญากรรม</h1>
                 <div className="text-right mb-1">
-                    <p>วันที่ 19 ธันวาคม 2566</p>
+                    <p>วันที่ <span className="inline-block border-b border-dotted border-slate-400 min-w-[200px] text-center">&nbsp;</span></p>
                 </div>
                 <div className="text-right mb-4">
-                    <p><strong>เลขที่ประกาศ:</strong> KO.G 2566/46</p>
+                    <p><strong>เลขที่ประกาศ:</strong> <span className="inline-block border-b border-dotted border-slate-400 min-w-[150px] text-center">&nbsp;</span></p>
                 </div>
             </div>
 
