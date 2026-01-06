@@ -26,7 +26,7 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
                 {/* Right - Document Title */}
                 <div className="text-center flex flex-col justify-center">
                     <h1 className="text-[22px] font-bold">ใบสมัครขอเอาประกันภัยพนักงาน</h1>
-                    <p className="text-[20px] font-semibold">Employee Enrollment Form</p>
+                    <p className="text-[20px]">Employee Enrollment Form</p>
                 </div>
             </div>
 
@@ -60,7 +60,7 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
                                 <p className="">ID Card</p>
                                 <div className="flex">
                                     {(personalData.id_card || '').split('').concat(Array(13).fill('')).slice(0, 13).map((digit, idx) => (
-                                        <div key={idx} className="px-2 py-3 border border-slate-400 flex items-center justify-center text-center text-[12px]">
+                                        <div key={idx} className="p-2 border border-slate-400 flex items-center justify-center text-center text-[12px]">
                                             {digit}
                                         </div>
                                     ))}
@@ -108,7 +108,7 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
                                 <p className=" mb-1">Date of Birth</p>
                                 <div className="flex mt-2">
                                     {Array(8).fill('').map((_, idx) => (
-                                        <div key={idx} className="p-2 border border-slate-400"></div>
+                                        <div key={idx} className="p-1 border border-slate-400"></div>
                                     ))}
                                 </div>
                                 <p className="mt-1">ว D ด M ป Y</p>
@@ -120,7 +120,7 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
                                 <p className=" mb-1">Date of employment</p>
                                 <div className="flex mt-2">
                                     {Array(8).fill('').map((_, idx) => (
-                                        <div key={idx} className="p-2 border border-slate-400"></div>
+                                        <div key={idx} className="p-1 border border-slate-400"></div>
                                     ))}
                                 </div>
                                 <p className="mt-1">ว D ด M ป Y</p>
@@ -132,7 +132,7 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
                 {/* Right Column - Insurance Info */}
                 <div className="col-span-2">
                     <div className="border border-slate-900 p-3 mb-3">
-                        <p className="text-[14px] font-semibold mb-2 text-center">สำหรับ บริษัท วิริยะประกันภัย</p>
+                        <p className="text-[14px] mb-2 text-center">สำหรับ บริษัท วิริยะประกันภัย</p>
                         <div className="space-y-2">
                             <div>
                                 <p className="text-[12px]">กรมธรรม์ประกันกลุ่มเลขที่</p>
@@ -149,11 +149,11 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
 
                     {/* Beneficiary Section */}
                     <div className="border border-slate-900 p-3">
-                        <p className="text-[13px] font-semibold mb-2">โปรดแจ้งผู้รับประโยชน์และระบุความสัมพันธ์</p>
+                        <p className="text-[13px] mb-2">โปรดแจ้งผู้รับประโยชน์และระบุความสัมพันธ์</p>
                         <p className="text-[10px] mb-2">* กรณีที่มีการแก้ไข ขีดฆ่า ขูดลบ โปรดเซ็นชื่อกำกับด้วย</p>
                         
                         <div className="space-y-1 text-[12px]">
-                            <div className="grid grid-cols-2 gap-1 font-semibold">
+                            <div className="grid grid-cols-2 gap-1">
                                 <p>ชื่อผู้รับประโยชน์<br/>Beneficiary</p>
                                 <p>ความสัมพันธ์<br/>Relationship</p>
                             </div>
@@ -170,7 +170,7 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
 
             {/* Terms and Conditions */}
             <div className="border border-slate-900 p-3 mb-4 text-[13px] text-justify leading-tight">
-                <p className="font-semibold mb-2">ในกรณีที่ท่านมีส่วนออกเงินสมทบสำหรับตัวท่านเอง และผู้อยู่ในอุปการะของท่าน โปรดอ่านข้อความข้างล่างนี้ :</p>
+                <p className="mb-2">ในกรณีที่ท่านมีส่วนออกเงินสมทบสำหรับตัวท่านเอง และผู้อยู่ในอุปการะของท่าน โปรดอ่านข้อความข้างล่างนี้ :</p>
                 <p className="indent-8">
                     ณ ที่นี้ ข้าพเจ้าตกลง และรับใบสมัครขอเอาประกันภัยพนักงาน และจำนวนเงินเอาประกันภัยกลุ่มที่ข้าพเจ้ามีสิทธิภายใต้สัญญาที่ออกโดย บริษัท เอไอเอ จำกัด และข้าพเจ้าอนุญาตให้นายจ้างหักเงินรายได้ของข้าพเจ้า เพื่อชำระเบี้ยประกันภัยส่วนของข้าพเจ้า ข้าพเจ้าสงวนสิทธิที่จะไม่อนุญาตให้นายจ้างหักเงินรายได้ของข้าพเจ้าเมื่อไรก็ได้ โดยแจ้งให้บริษัททราบล่วงหน้าเป็นลายลักษณ์อักษร อนึ่ง เป็นที่ตกลงและเข้าใจว่าสิทธิดังกล่าวข้างต้นจะมีผลก็ต่อเมื่อได้แจ้งให้นายจ้างทราบเป็นลายลักษณ์อักษรล่วงหน้า 30 วัน และการคุ้มครองตามกรมธรรม์ประกันภัยกลุ่มที่ข้าพเจ้ามีส่วนร่วมออกเงินสมทบจะสิ้นสุดลงตั้งแต่วันที่ไม่ได้หักเงินรายได้ของข้าพเจ้า
                 </p>
@@ -180,7 +180,7 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
             <div className="border border-slate-900 p-3 mb-6 text-[13px]">
                 <div className="grid grid-cols-2 gap-4">
                     <div>
-                        <p className="font-semibold mb-1">ถ้าท่านประสงค์ให้มีประกันภัยผู้อยู่ในอุปการะ โปรดกรอกใบสมัครขอเอาประกันภัยผู้อยู่ในอุปการะด้วย</p>
+                        <p className="mb-1">ถ้าท่านประสงค์ให้มีประกันภัยผู้อยู่ในอุปการะ โปรดกรอกใบสมัครขอเอาประกันภัยผู้อยู่ในอุปการะด้วย</p>
                         <p className="text-[11px] italic">If you are provided with dependent coverage and are enrolling your dependents, please complete a "Dependent Enrollment Form".</p>
                     </div>
                     <div className="text-right">
