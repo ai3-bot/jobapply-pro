@@ -8,7 +8,7 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
             className="pdpa-page bg-white text-slate-900 mx-auto relative shadow-sm print:shadow-none"
             style={{ 
                 fontSize: "18px",
-                padding: '8mm',
+                padding: '15mm',
                 width: '210mm', 
                 minHeight: '297mm',
                 fontFamily: 'TH Sarabun New, Sarabun, sans-serif',
@@ -31,9 +31,9 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
             </div>
 
             {/* Main Grid */}
-            <div className="grid grid-cols-5 gap-4 mb-4">
+            <div className="grid grid-cols-4 gap-4 mb-4">
                 {/* Left Column - Main Information */}
-                <div className="col-span-3 space-y-3">
+                <div className="col-span-2 space-y-3">
                     {/* Employer Name */}
                     <div className="border border-slate-900 p-2">
                         <p className="mb-1">นามนายจ้าง (ชื่อบริษัท หรือ ห้างร้าน)</p>
