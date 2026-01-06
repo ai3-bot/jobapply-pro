@@ -98,18 +98,18 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
                                 <p className=" mb-1 invisible">.</p>
                                 <div className="space-y-1">
                                     <label className="flex items-center gap-1 ">
-                                        <div>
+                                        <div className="grid">
                                             <span>โสด</span>
                                             <span>Single</span>
                                         </div>
-                                        <input type="checkbox" className="w-4 h-4" />
+                                        <input type="checkbox" className="w-3 h-3" />
                                     </label>
                                     <label className="flex items-center gap-1 ">
-                                        <div>
+                                        <div className="grid">
                                             <span>สมรส</span>
                                             <span>Married</span>
                                         </div>
-                                        <input type="checkbox" className="w-4 h-4" />
+                                        <input type="checkbox" className="w-3 h-3" />
                                     </label>
                                 </div>
                             </div>
