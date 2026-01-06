@@ -63,7 +63,7 @@ export default function UserDashboard() {
         { id: 5, name: 'FM-HRD-30', description: 'การตรวจประวัติอาชญากรรม', link: '/fm-hrd-30' },
         { id: 6, name: 'หนังสือมอบอำนาจในการตรวจประวัติอาชญากรรม', description: 'หนังสือมอบอำนาจตรวจประวัติ', link: '/criminal-check-form' },
         { id: 7, name: 'แบบสปส.', description: 'แบบฟอร์มประกันสังคม', link: null },
-        { id: 8, name: 'ใบขอเอาประกัน', description: 'แบบฟอร์มประกันสังคม', link: null }
+        { id: 8, name: 'ใบขอเอาประกัน', description: 'แบบฟอร์มประกันภัยพนักงาน', link: '/insurance-enrollment' }
     ];
 
     return (
