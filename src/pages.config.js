@@ -11,6 +11,7 @@ import insuranceEnrollment from './pages/insurance-enrollment';
 import pdpaForm from './pages/pdpa-form';
 import userDashboard from './pages/user-dashboard';
 import userLogin from './pages/user-login';
+import spsForm from './pages/sps-form';
 import __Layout from './Layout.jsx';
 
 
@@ -28,6 +29,7 @@ export const PAGES = {
     "pdpa-form": pdpaForm,
     "user-dashboard": userDashboard,
     "user-login": userLogin,
+    "sps-form": spsForm,
 }
 
 export const pagesConfig = {

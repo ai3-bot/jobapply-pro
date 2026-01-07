@@ -114,6 +114,35 @@ export default function AdminDataForm({ applicant, onSave, onCancel }) {
                         </div>
                     </div>
 
+                    {/* 1.5. SPS Form Type */}
+                    <div className="space-y-3">
+                        <h3 className="font-semibold text-sm border-b pb-2">1.5. ประเภทแบบฟอร์ม สปส.</h3>
+                        <div className="space-y-2">
+                            <Label>เลือกประเภทแบบฟอร์ม สปส. สำหรับผู้สมัครคนนี้</Label>
+                            <RadioGroup 
+                                value={getField('sps_form_type') || '1-03'}
+                                onValueChange={(value) => updateField('sps_form_type', value)}
+                            >
+                                <div className="flex flex-col gap-3">
+                                    <div className="flex items-center gap-2 p-3 border border-slate-200 rounded-lg hover:bg-slate-50">
+                                        <RadioGroupItem value="1-03" id="sps-1-03" />
+                                        <Label htmlFor="sps-1-03" className="cursor-pointer flex-1">
+                                            <div className="font-semibold">สปส. 1-03</div>
+                                            <div className="text-xs text-slate-500">มีประกันสังคมอยู่แล้ว (ย้ายจากที่อื่น)</div>
+                                        </Label>
+                                    </div>
+                                    <div className="flex items-center gap-2 p-3 border border-slate-200 rounded-lg hover:bg-slate-50">
+                                        <RadioGroupItem value="9-02" id="sps-9-02" />
+                                        <Label htmlFor="sps-9-02" className="cursor-pointer flex-1">
+                                            <div className="font-semibold">สปส. 9-02</div>
+                                            <div className="text-xs text-slate-500">ยังไม่มีการทำประกันสังคมไว้</div>
+                                        </Label>
+                                    </div>
+                                </div>
+                            </RadioGroup>
+                        </div>
+                    </div>
+
                     {/* 2. HR Info */}
                     <div className="space-y-3">
                         <h3 className="font-semibold text-sm border-b pb-2">2. ข้อมูล HR</h3>

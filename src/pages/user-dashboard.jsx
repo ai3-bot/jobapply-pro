@@ -62,7 +62,7 @@ export default function UserDashboard() {
         { id: 4, name: 'FM-HRD-27', description: 'สัญญา NDA (ไม่เปิดเผยข้อมูล)', link: '/fm-hrd-27' },
         { id: 5, name: 'FM-HRD-30', description: 'การตรวจประวัติอาชญากรรม', link: '/fm-hrd-30' },
         { id: 6, name: 'หนังสือมอบอำนาจในการตรวจประวัติอาชญากรรม', description: 'หนังสือมอบอำนาจตรวจประวัติ', link: '/criminal-check-form' },
-        { id: 7, name: 'แบบสปส.', description: 'แบบฟอร์มประกันสังคม', link: null },
+        { id: 7, name: 'แบบสปส.', description: 'แบบฟอร์มประกันสังคม', link: '/sps-form', spsType: applicant?.admin_data?.sps_form_type || '1-03' },
         { id: 8, name: 'ใบขอเอาประกัน', description: 'แบบฟอร์มประกันภัยพนักงาน', link: '/insurance-enrollment' }
     ];
 
