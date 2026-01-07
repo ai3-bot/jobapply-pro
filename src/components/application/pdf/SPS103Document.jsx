@@ -2,24 +2,26 @@ import React from 'react';
 
 export default function SPS103Document({ applicant, formData = {} }) {
     const personalData = applicant?.personal_data || {};
+    const familyData = applicant?.family_data || {};
     
     return (
         <div 
             className="pdpa-page bg-white mx-auto relative shadow-sm print:shadow-none"
             style={{ 
-                fontSize: "14px",
-                padding: '8mm',
+                fontSize: "13px",
+                padding: '10mm',
                 width: '210mm', 
                 minHeight: '297mm',
                 fontFamily: 'TH Sarabun New, Sarabun, sans-serif',
-                lineHeight: '1.4'
+                lineHeight: '1.3'
             }}
         >
             {/* Header */}
-            <div className="text-center mb-6">
-                <h1 className="text-[20px] font-bold mb-2">แบบ สปส. 1-03</h1>
-                <h2 className="text-[18px] font-bold mb-1">แบบแจ้งการเปลี่ยนแปลงข้อมูลผู้ประกันตน</h2>
-                <p className="text-[14px]">(กรณีย้ายจากนายจ้างรายเดิม)</p>
+            <div className="text-right mb-2">
+                <span className="text-[12px]">สปส. 1-03</span>
+            </div>
+            <div className="text-center mb-4">
+                <h1 className="text-[18px] font-bold">แบบขึ้นทะเบียนผู้ประกันตน</h1>
             </div>
 
             {/* เลขที่กรมธรรม์ */}
