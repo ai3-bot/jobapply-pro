@@ -33,7 +33,7 @@ export default function SPS103Document({ applicant, formData = {} }) {
                         <div className="space-y-1 text-[12px] p-2">
                             <div className="flex items-center">
                                 <span>ชื่อสถานประกอบการ</span>
-                                <span className="border-b border-dotted border-slate-400 flex-1 min-h-[20px] ml-2">
+                                <span className="border-b border-dotted border-slate-400 flex-1 ml-2 pb-0.5 inline-block">
                                     {formData.employerName || '\u00A0'}
                                 </span>
                             </div>
@@ -58,22 +58,22 @@ export default function SPS103Document({ applicant, formData = {} }) {
                             </div>
                             <div className="flex items-center">
                                 <span>วันที่ผู้ประกันตนเข้าทำงาน</span>
-                                <span className="border-b border-dotted border-slate-400 flex-1 min-h-[20px] ml-2">
+                                <span className="border-b border-dotted border-slate-400 flex-1 ml-2 pb-0.5 inline-block">
                                     {applicant?.start_work_date ? new Date(applicant.start_work_date).toLocaleDateString('th-TH') : '\u00A0'}
                                 </span>
                             </div>
                             <div className="flex items-center gap-2">
                                 <span>ประเภทการจ้าง</span>
                                 <div className="flex items-center gap-1">
-                                    <div className="w-3 h-3 border border-slate-400"></div>
+                                    <div className="w-3 h-3 border border-slate-400 flex-shrink-0"></div>
                                     <span>รายวัน</span>
                                 </div>
                                 <div className="flex items-center gap-1">
-                                    <div className="w-3 h-3 border border-slate-400"></div>
+                                    <div className="w-3 h-3 border border-slate-400 flex-shrink-0"></div>
                                     <span>รายเดือน</span>
                                 </div>
                                 <div className="flex items-center gap-1">
-                                    <div className="w-3 h-3 border border-slate-400"></div>
+                                    <div className="w-3 h-3 border border-slate-400 flex-shrink-0"></div>
                                     <span>อื่นๆ</span>
                                 </div>
                             </div>
