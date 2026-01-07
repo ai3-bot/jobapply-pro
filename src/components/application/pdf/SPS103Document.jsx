@@ -43,7 +43,7 @@ export default function SPS103Document({ applicant, formData = {} }) {
                                     {Array(10).fill('').map((_, idx) => (
                                         <React.Fragment key={idx}>
                                             <div className="w-5 h-6 border border-slate-400"></div>
-                                            {(idx === 1 || idx === 8) && <span>-</span>}
+                                            {(idx === 1 || idx === 8) && <div className="w-2 border-b border-slate-900 mb-1"></div>}
                                         </React.Fragment>
                                     ))}
                                 </div>
