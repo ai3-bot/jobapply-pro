@@ -101,82 +101,121 @@ export default function SPS103Document({ applicant, formData = {} }) {
             </div>
 
             {/* ข้อมูลผู้ประกันตน */}
-            <div className="border border-slate-900 p-3">
-                <h3 className="font-bold mb-2 text-center bg-slate-100 py-1">ข้อมูลผู้ประกันตน</h3>
+            <div className="border border-slate-900">
+                <h3 className="font-bold text-center bg-slate-100 py-1 border-b border-slate-900">ข้อมูลผู้ประกันตน</h3>
                 
-                <div className="space-y-2 text-[12px]">
-                    {/* 1. ชื่อ */}
-                    <div className="flex items-center gap-2">
-                        <span>1. ชื่อ</span>
-                        <label className="flex items-center gap-1">
-                            <input type="checkbox" checked={personalData.prefix === 'นาย'} readOnly className="w-3 h-3" />
-                            <span>นาย</span>
-                        </label>
-                        <label className="flex items-center gap-1">
-                            <input type="checkbox" checked={personalData.prefix === 'นางสาว'} readOnly className="w-3 h-3" />
-                            <span>นางสาว</span>
-                        </label>
-                        <label className="flex items-center gap-1">
-                            <input type="checkbox" checked={personalData.prefix === 'นาง'} readOnly className="w-3 h-3" />
-                            <span>นาง</span>
-                        </label>
-                        <div className="border-b border-dotted border-slate-400 flex-1 min-h-[20px]">
-                            {personalData.first_name || '\u00A0'}
-                        </div>
-                        <span>ชื่อสกุล</span>
-                        <div className="border-b border-dotted border-slate-400 flex-1 min-h-[20px]">
-                            {personalData.last_name || '\u00A0'}
-                        </div>
-                    </div>
-
-                    {/* 2. เพศ */}
-                    <div className="flex items-center gap-2">
-                        <span>2. เพศ</span>
-                        <label className="flex items-center gap-1">
-                            <input type="checkbox" checked={personalData.gender === 'male'} readOnly className="w-3 h-3" />
-                            <span>ชาย</span>
-                        </label>
-                        <label className="flex items-center gap-1">
-                            <input type="checkbox" checked={personalData.gender === 'female'} readOnly className="w-3 h-3" />
-                            <span>หญิง</span>
-                        </label>
-                    </div>
-
-                    {/* 3. สัญชาติ */}
-                    <div className="flex items-center gap-2">
-                        <span>3. สัญชาติ</span>
-                        <div className="border-b border-dotted border-slate-400 flex-1 min-h-[20px]">
-                            {personalData.nationality || '\u00A0'}
-                        </div>
-                    </div>
-
-                    {/* 4. เกิดวันที่ */}
-                    <div className="flex items-center gap-2">
-                        <span>4. เกิดวันที่</span>
-                        <div className="border-b border-dotted border-slate-400 w-20 min-h-[20px]">
-                            {personalData.dob ? new Date(personalData.dob).toLocaleDateString('th-TH', { day: 'numeric' }) : '\u00A0'}
-                        </div>
-                        <span>เดือน</span>
-                        <div className="border-b border-dotted border-slate-400 flex-1 min-h-[20px]">
-                            {personalData.dob ? new Date(personalData.dob).toLocaleDateString('th-TH', { month: 'long' }) : '\u00A0'}
-                        </div>
-                        <span>พ.ศ.</span>
-                        <div className="border-b border-dotted border-slate-400 w-24 min-h-[20px]">
-                            {personalData.dob ? (new Date(personalData.dob).getFullYear() + 543) : '\u00A0'}
-                        </div>
-                    </div>
-
-                    {/* 5. เลขประจำตัวประชาชน */}
-                    <div className="flex items-center gap-2">
-                        <span>5. เลขประจำตัวประชาชน</span>
-                        <div className="flex gap-1">
-                            {(personalData.id_card || '').split('').concat(Array(13).fill('')).slice(0, 13).map((digit, idx) => (
-                                <div key={idx} className="px-1.5 py-1 border border-slate-400 flex items-center justify-center text-[11px]">
-                                    {digit}
+                <div className="grid grid-cols-3">
+                    {/* Left Column - 2 ส่วน */}
+                    <div className="col-span-2 border-r border-slate-900 p-3 space-y-2 text-[12px]">
+                        {/* 1. ชื่อ */}
+                        <div className="flex items-center gap-2">
+                            <span>1. ชื่อ</span>
+                            <label className="flex items-center gap-1">
+                                <div className="w-3 h-3 border border-slate-400 flex-shrink-0 flex items-center justify-center">
+                                    {personalData.prefix === 'นาย' && <div className="w-2 h-2 bg-black"></div>}
                                 </div>
+                                <span>นาย</span>
+                            </label>
+                            <label className="flex items-center gap-1">
+                                <div className="w-3 h-3 border border-slate-400 flex-shrink-0 flex items-center justify-center">
+                                    {personalData.prefix === 'นางสาว' && <div className="w-2 h-2 bg-black"></div>}
+                                </div>
+                                <span>นางสาว</span>
+                            </label>
+                            <label className="flex items-center gap-1">
+                                <div className="w-3 h-3 border border-slate-400 flex-shrink-0 flex items-center justify-center">
+                                    {personalData.prefix === 'นาง' && <div className="w-2 h-2 bg-black"></div>}
+                                </div>
+                                <span>นาง</span>
+                            </label>
+                            <span className="border-b border-dotted border-slate-400 flex-1 pb-0.5 inline-block">
+                                {personalData.first_name || '\u00A0'}
+                            </span>
+                            <span>ชื่อสกุล</span>
+                            <span className="border-b border-dotted border-slate-400 flex-1 pb-0.5 inline-block">
+                                {personalData.last_name || '\u00A0'}
+                            </span>
+                        </div>
+
+                        {/* 2. เพศ */}
+                        <div className="flex items-center gap-2">
+                            <span>2. เพศ</span>
+                            <label className="flex items-center gap-1">
+                                <div className="w-3 h-3 border border-slate-400 flex-shrink-0 flex items-center justify-center">
+                                    {personalData.gender === 'male' && <div className="w-2 h-2 bg-black"></div>}
+                                </div>
+                                <span>ชาย</span>
+                            </label>
+                            <label className="flex items-center gap-1">
+                                <div className="w-3 h-3 border border-slate-400 flex-shrink-0 flex items-center justify-center">
+                                    {personalData.gender === 'female' && <div className="w-2 h-2 bg-black"></div>}
+                                </div>
+                                <span>หญิง</span>
+                            </label>
+                        </div>
+
+                        {/* 3. สัญชาติ */}
+                        <div className="flex items-center gap-2">
+                            <span>3. สัญชาติ</span>
+                            <span className="border-b border-dotted border-slate-400 flex-1 pb-0.5 inline-block">
+                                {personalData.nationality || '\u00A0'}
+                            </span>
+                        </div>
+
+                        {/* 4. เกิดวันที่ */}
+                        <div className="flex items-center gap-2">
+                            <span>4. เกิดวันที่</span>
+                            <span className="border-b border-dotted border-slate-400 w-20 pb-0.5 inline-block">
+                                {personalData.dob ? new Date(personalData.dob).toLocaleDateString('th-TH', { day: 'numeric' }) : '\u00A0'}
+                            </span>
+                            <span>เดือน</span>
+                            <span className="border-b border-dotted border-slate-400 flex-1 pb-0.5 inline-block">
+                                {personalData.dob ? new Date(personalData.dob).toLocaleDateString('th-TH', { month: 'long' }) : '\u00A0'}
+                            </span>
+                            <span>พ.ศ.</span>
+                            <span className="border-b border-dotted border-slate-400 w-24 pb-0.5 inline-block">
+                                {personalData.dob ? (new Date(personalData.dob).getFullYear() + 543) : '\u00A0'}
+                            </span>
+                        </div>
+
+                        {/* 5. เลขประจำตัวประชาชน */}
+                        <div className="flex items-center gap-2">
+                            <span>5. เลขประจำตัวประชาชน</span>
+                        </div>
+                    </div>
+
+                    {/* Right Column - 1 ส่วน */}
+                    <div className="col-span-1 p-3 flex flex-col justify-center items-center">
+                        {/* บรรทัดแรก: 3 ช่อง */}
+                        <div className="flex gap-0.5 mb-2">
+                            {Array(3).fill('').map((_, idx) => (
+                                <div key={idx} className="w-5 h-6 border border-slate-900"></div>
+                            ))}
+                        </div>
+                        
+                        {/* บรรทัดที่ 2: 1 ช่อง */}
+                        <div className="flex gap-0.5 mb-2">
+                            <div className="w-5 h-6 border border-slate-900"></div>
+                        </div>
+                        
+                        {/* บรรทัดที่ 3: 3 ช่อง */}
+                        <div className="flex gap-0.5 mb-2">
+                            {Array(3).fill('').map((_, idx) => (
+                                <div key={idx} className="w-5 h-6 border border-slate-900"></div>
+                            ))}
+                        </div>
+                        
+                        {/* บรรทัดที่ 4: 8 ช่อง (มีเส้นแบ่งที่ช่อง 2 และ 4) */}
+                        <div className="flex items-center gap-0.5">
+                            {Array(8).fill('').map((_, idx) => (
+                                <React.Fragment key={idx}>
+                                    <div className="w-5 h-6 border border-slate-900"></div>
+                                    {(idx === 1 || idx === 3) && <div className="w-1.5 border-b border-slate-900 mb-1"></div>}
+                                </React.Fragment>
                             ))}
                         </div>
                     </div>
+                </div>
 
                     {/* 6. สถานภาพครอบครัว */}
                     <div className="space-y-1">
