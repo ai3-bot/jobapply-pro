@@ -212,8 +212,8 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
                             <p className="text-[14px] italic">If you are provided with dependent coverage and are enrolling your dependents, please complete a "Dependent Enrollment Form".</p>
                         </div>
                     </div>
-                    <div className="grid grid-col-5 gap-6 justify-center">
-                        <div className="text-center col-span-2">
+                    <div className="gap-6 justify-center">
+                        <div className="text-center">
                             <div className="border-b border-slate-400 min-h-[50px] mb-2 mx-4 flex items-center justify-center">
                                 {formData.signatureDate ? new Date(formData.signatureDate).toLocaleDateString('th-TH', { 
                                     year: 'numeric', 
@@ -223,7 +223,7 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
                             </div>
                             <p>วันที่ Date</p>
                         </div>
-                        <div className="text-center col-span-3">
+                        <div className="text-center">
                             <div className="border-b border-slate-400 min-h-[50px] mb-2 mx-4 flex items-center justify-center">
                                 {applicant?.signature_url ? (
                                     <img src={applicant.signature_url} alt="Signature" crossOrigin="anonymous" className="h-[40px] object-contain" />
