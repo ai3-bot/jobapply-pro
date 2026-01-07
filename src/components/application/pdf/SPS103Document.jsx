@@ -30,7 +30,7 @@ export default function SPS103Document({ applicant, formData = {} }) {
                     {/* ซ้าย - ข้อมูลนายจ้าง */}
                     <div className="col-span-3 border-l border-t border-r border-slate-900">
                         <h3 className="font-bold border-b border-slate-900 text-center items-center py-2">ข้อมูลนายจ้าง</h3>
-                        <div className="space-y-1 text-[12px] p-2">
+                        <div className="space-y-1 p-2">
                             <div className="flex items-center">
                                 <span>ชื่อสถานประกอบการ</span>
                                 <span className="border-b border-dotted border-slate-400 flex-1 ml-2 pb-0.5 inline-block">
@@ -107,33 +107,35 @@ export default function SPS103Document({ applicant, formData = {} }) {
                     <div className="col-span-2 border border-slate-900">
                         {/* 1. ชื่อ */}
                         <h3 className="font-bold text-center py-2 border-b border-slate-900">ข้อมูลผู้ประกันตน</h3>
-                        <div className="flex p-2 space-y-1 items-center">
-                            <span>1. ชื่อ</span>
-                            <label className="flex items-center gap-1">
-                                <div className="w-3 h-3 border border-slate-400 flex-shrink-0 flex items-center justify-center">
-                                    {personalData.prefix === 'นาย' && <div className="w-2 h-2 bg-black"></div>}
-                                </div>
-                                <span>นาย</span>
-                            </label>
-                            <label className="flex items-center gap-1">
-                                <div className="w-3 h-3 border border-slate-400 flex-shrink-0 flex items-center justify-center">
-                                    {personalData.prefix === 'นางสาว' && <div className="w-2 h-2 bg-black"></div>}
-                                </div>
-                                <span>นางสาว</span>
-                            </label>
-                            <label className="flex items-center gap-1">
-                                <div className="w-3 h-3 border border-slate-400 flex-shrink-0 flex items-center justify-center">
-                                    {personalData.prefix === 'นาง' && <div className="w-2 h-2 bg-black"></div>}
-                                </div>
-                                <span>นาง</span>
-                            </label>
-                            <span className="border-b border-dotted border-slate-400 flex-1 pb-0.5 inline-block">
-                                {personalData.first_name || '\u00A0'}
-                            </span>
-                            <span>ชื่อสกุล</span>
-                            <span className="border-b border-dotted border-slate-400 flex-1 pb-0.5 inline-block">
-                                {personalData.last_name || '\u00A0'}
-                            </span>
+                        <div className="space-y-1 p-2">
+                            <div className="flex items-center">
+                                <span>1. ชื่อ</span>
+                                <label className="flex items-center gap-1">
+                                    <div className="w-3 h-3 border border-slate-400 flex-shrink-0 flex items-center justify-center">
+                                        {personalData.prefix === 'นาย' && <div className="w-2 h-2 bg-black"></div>}
+                                    </div>
+                                    <span>นาย</span>
+                                </label>
+                                <label className="flex items-center gap-1">
+                                    <div className="w-3 h-3 border border-slate-400 flex-shrink-0 flex items-center justify-center">
+                                        {personalData.prefix === 'นางสาว' && <div className="w-2 h-2 bg-black"></div>}
+                                    </div>
+                                    <span>นางสาว</span>
+                                </label>
+                                <label className="flex items-center gap-1">
+                                    <div className="w-3 h-3 border border-slate-400 flex-shrink-0 flex items-center justify-center">
+                                        {personalData.prefix === 'นาง' && <div className="w-2 h-2 bg-black"></div>}
+                                    </div>
+                                    <span>นาง</span>
+                                </label>
+                                <span className="border-b border-dotted border-slate-400 flex-1 pb-0.5 inline-block">
+                                    {personalData.first_name || '\u00A0'}
+                                </span>
+                                <span>ชื่อสกุล</span>
+                                <span className="border-b border-dotted border-slate-400 flex-1 pb-0.5 inline-block">
+                                    {personalData.last_name || '\u00A0'}
+                                </span>
+                            </div>
                         </div>
 
                         {/* 2. เพศ */}
