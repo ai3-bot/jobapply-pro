@@ -39,13 +39,12 @@ export default function SPS103Document({ applicant, formData = {} }) {
                             </div>
                             <div className="flex items-center">
                                 <span>เลขที่บัญชี</span>
-                                <div className="flex">
+                                <div className="flex items-center">
                                     {Array(10).fill('').map((_, idx) => (
-                                        <div key={idx} className={`w-5 h-6 ml-2 border border-slate-400`}> 
-                                            {idx == 2 || idx == 9 ? 
-                                            "-" : ""
-                                            }
-                                        </div>
+                                        <React.Fragment key={idx}>
+                                            <div className="w-5 h-6 border border-slate-400 ml-2"></div>
+                                            {(idx === 1 || idx === 8) && <span className="mx-1">-</span>}
+                                        </React.Fragment>
                                     ))}
                                 </div>
                             </div>
