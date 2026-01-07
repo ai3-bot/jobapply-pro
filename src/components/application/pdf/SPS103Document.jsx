@@ -64,18 +64,18 @@ export default function SPS103Document({ applicant, formData = {} }) {
                             </div>
                             <div className="flex items-center gap-2">
                                 <span>ประเภทการจ้าง</span>
-                                <label className="flex items-center">
-                                    <input type="checkbox" className="w-3 h-3" />
+                                <div className="flex items-center gap-1">
+                                    <div className="w-3 h-3 border border-slate-400"></div>
                                     <span>รายวัน</span>
-                                </label>
-                                <label className="flex items-center">
-                                    <input type="checkbox" className="w-3 h-3" />
+                                </div>
+                                <div className="flex items-center gap-1">
+                                    <div className="w-3 h-3 border border-slate-400"></div>
                                     <span>รายเดือน</span>
-                                </label>
-                                <label className="flex items-center">
-                                    <input type="checkbox" className="w-3 h-3" />
+                                </div>
+                                <div className="flex items-center gap-1">
+                                    <div className="w-3 h-3 border border-slate-400"></div>
                                     <span>อื่นๆ</span>
-                                </label>
+                                </div>
                             </div>
                         </div>
                     </div>
