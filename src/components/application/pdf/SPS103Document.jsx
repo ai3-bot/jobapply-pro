@@ -8,7 +8,7 @@ export default function SPS103Document({ applicant, formData = {} }) {
         <div 
             className="pdpa-page bg-white mx-auto relative shadow-sm print:shadow-none"
             style={{ 
-                fontSize: "10px",
+                fontSize: "12px",
                 padding: '8mm',
                 width: '210mm', 
                 minHeight: '297mm',
@@ -42,8 +42,8 @@ export default function SPS103Document({ applicant, formData = {} }) {
                                 <div className="flex items-center ml-2">
                                     {Array(10).fill('').map((_, idx) => (
                                         <React.Fragment key={idx}>
-                                            <div className="w-5 h-6 border"></div>
-                                            {(idx === 1 || idx === 8) && <div className="w-2 border-b mb-0.5"></div>}
+                                            <div className="w-5 h-6 border border-black"></div>
+                                            {(idx === 1 || idx === 8) && <div className="w-2 border-b border-black mb-0.5"></div>}
                                         </React.Fragment>
                                     ))}
                                 </div>
@@ -52,7 +52,7 @@ export default function SPS103Document({ applicant, formData = {} }) {
                                 <span>ลำดับที่สาขา</span>
                                 <div className="flex ml-2">
                                     {Array(5).fill('').map((_, idx) => (
-                                        <div key={idx} className="w-5 h-6 border"></div>
+                                        <div key={idx} className="w-5 h-6 border border-black"></div>
                                     ))}
                                 </div>
                             </div>
@@ -89,8 +89,8 @@ export default function SPS103Document({ applicant, formData = {} }) {
                                 <div className="flex items-center ml-2">
                                     {Array(13).fill('').map((_, idx) => (
                                         <React.Fragment key={idx}>
-                                            <div className="w-4 h-6 border"></div>
-                                            {(idx === 2 || idx === 4 || idx === 11) && <div className="w-2 border-b mb-0.5"></div>}
+                                            <div className="w-4 h-6 border border-black"></div>
+                                            {(idx === 2 || idx === 4 || idx === 11) && <div className="w-2 border-b border-black mb-0.5"></div>}
                                         </React.Fragment>
                                     ))}
                                 </div>
