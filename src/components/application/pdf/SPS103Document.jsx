@@ -42,7 +42,7 @@ export default function SPS103Document({ applicant, formData = {} }) {
                                 <div className="flex">
                                     {Array(10).fill('').map((_, idx) => (
                                         <div key={idx} className={`w-5 h-6 ml-2 border border-slate-400`}> 
-                                            {idx == 2 ? 
+                                            {idx == 2 || idx == 9 ? 
                                             "-" : ""
                                             }
                                         </div>
