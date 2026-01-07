@@ -71,20 +71,20 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
                     </div>
 
                     {/* Sex, Status, DOB, Employment Date */}
-                    <div className="border border-slate-900 p-2">
+                    <div className="border border-slate-900">
                         <div className="grid grid-cols-4 gap-2">
                             {/* Sex */}
-                            <div className="border-r">
+                            <div className="border-r p-2 m-auto">
                                 <p className=" mb-1">เพศ Sex</p>
                                 <div className="space-y-1">
-                                    <label className="flex items-center gap-1 ">
+                                    <label className="flex space-between items-center gap-1 ">
                                         <div className="grid">
                                             <span>ชาย</span>
                                             <span>Male</span>
                                         </div>
                                         <input type="checkbox" checked={personalData.gender === 'male'} readOnly className="w-3 h-3" />
                                     </label>
-                                    <label className="flex items-center gap-1 ">
+                                    <label className="flex space-between items-center gap-1 ">
                                         <div className="grid">
                                             <span>หญิง</span>
                                             <span>Female</span>
