@@ -8,8 +8,8 @@ export default function SPS103Document({ applicant, formData = {} }) {
         <div 
             className="pdpa-page bg-white mx-auto relative shadow-sm print:shadow-none"
             style={{ 
-                fontSize: "13px",
-                padding: '10mm',
+                fontSize: "12px",
+                padding: '8mm',
                 width: '210mm', 
                 minHeight: '297mm',
                 fontFamily: 'TH Sarabun New, Sarabun, sans-serif',
@@ -18,10 +18,10 @@ export default function SPS103Document({ applicant, formData = {} }) {
         >
             {/* Header */}
             <div className="text-right mb-2">
-                <span className="text-[12px]">สปส. 1-03</span>
+                <span className="text-[14px]">สปส. 1-03</span>
             </div>
-            <div className="text-center mb-4">
-                <h1 className="text-[18px] font-bold">แบบขึ้นทะเบียนผู้ประกันตน</h1>
+            <div className="text-center mb-1">
+                <h1 className="text-[14px] font-bold">แบบขึ้นทะเบียนผู้ประกันตน</h1>
             </div>
 
             {/* ส่วนบน: ข้อมูลนายจ้าง และ สำหรับเจ้าหน้าที่ */}
@@ -29,7 +29,7 @@ export default function SPS103Document({ applicant, formData = {} }) {
                 <div className="border border-slate-900 grid grid-cols-6">
                     {/* ซ้าย - ข้อมูลนายจ้าง */}
                     <div className="col-span-3 border-r border-slate-900 p-3">
-                        <h3 className="font-bold mb-2">ข้อมูลนายจ้าง</h3>
+                        <h3 className="font-bold border-b border-slate-900 text-center items-center">ข้อมูลนายจ้าง</h3>
                         <div className="space-y-2 text-[12px]">
                             <div className="flex items-center">
                                 <span>ชื่อสถานประกอบการ</span>
@@ -41,7 +41,11 @@ export default function SPS103Document({ applicant, formData = {} }) {
                                 <span>เลขที่บัญชี</span>
                                 <div className="flex">
                                     {Array(10).fill('').map((_, idx) => (
-                                        <div key={idx} className="w-5 h-6 border border-slate-400"></div>
+                                        <div key={idx} className={`w-5 h-6 ml-2 border border-slate-400`}> 
+                                            {idx == 2 ? 
+                                            "-" : ""
+                                            }
+                                        </div>
                                     ))}
                                 </div>
                             </div>
@@ -49,7 +53,7 @@ export default function SPS103Document({ applicant, formData = {} }) {
                                 <span>ลำดับที่สาขา</span>
                                 <div className="flex">
                                     {Array(5).fill('').map((_, idx) => (
-                                        <div key={idx} className="w-5 h-6 border border-slate-400"></div>
+                                        <div key={idx} className="w-5 h-6 ml-2 border border-slate-400"></div>
                                     ))}
                                 </div>
                             </div>
