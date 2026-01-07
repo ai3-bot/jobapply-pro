@@ -212,7 +212,7 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
                             <p className="text-[14px] italic">If you are provided with dependent coverage and are enrolling your dependents, please complete a "Dependent Enrollment Form".</p>
                         </div>
                     </div>
-                    <div className="flex gap-6 justify-center">
+                    <div className="flex flex-1 gap-6 justify-center">
                         <div className="text-center">
                             <div className="border-b border-slate-400 min-h-[40px] mb-2 mx-8 flex items-center justify-center">
                                 {formData.signatureDate ? new Date(formData.signatureDate).toLocaleDateString('th-TH', { 
