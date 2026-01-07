@@ -20,8 +20,8 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
             <div className="grid grid-cols-2 gap-8 mb-6">
                 {/* Left - Company Info */}
                 <div className="flex flex-col justify-center">
-                    <p className="text-[20px] font-bold">บริษัท วิริยะประกันภัย</p>
-                    <p className="text-[18px]">ฝ่ายประกันกลุ่ม</p>
+                    <p className="text-[16px] font-bold">บริษัท วิริยะประกันภัย</p>
+                    <p className="text-[14px]">ฝ่ายประกันกลุ่ม</p>
                 </div>
                 
                 {/* Right - Document Title */}
