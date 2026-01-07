@@ -8,7 +8,7 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
         <div 
             className="pdpa-page bg-white mx-auto relative shadow-sm print:shadow-none"
             style={{ 
-                fontSize: "14px",
+                fontSize: "12px",
                 padding: '6mm',
                 width: '210mm', 
                 minHeight: '297mm',
