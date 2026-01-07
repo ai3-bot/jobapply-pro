@@ -61,7 +61,7 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
                                 <p className="">ID Card</p>
                                 <div className="flex">
                                     {(personalData.id_card || '').split('').concat(Array(13).fill('')).slice(0, 13).map((digit, idx) => (
-                                        <div key={idx} className="py-1 px-1.5 m-auto border border-slate-400 flex items-center justify-center text-center text-[12px]">
+                                        <div key={idx} className="py-1 px-1.5 border border-slate-400 flex items-center justify-center text-center text-[12px]">
                                             {digit}
                                         </div>
                                     ))}
@@ -125,7 +125,7 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
                                         const [year, month, day] = dateStr.split('-');
                                         const shortYear = year ? year.slice(-2) : '';
                                         return (day + month + shortYear).split('').concat(Array(6).fill('')).slice(0, 6).map((digit, idx) => (
-                                            <div key={idx} className="py-1 px-1 border border-slate-400 text-center text-[12px]">{digit || '\u00A0'}</div>
+                                            <div key={idx} className="py-1 px-1 m-auto border border-slate-400 text-center text-[12px]">{digit || '\u00A0'}</div>
                                         ));
                                     })()}
                                 </div>
@@ -142,7 +142,7 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
                                         const [year, month, day] = dateStr.split('-');
                                         const shortYear = year ? year.slice(-2) : '';
                                         return (day + month + shortYear).split('').concat(Array(6).fill('')).slice(0, 6).map((digit, idx) => (
-                                            <div key={idx} className="py-1 px-1 border border-slate-400 text-center text-[12px]">{digit || '\u00A0'}</div>
+                                            <div key={idx} className="py-1 px-1 m-auto border border-slate-400 text-center text-[12px]">{digit || '\u00A0'}</div>
                                         ));
                                     })()}
                                 </div>
