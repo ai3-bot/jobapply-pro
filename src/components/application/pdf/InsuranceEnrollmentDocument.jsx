@@ -20,14 +20,14 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
             <div className="grid grid-cols-2 gap-8 mb-6">
                 {/* Left - Company Info */}
                 <div className="flex flex-col justify-center">
-                    <p className="text-[22px] font-bold">บริษัท วิริยะประกันภัย</p>
-                    <p className="text-[20px]">ฝ่ายประกันกลุ่ม</p>
+                    <p className="text-[20px] font-bold">บริษัท วิริยะประกันภัย</p>
+                    <p className="text-[18px]">ฝ่ายประกันกลุ่ม</p>
                 </div>
                 
                 {/* Right - Document Title */}
                 <div className="text-center flex flex-col justify-center">
-                    <h1 className="text-[22px] font-bold">ใบสมัครขอเอาประกันภัยพนักงาน</h1>
-                    <p className="text-[20px]">Employee Enrollment Form</p>
+                    <h1 className="text-[20px] font-bold">ใบสมัครขอเอาประกันภัยพนักงาน</h1>
+                    <p className="text-[218x]">Employee Enrollment Form</p>
                 </div>
             </div>
 
@@ -205,8 +205,8 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
 
             {/* Dependent Coverage Notice */}
             <div className="p-3 mb-6">
-                <div className="grid grid-cols-3 gap-8">
-                    <div className="col-span-2 border border-dotted border-slate-400 px-4 flex items-center">
+                <div className="grid grid-cols-3">
+                    <div className="col-span-2 border border-dotted border-slate-400 px-2 py-1 flex items-center">
                         <div>
                             <p className="mb-2">ถ้าท่านประสงค์ให้มีประกันภัยผู้อยู่ในอุปการะ โปรดกรอกใบสมัครขอเอาประกันภัยผู้อยู่ในอุปการะด้วย</p>
                             <p className="text-[14px] italic">If you are provided with dependent coverage and are enrolling your dependents, please complete a "Dependent Enrollment Form".</p>
