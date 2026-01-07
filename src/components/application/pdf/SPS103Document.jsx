@@ -83,10 +83,10 @@ export default function SPS103Document({ applicant, formData = {} }) {
                     {/* ขวา - สำหรับเจ้าหน้าที่ */}
                     <div className="col-span-3 border-t border-r border-slate-900">
                         <h3 className="font-bold border-b border-slate-900 text-center items-center py-2">สำหรับเจ้าหน้าที่</h3>
-                        <div className="text-[12px] mt-9 p-3">
+                        <div className="mt-9 p-1">
                             <div className="flex items-center">
                                 <span>เลขที่บัตรประกันสังคม</span>
-                                <div className="flex items-center ml-2">
+                                <div className="flex items-center ml-1">
                                     {Array(13).fill('').map((_, idx) => (
                                         <React.Fragment key={idx}>
                                             <div className="p-2 border border-black"></div>
@@ -197,26 +197,26 @@ export default function SPS103Document({ applicant, formData = {} }) {
                     {/* Right Column - 1 ส่วน */}
                     <div className="col-span-1 p-3 flex flex-col border-r border-slate-900 items-center">
                         {/* บรรทัดแรก: 3 ช่อง */}
-                        <div className="flex gap-0.5 mb-2">
+                        <div className="flex mb-2">
                             {Array(3).fill('').map((_, idx) => (
                                 <div key={idx} className="p-2 border border-black"></div>
                             ))}
                         </div>
                         
                         {/* บรรทัดที่ 2: 1 ช่อง */}
-                        <div className="flex gap-0.5 mb-2">
+                        <div className="flex mb-2">
                             <div className="p-2 border border-black"></div>
                         </div>
                         
                         {/* บรรทัดที่ 3: 3 ช่อง */}
-                        <div className="flex gap-0.5 mb-2">
+                        <div className="flex mb-2">
                             {Array(3).fill('').map((_, idx) => (
                                 <div key={idx} className="p-2 border border-black"></div>
                             ))}
                         </div>
                         
                         {/* บรรทัดที่ 4: 8 ช่อง (มีเส้นแบ่งที่ช่อง 2 และ 4) */}
-                        <div className="flex items-center gap-0.5">
+                        <div className="flex items-center">
                             {Array(8).fill('').map((_, idx) => (
                                 <React.Fragment key={idx}>
                                     <div className="p-2 border border-black"></div>
