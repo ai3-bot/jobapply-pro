@@ -465,7 +465,6 @@ export default function SPS103Document({ applicant, formData = {} }) {
                     </div>
                 </div>
             </div>
-           
 
             {/* คำเตือน */}
             <div className="border border-slate-900 p-2 mb-2 text-[10px]">
@@ -475,47 +474,6 @@ export default function SPS103Document({ applicant, formData = {} }) {
                     <li>การขึ้นทะเบียนผู้ประกันตนต่อสำนักงานประกันสังคมให้แจ้ง ภายใน 30 วัน นับแต่วันที่ลูกจ้างนั้นเป็นผู้ประกันตนตามแบบ สปส.1-03 เมื่อข้อเท็จจริงที่แจ้งไว้เปลี่ยนแปลง เช่น ลูกจ้างลาออกหรือถูกเลิกจ้าง ให้แจ้งต่อสำนักงานประกันสังคมภายในวันที่ 15 ของเดือนถัดจากเดือนที่มีการเปลี่ยนแปลงตามแบบ สปส.6-09 หากฝ่าฝืนอาจมีความผิดต้องระวางโทษจำคุกไม่เกิน 6 เดือน หรือปรับไม่เกิน 20,000 บาท หรือทั้งจำทั้งปรับ</li>
                     <li>การยื่นแบบเป็นเท็จ เช่น นำบุคคลที่ไม่ใช่ลูกจ้างขึ้นทะเบียนเป็นผู้ประกันตน อาจมีความผิดต้องระวางโทษจำคุกไม่เกิน 6 เดือน หรือปรับไม่เกิน 20,000 บาท หรือทั้งจำทั้งปรับ</li>
                 </ol>
-            </div>
-
-            {/* ส่วนล่าง: เอกสารแนบ และ ลายเซ็นเจ้าหน้าที่ */}
-            <div className="grid grid-cols-2 gap-4 text-[11px]">
-                <div>
-                    <p className="font-bold mb-1">เอกสารที่แนบ</p>
-                    <div className="space-y-0.5 pl-2">
-                        <label className="flex items-center gap-1">
-                            <input type="checkbox" className="w-3 h-3" />
-                            <span>สำเนาบัตรประจำตัวประชาชน</span>
-                        </label>
-                        <label className="flex items-center gap-1">
-                            <input type="checkbox" className="w-3 h-3" />
-                            <span>สำเนาทะเบียนบ้าน</span>
-                        </label>
-                        <label className="flex items-center gap-1">
-                            <input type="checkbox" className="w-3 h-3" />
-                            <span>สำเนาใบสำคัญประจำตัวคนต่างด้าว</span>
-                        </label>
-                        <label className="flex items-center gap-1">
-                            <input type="checkbox" className="w-3 h-3" />
-                            <span>สำเนาหนังสือเดินทาง</span>
-                        </label>
-                        <label className="flex items-center gap-1">
-                            <input type="checkbox" className="w-3 h-3" />
-                            <span>สำเนาใบอนุญาตทำงานคนต่างด้าว</span>
-                        </label>
-                        <div className="flex items-center gap-1">
-                            <input type="checkbox" className="w-3 h-3" />
-                            <span>อื่น ๆ</span>
-                            <div className="border-b border-dotted border-slate-400 flex-1 min-h-[16px]"></div>
-                        </div>
-                    </div>
-                </div>
-                <div className="text-center">
-                    <p className="mb-1">สำนักงานประกันสังคม</p>
-                    <div className="mb-1">ลงชื่อ<div className="inline-block border-b border-dotted border-slate-400 w-40 mx-2 min-h-[20px]"></div>เจ้าหน้าที่</div>
-                    <div className="mb-1">(<div className="inline-block border-b border-dotted border-slate-400 w-40 min-h-[20px]"></div>)</div>
-                    <div className="mb-1">ตำแหน่ง<div className="inline-block border-b border-dotted border-slate-400 w-32 mx-2 min-h-[20px]"></div></div>
-                    <div>วันที่<div className="inline-block border-b border-dotted border-slate-400 w-32 mx-2 min-h-[20px]"></div></div>
-                </div>
             </div>
         </div>
     );
