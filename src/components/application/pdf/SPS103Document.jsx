@@ -232,7 +232,7 @@ export default function SPS103Document({ applicant, formData = {} }) {
                 <div className="grid grid-cols-3">
                     {/* 6. สถานภาพครอบครัว */}
                     <div className="col-span-2 border-l border-r border-b border-slate-900">
-                        <span className="p-1">6. สถานภาพครอบครัว</span>
+                        <span className="p-2">6. สถานภาพครอบครัว</span>
                         <div className="p-3">
                             <div className="grid items-center gap-2">
                                 <div className="">
