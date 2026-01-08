@@ -404,35 +404,43 @@ export default function SPS103Document({ applicant, formData = {} }) {
             </div>
 
             {/* ข้อมูลการเลือกสถานพยาบาล */}
-            <div className="border border-slate-900 p-3">
-                <h3 className="font-bold mb-2 text-center bg-slate-100 py-1">ข้อมูลการเลือกสถานพยาบาล</h3>
-                <div className="space-y-2 text-[12px]">
-                    <div>
-                        <p>8. ขอเลือกสถานพยาบาลประกันสังคม<span className="border-b border-dotted border-slate-400 inline-block w-64 mx-2"></span>(ผู้ประกันตนเป็นผู้เลือกสถานพยาบาล)</p>
-                        <p className="pl-4 mt-2">หากไม่สามารถจัดสถานพยาบาลที่เลือกให้ได้ ขอเลือกสถานพยาบาลสำรองคือ</p>
-                        <div className="pl-8 space-y-1 mt-1">
-                            <p>ลำดับที่ 1 ชื่อ<span className="border-b border-dotted border-slate-400 inline-block w-96 mx-2"></span>หรือ</p>
-                            <p>ลำดับที่ 2 ชื่อ<span className="border-b border-dotted border-slate-400 inline-block w-96 mx-2"></span></p>
+            <div>
+                <div className="grid grid-cols-3">
+                    <div className="col-span-2 mb-4 border-l border-r border-b border-slate-900">
+                        <h3 className="font-bold border-b border-slate-900 text-center items-center py-2">ข้อมูลการเลือกสถานพยาบาล</h3>
+                        <div className="space-y-0">
+                            <div>
+                                <p>8. ขอเลือกสถานพยาบาลประกันสังคม<span className="border-b border-dotted border-slate-400 inline-block w-64 mx-2"></span>(ผู้ประกันตนเป็นผู้เลือกสถานพยาบาล)</p>
+                                <p className="pl-4 mt-2">หากไม่สามารถจัดสถานพยาบาลที่เลือกให้ได้ ขอเลือกสถานพยาบาลสำรองคือ</p>
+                                <div className="pl-8 space-y-1 mt-1">
+                                    <p>ลำดับที่ 1 ชื่อ<span className="border-b border-dotted border-slate-400 inline-block w-96 mx-2"></span>หรือ</p>
+                                    <p>ลำดับที่ 2 ชื่อ<span className="border-b border-dotted border-slate-400 inline-block w-96 mx-2"></span></p>
+                                </div>
+                            </div>
+                            
+                            {/* ลายเซ็นผู้ประกันตน */}
+                            <div className="flex justify-end mt-4">
+                                <div className="text-center">
+                                    <div className="border-b border-slate-400 min-h-[50px] w-48 mb-1 flex items-center justify-center">
+                                        {applicant?.signature_url ? (
+                                            <img src={applicant.signature_url} alt="Signature" crossOrigin="anonymous" className="h-[40px] object-contain" />
+                                        ) : (
+                                            '\u00A0'
+                                        )}
+                                    </div>
+                                    <p>ลงชื่อ............................................ผู้ประกันตน</p>
+                                    <p>(............................................)</p>
+                                    <p>วันที่{formData.signatureDate ? new Date(formData.signatureDate).toLocaleDateString('th-TH') : '..............................'}</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    
-                    {/* ลายเซ็นผู้ประกันตน */}
-                    <div className="flex justify-end mt-4">
-                        <div className="text-center">
-                            <div className="border-b border-slate-400 min-h-[50px] w-48 mb-1 flex items-center justify-center">
-                                {applicant?.signature_url ? (
-                                    <img src={applicant.signature_url} alt="Signature" crossOrigin="anonymous" className="h-[40px] object-contain" />
-                                ) : (
-                                    '\u00A0'
-                                )}
-                            </div>
-                            <p>ลงชื่อ............................................ผู้ประกันตน</p>
-                            <p>(............................................)</p>
-                            <p>วันที่{formData.signatureDate ? new Date(formData.signatureDate).toLocaleDateString('th-TH') : '..............................'}</p>
-                        </div>
+                    <div className="col-span-1 border-r border-b border-slate-900">
+                        <p>test</p>
                     </div>
                 </div>
             </div>
+           
 
             {/* คำเตือน */}
             <div className="border border-slate-900 p-2 mb-2 text-[10px]">
