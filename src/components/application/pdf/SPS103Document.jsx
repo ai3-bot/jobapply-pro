@@ -324,7 +324,7 @@ export default function SPS103Document({ applicant, formData = {} }) {
                     {/* 7. สำหรับคนต่างด้าว */}
                     <div className="col-span-2 mb-2 border-l border-r border-b border-slate-900">
                         <span className="ml-2">7. สำหรับคนต่างด้าว ให้กรอกข้อความ ดังนี้</span>
-                        <div className="pl-4 space-y-1">
+                        <div className="space-y-1 p-2">
                             <div className="flex items-center gap-2">
                                 <input type="checkbox" className="w-3 h-3" />
                                 <span>หนังสือเดินทาง (PASSPORT) เลขที่</span>
@@ -348,6 +348,8 @@ export default function SPS103Document({ applicant, formData = {} }) {
                                 <span>ใบอนุญาตทำงาน (WORK PERMIT) เลขที่</span>
                                 <div className="border-b border-dotted border-slate-400 flex-1 min-h-[18px]"></div>
                             </div>
+                        </div>
+                        <div className="col-span-1 border-r border-slate-900">
                         </div>
                     </div>
 
