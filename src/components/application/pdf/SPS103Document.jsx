@@ -10,7 +10,7 @@ export default function SPS103Document({ applicant, formData = {} }) {
             className="pdpa-page bg-white mx-auto relative shadow-sm print:shadow-none"
             style={{ 
                 fontSize: "12px",
-                padding: '8mm',
+                padding: '5mm 8mm',
                 width: '210mm', 
                 minHeight: '297mm',
                 fontFamily: 'TH Sarabun New, Sarabun, sans-serif',
