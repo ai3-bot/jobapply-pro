@@ -25,7 +25,7 @@ export default function SPS103Document({ applicant, formData = {} }) {
             </div>
 
             {/* ส่วนบน: ข้อมูลนายจ้าง และ สำหรับเจ้าหน้าที่ */}
-            <div className="">
+            <div>
                 <div className="grid grid-cols-6">
                     {/* ซ้าย - ข้อมูลนายจ้าง */}
                     <div className="col-span-3 border-l border-t border-r border-slate-900">
@@ -227,48 +227,47 @@ export default function SPS103Document({ applicant, formData = {} }) {
                     </div>
                 </div>
 
-                <div className="border-l border-r border-b border-slate-900 p-3 text-[12px]">
+                <div className="col-span-2 border-l border-r border-b border-slate-900">
                     {/* 6. สถานภาพครอบครัว */}
-                    <div className="grid grid-cols-3">
-                        {/* Left: 2 parts */}
-                        <div className="col-span-2 space-y-1">
-                            <div className="flex items-center gap-2">
-                                <span>6. สถานภาพครอบครัว</span>
-                                <label className="flex items-center gap-1">
-                                    <input type="checkbox" checked={familyData.marital_status === 'single'} readOnly className="w-3 h-3" />
-                                    <span>1. โสด</span>
-                                </label>
-                                <label className="flex items-center gap-1">
-                                    <input type="checkbox" checked={familyData.marital_status === 'married'} readOnly className="w-3 h-3" />
-                                    <span>2. สมรส</span>
-                                </label>
-                                <label className="flex items-center gap-1">
-                                    <input type="checkbox" className="w-3 h-3" />
-                                    <span>3. หม้าย</span>
-                                </label>
-                                <label className="flex items-center gap-1">
-                                    <input type="checkbox" className="w-3 h-3" />
-                                    <span>4. หย่า</span>
-                                </label>
-                                <label className="flex items-center gap-1">
-                                    <input type="checkbox" className="w-3 h-3" />
-                                    <span>5. แยกกันอยู่</span>
-                                </label>
+                    <div className="space-y-1">
+                        <div className="flex items-center gap-2">
+                            <span>6. สถานภาพครอบครัว</span>
+                            <label className="flex items-center gap-1">
+                                <input type="checkbox" checked={familyData.marital_status === 'single'} readOnly className="w-3 h-3" />
+                                <span>1. โสด</span>
+                            </label>
+                            <label className="flex items-center gap-1">
+                                <input type="checkbox" checked={familyData.marital_status === 'married'} readOnly className="w-3 h-3" />
+                                <span>2. สมรส</span>
+                            </label>
+                            <label className="flex items-center gap-1">
+                                <input type="checkbox" className="w-3 h-3" />
+                                <span>3. หม้าย</span>
+                            </label>
+                            <label className="flex items-center gap-1">
+                                <input type="checkbox" className="w-3 h-3" />
+                                <span>4. หย่า</span>
+                            </label>
+                            <label className="flex items-center gap-1">
+                                <input type="checkbox" className="w-3 h-3" />
+                                <span>5. แยกกันอยู่</span>
+                            </label>
+                        </div>
+                        <div className="flex items-center gap-2 pl-8">
+                            <label className="flex items-center gap-1">
+                                <input type="checkbox" checked={familyData.has_children === 'no'} readOnly className="w-3 h-3" />
+                                <span>ไม่มีบุตร</span>
+                            </label>
+                            <label className="flex items-center gap-1">
+                                <input type="checkbox" checked={familyData.has_children === 'yes'} readOnly className="w-3 h-3" />
+                                <span>มีบุตรอายุไม่เกิน 6 ปี จำนวน</span>
+                            </label>
+                            <div className="border-b border-dotted border-slate-400 w-12 text-center">
+                                {familyData.children_count || '\u00A0'}
                             </div>
-                            <div className="flex items-center gap-2">
-                                <label className="flex items-center gap-1">
-                                    <input type="checkbox" checked={familyData.has_children === 'no'} readOnly className="w-3 h-3" />
-                                    <span>ไม่มีบุตร</span>
-                                </label>
-                                <label className="flex items-center gap-1">
-                                    <input type="checkbox" checked={familyData.has_children === 'yes'} readOnly className="w-3 h-3" />
-                                    <span>มีบุตรอายุไม่เกิน 6 ปี จำนวน</span>
-                                </label>
-                                <div className="border-b border-dotted border-slate-400 w-12 text-center">
-                                    {familyData.children_count || '\u00A0'}
-                                </div>
-                                <span>คน</span>
-                            </div>
+                            <span>คน</span>
+                        </div>
+                        <div className="flex items-center gap-4 pl-16">
                             <div className="flex items-center gap-1">
                                 <span>ลำดับที่ 1 เกิดปี พ.ศ.</span>
                                 <div className="flex gap-0.5">
@@ -277,19 +276,7 @@ export default function SPS103Document({ applicant, formData = {} }) {
                                     ))}
                                 </div>
                             </div>
-                        </div>
-                        
-                        {/* Right: 1 part */}
-                        <div className="col-span-1 space-y-1">
-                            <div className="flex items-center gap-1 justify-end">
-                                <span>เกิดปี พ.ศ.</span>
-                                <div className="flex gap-0.5">
-                                    {Array(4).fill('').map((_, idx) => (
-                                        <div key={idx} className="w-4 h-5 border border-slate-400"></div>
-                                    ))}
-                                </div>
-                            </div>
-                            <div className="flex items-center gap-1 justify-end">
+                            <div className="flex items-center gap-1">
                                 <span>ลำดับที่ 2 เกิดปี พ.ศ.</span>
                                 <div className="flex gap-0.5">
                                     {Array(4).fill('').map((_, idx) => (
@@ -297,7 +284,7 @@ export default function SPS103Document({ applicant, formData = {} }) {
                                     ))}
                                 </div>
                             </div>
-                            <div className="flex items-center gap-1 justify-end">
+                            <div className="flex items-center gap-1">
                                 <span>ลำดับที่ 3 เกิดปี พ.ศ.</span>
                                 <div className="flex gap-0.5">
                                     {Array(4).fill('').map((_, idx) => (
@@ -309,7 +296,7 @@ export default function SPS103Document({ applicant, formData = {} }) {
                     </div>
 
                     {/* 7. สำหรับคนต่างด้าว */}
-                    <div className="space-y-1 text-[11px] border-l border-r border-slate-900 p-3">
+                    <div className="space-y-1 text-[11px]">
                         <p>7. สำหรับคนต่างด้าว ให้กรอกข้อความ ดังนี้</p>
                         <div className="pl-4 space-y-1">
                             <div className="flex items-center gap-2">
@@ -339,7 +326,7 @@ export default function SPS103Document({ applicant, formData = {} }) {
                     </div>
 
                     {/* ลายเซ็นนายจ้าง */}
-                    <div className="mt-4 text-[12px] border-l border-r border-b border-slate-900 p-3">
+                    <div className="mt-4 text-[12px]">
                     <p className="mb-2">ข้าพเจ้าขอรับรองว่าข้อความดังกล่าวข้างต้น ถูกต้องตามความเป็นจริงทุกประการ</p>
                     <div className="flex justify-end">
                         <div className="text-center">
