@@ -1,4 +1,5 @@
 import React from 'react';
+import PDFCheckbox from './PDFCheckbox';
 
 export default function SPS103Document({ applicant, formData = {} }) {
     const personalData = applicant?.personal_data || {};
@@ -326,7 +327,7 @@ export default function SPS103Document({ applicant, formData = {} }) {
                         <span className="ml-2">7. สำหรับคนต่างด้าว ให้กรอกข้อความ ดังนี้</span>
                         <div className="space-y-1 p-2">
                             <div className="flex items-center gap-2">
-                                <input type="checkbox" className="w-3 h-3" />
+                                <PDFCheckbox size="w-4 h-4" />
                                 <span>หนังสือเดินทาง (PASSPORT) เลขที่</span>
                                 <div className="border-b border-dotted border-slate-400 flex-1 min-h-[18px]"></div>
                                 <span>และ</span>
