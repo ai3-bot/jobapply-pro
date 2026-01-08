@@ -28,7 +28,7 @@ export default function SPS103Document({ applicant, formData = {} }) {
             <div>
                 <div className="grid grid-cols-6">
                     {/* ซ้าย - ข้อมูลนายจ้าง */}
-                    <div className="col-span-3 border-l border-t border-r border-slate-900">
+                    <div className="col-span-3 border-l grid border-t border-r border-slate-900">
                         <h3 className="font-bold border-b border-slate-900 text-center items-center py-2">ข้อมูลนายจ้าง</h3>
                         <div className="space-y-1 p-2">
                             <div className="flex items-center">
