@@ -118,7 +118,7 @@ export default function SPS103Document({ applicant, formData = {} }) {
                             <div className="flex items-center gap-2">
                                 <span className="mb-2">1. ชื่อ</span>
                                 <label className="flex items-center gap-1">
-                                    <PDFCheckbox checked={personalData.prefix === 'นาย'} />
+                                    <PDFCheckbox checked={personalData.prefix === 'นาย'} checkType={'check'}/>
                                     <span className="mb-2">นาย</span>
                                 </label>
                                 <label className="flex items-center gap-1">
