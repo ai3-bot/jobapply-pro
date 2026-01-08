@@ -237,27 +237,27 @@ export default function SPS103Document({ applicant, formData = {} }) {
                             <div className="items-center gap-2">
                                 <div className="ml-2 flex">
                                     <div className="flex items-center gap-1">
-                                        <div className="w-3 h-3 border border-slate-400 flex-shrink-0">
+                                        <div className="w-4 h-4 border border-slate-400 flex-shrink-0">
                                             {familyData.marital_status === 'single' && <div className="w-2 h-2 bg-black"></div>}
                                         </div>
                                         <span>1. โสด</span>
                                     </div>
                                     <div className="flex items-center gap-1">
-                                        <div className="w-3 h-3 border border-slate-400 flex-shrink-0">
+                                        <div className="w-4 h-4 border border-slate-400 flex-shrink-0">
                                             {familyData.marital_status === 'married' && <div className="w-2 h-2 bg-black"></div>}
                                         </div>
                                         <span>2. สมรส</span>
                                     </div>
                                     <div className="flex items-center gap-1">
-                                        <div className="w-3 h-3 border border-slate-400 flex-shrink-0"></div>
+                                        <div className="w-4 h-4 border border-slate-400 flex-shrink-0"></div>
                                         <span>3. หม้าย</span>
                                     </div>
                                     <div className="flex items-center gap-1">
-                                        <div className="w-3 h-3 border border-slate-400 flex-shrink-0"></div>
+                                        <div className="w-4 h-4 border border-slate-400 flex-shrink-0"></div>
                                         <span>4. หย่า</span>
                                     </div>
                                     <div className="flex items-center gap-1">
-                                        <div className="w-3 h-3 border border-slate-400 flex-shrink-0"></div>
+                                        <div className="w-4 h-4 border border-slate-400 flex-shrink-0"></div>
                                         <span>5. แยกกันอยู่</span>
                                     </div>
                                 </div>
