@@ -319,46 +319,49 @@ export default function SPS103Document({ applicant, formData = {} }) {
                     {/* 7. สำหรับคนต่างด้าว */}
                     <div className="col-span-2 mb-2 border-l border-r border-b border-slate-900">
                         <span className="ml-2">7. สำหรับคนต่างด้าว ให้กรอกข้อความ ดังนี้</span>
-                        <div className="space-y-1 p-2">
-                            <div className="flex items-center gap-2">
-                                <PDFCheckbox size="w-4 h-4" />
-                                <span>หนังสือเดินทาง (PASSPORT) เลขที่</span>
-                                <div className="border-b border-dotted border-slate-400 flex-1 min-h-[18px]"></div>
-                                <span>และ</span>
+                        <div>
+                            <div className="space-y-1 p-2">
+                                <div className="flex items-center gap-2">
+                                    <PDFCheckbox size="w-4 h-4" />
+                                    <span>หนังสือเดินทาง (PASSPORT) เลขที่</span>
+                                    <div className="border-b border-dotted border-slate-400 flex-1 min-h-[18px]"></div>
+                                    <span>และ</span>
+                                </div>
+                                <div className="flex items-center gap-2 pl-4">
+                                    <span>ใบอนุญาตทำงาน (WORK PERMIT) เลขที่</span>
+                                    <div className="border-b border-dotted border-slate-400 flex-1 min-h-[18px]"></div>
+                                    <span>หรือ</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <PDFCheckbox size="w-4 h-4" checkType={'check'}/>
+                                    <span>อื่นๆ (ระบุ)</span>
+                                    <div className="border-b border-dotted border-slate-400 w-48 min-h-[18px]"></div>
+                                    <span>เลขที่</span>
+                                    <div className="border-b border-dotted border-slate-400 flex-1 min-h-[18px]"></div>
+                                    <span>และ</span>
+                                </div>
+                                <div className="flex items-center gap-2 pl-4">
+                                    <span>ใบอนุญาตทำงาน (WORK PERMIT) เลขที่</span>
+                                    <div className="border-b border-dotted border-slate-400 flex-1 min-h-[18px]"></div>
+                                </div>
                             </div>
-                            <div className="flex items-center gap-2 pl-4">
-                                <span>ใบอนุญาตทำงาน (WORK PERMIT) เลขที่</span>
-                                <div className="border-b border-dotted border-slate-400 flex-1 min-h-[18px]"></div>
-                                <span>หรือ</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <input type="checkbox" className="w-3 h-3" />
-                                <span>อื่นๆ (ระบุ)</span>
-                                <div className="border-b border-dotted border-slate-400 w-48 min-h-[18px]"></div>
-                                <span>เลขที่</span>
-                                <div className="border-b border-dotted border-slate-400 flex-1 min-h-[18px]"></div>
-                                <span>และ</span>
-                            </div>
-                            <div className="flex items-center gap-2 pl-4">
-                                <span>ใบอนุญาตทำงาน (WORK PERMIT) เลขที่</span>
-                                <div className="border-b border-dotted border-slate-400 flex-1 min-h-[18px]"></div>
+                            {/* ลายเซ็นนายจ้าง */}
+                            <div className="mt-4 text-[12px]">
+                            <p className="mb-2">ข้าพเจ้าขอรับรองว่าข้อความดังกล่าวข้างต้น ถูกต้องตามความเป็นจริงทุกประการ</p>
+                            <div className="flex justify-end">
+                                <div className="text-center">
+                                    <div className="mb-1">ลงชื่อ<div className="inline-block border-b border-dotted border-slate-400 w-48 mx-2 min-h-[20px]"></div>นายจ้าง</div>
+                                    <div className="mb-1">(<div className="inline-block border-b border-dotted border-slate-400 w-48 min-h-[20px]"></div>)</div>
+                                    <div className="mb-1">ตำแหน่ง<div className="inline-block border-b border-dotted border-slate-400 w-40 mx-2 min-h-[20px]"></div></div>
+                                    <div>วันที่<div className="inline-block border-b border-dotted border-slate-400 w-40 mx-2 min-h-[20px]"></div></div>
+                                </div>
                             </div>
                         </div>
                         <div className="col-span-1 border-r border-slate-900">
                         </div>
                     </div>
 
-                    {/* ลายเซ็นนายจ้าง */}
-                    <div className="mt-4 text-[12px]">
-                    <p className="mb-2">ข้าพเจ้าขอรับรองว่าข้อความดังกล่าวข้างต้น ถูกต้องตามความเป็นจริงทุกประการ</p>
-                    <div className="flex justify-end">
-                        <div className="text-center">
-                            <div className="mb-1">ลงชื่อ<div className="inline-block border-b border-dotted border-slate-400 w-48 mx-2 min-h-[20px]"></div>นายจ้าง</div>
-                            <div className="mb-1">(<div className="inline-block border-b border-dotted border-slate-400 w-48 min-h-[20px]"></div>)</div>
-                            <div className="mb-1">ตำแหน่ง<div className="inline-block border-b border-dotted border-slate-400 w-40 mx-2 min-h-[20px]"></div></div>
-                            <div>วันที่<div className="inline-block border-b border-dotted border-slate-400 w-40 mx-2 min-h-[20px]"></div></div>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
             </div>
