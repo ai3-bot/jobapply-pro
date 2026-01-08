@@ -320,10 +320,10 @@ export default function SPS103Document({ applicant, formData = {} }) {
             </div>
             
             <div>
-                <div>
+                <div className="grid grid-cols-3">
                     {/* 7. สำหรับคนต่างด้าว */}
-                    <div className="space-y-1 text-[11px]">
-                        <p>7. สำหรับคนต่างด้าว ให้กรอกข้อความ ดังนี้</p>
+                    <div className="col-span-2 mb-2 border-l border-r border-b border-slate-900">
+                        <span className="ml-2">7. สำหรับคนต่างด้าว ให้กรอกข้อความ ดังนี้</span>
                         <div className="pl-4 space-y-1">
                             <div className="flex items-center gap-2">
                                 <input type="checkbox" className="w-3 h-3" />
