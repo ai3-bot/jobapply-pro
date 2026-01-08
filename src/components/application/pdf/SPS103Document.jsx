@@ -455,11 +455,11 @@ export default function SPS103Document({ applicant, formData = {} }) {
                                     <div key={idx} className="p-2 border border-black"></div>
                                 ))}
                             </div>
-                            <div>
-                                ลงชื่อ.......................................................เจ้าหน้าที่ 
-        (......................................................) 
-ต าแหน่ง........................................................ 
-วันที่...............................................................
+                            <div className="text-center mt-4 space-y-1">
+                                <div>ลงชื่อ<div className="inline-block border-b border-dotted border-slate-400 w-32 mx-2 min-h-[20px]"></div>เจ้าหน้าที่</div>
+                                <div>(<div className="inline-block border-b border-dotted border-slate-400 w-32 min-h-[20px]"></div>)</div>
+                                <div>ตำแหน่ง<div className="inline-block border-b border-dotted border-slate-400 w-28 mx-2 min-h-[20px]"></div></div>
+                                <div>วันที่<div className="inline-block border-b border-dotted border-slate-400 w-28 mx-2 min-h-[20px]"></div></div>
                             </div>
                         </div>
                     </div>
