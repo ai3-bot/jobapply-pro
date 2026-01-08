@@ -142,13 +142,13 @@ export default function SPS103Document({ applicant, formData = {} }) {
                             <div className="flex items-center gap-2">
                                 <span className="mb-2">2. เพศ</span>
                                 <label className="flex items-center gap-1">
-                                    <div className="w-3 h-3 border border-slate-400 flex-shrink-0 flex items-center justify-center min-h-[24px] pb-1">
+                                    <div className="w-3 h-3 border border-slate-400 flex-shrink-0">
                                         {personalData.gender === 'male' && <div className="w-2 h-2 bg-black"></div>}
                                     </div>
                                     <span className="mb-2">ชาย</span>
                                 </label>
                                 <label className="flex items-center gap-1">
-                                    <div className="w-3 h-3 border border-slate-400 flex-shrink-0 flex items-center justify-center min-h-[24px] pb-1">
+                                    <div className="w-3 h-3 border border-slate-400 flex-shrink-0">
                                         {personalData.gender === 'female' && <div className="w-2 h-2 bg-black"></div>}
                                     </div>
                                     <span className="mb-2">หญิง</span>
