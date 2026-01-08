@@ -413,8 +413,8 @@ export default function SPS103Document({ applicant, formData = {} }) {
                                 <p>8. ขอเลือกสถานพยาบาลประกันสังคม<span className="border-b border-dotted border-slate-400 inline-block w-[80px] mx-2"></span>(ผู้ประกันตนเป็นผู้เลือกสถานพยาบาล)</p>
                                 <p className="pl-4 mt-2">หากไม่สามารถจัดสถานพยาบาลที่เลือกให้ได้ ขอเลือกสถานพยาบาลสำรองคือ</p>
                                 <div className="pl-8 space-y-1 mt-1">
-                                    <p>ลำดับที่ 1 ชื่อ<span className="border-b border-dotted border-slate-400 inline-block w-[190px] mx-2"></span>หรือ</p>
-                                    <p>ลำดับที่ 2 ชื่อ<span className="border-b border-dotted border-slate-400 inline-block w-[190px] mx-2"></span></p>
+                                    <p>ลำดับที่ 1 ชื่อ<span className="border-b border-dotted border-slate-400 inline-block w-[250px] mx-2"></span>หรือ</p>
+                                    <p>ลำดับที่ 2 ชื่อ<span className="border-b border-dotted border-slate-400 inline-block w-[250px] mx-2"></span></p>
                                 </div>
                             </div>
                             
@@ -431,7 +431,6 @@ export default function SPS103Document({ applicant, formData = {} }) {
                                         )}
                                         ผู้ประกันตน
                                     </div>
-                                    <p className="mt-2">({applicant?.full_name || '...........................................................'})</p>
                                     <p>({personalData.first_name && personalData.last_name ? `${personalData.first_name} ${personalData.last_name}` : '............................................'})</p>
                                     <p>วันที่{formData.signatureDate ? new Date(formData.signatureDate).toLocaleDateString('th-TH') : '..............................'}</p>
                                 </div>
