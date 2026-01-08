@@ -368,7 +368,6 @@ export default function SPS103Document({ applicant, formData = {} }) {
                                         </div>
                                     </div>
                                 </div>
-                               
                             </div>
                         </div>
                         <div className="col-span-1 border-r border-slate-900">
