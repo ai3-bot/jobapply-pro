@@ -413,8 +413,8 @@ export default function SPS103Document({ applicant, formData = {} }) {
                                 <p>8. ขอเลือกสถานพยาบาลประกันสังคม<span className="border-b border-dotted border-slate-400 inline-block w-[80px] mx-2"></span>(ผู้ประกันตนเป็นผู้เลือกสถานพยาบาล)</p>
                                 <p className="pl-4 mt-2">หากไม่สามารถจัดสถานพยาบาลที่เลือกให้ได้ ขอเลือกสถานพยาบาลสำรองคือ</p>
                                 <div className="pl-8 space-y-1 mt-1">
-                                    <p>ลำดับที่ 1 ชื่อ<span className="border-b border-dotted border-slate-400 inline-block w-[250px] mx-2"></span>หรือ</p>
-                                    <p>ลำดับที่ 2 ชื่อ<span className="border-b border-dotted border-slate-400 inline-block w-[250px] mx-2"></span></p>
+                                    <p>ลำดับที่ 1 ชื่อ<span className="border-b border-dotted border-slate-400 inline-block w-[300px] mx-1"></span>หรือ</p>
+                                    <p>ลำดับที่ 2 ชื่อ<span className="border-b border-dotted border-slate-400 inline-block w-[300px] mx-1"></span></p>
                                 </div>
                             </div>
                             
@@ -466,7 +466,7 @@ export default function SPS103Document({ applicant, formData = {} }) {
             </div>
 
             {/* คำเตือน */}
-            <div className="mb-2 flex">
+            <div className="mb-4 flex p-4">
                 <p className="font-bold underline mr-1 min-w-[55px]">คำเตือน</p>
                 <ol className="list-decimal list-inside space-y-1.5 pl-2">
                     <li>นายจ้างผู้ลงชื่อรับรองข้อมูลผู้ประกันตน กรณีนิติบุคคลต้องเป็นผู้มีอำนาจกระทำการผูกพันนิติบุคคลหรือผู้ได้รับมอบอำนาจ</li>
