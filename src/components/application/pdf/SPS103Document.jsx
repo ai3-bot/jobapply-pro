@@ -28,7 +28,7 @@ export default function SPS103Document({ applicant, formData = {} }) {
                 <span className="text-[14px]">สปส. 1-03</span>
             </div>
             <div className="text-center mb-2">
-                <h1 className="text-[14px] font-bold">แบบขึ้นทะเบียนผู้ประกันตน</h1>
+                <h1 className="text-[18px]">แบบขึ้นทะเบียนผู้ประกันตน</h1>
             </div>
 
             {/* ส่วนบน: ข้อมูลนายจ้าง และ สำหรับเจ้าหน้าที่ */}
