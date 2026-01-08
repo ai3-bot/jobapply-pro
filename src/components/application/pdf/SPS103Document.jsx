@@ -232,68 +232,70 @@ export default function SPS103Document({ applicant, formData = {} }) {
                 <div className="grid grid-cols-3">
                     {/* 6. สถานภาพครอบครัว */}
                     <div className="col-span-2 border-l border-r border-b border-slate-900">
-                        <div className="flex items-center gap-2 p-1">
-                            <span>6. สถานภาพครอบครัว</span>
-                            <div className="p-2">
-                                <label className="flex items-center gap-1">
-                                    <input type="checkbox" checked={familyData.marital_status === 'single'} readOnly className="w-3 h-3" />
-                                    <span>1. โสด</span>
-                                </label>
-                                <label className="flex items-center gap-1">
-                                    <input type="checkbox" checked={familyData.marital_status === 'married'} readOnly className="w-3 h-3" />
-                                    <span>2. สมรส</span>
-                                </label>
-                                <label className="flex items-center gap-1">
-                                    <input type="checkbox" className="w-3 h-3" />
-                                    <span>3. หม้าย</span>
-                                </label>
-                                <label className="flex items-center gap-1">
-                                    <input type="checkbox" className="w-3 h-3" />
-                                    <span>4. หย่า</span>
-                                </label>
-                                <label className="flex items-center gap-1">
-                                    <input type="checkbox" className="w-3 h-3" />
-                                    <span>5. แยกกันอยู่</span>
-                                </label>
-                            </div>
-                        </div>
-                        <div className="flex items-center gap-2 pl-8">
-                            <label className="flex items-center gap-1">
-                                <input type="checkbox" checked={familyData.has_children === 'no'} readOnly className="w-3 h-3" />
-                                <span>ไม่มีบุตร</span>
-                            </label>
-                            <label className="flex items-center gap-1">
-                                <input type="checkbox" checked={familyData.has_children === 'yes'} readOnly className="w-3 h-3" />
-                                <span>มีบุตรอายุไม่เกิน 6 ปี จำนวน</span>
-                            </label>
-                            <div className="border-b border-dotted border-slate-400 w-12 text-center">
-                                {familyData.children_count || '\u00A0'}
-                            </div>
-                            <span>คน</span>
-                        </div>
-                        <div className="flex items-center gap-4 pl-16">
-                            <div className="flex items-center gap-1">
-                                <span>ลำดับที่ 1 เกิดปี พ.ศ.</span>
-                                <div className="flex gap-0.5">
-                                    {Array(4).fill('').map((_, idx) => (
-                                        <div key={idx} className="w-4 h-5 border border-slate-400"></div>
-                                    ))}
+                        <span className="p-1">6. สถานภาพครอบครัว</span>
+                        <div className="p-3">
+                            <div className="flex items-center gap-2">
+                                <div className="">
+                                    <label className="flex items-center gap-1">
+                                        <input type="checkbox" checked={familyData.marital_status === 'single'} readOnly className="w-3 h-3" />
+                                        <span>1. โสด</span>
+                                    </label>
+                                    <label className="flex items-center gap-1">
+                                        <input type="checkbox" checked={familyData.marital_status === 'married'} readOnly className="w-3 h-3" />
+                                        <span>2. สมรส</span>
+                                    </label>
+                                    <label className="flex items-center gap-1">
+                                        <input type="checkbox" className="w-3 h-3" />
+                                        <span>3. หม้าย</span>
+                                    </label>
+                                    <label className="flex items-center gap-1">
+                                        <input type="checkbox" className="w-3 h-3" />
+                                        <span>4. หย่า</span>
+                                    </label>
+                                    <label className="flex items-center gap-1">
+                                        <input type="checkbox" className="w-3 h-3" />
+                                        <span>5. แยกกันอยู่</span>
+                                    </label>
                                 </div>
                             </div>
-                            <div className="flex items-center gap-1">
-                                <span>ลำดับที่ 2 เกิดปี พ.ศ.</span>
-                                <div className="flex gap-0.5">
-                                    {Array(4).fill('').map((_, idx) => (
-                                        <div key={idx} className="w-4 h-5 border border-slate-400"></div>
-                                    ))}
+                            <div className="flex items-center gap-2 pl-8">
+                                <label className="flex items-center gap-1">
+                                    <input type="checkbox" checked={familyData.has_children === 'no'} readOnly className="w-3 h-3" />
+                                    <span>ไม่มีบุตร</span>
+                                </label>
+                                <label className="flex items-center gap-1">
+                                    <input type="checkbox" checked={familyData.has_children === 'yes'} readOnly className="w-3 h-3" />
+                                    <span>มีบุตรอายุไม่เกิน 6 ปี จำนวน</span>
+                                </label>
+                                <div className="border-b border-dotted border-slate-400 w-12 text-center">
+                                    {familyData.children_count || '\u00A0'}
                                 </div>
+                                <span>คน</span>
                             </div>
-                            <div className="flex items-center gap-1">
-                                <span>ลำดับที่ 3 เกิดปี พ.ศ.</span>
-                                <div className="flex gap-0.5">
-                                    {Array(4).fill('').map((_, idx) => (
-                                        <div key={idx} className="w-4 h-5 border border-slate-400"></div>
-                                    ))}
+                            <div className="flex items-center gap-4 pl-16">
+                                <div className="flex items-center gap-1">
+                                    <span>ลำดับที่ 1 เกิดปี พ.ศ.</span>
+                                    <div className="flex gap-0.5">
+                                        {Array(4).fill('').map((_, idx) => (
+                                            <div key={idx} className="w-4 h-5 border border-slate-400"></div>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div className="flex items-center gap-1">
+                                    <span>ลำดับที่ 2 เกิดปี พ.ศ.</span>
+                                    <div className="flex gap-0.5">
+                                        {Array(4).fill('').map((_, idx) => (
+                                            <div key={idx} className="w-4 h-5 border border-slate-400"></div>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div className="flex items-center gap-1">
+                                    <span>ลำดับที่ 3 เกิดปี พ.ศ.</span>
+                                    <div className="flex gap-0.5">
+                                        {Array(4).fill('').map((_, idx) => (
+                                            <div key={idx} className="w-4 h-5 border border-slate-400"></div>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
                         </div>
