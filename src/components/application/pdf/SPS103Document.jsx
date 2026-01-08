@@ -345,6 +345,7 @@ export default function SPS103Document({ applicant, formData = {} }) {
                                     <div className="border-b border-dotted border-slate-400 flex-1 min-h-[18px]"></div>
                                 </div>
                             </div>
+                            <div className="bordor-t"></div>
                             {/* ลายเซ็นนายจ้าง */}
                             <div className="mt-4 text-[12px]">
                             <p className="mb-2">ข้าพเจ้าขอรับรองว่าข้อความดังกล่าวข้างต้น ถูกต้องตามความเป็นจริงทุกประการ</p>
