@@ -361,10 +361,10 @@ export default function SPS103Document({ applicant, formData = {} }) {
                                     </div>
                                     <div className="flex justify-end space-y-1">
                                         <div className="text-center">
-                                            <div className="mb-1">ลงชื่อ<div className="inline-block border-b border-dotted border-slate-400 w-48 mx-2 min-h-[20px]"></div>นายจ้าง</div>
-                                            <div className="mb-1">(<div className="inline-block border-b border-dotted border-slate-400 w-48 min-h-[20px]"></div>)</div>
-                                            <div className="mb-1">ตำแหน่ง<div className="inline-block border-b border-dotted border-slate-400 w-40 mx-2 min-h-[20px]"></div></div>
-                                            <div>วันที่<div className="inline-block border-b border-dotted border-slate-400 w-40 mx-2 min-h-[20px]"></div></div>
+                                            <div className="mb-2">ลงชื่อ<div className="inline-block border-b border-dotted border-slate-400 w-48 mx-2 pb-2 min-h-[20px]"></div>นายจ้าง</div>
+                                            <div className="mb-2">(<div className="inline-block border-b border-dotted border-slate-400 w-48 pb-2 min-h-[20px]"></div>)</div>
+                                            <div className="mb-2">ตำแหน่ง<div className="inline-block border-b border-dotted border-slate-400 w-40 mx-2 pb-2 min-h-[20px]"></div></div>
+                                            <div>วันที่<div className="inline-block border-b border-dotted border-slate-400 w-40 mx-2 pb-2 min-h-[20px]"></div></div>
                                         </div>
                                     </div>
                                 </div>
