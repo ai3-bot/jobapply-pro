@@ -406,7 +406,7 @@ export default function SPS103Document({ applicant, formData = {} }) {
             {/* ข้อมูลการเลือกสถานพยาบาล */}
             <div>
                 <div className="grid grid-cols-3">
-                    <div className="col-span-2 mb-4 border-l border-r border-b border-slate-900">
+                    <div className="col-span-2 border-l border-r border-b border-slate-900">
                         <h3 className="font-bold border-b border-slate-900 text-center items-center py-2">ข้อมูลการเลือกสถานพยาบาล</h3>
                         <div className="space-y-0">
                             <div>
