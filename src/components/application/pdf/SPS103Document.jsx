@@ -423,7 +423,7 @@ export default function SPS103Document({ applicant, formData = {} }) {
                                 <div className="text-center">
                                     <div className="border-b border-slate-400 min-h-[50px] w-48 mb-1 flex items-center justify-center">
                                         {applicant?.signature_url ? (
-                                            <img src={applicant.signature_url} alt="Signature" crossOrigin="anonymous" className="h-[40px] object-contain" />
+                                            <img src={applicant.signature_url} alt="Signature" crossOrigin="anonymous" className="h-[30px] object-contain" />
                                         ) : (
                                             '\u00A0'
                                         )}
@@ -436,7 +436,7 @@ export default function SPS103Document({ applicant, formData = {} }) {
                         </div>
                     </div>
                     <div className="col-span-1 border-r border-b border-slate-900 p-2">
-                        <div className="grid grid-col-3">
+                        <div className="grid mt-1 grid-col-3">
                             <div className="flex ml-2 mt-2">
                                 {Array(6).fill('').map((_, idx) => (
                                     <div key={idx} className="p-2 border border-black"></div>
