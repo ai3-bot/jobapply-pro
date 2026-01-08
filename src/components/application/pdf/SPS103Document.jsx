@@ -232,8 +232,8 @@ export default function SPS103Document({ applicant, formData = {} }) {
                 <div className="grid grid-cols-3">
                     {/* 6. สถานภาพครอบครัว */}
                     <div className="col-span-2 border-l border-r border-b border-slate-900">
+                        <span className="mt-4 ml-4">6. สถานภาพครอบครัว</span>
                         <div className="p-2">
-                            <span className="mb-4">6. สถานภาพครอบครัว</span>
                             <div className="items-center gap-2">
                                 <div className="ml-2 flex">
                                     <div className="flex items-center gap-1">
