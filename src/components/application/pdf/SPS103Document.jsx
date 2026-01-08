@@ -408,13 +408,13 @@ export default function SPS103Document({ applicant, formData = {} }) {
                 <div className="grid grid-cols-3">
                     <div className="col-span-2 border-l border-r border-b border-slate-900">
                         <h3 className="font-bold border-b border-slate-900 text-center items-center py-2">ข้อมูลการเลือกสถานพยาบาล</h3>
-                        <div className="space-y-0">
+                        <div className="space-y-0 p-2">
                             <div>
-                                <p>8. ขอเลือกสถานพยาบาลประกันสังคม<span className="border-b border-dotted border-slate-400 inline-block w-64 mx-2"></span>(ผู้ประกันตนเป็นผู้เลือกสถานพยาบาล)</p>
+                                <p>8. ขอเลือกสถานพยาบาลประกันสังคม<span className="border-b border-dotted border-slate-400 inline-block w-[80px] mx-2"></span>(ผู้ประกันตนเป็นผู้เลือกสถานพยาบาล)</p>
                                 <p className="pl-4 mt-2">หากไม่สามารถจัดสถานพยาบาลที่เลือกให้ได้ ขอเลือกสถานพยาบาลสำรองคือ</p>
                                 <div className="pl-8 space-y-1 mt-1">
-                                    <p>ลำดับที่ 1 ชื่อ<span className="border-b border-dotted border-slate-400 inline-block w-96 mx-2"></span>หรือ</p>
-                                    <p>ลำดับที่ 2 ชื่อ<span className="border-b border-dotted border-slate-400 inline-block w-96 mx-2"></span></p>
+                                    <p>ลำดับที่ 1 ชื่อ<span className="border-b border-dotted border-slate-400 inline-block w-[100px] mx-2"></span>หรือ</p>
+                                    <p>ลำดับที่ 2 ชื่อ<span className="border-b border-dotted border-slate-400 inline-block w-[100px] mx-2"></span></p>
                                 </div>
                             </div>
                             
@@ -435,8 +435,24 @@ export default function SPS103Document({ applicant, formData = {} }) {
                             </div>
                         </div>
                     </div>
-                    <div className="col-span-1 border-r border-b border-slate-900">
-                        <p>test</p>
+                    <div className="col-span-1 border-r border-b border-slate-900 p-2">
+                        <div className="grid grid-col-3">
+                            <div className="flex ml-2 mt-2">
+                                {Array(6).fill('').map((_, idx) => (
+                                    <div key={idx} className="p-2 border border-black"></div>
+                                ))}
+                            </div>
+                            <div className="flex ml-2 mt-2">
+                                {Array(6).fill('').map((_, idx) => (
+                                    <div key={idx} className="p-2 border border-black"></div>
+                                ))}
+                            </div>
+                            <div className="flex ml-2 mt-2">
+                                {Array(6).fill('').map((_, idx) => (
+                                    <div key={idx} className="p-2 border border-black"></div>
+                                ))}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
