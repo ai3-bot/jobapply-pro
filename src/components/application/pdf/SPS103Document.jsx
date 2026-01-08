@@ -280,10 +280,10 @@ export default function SPS103Document({ applicant, formData = {} }) {
                                 </div>
                                 <span>คน</span>
                             </div>
-                            <div className="flex items-center gap-4 pl-16">
-                                <div className="flex items-center gap-1">
+                            <div className="flex items-center gap-3 pl-10">
+                                <div className="flex items-center gap-0.5">
                                     <span>เกิดปี พ.ศ.</span>
-                                    <div className="flex gap-0.5">
+                                    <div className="flex">
                                         {Array(4).fill('').map((_, idx) => (
                                             <div key={idx} className="w-4 h-5 border border-slate-400"></div>
                                         ))}
@@ -291,7 +291,7 @@ export default function SPS103Document({ applicant, formData = {} }) {
                                 </div>
                                 <div className="flex items-center gap-1">
                                     <span>เกิดปี พ.ศ.</span>
-                                    <div className="flex gap-0.5">
+                                    <div className="flex">
                                         {Array(4).fill('').map((_, idx) => (
                                             <div key={idx} className="w-4 h-5 border border-slate-400"></div>
                                         ))}
@@ -299,7 +299,7 @@ export default function SPS103Document({ applicant, formData = {} }) {
                                 </div>
                                 <div className="flex items-center gap-1">
                                     <span>เกิดปี พ.ศ.</span>
-                                    <div className="flex gap-0.5">
+                                    <div className="flex">
                                         {Array(4).fill('').map((_, idx) => (
                                             <div key={idx} className="w-4 h-5 border border-slate-400"></div>
                                         ))}
