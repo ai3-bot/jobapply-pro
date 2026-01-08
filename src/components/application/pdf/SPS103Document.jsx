@@ -364,7 +364,6 @@ export default function SPS103Document({ applicant, formData = {} }) {
                     </div>
                 </div>
             </div>
-            </div>
 
             {/* ข้อมูลการเลือกสถานพยาบาล */}
             <div className="border border-slate-900 p-3">
