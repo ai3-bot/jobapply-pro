@@ -65,15 +65,15 @@ export default function SPS103Document({ applicant, formData = {} }) {
                             <div className="flex items-center gap-2">
                                 <span className="mb-2">ประเภทการจ้าง</span>
                                 <div className="flex items-center gap-1">
-                                    <div className="w-3 h-3 border border-slate-400 flex-shrink-0"></div>
+                                    <div className="w-4 h-4 border border-black flex-shrink-0"></div>
                                     <span className="mb-2">รายวัน</span>
                                 </div>
                                 <div className="flex items-center gap-1">
-                                    <div className="w-3 h-3 border border-slate-400 flex-shrink-0"></div>
+                                    <div className="w-4 h-4 border border-black flex-shrink-0"></div>
                                     <span className="mb-2">รายเดือน</span>
                                 </div>
                                 <div className="flex items-center gap-1">
-                                    <div className="w-3 h-3 border border-slate-400 flex-shrink-0"></div>
+                                    <div className="w-4 h-4 border border-black flex-shrink-0"></div>
                                     <span className="mb-2">อื่นๆ</span>
                                 </div>
                             </div>
@@ -111,28 +111,28 @@ export default function SPS103Document({ applicant, formData = {} }) {
                             <div className="flex items-center">
                                 <span className="mb-2">1. ชื่อ</span>
                                 <label className="flex items-center gap-1">
-                                    <div className="w-3 h-3 border border-slate-400 flex-shrink-0">
+                                    <div className="w-3 h-3 border border-black flex-shrink-0">
                                         {personalData.prefix === 'นาย' && <div className="w-2 h-2 bg-black"></div>}
                                     </div>
                                     <span className="mb-2">นาย</span>
                                 </label>
                                 <label className="flex items-center gap-1">
-                                    <div className="w-3 h-3 border border-slate-400 flex-shrink-0">
+                                    <div className="w-3 h-3 border border-black flex-shrink-0">
                                         {personalData.prefix === 'นางสาว' && <div className="w-2 h-2 bg-black"></div>}
                                     </div>
                                     <span className="mb-2">นางสาว</span>
                                 </label>
                                 <label className="flex items-center gap-1">
-                                    <div className="w-3 h-3 border border-slate-400 flex-shrink-0">
+                                    <div className="w-3 h-3 border border-black flex-shrink-0">
                                         {personalData.prefix === 'นาง' && <div className="w-2 h-2 bg-black"></div>}
                                     </div>
                                     <span className="mb-2">นาง</span>
                                 </label>
-                                <span className="border-b border-dotted border-slate-400 flex-1 inline-block min-h-[24px] pb-1 ml-1">
+                                <span className="border-b border-dotted border-black flex-1 inline-block min-h-[24px] pb-1 ml-1">
                                     {personalData.first_name || '\u00A0'}
                                 </span>
                                 <span className="mb-2">ชื่อสกุล</span>
-                                <span className="border-b border-dotted border-slate-400 flex-1 inline-block min-h-[24px] pb-1 ml-1">
+                                <span className="border-b border-dotted border-black flex-1 inline-block min-h-[24px] pb-1 ml-1">
                                     {personalData.last_name || '\u00A0'}
                                 </span>
                             </div>
