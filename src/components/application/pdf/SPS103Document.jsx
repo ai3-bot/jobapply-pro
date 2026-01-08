@@ -413,8 +413,8 @@ export default function SPS103Document({ applicant, formData = {} }) {
                                 <p>8. ขอเลือกสถานพยาบาลประกันสังคม<span className="border-b border-dotted border-slate-400 inline-block w-[80px] mx-2"></span>(ผู้ประกันตนเป็นผู้เลือกสถานพยาบาล)</p>
                                 <p className="pl-4 mt-2">หากไม่สามารถจัดสถานพยาบาลที่เลือกให้ได้ ขอเลือกสถานพยาบาลสำรองคือ</p>
                                 <div className="pl-8 space-y-1 mt-1">
-                                    <p>ลำดับที่ 1 ชื่อ<span className="border-b border-dotted border-slate-400 inline-block w-[100px] mx-2"></span>หรือ</p>
-                                    <p>ลำดับที่ 2 ชื่อ<span className="border-b border-dotted border-slate-400 inline-block w-[100px] mx-2"></span></p>
+                                    <p>ลำดับที่ 1 ชื่อ<span className="border-b border-dotted border-slate-400 inline-block w-[190px] mx-2"></span>หรือ</p>
+                                    <p>ลำดับที่ 2 ชื่อ<span className="border-b border-dotted border-slate-400 inline-block w-[190px] mx-2"></span></p>
                                 </div>
                             </div>
                             
@@ -468,8 +468,8 @@ export default function SPS103Document({ applicant, formData = {} }) {
 
             {/* คำเตือน */}
             <div className="mb-2 flex">
-                <p className="font-bold underline mr-1">คำเตือน</p>
-                <ol className="list-decimal list-inside space-y-0.5 pl-2">
+                <p className="font-bold underline mr-1 min-w-[15px]">คำเตือน</p>
+                <ol className="list-decimal list-inside space-y-1 pl-2">
                     <li>นายจ้างผู้ลงชื่อรับรองข้อมูลผู้ประกันตน กรณีนิติบุคคลต้องเป็นผู้มีอำนาจกระทำการผูกพันนิติบุคคลหรือผู้ได้รับมอบอำนาจ</li>
                     <li>การขึ้นทะเบียนผู้ประกันตนต่อสำนักงานประกันสังคมให้แจ้ง ภายใน 30 วัน นับแต่วันที่ลูกจ้างนั้นเป็นผู้ประกันตนตามแบบ สปส.1-03 เมื่อข้อเท็จจริงที่แจ้งไว้เปลี่ยนแปลง เช่น ลูกจ้างลาออกหรือถูกเลิกจ้าง ให้แจ้งต่อสำนักงานประกันสังคมภายในวันที่ 15 ของเดือนถัดจากเดือนที่มีการเปลี่ยนแปลงตามแบบ สปส.6-09 หากฝ่าฝืนอาจมีความผิดต้องระวางโทษจำคุกไม่เกิน 6 เดือน หรือปรับไม่เกิน 20,000 บาท หรือทั้งจำทั้งปรับ</li>
                     <li>การยื่นแบบเป็นเท็จ เช่น นำบุคคลที่ไม่ใช่ลูกจ้างขึ้นทะเบียนเป็นผู้ประกันตน อาจมีความผิดต้องระวางโทษจำคุกไม่เกิน 6 เดือน หรือปรับไม่เกิน 20,000 บาท หรือทั้งจำทั้งปรับ</li>
