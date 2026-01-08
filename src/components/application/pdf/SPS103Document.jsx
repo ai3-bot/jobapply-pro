@@ -109,30 +109,30 @@ export default function SPS103Document({ applicant, formData = {} }) {
                         <h3 className="font-bold text-center py-2 border-b border-slate-900">ข้อมูลผู้ประกันตน</h3>
                         <div className="space-y-1 p-2">
                             <div className="flex items-center">
-                                <span>1. ชื่อ</span>
+                                <span className="mb-2">1. ชื่อ</span>
                                 <label className="flex items-center gap-1">
-                                    <div className="w-3 h-3 border border-slate-400 flex-shrink-0 flex items-center justify-center">
+                                    <div className="w-3 h-3 border border-slate-400 flex-shrink-0 flex items-center justify-center min-h-[24px] pb-1">
                                         {personalData.prefix === 'นาย' && <div className="w-2 h-2 bg-black"></div>}
                                     </div>
-                                    <span>นาย</span>
+                                    <span className="mb-2">นาย</span>
                                 </label>
                                 <label className="flex items-center gap-1">
-                                    <div className="w-3 h-3 border border-slate-400 flex-shrink-0 flex items-center justify-center">
+                                    <div className="w-3 h-3 border border-slate-400 flex-shrink-0 flex items-center justify-center min-h-[24px] pb-1">
                                         {personalData.prefix === 'นางสาว' && <div className="w-2 h-2 bg-black"></div>}
                                     </div>
-                                    <span>นางสาว</span>
+                                    <span className="mb-2">นางสาว</span>
                                 </label>
                                 <label className="flex items-center gap-1">
-                                    <div className="w-3 h-3 border border-slate-400 flex-shrink-0 flex items-center justify-center">
+                                    <div className="w-3 h-3 border border-slate-400 flex-shrink-0 flex items-center justify-center min-h-[24px] pb-1">
                                         {personalData.prefix === 'นาง' && <div className="w-2 h-2 bg-black"></div>}
                                     </div>
-                                    <span>นาง</span>
+                                    <span className="mb-2">นาง</span>
                                 </label>
-                                <span className="border-b border-dotted border-slate-400 flex-1 pb-0.5 inline-block">
+                                <span className="border-b border-dotted border-slate-400 flex-1 inline-block min-h-[24px] pb-1 ml-1">
                                     {personalData.first_name || '\u00A0'}
                                 </span>
-                                <span>ชื่อสกุล</span>
-                                <span className="border-b border-dotted border-slate-400 flex-1 pb-0.5 inline-block">
+                                <span className="mb-2">ชื่อสกุล</span>
+                                <span className="border-b border-dotted border-slate-400 flex-1 inline-block min-h-[24px] pb-1 ml-1">
                                     {personalData.last_name || '\u00A0'}
                                 </span>
                             </div>
@@ -140,48 +140,48 @@ export default function SPS103Document({ applicant, formData = {} }) {
 
                             {/* 2. เพศ */}
                             <div className="flex items-center gap-2">
-                                <span>2. เพศ</span>
+                                <span className="mb-2">2. เพศ</span>
                                 <label className="flex items-center gap-1">
-                                    <div className="w-3 h-3 border border-slate-400 flex-shrink-0 flex items-center justify-center">
+                                    <div className="w-3 h-3 border border-slate-400 flex-shrink-0 flex items-center justify-center min-h-[24px] pb-1">
                                         {personalData.gender === 'male' && <div className="w-2 h-2 bg-black"></div>}
                                     </div>
-                                    <span>ชาย</span>
+                                    <span className="mb-2">ชาย</span>
                                 </label>
                                 <label className="flex items-center gap-1">
-                                    <div className="w-3 h-3 border border-slate-400 flex-shrink-0 flex items-center justify-center">
+                                    <div className="w-3 h-3 border border-slate-400 flex-shrink-0 flex items-center justify-center min-h-[24px] pb-1">
                                         {personalData.gender === 'female' && <div className="w-2 h-2 bg-black"></div>}
                                     </div>
-                                    <span>หญิง</span>
+                                    <span className="mb-2">หญิง</span>
                                 </label>
                             </div>
 
                             {/* 3. สัญชาติ */}
                             <div className="flex items-center gap-2">
-                                <span>3. สัญชาติ</span>
-                                <span className="border-b border-dotted border-slate-400 flex-1 pb-0.5 inline-block">
+                                <span className="mb-2">3. สัญชาติ</span>
+                                <span className="border-b border-dotted border-slate-400 flex-1 inline-block min-h-[24px] pb-1">
                                     {personalData.nationality || '\u00A0'}
                                 </span>
                             </div>
 
                             {/* 4. เกิดวันที่ */}
                             <div className="flex items-center gap-2">
-                                <span>4. เกิดวันที่</span>
-                                <span className="border-b border-dotted border-slate-400 w-20 pb-0.5 inline-block">
+                                <span className="mb-2">4. เกิดวันที่</span>
+                                <span className="border-b border-dotted border-slate-400 w-20 inline-block min-h-[24px] pb-1">
                                     {personalData.dob ? new Date(personalData.dob).toLocaleDateString('th-TH', { day: 'numeric' }) : '\u00A0'}
                                 </span>
-                                <span>เดือน</span>
-                                <span className="border-b border-dotted border-slate-400 flex-1 pb-0.5 inline-block">
+                                <span className="mb-2">เดือน</span>
+                                <span className="border-b border-dotted border-slate-400 flex-1 inline-block min-h-[24px] pb-1">
                                     {personalData.dob ? new Date(personalData.dob).toLocaleDateString('th-TH', { month: 'long' }) : '\u00A0'}
                                 </span>
-                                <span>พ.ศ.</span>
-                                <span className="border-b border-dotted border-slate-400 w-24 pb-0.5 inline-block">
+                                <span className="mb-2">พ.ศ.</span>
+                                <span className="border-b border-dotted border-slate-400 w-24 inline-block min-h-[24px] pb-1">
                                     {personalData.dob ? (new Date(personalData.dob).getFullYear() + 543) : '\u00A0'}
                                 </span>
                             </div>
 
                             {/* 5. เลขประจำตัวประชาชน */}
                             <div className="flex items-center gap-2">
-                                <span>5. เลขประจำตัวประชาชน</span>
+                                <span className="mb-2">5. เลขประจำตัวประชาชน</span>
                                 <div className="flex items-center">
                                     {Array(13).fill('').map((_, idx) => (
                                         <React.Fragment key={idx}>
