@@ -31,6 +31,14 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
         }
     });
 
+    const { data: employmentContractDocuments = [] } = useQuery({
+        queryKey: ['employment_contract_documents'],
+        queryFn: async () => {
+            const docs = await base44.entities.PdfBase.filter({ pdf_type: 'Employment-Contract' });
+            return docs;
+        }
+    });
+
     if (!selectedApplicant) {
         return (
             <div className="h-full flex items-center justify-center">
