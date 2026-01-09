@@ -16,7 +16,7 @@ export default function FMH19Document({ applicant, signatureUrl, signatureDate, 
     return (
         <>
         <div 
-            className="pdpa-page bg-white text-slate-900 mx-auto relative text-[16px] font-sans p-[20mm] shadow-sm print:shadow-none"
+            className="pdpa-page bg-white text-slate-900 mx-auto relative text-[16px] p-[20mm] shadow-sm print:shadow-none"
             style={{ 
                 width: '210mm', 
                 minHeight: '297mm',
