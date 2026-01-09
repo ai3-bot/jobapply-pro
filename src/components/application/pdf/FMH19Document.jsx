@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 
-export default function FMH19Document({ applicant, signatureUrl, signatureDate, formData = {}, witness1Signature, witness2Signature }) {
+export default function FMH19Document({ applicant, signatureUrl, signatureDate, formData = {}, companySignature, witness1Signature, witness2Signature }) {
     const { data: settings } = useQuery({
         queryKey: ['system_settings_layout'],
         queryFn: () => base44.entities.SystemSetting.list(),
@@ -102,13 +102,19 @@ export default function FMH19Document({ applicant, signatureUrl, signatureDate, 
             {/* Signatures */}
             <div className="mb-6 leading-[1.4]">
                 <div className="grid grid-cols-2 gap-8">
-                    <div className="text-center">
-                        <div className="mb-2">ลงชื่อ
-                            <span className="inline-block border-b border-dotted border-slate-400 w-[155px] mx-2" style={{ verticalAlign: 'baseline', minHeight: '40px', display: 'inline-block' }}>&nbsp;</span>
-                            บริษัท/นายจ้าง
+                        <div className="text-center">
+                            <div className="mb-2">ลงชื่อ
+                                {companySignature ? (
+                                    <span className="inline-block mx-2" style={{ verticalAlign: 'baseline' }}>
+                                        <img src={companySignature} alt="Company Signature" crossOrigin="anonymous" className="inline-block max-h-[40px] object-contain" />
+                                    </span>
+                                ) : (
+                                    <span className="inline-block border-b border-dotted border-slate-400 w-[155px] mx-2" style={{ verticalAlign: 'baseline', minHeight: '40px', display: 'inline-block' }}>&nbsp;</span>
+                                )}
+                                บริษัท/นายจ้าง
+                            </div>
+                            <p>({companyData.authorizedPerson || formData.authorizedPerson || '........................................'})</p>
                         </div>
-                        <p>({companyData.authorizedPerson || formData.authorizedPerson || '........................................'})</p>
-                    </div>
                     <div className="text-center mb-2">
                         <div className="mb-2">ลงชื่อ
                             {signatureUrl ? (
