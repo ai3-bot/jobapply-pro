@@ -29,6 +29,20 @@ export default function UserDashboard() {
         enabled: !!applicantId
     });
 
+    const { data: pdfDocuments } = useQuery({
+        queryKey: ['pdf_documents', applicantId],
+        queryFn: async () => {
+            if (!applicantId) return {};
+            const pdfs = await base44.entities.PdfBase.filter({ applicant_id: applicantId });
+            const pdfMap = {};
+            pdfs.forEach(pdf => {
+                pdfMap[pdf.pdf_type] = pdf;
+            });
+            return pdfMap;
+        },
+        enabled: !!applicantId
+    });
+
     const handleLogout = () => {
         localStorage.removeItem('user_applicant_id');
         navigate('/user-login');
