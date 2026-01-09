@@ -19,9 +19,11 @@ export default function UserLogin() {
         queryFn: () => base44.entities.Applicant.list()
     });
 
-    // Filter applicants based on search
+    // Filter applicants based on search with status conditions
     const filteredApplicants = applicants.filter(app => {
         if (!searchTerm) return false;
+        // Status must be 1 (passed) and data completion must be 0 (not completed)
+        if (app.approval_status !== 1 || app.data_completion_status !== 0) return false;
         const fullName = app.full_name?.toLowerCase() || '';
         const englishName = app.personal_data?.english_name?.toLowerCase() || '';
         return fullName.includes(searchTerm.toLowerCase()) || 
