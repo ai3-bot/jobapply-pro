@@ -13,6 +13,18 @@ export default function FMH19Document({ applicant, signatureUrl, signatureDate, 
     const p = applicant?.personal_data || {};
     const companyData = applicant?.fmhrd19_document?.company_data || {};
 
+    // แปลง documentDate เป็น day, month, year ถ้ามี
+    let displayDay = formData.day;
+    let displayMonth = formData.month;
+    let displayYear = formData.year;
+
+    if (formData.documentDate && !formData.day) {
+        const date = new Date(formData.documentDate);
+        displayDay = date.getDate();
+        displayMonth = date.toLocaleDateString('th-TH', { month: 'long' });
+        displayYear = date.getFullYear() + 543;
+    }
+
     return (
         <>
         <div 
@@ -42,9 +54,9 @@ export default function FMH19Document({ applicant, signatureUrl, signatureDate, 
 
             {/* Date */}
             <div className="mb-6 leading-[1.4] flex justify-end">
-                <div>วันที่ <span className={`border-b border-dotted border-slate-400 inline-block min-w-[50px] text-center px-2 ${formData.day ? 'pb-1' : ''}`} style={{ verticalAlign: 'baseline', ...(!formData.day && { minHeight: '1.2em' }) }}>{formData.day || '\u00A0'}</span> 
-                เดือน <span className={`border-b border-dotted border-slate-400 inline-block min-w-[100px] text-center px-2 ${formData.month ? 'pb-1' : ''}`} style={{ verticalAlign: 'baseline', ...(!formData.month && { minHeight: '1.2em' }) }}>{formData.month || '\u00A0'}</span> 
-                พ.ศ. <span className={`border-b border-dotted border-slate-400 inline-block min-w-[50px] text-center px-2 ${formData.year ? 'pb-1' : ''}`} style={{ verticalAlign: 'baseline', ...(!formData.year && { minHeight: '1.2em' }) }}>{formData.year || '\u00A0'}</span>
+                <div>วันที่ <span className={`border-b border-dotted border-slate-400 inline-block min-w-[50px] text-center px-2 ${displayDay ? 'pb-1' : ''}`} style={{ verticalAlign: 'baseline', ...(!displayDay && { minHeight: '1.2em' }) }}>{displayDay || '\u00A0'}</span> 
+                เดือน <span className={`border-b border-dotted border-slate-400 inline-block min-w-[100px] text-center px-2 ${displayMonth ? 'pb-1' : ''}`} style={{ verticalAlign: 'baseline', ...(!displayMonth && { minHeight: '1.2em' }) }}>{displayMonth || '\u00A0'}</span> 
+                พ.ศ. <span className={`border-b border-dotted border-slate-400 inline-block min-w-[50px] text-center px-2 ${displayYear ? 'pb-1' : ''}`} style={{ verticalAlign: 'baseline', ...(!displayYear && { minHeight: '1.2em' }) }}>{displayYear || '\u00A0'}</span>
                 </div>
             </div>
 
