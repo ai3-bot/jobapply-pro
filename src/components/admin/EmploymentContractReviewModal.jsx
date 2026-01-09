@@ -126,148 +126,48 @@ export default function EmploymentContractReviewModal({ applicant, isOpen, onClo
                 </DialogHeader>
 
                 <div className="space-y-4">
-                    {/* Admin Form */}
+                    {/* Admin Form - Witnesses Only */}
                     <div className="bg-slate-50 p-4 rounded-lg space-y-4">
-                        <h3 className="font-semibold text-lg">กรอกข้อมูลสัญญาจ้างงาน</h3>
+                        <h3 className="font-semibold text-lg">ลายเซ็นพยานและชื่อผู้ลงนาม</h3>
                         
-                        <div className="grid grid-cols-2 gap-4">
-                            <div>
-                                <Label>วันที่ทำสัญญา</Label>
-                                <Input
-                                    type="date"
-                                    value={formData.contractDate}
-                                    onChange={(e) => setFormData({ ...formData, contractDate: e.target.value })}
-                                />
-                            </div>
-                            <div>
-                                <Label>ตำแหน่ง</Label>
-                                <Input
-                                    value={formData.position}
-                                    onChange={(e) => setFormData({ ...formData, position: e.target.value })}
-                                />
-                            </div>
-                            <div>
-                                <Label>หน่วยงาน</Label>
-                                <Input
-                                    value={formData.department}
-                                    onChange={(e) => setFormData({ ...formData, department: e.target.value })}
-                                />
-                            </div>
-                            <div>
-                                <Label>แผนก/ฝ่าย</Label>
-                                <Input
-                                    value={formData.division}
-                                    onChange={(e) => setFormData({ ...formData, division: e.target.value })}
-                                />
-                            </div>
-                            <div>
-                                <Label>วันที่เริ่มโครงการ</Label>
-                                <Input
-                                    type="date"
-                                    value={formData.startDate}
-                                    onChange={(e) => setFormData({ ...formData, startDate: e.target.value })}
-                                />
-                            </div>
-                            <div>
-                                <Label>วันที่สิ้นสุด</Label>
-                                <Input
-                                    type="date"
-                                    value={formData.endDate}
-                                    onChange={(e) => setFormData({ ...formData, endDate: e.target.value })}
-                                />
-                            </div>
-                            <div>
-                                <Label>วันที่เริ่มงาน</Label>
-                                <Input
-                                    type="date"
-                                    value={formData.workStartDate}
-                                    onChange={(e) => setFormData({ ...formData, workStartDate: e.target.value })}
-                                />
-                            </div>
-                            <div>
-                                <Label>ระยะทดลองงาน (วัน)</Label>
-                                <Input
-                                    value={formData.probationDays}
-                                    onChange={(e) => setFormData({ ...formData, probationDays: e.target.value })}
-                                    placeholder="เช่น 120"
-                                />
-                            </div>
-                            <div>
-                                <Label>เวลาเข้างาน</Label>
-                                <Input
-                                    type="time"
-                                    value={formData.workTimeStart}
-                                    onChange={(e) => setFormData({ ...formData, workTimeStart: e.target.value })}
-                                />
-                            </div>
-                            <div>
-                                <Label>เวลาออกงาน</Label>
-                                <Input
-                                    type="time"
-                                    value={formData.workTimeEnd}
-                                    onChange={(e) => setFormData({ ...formData, workTimeEnd: e.target.value })}
-                                />
-                            </div>
-                            <div>
-                                <Label>เวลาเข้างาน (ทางเลือก)</Label>
-                                <Input
-                                    type="time"
-                                    value={formData.workTimeAlt1}
-                                    onChange={(e) => setFormData({ ...formData, workTimeAlt1: e.target.value })}
-                                />
-                            </div>
-                            <div>
-                                <Label>เวลาออกงาน (ทางเลือก)</Label>
-                                <Input
-                                    type="time"
-                                    value={formData.workTimeAlt2}
-                                    onChange={(e) => setFormData({ ...formData, workTimeAlt2: e.target.value })}
-                                />
-                            </div>
-                            <div>
-                                <Label>ค่าจ้างรายวัน</Label>
-                                <Input
-                                    value={formData.dailyRate}
-                                    onChange={(e) => setFormData({ ...formData, dailyRate: e.target.value, dailyRateText: numberToThai(e.target.value) })}
-                                    placeholder="เช่น 300"
-                                />
-                            </div>
-                            <div>
-                                <Label>ค่าจ้างรายเดือน</Label>
-                                <Input
-                                    value={formData.monthlyRate}
-                                    onChange={(e) => setFormData({ ...formData, monthlyRate: e.target.value, monthlyRateText: numberToThai(e.target.value) })}
-                                    placeholder="เช่น 15000"
-                                />
-                            </div>
-                            <div>
-                                <Label>ธนาคาร</Label>
-                                <Input
-                                    value={formData.bankName}
-                                    onChange={(e) => setFormData({ ...formData, bankName: e.target.value })}
-                                />
-                            </div>
-                            <div>
-                                <Label>เลขบัญชี</Label>
-                                <Input
-                                    value={formData.accountNumber}
-                                    onChange={(e) => setFormData({ ...formData, accountNumber: e.target.value })}
-                                />
-                            </div>
-                            <div>
-                                <Label>ชื่อบัญชี</Label>
-                                <Input
-                                    value={formData.accountName}
-                                    onChange={(e) => setFormData({ ...formData, accountName: e.target.value })}
-                                />
-                            </div>
-                            <div>
-                                <Label>ชื่อบัญชี (สำหรับเช็ค)</Label>
-                                <Input
-                                    value={formData.checkAccountName}
-                                    onChange={(e) => setFormData({ ...formData, checkAccountName: e.target.value })}
-                                />
-                            </div>
+                        <div>
+                            <Label>ชื่อพยานคนที่ 1</Label>
+                            <Input
+                                value={companyData.witnessName1}
+                                onChange={(e) => setCompanyData({ ...companyData, witnessName1: e.target.value })}
+                                placeholder="ชื่อ-สกุล พยานคนที่ 1"
+                            />
+                        </div>
+
+                        <div>
+                            <Label>ลายเซ็นพยานคนที่ 1</Label>
+                            <SignaturePad 
+                                signatureUrl={companyData.witness1Signature}
+                                onSave={(url) => setCompanyData({ ...companyData, witness1Signature: url })}
+                                onDelete={() => setCompanyData({ ...companyData, witness1Signature: '' })}
+                            />
+                        </div>
+
+                        <div className="border-t pt-4">
+                            <h4 className="font-medium mb-3">พยานคนที่ 2</h4>
+                        </div>
+
+                        <div>
+                            <Label>ชื่อพยานคนที่ 2</Label>
+                            <Input
+                                value={companyData.witnessName2}
+                                onChange={(e) => setCompanyData({ ...companyData, witnessName2: e.target.value })}
+                                placeholder="ชื่อ-สกุล พยานคนที่ 2"
+                            />
+                        </div>
+
+                        <div>
+                            <Label>ลายเซ็นพยานคนที่ 2</Label>
+                            <SignaturePad 
+                                signatureUrl={companyData.witness2Signature}
+                                onSave={(url) => setCompanyData({ ...companyData, witness2Signature: url })}
+                                onDelete={() => setCompanyData({ ...companyData, witness2Signature: '' })}
+                            />
                         </div>
                     </div>
 
