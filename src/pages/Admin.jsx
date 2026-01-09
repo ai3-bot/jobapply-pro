@@ -506,6 +506,13 @@ export default function AdminPage() {
                 isOpen={!!reviewingCriminalCheck}
                 onClose={() => setReviewingCriminalCheck(null)}
             />
+
+            {/* Employment Contract Review Modal */}
+            <EmploymentContractReviewModal 
+                applicant={reviewingEmploymentContract}
+                isOpen={!!reviewingEmploymentContract}
+                onClose={() => setReviewingEmploymentContract(null)}
+            />
         </div>
     );
 }
