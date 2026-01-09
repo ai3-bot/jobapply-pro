@@ -130,6 +130,7 @@ export default function EmploymentContractDocument({ applicant, formData = {}, c
                             )}
                             ลูกจ้าง
                         </div>
+                        <p className="text-[11px]">({applicant?.full_name || '...........................'})</p>
                     </div>
                 </div>
             </div>
@@ -237,6 +238,7 @@ export default function EmploymentContractDocument({ applicant, formData = {}, c
                             )}
                             ลูกจ้าง
                         </div>
+                        <p className="text-[11px]">({applicant?.full_name || '...........................'})</p>
                     </div>
                 </div>
             </div>
@@ -477,6 +479,7 @@ export default function EmploymentContractDocument({ applicant, formData = {}, c
                             )}
                             ลูกจ้าง
                         </div>
+                        <p className="text-[11px]">({applicant?.full_name || '...........................'})</p>
                     </div>
                 </div>
             </div>
@@ -602,6 +605,7 @@ export default function EmploymentContractDocument({ applicant, formData = {}, c
                             )}
                             ลูกจ้าง
                         </div>
+                        <p className="text-[11px]">({applicant?.full_name || '...........................'})</p>
                     </div>
                 </div>
             </div>
@@ -727,6 +731,7 @@ export default function EmploymentContractDocument({ applicant, formData = {}, c
                             )}
                             ลูกจ้าง
                         </div>
+                        <p className="text-[11px]">({applicant?.full_name || '...........................'})</p>
                     </div>
                 </div>
             </div>
@@ -854,6 +859,7 @@ export default function EmploymentContractDocument({ applicant, formData = {}, c
                             )}
                             ลูกจ้าง
                         </div>
+                        <p className="text-[11px]">({applicant?.full_name || '...........................'})</p>
                     </div>
                 </div>
             </div>
@@ -974,6 +980,7 @@ export default function EmploymentContractDocument({ applicant, formData = {}, c
                             )}
                             ลูกจ้าง
                         </div>
+                        <p className="text-[11px]">({applicant?.full_name || '...........................'})</p>
                     </div>
                 </div>
             </div>
