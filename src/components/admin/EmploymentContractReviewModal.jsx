@@ -16,6 +16,8 @@ export default function EmploymentContractReviewModal({ applicant, isOpen, onClo
     const queryClient = useQueryClient();
     const [generatingPdf, setGeneratingPdf] = useState(false);
     const [companyData, setCompanyData] = useState({
+        authorizedPerson: '',
+        authorizedPersonSignature: '',
         witnessName1: '',
         witness1Signature: '',
         witnessName2: '',
