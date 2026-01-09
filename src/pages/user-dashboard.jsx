@@ -165,28 +165,49 @@ export default function UserDashboard() {
                     </CardHeader>
                     <CardContent className="p-6">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            {documents.map((doc) => (
-                                <div 
-                                    key={doc.id}
-                                    onClick={() => doc.link && navigate(doc.link)}
-                                    className={`border border-slate-200 rounded-lg p-4 hover:shadow-md transition-shadow ${doc.link ? 'cursor-pointer hover:border-indigo-300' : 'cursor-default opacity-60'}`}
-                                >
-                                    <div className="flex items-start gap-3">
-                                        <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center shrink-0 text-indigo-600 font-bold">
-                                            {doc.id}
-                                        </div>
-                                        <div className="flex-1">
-                                            <h3 className="font-semibold text-slate-800 mb-1">{doc.name}</h3>
-                                            <p className="text-sm text-slate-500 mb-3">{doc.description}</p>
-                                            <div className="flex items-center gap-2">
-                                                <Badge variant="outline" className="text-amber-600 border-amber-300">
-                                                    {doc.link ? 'คลิกเพื่อดำเนินการ' : 'รอดำเนินการ'}
-                                                </Badge>
+                            {documents.map((doc) => {
+                                const status = getDocumentStatus(doc.pdfType);
+                                const isApproved = status === 'approved';
+                                const isDisabled = isApproved;
+
+                                return (
+                                    <div 
+                                        key={doc.id}
+                                        onClick={() => !isDisabled && doc.link && navigate(doc.link)}
+                                        className={`border border-slate-200 rounded-lg p-4 transition-all ${
+                                            isDisabled
+                                                ? 'opacity-60 cursor-not-allowed bg-slate-50'
+                                                : doc.link ? 'cursor-pointer hover:shadow-md hover:border-indigo-300' : 'cursor-default opacity-60'
+                                        }`}
+                                    >
+                                        <div className="flex items-start gap-3">
+                                            <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 font-bold ${
+                                                isApproved 
+                                                    ? 'bg-green-100 text-green-600' 
+                                                    : 'bg-indigo-100 text-indigo-600'
+                                            }`}>
+                                                {isApproved ? <CheckCircle className="w-5 h-5" /> : doc.id}
+                                            </div>
+                                            <div className="flex-1">
+                                                <h3 className="font-semibold text-slate-800 mb-1">{doc.name}</h3>
+                                                <p className="text-sm text-slate-500 mb-3">{doc.description}</p>
+                                                <div className="flex items-center gap-2">
+                                                    {isApproved ? (
+                                                        <Badge className="bg-green-100 text-green-800 border-green-300">
+                                                            <CheckCircle className="w-3 h-3 mr-1" />
+                                                            อনุมัติแล้ว
+                                                        </Badge>
+                                                    ) : (
+                                                        <Badge variant="outline" className="text-amber-600 border-amber-300">
+                                                            {doc.link ? 'คลิกเพื่อดำเนินการ' : 'รอดำเนินการ'}
+                                                        </Badge>
+                                                    )}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            ))}
+                                );
+                            })}
                         </div>
 
                         <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
