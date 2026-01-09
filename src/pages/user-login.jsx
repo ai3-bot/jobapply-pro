@@ -111,9 +111,9 @@ export default function UserLogin() {
                                                             )}
                                                         </div>
                                                         <div className="flex-1">
-                                                            <div className="font-semibold text-slate-800">{applicant.full_name}</div>
+                                                            <div className="font-semibold text-slate-800">{applicant.full_name || '-'}</div>
                                                             <div className="text-sm text-slate-500">
-                                                                {applicant.personal_data?.english_name}
+                                                                {applicant.personal_data?.english_name || '-'}
                                                             </div>
                                                             <div className="text-xs text-slate-400 flex items-center gap-1 mt-1">
                                                                 <Calendar className="w-3 h-3" />
@@ -143,8 +143,8 @@ export default function UserLogin() {
                                         )}
                                     </div>
                                     <div className="flex-1">
-                                        <div className="font-semibold text-slate-800 text-lg">{selectedApplicant.full_name}</div>
-                                        <div className="text-sm text-slate-600">{selectedApplicant.personal_data?.english_name}</div>
+                                        <div className="font-semibold text-slate-800 text-lg">{selectedApplicant.full_name || '-'}</div>
+                                        <div className="text-sm text-slate-600">{selectedApplicant.personal_data?.english_name || '-'}</div>
                                         <div className="text-xs text-slate-500 flex items-center gap-1 mt-1">
                                             <Calendar className="w-3 h-3" />
                                             {formatDayMonth(selectedApplicant.personal_data?.dob)}
