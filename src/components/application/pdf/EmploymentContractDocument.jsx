@@ -991,12 +991,28 @@ export default function EmploymentContractDocument({ applicant, formData = {}, c
             <div className="mb-6 leading-[1.4] text-center">
                 <div className="grid grid-cols-2 gap-8">
                     <div>
-                        <p>ลงชื่อ<span className="inline-block border-b border-dotted border-slate-400 w-[200px] mx-2" style={{ verticalAlign: 'baseline', minHeight: '40px', display: 'inline-block' }}>&nbsp;</span>พยาน</p>
-                        <p>(....................................................................)</p>
+                        <p>
+                            ลงชื่อ
+                            {companyData?.witness1Signature ? (
+                                <img src={companyData.witness1Signature} alt="signature" crossOrigin="anonymous" className="inline-block h-[40px] object-contain mx-2" style={{ verticalAlign: 'baseline' }} />
+                            ) : (
+                                <span className="inline-block border-b border-dotted border-slate-400 w-[200px] mx-2" style={{ verticalAlign: 'baseline', minHeight: '40px', display: 'inline-block' }}>&nbsp;</span>
+                            )}
+                            พยาน
+                        </p>
+                        <p>({companyData?.witnessName1 || '....................................................................'})</p>
                     </div>
                     <div>
-                        <p>ลงชื่อ<span className="inline-block border-b border-dotted border-slate-400 w-[200px] mx-2" style={{ verticalAlign: 'baseline', minHeight: '40px', display: 'inline-block' }}>&nbsp;</span>พยาน</p>
-                        <p>(....................................................................)</p>
+                        <p>
+                            ลงชื่อ
+                            {companyData?.witness2Signature ? (
+                                <img src={companyData.witness2Signature} alt="signature" crossOrigin="anonymous" className="inline-block h-[40px] object-contain mx-2" style={{ verticalAlign: 'baseline' }} />
+                            ) : (
+                                <span className="inline-block border-b border-dotted border-slate-400 w-[200px] mx-2" style={{ verticalAlign: 'baseline', minHeight: '40px', display: 'inline-block' }}>&nbsp;</span>
+                            )}
+                            พยาน
+                        </p>
+                        <p>({companyData?.witnessName2 || '....................................................................'})</p>
                     </div>
                 </div>
             </div>
