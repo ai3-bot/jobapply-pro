@@ -375,6 +375,7 @@ export default function AdminPage() {
     const [reviewingPDPA, setReviewingPDPA] = useState(null);
     const [reviewingFMHRD19, setReviewingFMHRD19] = useState(null);
     const [reviewingCriminalCheck, setReviewingCriminalCheck] = useState(null);
+    const [reviewingEmploymentContract, setReviewingEmploymentContract] = useState(null);
 
     useEffect(() => {
         const checkAccess = async () => {
