@@ -29,11 +29,24 @@ const convertToThai = (num) => {
         }
         result += 'ล้าน';
     }
+    if (hundredThousand > 0) {
+        result += thaiUnits[hundredThousand] + 'แสน';
+    }
+    if (tenThousand > 0) {
+        if (tenThousand === 1) {
+            result += 'หนึ่ง';
+        } else if (tenThousand === 2) {
+            result += 'ยี่';
+        } else {
+            result += thaiUnits[tenThousand];
+        }
+        result += 'หมื่น';
+    }
     if (thousand > 0) {
         if (thousand === 1) {
             result += 'หนึ่ง';
         } else {
-            result += convertToThai(thousand);
+            result += thaiUnits[thousand];
         }
         result += 'พัน';
     }
