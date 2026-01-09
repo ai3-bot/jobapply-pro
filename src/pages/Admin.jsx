@@ -25,7 +25,10 @@ function DocumentsView({ onReviewNDA, onReviewPDPA, onReviewFMHRD19, onReviewCri
 
     const { data: fmhrd19Documents = [] } = useQuery({
         queryKey: ['fmhrd19_documents'],
-        queryFn: () => base44.entities.FMHRD19Document.list()
+        queryFn: async () => {
+            const docs = await base44.entities.PdfBase.filter({ pdf_type: 'FM-HRD-19' });
+            return docs;
+        }
     });
 
     const ndaDocs = applicants.filter(a => 
@@ -186,6 +189,7 @@ function DocumentsView({ onReviewNDA, onReviewPDPA, onReviewFMHRD19, onReviewCri
                                         <tbody className="divide-y divide-slate-200">
                                             {fmhrd19Documents.map(doc => {
                                                 const applicant = applicants.find(a => a.id === doc.applicant_id);
+                                                const docData = doc.data || {};
                                                 return (
                                                     <tr key={doc.id} className="hover:bg-slate-50">
                                                         <td className="px-4 py-3 text-sm">
@@ -194,13 +198,13 @@ function DocumentsView({ onReviewNDA, onReviewPDPA, onReviewFMHRD19, onReviewCri
                                                             </div>
                                                         </td>
                                                         <td className="px-4 py-3 text-sm text-slate-600">
-                                                            {doc.document_date ? new Date(doc.document_date).toLocaleDateString('th-TH') : '-'}
+                                                            {docData.document_date ? new Date(docData.document_date).toLocaleDateString('th-TH') : '-'}
                                                         </td>
-                                                        <td className="px-4 py-3 text-sm text-slate-600">{doc.position || '-'}</td>
-                                                        <td className="px-4 py-3 text-sm text-slate-600">{doc.department || '-'}</td>
+                                                        <td className="px-4 py-3 text-sm text-slate-600">{docData.position || '-'}</td>
+                                                        <td className="px-4 py-3 text-sm text-slate-600">{docData.department || '-'}</td>
                                                         <td className="px-4 py-3 text-sm text-slate-600">
-                                                            {doc.training_start_date && doc.training_end_date ? 
-                                                                `${new Date(doc.training_start_date).toLocaleDateString('th-TH')} - ${new Date(doc.training_end_date).toLocaleDateString('th-TH')}` 
+                                                            {docData.training_start_date && docData.training_end_date ? 
+                                                                `${new Date(docData.training_start_date).toLocaleDateString('th-TH')} - ${new Date(docData.training_end_date).toLocaleDateString('th-TH')}` 
                                                                 : '-'
                                                             }
                                                         </td>
