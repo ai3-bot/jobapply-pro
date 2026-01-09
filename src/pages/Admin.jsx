@@ -60,6 +60,7 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
     }
 
     const filteredFMHRD19 = fmhrd19Documents.filter(doc => doc.applicant_id === selectedApplicant.id);
+    const filteredEmploymentContract = employmentContractDocuments.filter(doc => doc.applicant_id === selectedApplicant.id);
     const ndaDocs = [selectedApplicant].filter(a => 
         a.nda_document?.status === 'submitted' || a.nda_document?.status === 'completed'
     );
