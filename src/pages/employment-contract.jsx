@@ -347,87 +347,27 @@ export default function EmploymentContractPage() {
                                         <div>
                                             <label className="block text-sm font-medium text-slate-700 mb-2">วันที่เริ่มโครงการ</label>
                                             <input
-                                                type="text"
-                                                value={formData.startDay}
-                                                onChange={(e) => setFormData({ ...formData, startDay: e.target.value })}
+                                                type="date"
+                                                value={formData.startDate}
+                                                onChange={(e) => setFormData({ ...formData, startDate: e.target.value })}
                                                 className="w-full px-3 py-2 border border-slate-300 rounded-md"
-                                                placeholder="วันที่"
-                                            />
-                                        </div>
-                                        <div>
-                                            <label className="block text-sm font-medium text-slate-700 mb-2">เดือน</label>
-                                            <input
-                                                type="text"
-                                                value={formData.startMonth}
-                                                onChange={(e) => setFormData({ ...formData, startMonth: e.target.value })}
-                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
-                                                placeholder="เดือน"
-                                            />
-                                        </div>
-                                        <div>
-                                            <label className="block text-sm font-medium text-slate-700 mb-2">พ.ศ.</label>
-                                            <input
-                                                type="text"
-                                                value={formData.startYear}
-                                                onChange={(e) => setFormData({ ...formData, startYear: e.target.value })}
-                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
-                                                placeholder="2568"
                                             />
                                         </div>
                                         <div>
                                             <label className="block text-sm font-medium text-slate-700 mb-2">วันที่สิ้นสุด</label>
                                             <input
-                                                type="text"
-                                                value={formData.endDay}
-                                                onChange={(e) => setFormData({ ...formData, endDay: e.target.value })}
+                                                type="date"
+                                                value={formData.endDate}
+                                                onChange={(e) => setFormData({ ...formData, endDate: e.target.value })}
                                                 className="w-full px-3 py-2 border border-slate-300 rounded-md"
                                             />
                                         </div>
-                                        <div>
-                                            <label className="block text-sm font-medium text-slate-700 mb-2">เดือน</label>
-                                            <input
-                                                type="text"
-                                                value={formData.endMonth}
-                                                onChange={(e) => setFormData({ ...formData, endMonth: e.target.value })}
-                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
-                                            />
-                                        </div>
-                                        <div>
-                                            <label className="block text-sm font-medium text-slate-700 mb-2">พ.ศ.</label>
-                                            <input
-                                                type="text"
-                                                value={formData.endYear}
-                                                onChange={(e) => setFormData({ ...formData, endYear: e.target.value })}
-                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                         <div>
                                             <label className="block text-sm font-medium text-slate-700 mb-2">วันที่เริ่มงาน</label>
                                             <input
-                                                type="text"
-                                                value={formData.workStartDay}
-                                                onChange={(e) => setFormData({ ...formData, workStartDay: e.target.value })}
-                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
-                                            />
-                                        </div>
-                                        <div>
-                                            <label className="block text-sm font-medium text-slate-700 mb-2">เดือน</label>
-                                            <input
-                                                type="text"
-                                                value={formData.workStartMonth}
-                                                onChange={(e) => setFormData({ ...formData, workStartMonth: e.target.value })}
-                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
-                                            />
-                                        </div>
-                                        <div>
-                                            <label className="block text-sm font-medium text-slate-700 mb-2">พ.ศ.</label>
-                                            <input
-                                                type="text"
-                                                value={formData.workStartYear}
-                                                onChange={(e) => setFormData({ ...formData, workStartYear: e.target.value })}
+                                                type="date"
+                                                value={formData.workStartDate}
+                                                onChange={(e) => setFormData({ ...formData, workStartDate: e.target.value })}
                                                 className="w-full px-3 py-2 border border-slate-300 rounded-md"
                                             />
                                         </div>
