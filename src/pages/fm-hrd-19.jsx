@@ -47,25 +47,25 @@ export default function FMHRD19Form() {
     });
 
     const { data: document } = useQuery({
-        queryKey: ['fmhrd19_document', applicantId],
+        queryKey: ['fmhrd19_pdf', applicantId],
         queryFn: async () => {
-            const docs = await base44.entities.FMHRD19Document.filter({ applicant_id: applicantId });
+            const docs = await base44.entities.PdfBase.filter({ applicant_id: applicantId, pdf_type: 'FM-HRD-19' });
             return docs[0] || null;
         },
         enabled: !!applicantId
     });
 
     useEffect(() => {
-        if (document) {
-            setSignatureUrl(document.employee_signature_url || '');
-            setSignatureDate(document.employee_signature_date || new Date().toISOString().split('T')[0]);
+        if (document && document.data) {
+            setSignatureUrl(document.data.employee_signature_url || '');
+            setSignatureDate(document.data.employee_signature_date || new Date().toISOString().split('T')[0]);
             setFormData({
-                documentDate: document.document_date || '',
-                position: document.position || '',
-                department: document.department || '',
-                startDate: document.start_date || '',
-                trainingStartDate: document.training_start_date || '',
-                trainingEndDate: document.training_end_date || ''
+                documentDate: document.data.document_date || '',
+                position: document.data.position || '',
+                department: document.data.department || '',
+                startDate: document.data.start_date || '',
+                trainingStartDate: document.data.training_start_date || '',
+                trainingEndDate: document.data.training_end_date || ''
             });
         } else if (applicant) {
             setSignatureUrl(applicant.signature_url || '');
@@ -74,43 +74,46 @@ export default function FMHRD19Form() {
     }, [document, applicant]);
 
     const saveDocumentMutation = useMutation({
-        mutationFn: async (data) => {
+        mutationFn: async (pdfData) => {
             if (document) {
-                return await base44.entities.FMHRD19Document.update(document.id, data);
+                return await base44.entities.PdfBase.update(document.id, pdfData);
             } else {
-                return await base44.entities.FMHRD19Document.create(data);
+                return await base44.entities.PdfBase.create(pdfData);
             }
         },
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['fmhrd19_document', applicantId] });
+            queryClient.invalidateQueries({ queryKey: ['fmhrd19_pdf', applicantId] });
             toast.success('บันทึกข้อมูลเรียบร้อยแล้ว');
         }
     });
 
     const submitMutation = useMutation({
         mutationFn: async () => {
-            const docData = {
+            const pdfData = {
                 applicant_id: applicantId,
-                document_date: formData.documentDate,
-                position: formData.position,
-                department: formData.department,
-                start_date: formData.startDate,
-                training_start_date: formData.trainingStartDate,
-                training_end_date: formData.trainingEndDate,
-                employee_signature_url: signatureUrl,
-                employee_signature_date: signatureDate,
+                pdf_type: 'FM-HRD-19',
+                data: {
+                    document_date: formData.documentDate,
+                    position: formData.position,
+                    department: formData.department,
+                    start_date: formData.startDate,
+                    training_start_date: formData.trainingStartDate,
+                    training_end_date: formData.trainingEndDate,
+                    employee_signature_url: signatureUrl,
+                    employee_signature_date: signatureDate
+                },
                 status: 'submitted',
                 submitted_date: new Date().toISOString()
             };
 
             if (document) {
-                return await base44.entities.FMHRD19Document.update(document.id, docData);
+                return await base44.entities.PdfBase.update(document.id, pdfData);
             } else {
-                return await base44.entities.FMHRD19Document.create(docData);
+                return await base44.entities.PdfBase.create(pdfData);
             }
         },
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['fmhrd19_document', applicantId] });
+            queryClient.invalidateQueries({ queryKey: ['fmhrd19_pdf', applicantId] });
             toast.success('ส่งเอกสารเรียบร้อยแล้ว');
             navigate('/user-dashboard');
         },
@@ -221,8 +224,8 @@ export default function FMHRD19Form() {
                                     signatureUrl={signatureUrl}
                                     signatureDate={signatureDate}
                                     formData={formData}
-                                    witness1Signature={document?.company_data?.witness_signature_1 || ''}
-                                    witness2Signature={document?.company_data?.witness_signature_2 || ''}
+                                    witness1Signature={document?.data?.company_data?.witness_signature_1 || ''}
+                                    witness2Signature={document?.data?.company_data?.witness_signature_2 || ''}
                                 />
                             </div>
                         </div>
@@ -331,14 +334,17 @@ export default function FMHRD19Form() {
                                         onClick={() => {
                                             saveDocumentMutation.mutate({
                                                 applicant_id: applicantId,
-                                                document_date: formData.documentDate,
-                                                position: formData.position,
-                                                department: formData.department,
-                                                start_date: formData.startDate,
-                                                training_start_date: formData.trainingStartDate,
-                                                training_end_date: formData.trainingEndDate,
-                                                employee_signature_url: signatureUrl,
-                                                employee_signature_date: signatureDate,
+                                                pdf_type: 'FM-HRD-19',
+                                                data: {
+                                                    document_date: formData.documentDate,
+                                                    position: formData.position,
+                                                    department: formData.department,
+                                                    start_date: formData.startDate,
+                                                    training_start_date: formData.trainingStartDate,
+                                                    training_end_date: formData.trainingEndDate,
+                                                    employee_signature_url: signatureUrl,
+                                                    employee_signature_date: signatureDate
+                                                },
                                                 status: document?.status || 'draft'
                                             });
                                             setShowForm(false);
