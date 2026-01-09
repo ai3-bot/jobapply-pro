@@ -199,7 +199,7 @@ export default function EmploymentContractReviewModal({ applicant, isOpen, onClo
                         <div className="max-h-[500px] overflow-auto bg-white p-4">
                             <EmploymentContractDocument 
                                 applicant={applicant}
-                                formData={formData}
+                                formData={pdfDoc?.data || {}}
                             />
                         </div>
                     </div>
