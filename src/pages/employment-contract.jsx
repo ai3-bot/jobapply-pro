@@ -460,47 +460,45 @@ export default function EmploymentContractPage() {
                                 <div className="space-y-4 border-t pt-4">
                                     <h3 className="font-semibold text-slate-800">ค่าจ้าง</h3>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        <div>
-                                            <label className="block text-sm font-medium text-slate-700 mb-2">ค่าจ้างรายวัน (ตัวเลข)</label>
-                                            <input
-                                                type="text"
-                                                value={formData.dailyRate}
-                                                onChange={(e) => setFormData({ ...formData, dailyRate: e.target.value })}
-                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
-                                                placeholder="เช่น 300"
-                                            />
+                                            <div>
+                                                <label className="block text-sm font-medium text-slate-700 mb-2">ค่าจ้างรายวัน (ตัวเลข)</label>
+                                                <input
+                                                    type="text"
+                                                    value={formData.dailyRate}
+                                                    onChange={(e) => setFormData({ ...formData, dailyRate: e.target.value, dailyRateText: numberToThai(e.target.value) })}
+                                                    className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                                    placeholder="เช่น 300"
+                                                />
+                                            </div>
+                                            <div>
+                                                <label className="block text-sm font-medium text-slate-700 mb-2">ค่าจ้างรายวัน (ตัวอักษร)</label>
+                                                <input
+                                                    type="text"
+                                                    value={formData.dailyRateText}
+                                                    readOnly
+                                                    className="w-full px-3 py-2 border border-slate-300 rounded-md bg-slate-50"
+                                                />
+                                            </div>
+                                            <div>
+                                                <label className="block text-sm font-medium text-slate-700 mb-2">ค่าจ้างรายเดือน (ตัวเลข)</label>
+                                                <input
+                                                    type="text"
+                                                    value={formData.monthlyRate}
+                                                    onChange={(e) => setFormData({ ...formData, monthlyRate: e.target.value, monthlyRateText: numberToThai(e.target.value) })}
+                                                    className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                                    placeholder="เช่น 15000"
+                                                />
+                                            </div>
+                                            <div>
+                                                <label className="block text-sm font-medium text-slate-700 mb-2">ค่าจ้างรายเดือน (ตัวอักษร)</label>
+                                                <input
+                                                    type="text"
+                                                    value={formData.monthlyRateText}
+                                                    readOnly
+                                                    className="w-full px-3 py-2 border border-slate-300 rounded-md bg-slate-50"
+                                                />
+                                            </div>
                                         </div>
-                                        <div>
-                                            <label className="block text-sm font-medium text-slate-700 mb-2">ค่าจ้างรายวัน (ตัวอักษร)</label>
-                                            <input
-                                                type="text"
-                                                value={formData.dailyRateText}
-                                                onChange={(e) => setFormData({ ...formData, dailyRateText: e.target.value })}
-                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
-                                                placeholder="สามร้อยบาทถ้วน"
-                                            />
-                                        </div>
-                                        <div>
-                                            <label className="block text-sm font-medium text-slate-700 mb-2">ค่าจ้างรายเดือน (ตัวเลข)</label>
-                                            <input
-                                                type="text"
-                                                value={formData.monthlyRate}
-                                                onChange={(e) => setFormData({ ...formData, monthlyRate: e.target.value })}
-                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
-                                                placeholder="เช่น 15000"
-                                            />
-                                        </div>
-                                        <div>
-                                            <label className="block text-sm font-medium text-slate-700 mb-2">ค่าจ้างรายเดือน (ตัวอักษร)</label>
-                                            <input
-                                                type="text"
-                                                value={formData.monthlyRateText}
-                                                onChange={(e) => setFormData({ ...formData, monthlyRateText: e.target.value })}
-                                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
-                                                placeholder="หนึ่งหมื่นห้าพันบาทถ้วน"
-                                            />
-                                        </div>
-                                    </div>
                                 </div>
 
                                 <div className="space-y-4 border-t pt-4">
