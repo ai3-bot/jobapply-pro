@@ -46,26 +46,71 @@ export default function FMHRD19Form() {
         enabled: !!applicantId
     });
 
+    const { data: document } = useQuery({
+        queryKey: ['fmhrd19_document', applicantId],
+        queryFn: async () => {
+            const docs = await base44.entities.FMHRD19Document.filter({ applicant_id: applicantId });
+            return docs[0] || null;
+        },
+        enabled: !!applicantId
+    });
+
     useEffect(() => {
-        if (applicant) {
+        if (document) {
+            setSignatureUrl(document.employee_signature_url || '');
+            setSignatureDate(document.employee_signature_date || new Date().toISOString().split('T')[0]);
+            setFormData({
+                documentDate: document.document_date || '',
+                position: document.position || '',
+                department: document.department || '',
+                startDate: document.start_date || '',
+                trainingStartDate: document.training_start_date || '',
+                trainingEndDate: document.training_end_date || ''
+            });
+        } else if (applicant) {
             setSignatureUrl(applicant.signature_url || '');
             setSignatureDate(applicant.signature_date || new Date().toISOString().split('T')[0]);
         }
-    }, [applicant]);
+    }, [document, applicant]);
 
-    const updateApplicantMutation = useMutation({
-        mutationFn: (data) => base44.entities.Applicant.update(applicantId, data),
+    const saveDocumentMutation = useMutation({
+        mutationFn: async (data) => {
+            if (document) {
+                return await base44.entities.FMHRD19Document.update(document.id, data);
+            } else {
+                return await base44.entities.FMHRD19Document.create(data);
+            }
+        },
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['user_applicant', applicantId] });
+            queryClient.invalidateQueries({ queryKey: ['fmhrd19_document', applicantId] });
+            toast.success('บันทึกข้อมูลเรียบร้อยแล้ว');
         }
     });
 
     const submitMutation = useMutation({
-        mutationFn: async (data) => {
-            return await base44.entities.Applicant.update(applicantId, data);
+        mutationFn: async () => {
+            const docData = {
+                applicant_id: applicantId,
+                document_date: formData.documentDate,
+                position: formData.position,
+                department: formData.department,
+                start_date: formData.startDate,
+                training_start_date: formData.trainingStartDate,
+                training_end_date: formData.trainingEndDate,
+                employee_signature_url: signatureUrl,
+                employee_signature_date: signatureDate,
+                status: 'submitted',
+                submitted_date: new Date().toISOString()
+            };
+
+            if (document) {
+                return await base44.entities.FMHRD19Document.update(document.id, docData);
+            } else {
+                return await base44.entities.FMHRD19Document.create(docData);
+            }
         },
         onSuccess: () => {
-            queryClient.invalidateQueries(['user_applicant', applicantId]);
+            queryClient.invalidateQueries({ queryKey: ['fmhrd19_document', applicantId] });
             toast.success('ส่งเอกสารเรียบร้อยแล้ว');
             navigate('/user-dashboard');
         },
@@ -75,18 +120,7 @@ export default function FMHRD19Form() {
     });
 
     const handleSubmit = () => {
-        const fmhrd19Data = {
-            fmhrd19_document: {
-                status: 'submitted',
-                employee_data: {
-                    signatureUrl,
-                    signatureDate,
-                    ...formData
-                },
-                submitted_date: new Date().toISOString()
-            }
-        };
-        submitMutation.mutate(fmhrd19Data);
+        submitMutation.mutate();
     };
 
     const handleGeneratePDF = async (action) => {
@@ -125,14 +159,7 @@ export default function FMHRD19Form() {
         }
     };
 
-    const handleSaveSignature = () => {
-        if (signatureUrl && signatureDate) {
-            updateApplicantMutation.mutate({
-                signature_url: signatureUrl,
-                signature_date: signatureDate
-            });
-        }
-    };
+
 
     if (!applicant) {
         return (
@@ -194,8 +221,8 @@ export default function FMHRD19Form() {
                                     signatureUrl={signatureUrl}
                                     signatureDate={signatureDate}
                                     formData={formData}
-                                    witness1Signature={applicant?.fmhrd19_document?.company_data?.witness1Signature || ''}
-                                    witness2Signature={applicant?.fmhrd19_document?.company_data?.witness2Signature || ''}
+                                    witness1Signature={document?.company_data?.witness_signature_1 || ''}
+                                    witness2Signature={document?.company_data?.witness_signature_2 || ''}
                                 />
                             </div>
                         </div>
@@ -301,9 +328,25 @@ export default function FMHRD19Form() {
                                         ยกเลิก
                                     </Button>
                                     <Button 
-                                        onClick={() => setShowForm(false)}
+                                        onClick={() => {
+                                            saveDocumentMutation.mutate({
+                                                applicant_id: applicantId,
+                                                document_date: formData.documentDate,
+                                                position: formData.position,
+                                                department: formData.department,
+                                                start_date: formData.startDate,
+                                                training_start_date: formData.trainingStartDate,
+                                                training_end_date: formData.trainingEndDate,
+                                                employee_signature_url: signatureUrl,
+                                                employee_signature_date: signatureDate,
+                                                status: document?.status || 'draft'
+                                            });
+                                            setShowForm(false);
+                                        }}
+                                        disabled={saveDocumentMutation.isPending}
                                         className="bg-indigo-600 hover:bg-indigo-700"
                                     >
+                                        {saveDocumentMutation.isPending ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}
                                         บันทึก
                                     </Button>
                                 </div>
