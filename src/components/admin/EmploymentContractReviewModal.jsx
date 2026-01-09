@@ -65,7 +65,10 @@ export default function EmploymentContractReviewModal({ applicant, isOpen, onClo
         const updatedData = {
             applicant_id: applicant.id,
             pdf_type: 'Employment-Contract',
-            data: formData,
+            data: {
+                ...(pdfDoc?.data || {}),
+                company_data: companyData
+            },
             status: 'approved',
             approved_date: new Date().toISOString()
         };
