@@ -70,15 +70,19 @@ export default function UserDashboard() {
     };
 
     const documents = [
-        { id: 1, name: 'PDPA', description: 'หนังสือยินยอมข้อมูลส่วนบุคคล', link: '/pdpa-form' },
-        { id: 2, name: 'FM-HRD-19', description: 'แบบฟอร์มการเข้าทำงาน', link: '/fm-hrd-19' },
-        { id: 3, name: 'สัญญาจ้าง', description: 'สัญญาจ้างงาน', link: '/employment-contract' },
-        { id: 4, name: 'FM-HRD-27', description: 'สัญญา NDA (ไม่เปิดเผยข้อมูล)', link: '/fm-hrd-27' },
-        { id: 5, name: 'FM-HRD-30', description: 'การตรวจประวัติอาชญากรรม', link: '/fm-hrd-30' },
-        { id: 6, name: 'หนังสือมอบอำนาจในการตรวจประวัติอาชญากรรม', description: 'หนังสือมอบอำนาจตรวจประวัติ', link: '/criminal-check-form' },
-        { id: 7, name: 'แบบสปส.', description: 'แบบฟอร์มประกันสังคม', link: '/sps-form', spsType: applicant?.admin_data?.sps_form_type || '1-03' },
-        { id: 8, name: 'ใบขอเอาประกัน', description: 'แบบฟอร์มประกันภัยพนักงาน', link: '/insurance-enrollment' }
+        { id: 1, name: 'PDPA', description: 'หนังสือยินยอมข้อมูลส่วนบุคคล', link: '/pdpa-form', pdfType: 'PDPA' },
+        { id: 2, name: 'FM-HRD-19', description: 'แบบฟอร์มการเข้าทำงาน', link: '/fm-hrd-19', pdfType: 'FM-HRD-19' },
+        { id: 3, name: 'สัญญาจ้าง', description: 'สัญญาจ้างงาน', link: '/employment-contract', pdfType: 'Employment-Contract' },
+        { id: 4, name: 'FM-HRD-27', description: 'สัญญา NDA (ไม่เปิดเผยข้อมูล)', link: '/fm-hrd-27', pdfType: 'FM-HRD-27' },
+        { id: 5, name: 'FM-HRD-30', description: 'การตรวจประวัติอาชญากรรม', link: '/fm-hrd-30', pdfType: 'FM-HRD-30' },
+        { id: 6, name: 'หนังสือมอบอำนาจในการตรวจประวัติอาชญากรรม', description: 'หนังสือมอบอำนาจตรวจประวัติ', link: '/criminal-check-form', pdfType: 'Criminal-Check' },
+        { id: 7, name: 'แบบสปส.', description: 'แบบฟอร์มประกันสังคม', link: '/sps-form', pdfType: 'SPS-1-03', spsType: applicant?.admin_data?.sps_form_type || '1-03' },
+        { id: 8, name: 'ใบขอเอาประกัน', description: 'แบบฟอร์มประกันภัยพนักงาน', link: '/insurance-enrollment', pdfType: 'Insurance-Enrollment' }
     ];
+
+    const getDocumentStatus = (pdfType) => {
+        return pdfDocuments?.[pdfType]?.status || null;
+    };
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 p-6">
