@@ -7,35 +7,19 @@ import { base44 } from '@/api/base44Client';
 import { useMutation, useQueryClient, useQuery } from '@tanstack/react-query';
 import { Loader2, FileDown, Eye } from "lucide-react";
 import EmploymentContractDocument from '@/components/application/pdf/EmploymentContractDocument';
+import SignaturePad from '@/components/admin/SignaturePad';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import toast from 'react-hot-toast';
-import { numberToThai } from '@/components/utils/numberToThai';
 
 export default function EmploymentContractReviewModal({ applicant, isOpen, onClose }) {
     const queryClient = useQueryClient();
     const [generatingPdf, setGeneratingPdf] = useState(false);
-    const [formData, setFormData] = useState({
-        contractDate: '',
-        position: '',
-        department: '',
-        division: '',
-        startDate: '',
-        endDate: '',
-        workStartDate: '',
-        probationDays: '',
-        workTimeStart: '',
-        workTimeEnd: '',
-        workTimeAlt1: '',
-        workTimeAlt2: '',
-        dailyRate: '',
-        dailyRateText: '',
-        monthlyRate: '',
-        monthlyRateText: '',
-        bankName: '',
-        accountNumber: '',
-        accountName: '',
-        checkAccountName: ''
+    const [companyData, setCompanyData] = useState({
+        witnessName1: '',
+        witness1Signature: '',
+        witnessName2: '',
+        witness2Signature: ''
     });
 
     const { data: pdfDoc } = useQuery({
@@ -48,8 +32,13 @@ export default function EmploymentContractReviewModal({ applicant, isOpen, onClo
     });
 
     useEffect(() => {
-        if (pdfDoc?.data) {
-            setFormData(pdfDoc.data);
+        if (pdfDoc?.data?.company_data) {
+            setCompanyData({
+                witnessName1: pdfDoc.data.company_data.witnessName1 || '',
+                witness1Signature: pdfDoc.data.company_data.witness1Signature || '',
+                witnessName2: pdfDoc.data.company_data.witnessName2 || '',
+                witness2Signature: pdfDoc.data.company_data.witness2Signature || ''
+            });
         }
     }, [pdfDoc]);
 
