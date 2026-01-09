@@ -71,12 +71,25 @@ export default function EmploymentContractPage() {
         enabled: !!applicantId
     });
 
+    const { data: existingPdf } = useQuery({
+        queryKey: ['employment_pdf', applicantId],
+        queryFn: async () => {
+            const pdfs = await base44.entities.PdfBase.filter({ applicant_id: applicantId, pdf_type: 'Employment-Contract' });
+            return pdfs[0] || null;
+        },
+        enabled: !!applicantId
+    });
+
     const saveMutation = useMutation({
         mutationFn: async (data) => {
-            return await base44.entities.PdfBase.create(data);
+            if (existingPdf) {
+                return await base44.entities.PdfBase.update(existingPdf.id, data);
+            } else {
+                return await base44.entities.PdfBase.create(data);
+            }
         },
         onSuccess: () => {
-            queryClient.invalidateQueries(['user_applicant', applicantId]);
+            queryClient.invalidateQueries(['employment_pdf', applicantId]);
             toast.success('บันทึกเอกสารเรียบร้อยแล้ว');
             setShowForm(false);
         },
