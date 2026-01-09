@@ -62,12 +62,6 @@ export default function EmploymentContractPage() {
         }
     }, [navigate]);
 
-    useEffect(() => {
-        if (existingPdf?.data) {
-            setFormData(existingPdf.data);
-        }
-    }, [existingPdf]);
-
     const { data: applicant } = useQuery({
         queryKey: ['user_applicant', applicantId],
         queryFn: async () => {
@@ -85,6 +79,12 @@ export default function EmploymentContractPage() {
         },
         enabled: !!applicantId
     });
+
+    useEffect(() => {
+        if (existingPdf?.data) {
+            setFormData(existingPdf.data);
+        }
+    }, [existingPdf]);
 
     const saveMutation = useMutation({
         mutationFn: async (data) => {
