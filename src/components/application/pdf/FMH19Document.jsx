@@ -53,16 +53,16 @@ export default function FMH19Document({ applicant, signatureUrl, signatureDate, 
 
             {/* Date */}
             <div className="mb-6 leading-[1.4] flex justify-end">
-                <div>วันที่ <span className="border-b border-dotted border-slate-400 inline-block min-w-[50px] text-center px-2" style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>{displayDay || '\u00A0'}</span> 
-                เดือน <span className="border-b border-dotted border-slate-400 inline-block min-w-[100px] text-center px-2" style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>{displayMonth || '\u00A0'}</span> 
-                พ.ศ. <span className="border-b border-dotted border-slate-400 inline-block min-w-[50px] text-center px-2" style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>{displayYear || '\u00A0'}</span>
+                <div>วันที่ <span className="border-b border-dotted border-slate-400 inline-block min-w-[50px] text-center px-2 pb-1" style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>{displayDay || '\u00A0'}</span> 
+                เดือน <span className="border-b border-dotted border-slate-400 inline-block min-w-[100px] text-center px-2 pb-1" style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>{displayMonth || '\u00A0'}</span> 
+                พ.ศ. <span className="border-b border-dotted border-slate-400 inline-block min-w-[50px] text-center px-2 pb-1" style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>{displayYear || '\u00A0'}</span>
                 </div>
             </div>
 
             {/* Recipient */}
             <div className="mb-1 text-justify leading-[1.4]">
                 <p className="indent-8">
-                    ข้าพเจ้า นาย/นาง/นางสาว <span className={`border-b border-dotted border-slate-400 inline-block min-w-[400px] text-start px-2 ${applicant?.full_name ? 'pb-1' : ''}`} style={{ verticalAlign: 'baseline', ...(!applicant?.full_name && { minHeight: '1.2em' }) }}>{applicant?.full_name || '\u00A0'}</span>
+                    ข้าพเจ้า นาย/นาง/นางสาว <span className={`border-b border-dotted border-slate-400 inline-block min-w-[400px] text-start px-2 pb-1 ${applicant?.full_name}`} style={{ verticalAlign: 'baseline', ...(!applicant?.full_name && { minHeight: '1.2em' }) }}>{applicant?.full_name || '\u00A0'}</span>
                 </p>
                 <p>
                     ได้รับการว่าจ้างจาก บริษัท เค แอนด์โอ ซิสเต็มส์ แอนด์ คอนซัลติ้ง จำกัด ที่ตั้งสำนักงานใหญ่ เลขที่ 15,17 ซอยกรุง 
