@@ -9,6 +9,7 @@ import EmploymentContractDocument from '@/components/application/pdf/EmploymentC
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import toast from 'react-hot-toast';
+import { numberToThai } from '@/components/utils/numberToThai';
 
 export default function EmploymentContractPage() {
     const navigate = useNavigate();
