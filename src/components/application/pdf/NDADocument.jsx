@@ -18,8 +18,9 @@ export default function NDADocument({ applicant, formData = {} }) {
         <>
         {/* Page 1 */}
         <div 
-            className="pdpa-page bg-white text-slate-900 mx-auto relative text-[12px] font-sans p-[20mm] shadow-sm print:shadow-none"
+            className="pdpa-page bg-white text-slate-900 mx-auto relative font-sans p-[20mm] shadow-sm print:shadow-none"
             style={{ 
+                fontSize: '12px' ,
                 width: '210mm', 
                 minHeight: '297mm',
                 fontFamily: 'TH Sarabun New, Sarabun, sans-serif'
