@@ -20,7 +20,12 @@ export default function FMHRD30Page() {
         prefix: '',
         employeeId: '',
         position: '',
-        signaturePosition: ''
+        signaturePosition: '',
+        criminalCheckDate: '',
+        consentLetterDate: '',
+        signatureDay: '',
+        signatureMonth: '',
+        signatureYear: ''
     });
 
     useEffect(() => {
@@ -212,6 +217,68 @@ export default function FMHRD30Page() {
                                             onChange={(e) => setFormData({ ...formData, signaturePosition: e.target.value })}
                                             className="w-full px-3 py-2 border border-slate-300 rounded-md"
                                             placeholder="ตำแหน่งที่ลายเซ็น"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="space-y-4 border-t pt-4">
+                                <h3 className="font-semibold text-slate-800">วันที่เอกสาร</h3>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label className="block text-sm font-medium text-slate-700 mb-2">วันที่ - การตรวจประวัติอาชญากรรม</label>
+                                        <input
+                                            type="date"
+                                            value={formData.criminalCheckDate}
+                                            onChange={(e) => setFormData({ ...formData, criminalCheckDate: e.target.value })}
+                                            className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-sm font-medium text-slate-700 mb-2">วันที่ - หนังสือยินยอมให้หักเงิน</label>
+                                        <input
+                                            type="date"
+                                            value={formData.consentLetterDate}
+                                            onChange={(e) => setFormData({ ...formData, consentLetterDate: e.target.value })}
+                                            className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="space-y-4 border-t pt-4">
+                                <h3 className="font-semibold text-slate-800">วันที่ลายเซ็น (หนังสือยินยอม)</h3>
+                                <div className="grid grid-cols-3 gap-4">
+                                    <div>
+                                        <label className="block text-sm font-medium text-slate-700 mb-2">วันที่</label>
+                                        <input
+                                            type="number"
+                                            min="1"
+                                            max="31"
+                                            value={formData.signatureDay}
+                                            onChange={(e) => setFormData({ ...formData, signatureDay: e.target.value })}
+                                            className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                            placeholder="วัน"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-sm font-medium text-slate-700 mb-2">เดือน</label>
+                                        <input
+                                            type="text"
+                                            value={formData.signatureMonth}
+                                            onChange={(e) => setFormData({ ...formData, signatureMonth: e.target.value })}
+                                            className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                            placeholder="เดือน"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-sm font-medium text-slate-700 mb-2">พ.ศ.</label>
+                                        <input
+                                            type="number"
+                                            value={formData.signatureYear}
+                                            onChange={(e) => setFormData({ ...formData, signatureYear: e.target.value })}
+                                            className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                            placeholder="พ.ศ."
                                         />
                                     </div>
                                 </div>

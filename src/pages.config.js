@@ -2,7 +2,6 @@ import Admin from './pages/Admin';
 import Application from './pages/Application';
 import Home from './pages/Home';
 import PDFPreview from './pages/PDFPreview';
-import criminalCheckForm from './pages/criminal-check-form';
 import employmentContract from './pages/employment-contract';
 import fmHrd19 from './pages/fm-hrd-19';
 import fmHrd27 from './pages/fm-hrd-27';
@@ -12,6 +11,7 @@ import pdpaForm from './pages/pdpa-form';
 import spsForm from './pages/sps-form';
 import userDashboard from './pages/user-dashboard';
 import userLogin from './pages/user-login';
+import criminalCheckForm from './pages/criminal-check-form';
 import __Layout from './Layout.jsx';
 
 
@@ -20,7 +20,6 @@ export const PAGES = {
     "Application": Application,
     "Home": Home,
     "PDFPreview": PDFPreview,
-    "criminal-check-form": criminalCheckForm,
     "employment-contract": employmentContract,
     "fm-hrd-19": fmHrd19,
     "fm-hrd-27": fmHrd27,
@@ -30,6 +29,7 @@ export const PAGES = {
     "sps-form": spsForm,
     "user-dashboard": userDashboard,
     "user-login": userLogin,
+    "criminal-check-form": criminalCheckForm,
 }
 
 export const pagesConfig = {
