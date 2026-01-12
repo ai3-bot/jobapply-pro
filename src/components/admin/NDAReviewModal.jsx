@@ -92,6 +92,7 @@ export default function NDAReviewModal({ applicant, isOpen, onClose }) {
     if (!applicant) return null;
 
     const mergedFormData = {
+        ...applicant.nda_document?.data,
         ...applicant.nda_document?.employee_data,
         ...companyData
     };
