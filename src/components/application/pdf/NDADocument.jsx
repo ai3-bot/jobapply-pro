@@ -11,7 +11,7 @@ export default function NDADocument({ applicant, formData = {} }) {
     
     const appLogo = settings?.find(s => s.key === 'app_logo')?.value;
     const p = applicant?.personal_data || {};
-    const currentAddr = applicant?.nda_document?.current_address || p.current_address || {};
+    const currentAddr = p.current_address || {};
     const companyData = applicant?.nda_document?.company_data || {};
 
     return (

@@ -19,17 +19,6 @@ export default function NDAReviewModal({ applicant, isOpen, onClose }) {
         companySignature: applicant?.nda_document?.company_data?.companySignature || '',
         companySignDate: applicant?.nda_document?.company_data?.companySignDate || ''
     });
-    
-    const [currentAddress, setCurrentAddress] = useState({
-        number: applicant?.nda_document?.current_address?.number || applicant?.personal_data?.current_address?.number || '',
-        moo: applicant?.nda_document?.current_address?.moo || applicant?.personal_data?.current_address?.moo || '',
-        soi: applicant?.nda_document?.current_address?.soi || applicant?.personal_data?.current_address?.soi || '',
-        road: applicant?.nda_document?.current_address?.road || applicant?.personal_data?.current_address?.road || '',
-        subdistrict: applicant?.nda_document?.current_address?.subdistrict || applicant?.personal_data?.current_address?.subdistrict || '',
-        district: applicant?.nda_document?.current_address?.district || applicant?.personal_data?.current_address?.district || '',
-        province: applicant?.nda_document?.current_address?.province || applicant?.personal_data?.current_address?.province || '',
-        zipcode: applicant?.nda_document?.current_address?.zipcode || applicant?.personal_data?.current_address?.zipcode || ''
-    });
 
     const updateMutation = useMutation({
         mutationFn: async (data) => {
@@ -51,7 +40,6 @@ export default function NDAReviewModal({ applicant, isOpen, onClose }) {
                 ...applicant.nda_document,
                 status: 'completed',
                 company_data: companyData,
-                current_address: currentAddress,
                 completed_date: new Date().toISOString()
             }
         };
@@ -155,87 +143,6 @@ export default function NDAReviewModal({ applicant, isOpen, onClose }) {
                         </div>
                     </div>
 
-                    {/* Current Address Form */}
-                    <div className="bg-slate-50 p-4 rounded-lg space-y-4">
-                        <h3 className="font-semibold text-lg">ที่อยู่ปัจจุบัน (กรณีต่างจากที่กรอกไว้)</h3>
-                        
-                        <div className="grid grid-cols-2 gap-4">
-                            <div>
-                                <Label>บ้านเลขที่</Label>
-                                <Input
-                                    value={currentAddress.number}
-                                    onChange={(e) => setCurrentAddress({ ...currentAddress, number: e.target.value })}
-                                    placeholder="บ้านเลขที่"
-                                />
-                            </div>
-                            <div>
-                                <Label>หมู่</Label>
-                                <Input
-                                    value={currentAddress.moo}
-                                    onChange={(e) => setCurrentAddress({ ...currentAddress, moo: e.target.value })}
-                                    placeholder="หมู่"
-                                />
-                            </div>
-                        </div>
-
-                        <div className="grid grid-cols-2 gap-4">
-                            <div>
-                                <Label>ซอย</Label>
-                                <Input
-                                    value={currentAddress.soi}
-                                    onChange={(e) => setCurrentAddress({ ...currentAddress, soi: e.target.value })}
-                                    placeholder="ซอย"
-                                />
-                            </div>
-                            <div>
-                                <Label>ถนน</Label>
-                                <Input
-                                    value={currentAddress.road}
-                                    onChange={(e) => setCurrentAddress({ ...currentAddress, road: e.target.value })}
-                                    placeholder="ถนน"
-                                />
-                            </div>
-                        </div>
-
-                        <div className="grid grid-cols-2 gap-4">
-                            <div>
-                                <Label>ตำบล/แขวง</Label>
-                                <Input
-                                    value={currentAddress.subdistrict}
-                                    onChange={(e) => setCurrentAddress({ ...currentAddress, subdistrict: e.target.value })}
-                                    placeholder="ตำบล/แขวง"
-                                />
-                            </div>
-                            <div>
-                                <Label>อำเภอ/เขต</Label>
-                                <Input
-                                    value={currentAddress.district}
-                                    onChange={(e) => setCurrentAddress({ ...currentAddress, district: e.target.value })}
-                                    placeholder="อำเภอ/เขต"
-                                />
-                            </div>
-                        </div>
-
-                        <div className="grid grid-cols-2 gap-4">
-                            <div>
-                                <Label>จังหวัด</Label>
-                                <Input
-                                    value={currentAddress.province}
-                                    onChange={(e) => setCurrentAddress({ ...currentAddress, province: e.target.value })}
-                                    placeholder="จังหวัด"
-                                />
-                            </div>
-                            <div>
-                                <Label>รหัสไปรษณีย์</Label>
-                                <Input
-                                    value={currentAddress.zipcode}
-                                    onChange={(e) => setCurrentAddress({ ...currentAddress, zipcode: e.target.value })}
-                                    placeholder="รหัสไปรษณีย์"
-                                />
-                            </div>
-                        </div>
-                    </div>
-
                     {/* Document Preview */}
                     <div className="bg-slate-100 p-4 rounded-lg">
                         <div className="flex justify-between items-center mb-4">
@@ -267,8 +174,7 @@ export default function NDAReviewModal({ applicant, isOpen, onClose }) {
                                     ...applicant,
                                     nda_document: {
                                         ...applicant.nda_document,
-                                        company_data: companyData,
-                                        current_address: currentAddress
+                                        company_data: companyData
                                     }
                                 }}
                                 formData={mergedFormData}
