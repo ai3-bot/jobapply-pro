@@ -17,6 +17,7 @@ import PDPAReviewModal from '@/components/admin/PDPAReviewModal';
 import FMHRD19ReviewModal from '@/components/admin/FMHRD19ReviewModal';
 import CriminalCheckReviewModal from '@/components/admin/CriminalCheckReviewModal';
 import EmploymentContractReviewModal from '@/components/admin/EmploymentContractReviewModal';
+import FMHRD30ReviewModal from '@/components/admin/FMHRD30ReviewModal';
 
 function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewFMHRD19, onReviewCriminalCheck, onReviewEmploymentContract, onSelectApplicant, onReviewFMHRD27, onReviewFMHRD30 }) {
     const { data: applicants = [], isLoading } = useQuery({
@@ -510,6 +511,7 @@ export default function AdminPage() {
     const [reviewingCriminalCheck, setReviewingCriminalCheck] = useState(null);
     const [reviewingEmploymentContract, setReviewingEmploymentContract] = useState(null);
     const [reviewingFMHRD27Doc, setReviewingFMHRD27Doc] = useState(null);
+    const [reviewingFMHRD30, setReviewingFMHRD30] = useState(null);
 
     useEffect(() => {
         const checkAccess = async () => {
@@ -598,7 +600,7 @@ export default function AdminPage() {
                         onReviewCriminalCheck={setReviewingCriminalCheck}
                         onReviewEmploymentContract={setReviewingEmploymentContract}
                         onReviewFMHRD27={setReviewingFMHRD27Doc}
-                        onReviewFMHRD30={setReviewingCriminalCheck}
+                        onReviewFMHRD30={setReviewingFMHRD30}
                     />
                 ) : (
                     <div className="h-full overflow-y-auto">
@@ -650,6 +652,13 @@ export default function AdminPage() {
                      onClose={() => setReviewingFMHRD27Doc(null)}
                  />
              )}
+
+             {/* FM-HRD-30 Review Modal */}
+             <FMHRD30ReviewModal 
+                 applicant={reviewingFMHRD30}
+                 isOpen={!!reviewingFMHRD30}
+                 onClose={() => setReviewingFMHRD30(null)}
+             />
             </div>
             );
             }
