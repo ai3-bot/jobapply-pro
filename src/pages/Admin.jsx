@@ -413,47 +413,51 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                     ) : (
                         <div className="grid grid-cols-1 gap-4">
                             {filteredCriminalCheck.map(doc => {
-                                const applicant = selectedApplicant;
-                                const docData = doc.data || {};
-                                return (
-                                    <Card key={doc.id} className="hover:shadow-md transition-shadow">
-                                        <CardContent className="p-6">
-                                            <div className="flex items-center justify-between">
-                                                <div className="flex items-center gap-4 flex-1">
-                                                    <div className="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center">
-                                                        <FileCheck className="w-6 h-6 text-amber-600" />
-                                                    </div>
-                                                    <div className="flex-1">
-                                                        <h3 className="font-semibold text-lg">{applicant?.full_name || '-'}</h3>
-                                                        <div className="grid grid-cols-2 gap-4 mt-2 text-sm text-slate-600">
-                                                            <div>
-                                                                <p className="text-xs text-slate-500">วัตถุประสงค์</p>
-                                                                <p className="font-medium">{docData.purpose || '-'}</p>
-                                                            </div>
-                                                            <div>
-                                                                <p className="text-xs text-slate-500">ID เอกสาร</p>
-                                                                <p className="font-medium text-xs">{doc.id.substring(0, 8)}...</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="flex items-center gap-3">
-                                                    <Badge variant={doc.status === 'approved' ? 'success' : doc.status === 'submitted' ? 'default' : 'secondary'}>
-                                                        {doc.status === 'approved' ? 'อนุมัติแล้ว' : doc.status === 'submitted' ? 'รอดำเนินการ' : 'แบบร่าง'}
-                                                    </Badge>
-                                                    <Button 
-                                                        onClick={() => applicant && onReviewCriminalCheck?.(applicant)}
-                                                        size="sm"
-                                                        disabled={!applicant}
-                                                    >
-                                                        ดูเอกสาร
-                                                    </Button>
-                                                </div>
-                                            </div>
-                                        </CardContent>
-                                    </Card>
-                                );
-                            })}
+                                 const applicant = selectedApplicant;
+                                 const docData = doc.data || {};
+                                 return (
+                                     <Card key={doc.id} className="hover:shadow-md transition-shadow">
+                                         <CardContent className="p-6">
+                                             <div className="flex items-center justify-between">
+                                                 <div className="flex items-center gap-4 flex-1">
+                                                     <div className="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center">
+                                                         <FileCheck className="w-6 h-6 text-amber-600" />
+                                                     </div>
+                                                     <div className="flex-1">
+                                                         <h3 className="font-semibold text-lg">{applicant?.full_name || '-'}</h3>
+                                                         <div className="grid grid-cols-3 gap-4 mt-2 text-sm text-slate-600">
+                                                             <div>
+                                                                 <p className="text-xs text-slate-500">ชื่อบริษัท</p>
+                                                                 <p className="font-medium">{docData.companyName || '-'}</p>
+                                                             </div>
+                                                             <div>
+                                                                 <p className="text-xs text-slate-500">วัตถุประสงค์</p>
+                                                                 <p className="font-medium">{docData.purpose || '-'}</p>
+                                                             </div>
+                                                             <div>
+                                                                 <p className="text-xs text-slate-500">ID เอกสาร</p>
+                                                                 <p className="font-medium text-xs">{doc.id.substring(0, 8)}...</p>
+                                                             </div>
+                                                         </div>
+                                                     </div>
+                                                 </div>
+                                                 <div className="flex items-center gap-3">
+                                                     <Badge variant={doc.status === 'approved' ? 'success' : doc.status === 'submitted' ? 'default' : 'secondary'}>
+                                                         {doc.status === 'approved' ? 'อนุมัติแล้ว' : doc.status === 'submitted' ? 'รอดำเนินการ' : 'แบบร่าง'}
+                                                     </Badge>
+                                                     <Button 
+                                                         onClick={() => applicant && onReviewCriminalCheck?.(applicant, doc)}
+                                                         size="sm"
+                                                         disabled={!applicant}
+                                                     >
+                                                         ดูเอกสาร
+                                                     </Button>
+                                                 </div>
+                                             </div>
+                                         </CardContent>
+                                     </Card>
+                                 );
+                             })}
                             {criminalCheckDocs.map(applicant => (
                                 <Card key={applicant.id} className="hover:shadow-md transition-shadow">
                                     <CardContent className="p-6">
