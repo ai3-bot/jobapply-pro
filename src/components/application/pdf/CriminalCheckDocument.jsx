@@ -41,10 +41,10 @@ export default function CriminalCheckDocument({ applicant, formData = {} }) {
                     <h1 className="text-[16px] font-bold text-center mb-4 pt-3">หนังสือมอบอำนาจ</h1>
                     <div className="text-right space-y-1 absolute right-0 top-[22px]">
                         <p>
-                            ทำที่ <span className={`border-b border-dotted border-slate-400 inline-block min-w-[200px] text-center px-2 ${(companyData.companyLocation || formData.companyLocation) ? 'pb-1' : ''}`} style={{ verticalAlign: 'baseline', ...((companyData.companyLocation || formData.companyLocation) && { minHeight: '1.2em' }) }}>{companyData.companyLocation || formData.companyLocation || '\u00A0'}</span>
+                            ทำที่ <span className={`border-b border-dotted border-slate-400 inline-block min-w-[200px] text-center px-2 pb-1`} style={{ verticalAlign: 'baseline', ...(!companyData.companyLocation && !formData.companyLocation && { minHeight: '1.2em' }) }}>{companyData.companyLocation || formData.companyLocation || '\u00A0'}</span>
                         </p>
                         <p>
-                            วันที่ <span className={`border-b border-dotted border-slate-400 inline-block min-w-[200px] text-center px-2 ${(companyData.poaDate || formData.poaDate) ? 'pb-1' : ''}`} style={{ verticalAlign: 'baseline', ...((companyData.poaDate || formData.poaDate) && { minHeight: '1.2em' }) }}>{companyData.poaDate || formData.poaDate || '\u00A0'}</span>
+                            วันที่ <span className={`border-b border-dotted border-slate-400 inline-block min-w-[200px] text-center px-2 pb-1`} style={{ verticalAlign: 'baseline', ...(!companyData.poaDate && !formData.poaDate && { minHeight: '1.2em' }) }}>{companyData.poaDate || formData.poaDate || '\u00A0'}</span>
                         </p>
                     </div>
                 </div>
@@ -132,10 +132,10 @@ export default function CriminalCheckDocument({ applicant, formData = {} }) {
                     <h2 className="text-[14px] font-bold text-center mb-3">(ผ่านหน่วยงาน/บริษัท)</h2>
                     <div className="text-right absolute top-[35px] right-0 space-y-1">
                         <p>
-                            ทำที่ <span className={`border-b border-dotted border-slate-400 inline-block min-w-[200px] text-center px-2 ${(companyData.companyLocation || formData.companyLocation) ? 'pb-1' : ''}`} style={{ verticalAlign: 'baseline', ...((companyData.companyLocation || formData.companyLocation) && { minHeight: '1.2em' }) }}>{companyData.companyLocation || formData.companyLocation || '\u00A0'}</span>
+                            ทำที่ <span className={`border-b border-dotted border-slate-400 inline-block min-w-[200px] text-center px-2 pb-1`} style={{ verticalAlign: 'baseline', ...(!companyData.companyLocation && !formData.companyLocation && { minHeight: '1.2em' }) }}>{companyData.companyLocation || formData.companyLocation || '\u00A0'}</span>
                         </p>
                         <p>
-                            วันที่ <span className={`border-b border-dotted border-slate-400 inline-block min-w-[200px] text-center px-2 ${(companyData.poaDate || formData.poaDate) ? 'pb-1' : ''}`} style={{ verticalAlign: 'baseline', ...((companyData.poaDate || formData.poaDate) && { minHeight: '1.2em' }) }}>{companyData.poaDate || formData.poaDate || '\u00A0'}</span>
+                            วันที่ <span className={`border-b border-dotted border-slate-400 inline-block min-w-[200px] text-center px-2 pb-1`} style={{ verticalAlign: 'baseline', ...(!companyData.poaDate && !formData.poaDate && { minHeight: '1.2em' }) }}>{companyData.poaDate || formData.poaDate || '\u00A0'}</span>
                         </p>
                     </div>
                 </div>
