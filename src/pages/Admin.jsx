@@ -513,6 +513,7 @@ export default function AdminPage() {
     const [reviewingPDPA, setReviewingPDPA] = useState(null);
     const [reviewingFMHRD19, setReviewingFMHRD19] = useState(null);
     const [reviewingCriminalCheck, setReviewingCriminalCheck] = useState(null);
+    const [reviewingCriminalCheckDoc, setReviewingCriminalCheckDoc] = useState(null);
     const [reviewingEmploymentContract, setReviewingEmploymentContract] = useState(null);
     const [reviewingFMHRD27Doc, setReviewingFMHRD27Doc] = useState(null);
     const [reviewingFMHRD30, setReviewingFMHRD30] = useState(null);
