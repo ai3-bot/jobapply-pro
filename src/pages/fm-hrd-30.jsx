@@ -158,7 +158,6 @@ export default function FMHRD30Page() {
     }
 
     const isAcknowledged = applicant?.fmhrd30_document?.acknowledged;
-    const isApproved = existingPdfDoc?.status === 'approved';
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 p-6">
@@ -176,10 +175,9 @@ export default function FMHRD30Page() {
                     <div className="flex gap-2">
                         <Button 
                             onClick={() => setShowForm(true)}
-                            disabled={isApproved}
                             className="bg-indigo-600 hover:bg-indigo-700"
                         >
-                            {isApproved ? '✓ อนุมัติแล้ว' : 'กรอกเอกสาร'}
+                            กรอกเอกสาร
                         </Button>
                         <Button 
                             variant="outline"
@@ -219,7 +217,7 @@ export default function FMHRD30Page() {
                 <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
                     <Card className="w-full max-w-2xl max-h-[90vh] overflow-y-auto">
                         <CardHeader className="border-b bg-slate-50">
-                            <CardTitle>กรอกข้อมูลส่วนพนักงาน {isApproved && '(อนุมัติแล้ว)'}</CardTitle>
+                            <CardTitle>กรอกข้อมูลส่วนพนักงาน</CardTitle>
                         </CardHeader>
                         <CardContent className="p-6 space-y-6">
                             <div className="space-y-4">
@@ -229,10 +227,9 @@ export default function FMHRD30Page() {
                                         <label className="block text-sm font-medium text-slate-700 mb-2">รหัสพนักงาน</label>
                                         <input
                                             type="text"
-                                            disabled={isApproved}
                                             value={formData.employeeId}
                                             onChange={(e) => setFormData({ ...formData, employeeId: e.target.value })}
-                                            className="w-full px-3 py-2 border border-slate-300 rounded-md disabled:bg-slate-100 disabled:text-slate-500 disabled:cursor-not-allowed"
+                                            className="w-full px-3 py-2 border border-slate-300 rounded-md"
                                             placeholder="รหัสพนักงาน"
                                         />
                                     </div>
@@ -240,10 +237,9 @@ export default function FMHRD30Page() {
                                         <label className="block text-sm font-medium text-slate-700 mb-2">ตำแหน่ง</label>
                                         <input
                                             type="text"
-                                            disabled={isApproved}
                                             value={formData.position}
                                             onChange={(e) => setFormData({ ...formData, position: e.target.value })}
-                                            className="w-full px-3 py-2 border border-slate-300 rounded-md disabled:bg-slate-100 disabled:text-slate-500 disabled:cursor-not-allowed"
+                                            className="w-full px-3 py-2 border border-slate-300 rounded-md"
                                             placeholder="ตำแหน่งงาน"
                                         />
                                     </div>
@@ -251,10 +247,9 @@ export default function FMHRD30Page() {
                                         <label className="block text-sm font-medium text-slate-700 mb-2">ตำแหน่ง (ที่ลายเซ็น)</label>
                                         <input
                                             type="text"
-                                            disabled={isApproved}
                                             value={formData.signaturePosition}
                                             onChange={(e) => setFormData({ ...formData, signaturePosition: e.target.value })}
-                                            className="w-full px-3 py-2 border border-slate-300 rounded-md disabled:bg-slate-100 disabled:text-slate-500 disabled:cursor-not-allowed"
+                                            className="w-full px-3 py-2 border border-slate-300 rounded-md"
                                             placeholder="ตำแหน่งที่ลายเซ็น"
                                         />
                                     </div>
@@ -268,30 +263,27 @@ export default function FMHRD30Page() {
                                         <label className="block text-sm font-medium text-slate-700 mb-2">วันที่ประกาศ - การตรวจประวัติอาชญากรรม</label>
                                         <input
                                             type="date"
-                                            disabled={isApproved}
                                             value={formData.proclamationDate}
                                             onChange={(e) => setFormData({ ...formData, proclamationDate: e.target.value })}
-                                            className="w-full px-3 py-2 border border-slate-300 rounded-md disabled:bg-slate-100 disabled:text-slate-500 disabled:cursor-not-allowed"
+                                            className="w-full px-3 py-2 border border-slate-300 rounded-md"
                                         />
                                     </div>
                                     <div>
                                         <label className="block text-sm font-medium text-slate-700 mb-2">วันที่ - หนังสือยินยอมให้หักเงิน</label>
                                         <input
                                             type="date"
-                                            disabled={isApproved}
                                             value={formData.consentLetterDate}
                                             onChange={(e) => setFormData({ ...formData, consentLetterDate: e.target.value })}
-                                            className="w-full px-3 py-2 border border-slate-300 rounded-md disabled:bg-slate-100 disabled:text-slate-500 disabled:cursor-not-allowed"
+                                            className="w-full px-3 py-2 border border-slate-300 rounded-md"
                                         />
                                     </div>
                                     <div>
                                         <label className="block text-sm font-medium text-slate-700 mb-2">วันที่ - การตรวจประวัติอาชญากรรม</label>
                                         <input
                                             type="date"
-                                            disabled={isApproved}
                                             value={formData.criminalCheckDate}
                                             onChange={(e) => setFormData({ ...formData, criminalCheckDate: e.target.value })}
-                                            className="w-full px-3 py-2 border border-slate-300 rounded-md disabled:bg-slate-100 disabled:text-slate-500 disabled:cursor-not-allowed"
+                                            className="w-full px-3 py-2 border border-slate-300 rounded-md"
                                         />
                                     </div>
                                 </div>
@@ -319,11 +311,11 @@ export default function FMHRD30Page() {
                                 </Button>
                                 <Button 
                                     onClick={handleSave}
-                                    disabled={saveMutation.isPending || isApproved}
+                                    disabled={saveMutation.isPending}
                                     className="bg-indigo-600 hover:bg-indigo-700"
                                 >
                                     {saveMutation.isPending ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}
-                                    {isApproved ? 'ปิดการแก้ไข' : 'บันทึก'}
+                                    บันทึก
                                 </Button>
                             </div>
                         </CardContent>
