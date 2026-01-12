@@ -522,7 +522,7 @@ export default function NDADocument({ applicant, formData = {} }) {
                             )}
                             กรรมการผู้มีอำนาจลงนาม
                         </p>
-                        <p className="mb-2 ml-3">(<span className={`border-b border-dotted border-slate-400 inline-block min-w-[200px] text-center px-2 pb-1 ${companyData.signerName}`} style={{ verticalAlign: 'baseline', ...(!companyData.signerName && { minHeight: '1.2em' }) }}>{companyData.signerName || '\u00A0'}</span>)</p>
+                        <p className="mb-2 ml-3">(<span className={`border-b border-dotted border-slate-400 inline-block min-w-[150px] text-center px-2 pb-1 ${companyData.signerName}`} style={{ verticalAlign: 'baseline', ...(!companyData.signerName && { minHeight: '1.2em' }) }}>{companyData.signerName || '\u00A0'}</span>)</p>
                         <p className="mb-2">วันที่<span className={`border-b border-dotted border-slate-400 inline-block min-w-[200px] text-center px-2 pb-1 mx-2 ${companyData.companySignDate}`} style={{ verticalAlign: 'baseline', ...(!companyData.companySignDate && { minHeight: '1.2em' }) }}>{formatDateToDDMMYYYY(companyData.companySignDate) || '\u00A0'}</span></p>
                     </div>
 
@@ -537,7 +537,7 @@ export default function NDADocument({ applicant, formData = {} }) {
                             )}
                             พนักงาน
                         </p>
-                        <p className="mb-2 text-center">(<span className={`border-b border-dotted border-slate-400 inline-block min-w-[250px] text-center px-2 pb-1 ${applicant?.full_name}`} style={{ verticalAlign: 'baseline', ...(!applicant?.full_name && { minHeight: '1.2em' }) }}>{applicant?.full_name || '\u00A0'}</span>)</p>
+                        <p className="mb-2 text-center">(<span className={`border-b border-dotted border-slate-400 inline-block min-w-[150px] text-center px-2 pb-1 ${applicant?.full_name}`} style={{ verticalAlign: 'baseline', ...(!applicant?.full_name && { minHeight: '1.2em' }) }}>{applicant?.full_name || '\u00A0'}</span>)</p>
                         <p className="mb-2">วันที่<span className={`border-b border-dotted border-slate-400 inline-block min-w-[200px] text-center px-2 pb-1 mx-2 ${formData.employeeSignDate}`} style={{ verticalAlign: 'baseline', ...(!formData.employeeSignDate && { minHeight: '1.2em' }) }}>{formatDateToDDMMYYYY(formData.employeeSignDate) || '\u00A0'}</span></p>
                     </div>
                 </div>
