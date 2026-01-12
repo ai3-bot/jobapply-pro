@@ -253,6 +253,14 @@ export default function FMHRD30Page() {
                                 >
                                     ปิด
                                 </Button>
+                                <Button 
+                                    onClick={() => {
+                                        setShowForm(false);
+                                    }}
+                                    className="bg-indigo-600 hover:bg-indigo-700"
+                                >
+                                    บันทึก
+                                </Button>
                             </div>
                         </CardContent>
                     </Card>
