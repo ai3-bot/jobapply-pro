@@ -1,31 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 
-export default function NDADocument({ applicant, formData = {}, onDataLoad }) {
-    const [documentId, setDocumentId] = useState(null);
-
-    useEffect(() => {
-        if (applicant?.id) {
-            const fetchDocument = async () => {
-                try {
-                    const docs = await base44.entities.PdfBase.filter({ 
-                        applicant_id: applicant.id, 
-                        pdf_type: 'NDA' 
-                    });
-                    if (docs.length > 0) {
-                        setDocumentId(docs[0].id);
-                        if (onDataLoad) {
-                            onDataLoad(docs[0]);
-                        }
-                    }
-                } catch (error) {
-                    console.error('Error fetching NDA document:', error);
-                }
-            };
-            fetchDocument();
-        }
-    }, [applicant?.id, onDataLoad]);
+export default function NDADocument({ applicant, formData = {} }) {
     const { data: settings } = useQuery({
         queryKey: ['system_settings_layout'],
         queryFn: () => base44.entities.SystemSetting.list(),
