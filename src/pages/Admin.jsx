@@ -108,12 +108,10 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                                                     <h3 className="font-semibold text-lg">{applicant.full_name}</h3>
                                                     <p className="text-sm text-slate-500">
                                                         ส่งเมื่อ: {applicant.nda_document?.submitted_date ? 
-                                                            new Date(applicant.nda_document.submitted_date).toLocaleDateString('th-TH', {
-                                                                year: 'numeric',
-                                                                month: 'long',
-                                                                day: 'numeric',
-                                                                hour: '2-digit',
-                                                                minute: '2-digit'
+                                                            new Date(applicant.nda_document.submitted_date).toLocaleDateString('en-GB', {
+                                                                day: '2-digit',
+                                                                month: '2-digit',
+                                                                year: 'numeric'
                                                             }) : '-'
                                                         }
                                                     </p>
@@ -161,12 +159,10 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                                                     <h3 className="font-semibold text-lg">{applicant.full_name}</h3>
                                                     <p className="text-sm text-slate-500">
                                                         ส่งเมื่อ: {applicant.pdpa_document?.submitted_date ? 
-                                                            new Date(applicant.pdpa_document.submitted_date).toLocaleDateString('th-TH', {
-                                                                year: 'numeric',
-                                                                month: 'long',
-                                                                day: 'numeric',
-                                                                hour: '2-digit',
-                                                                minute: '2-digit'
+                                                            new Date(applicant.pdpa_document.submitted_date).toLocaleDateString('en-GB', {
+                                                                day: '2-digit',
+                                                                month: '2-digit',
+                                                                year: 'numeric'
                                                             }) : '-'
                                                         }
                                                     </p>
@@ -218,7 +214,11 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                                                         <div className="grid grid-cols-2 gap-4 mt-2 text-sm text-slate-600">
                                                             <div>
                                                                 <p className="text-xs text-slate-500">วันที่เอกสาร</p>
-                                                                <p className="font-medium">{docData.document_date ? new Date(docData.document_date).toLocaleDateString('th-TH') : '-'}</p>
+                                                                <p className="font-medium">{docData.document_date ? new Date(docData.document_date).toLocaleDateString('en-GB', {
+                                                                    day: '2-digit',
+                                                                    month: '2-digit',
+                                                                    year: 'numeric'
+                                                                }) : '-'}</p>
                                                             </div>
                                                             <div>
                                                                 <p className="text-xs text-slate-500">ตำแหน่ง / แผนก</p>
@@ -226,7 +226,15 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                                                             </div>
                                                             <div>
                                                                 <p className="text-xs text-slate-500">วันฝึกอบรม</p>
-                                                                <p className="font-medium">{docData.training_start_date && docData.training_end_date ? `${new Date(docData.training_start_date).toLocaleDateString('th-TH')} - ${new Date(docData.training_end_date).toLocaleDateString('th-TH')}` : '-'}</p>
+                                                                <p className="font-medium">{docData.training_start_date && docData.training_end_date ? `${new Date(docData.training_start_date).toLocaleDateString('en-GB', {
+                                                                    day: '2-digit',
+                                                                    month: '2-digit',
+                                                                    year: 'numeric'
+                                                                })} - ${new Date(docData.training_end_date).toLocaleDateString('en-GB', {
+                                                                    day: '2-digit',
+                                                                    month: '2-digit',
+                                                                    year: 'numeric'
+                                                                })}` : '-'}</p>
                                                             </div>
                                                             <div>
                                                                 <p className="text-xs text-slate-500">ID เอกสาร</p>
@@ -291,7 +299,11 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                                                             </div>
                                                             <div>
                                                                 <p className="text-xs text-slate-500">วันเริ่มงาน</p>
-                                                                <p className="font-medium">{docData.workStartDate ? new Date(docData.workStartDate).toLocaleDateString('th-TH') : '-'}</p>
+                                                                <p className="font-medium">{docData.workStartDate ? new Date(docData.workStartDate).toLocaleDateString('en-GB', {
+                                                                    day: '2-digit',
+                                                                    month: '2-digit',
+                                                                    year: 'numeric'
+                                                                }) : '-'}</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -340,12 +352,10 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                                                     <h3 className="font-semibold text-lg">{applicant.full_name}</h3>
                                                     <p className="text-sm text-slate-500">
                                                         ส่งเมื่อ: {applicant.criminal_check_document?.submitted_date ? 
-                                                            new Date(applicant.criminal_check_document.submitted_date).toLocaleDateString('th-TH', {
-                                                                year: 'numeric',
-                                                                month: 'long',
-                                                                day: 'numeric',
-                                                                hour: '2-digit',
-                                                                minute: '2-digit'
+                                                            new Date(applicant.criminal_check_document.submitted_date).toLocaleDateString('en-GB', {
+                                                                day: '2-digit',
+                                                                month: '2-digit',
+                                                                year: 'numeric'
                                                             }) : '-'
                                                         }
                                                     </p>
