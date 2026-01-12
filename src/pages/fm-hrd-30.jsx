@@ -17,15 +17,12 @@ export default function FMHRD30Page() {
     const [generatingPdf, setGeneratingPdf] = useState(false);
     const [showForm, setShowForm] = useState(false);
     const [formData, setFormData] = useState({
-        prefix: '',
         employeeId: '',
         position: '',
         signaturePosition: '',
         criminalCheckDate: '',
         consentLetterDate: '',
-        signatureDay: '',
-        signatureMonth: '',
-        signatureYear: ''
+        signatureDate: ''
     });
 
     useEffect(() => {
@@ -180,16 +177,6 @@ export default function FMHRD30Page() {
                                 <h3 className="font-semibold text-slate-800">ข้อมูลส่วนตัว</h3>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div>
-                                        <label className="block text-sm font-medium text-slate-700 mb-2">คำนำหน้า (นาย/นาง/นางสาว)</label>
-                                        <input
-                                            type="text"
-                                            value={formData.prefix}
-                                            onChange={(e) => setFormData({ ...formData, prefix: e.target.value })}
-                                            className="w-full px-3 py-2 border border-slate-300 rounded-md"
-                                            placeholder="เช่น นาย"
-                                        />
-                                    </div>
-                                    <div>
                                         <label className="block text-sm font-medium text-slate-700 mb-2">รหัสพนักงาน</label>
                                         <input
                                             type="text"
@@ -248,39 +235,14 @@ export default function FMHRD30Page() {
 
                             <div className="space-y-4 border-t pt-4">
                                 <h3 className="font-semibold text-slate-800">วันที่ลายเซ็น (หนังสือยินยอม)</h3>
-                                <div className="grid grid-cols-3 gap-4">
-                                    <div>
-                                        <label className="block text-sm font-medium text-slate-700 mb-2">วันที่</label>
-                                        <input
-                                            type="number"
-                                            min="1"
-                                            max="31"
-                                            value={formData.signatureDay}
-                                            onChange={(e) => setFormData({ ...formData, signatureDay: e.target.value })}
-                                            className="w-full px-3 py-2 border border-slate-300 rounded-md"
-                                            placeholder="วัน"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-slate-700 mb-2">เดือน</label>
-                                        <input
-                                            type="text"
-                                            value={formData.signatureMonth}
-                                            onChange={(e) => setFormData({ ...formData, signatureMonth: e.target.value })}
-                                            className="w-full px-3 py-2 border border-slate-300 rounded-md"
-                                            placeholder="เดือน"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-slate-700 mb-2">พ.ศ.</label>
-                                        <input
-                                            type="number"
-                                            value={formData.signatureYear}
-                                            onChange={(e) => setFormData({ ...formData, signatureYear: e.target.value })}
-                                            className="w-full px-3 py-2 border border-slate-300 rounded-md"
-                                            placeholder="พ.ศ."
-                                        />
-                                    </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-slate-700 mb-2">วันที่</label>
+                                    <input
+                                        type="date"
+                                        value={formData.signatureDate}
+                                        onChange={(e) => setFormData({ ...formData, signatureDate: e.target.value })}
+                                        className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                    />
                                 </div>
                             </div>
 
