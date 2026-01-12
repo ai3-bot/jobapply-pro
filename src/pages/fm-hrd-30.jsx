@@ -16,7 +16,6 @@ export default function FMHRD30Page() {
     const [applicantId, setApplicantId] = useState(null);
     const [generatingPdf, setGeneratingPdf] = useState(false);
     const [showForm, setShowForm] = useState(false);
-    const [isSubmitting, setIsSubmitting] = useState(false);
     const [formData, setFormData] = useState({
         employeeId: '',
         position: '',
@@ -133,20 +132,10 @@ export default function FMHRD30Page() {
     };
 
     const handleAcknowledge = async () => {
-        setIsSubmitting(true);
         try {
             // Update PDF status to submitted
             if (existingPdfDoc) {
                 await base44.entities.PdfBase.update(existingPdfDoc.id, {
-                    status: 'submitted',
-                    submitted_date: new Date().toISOString()
-                });
-            } else {
-                // Create if doesn't exist
-                await base44.entities.PdfBase.create({
-                    applicant_id: applicantId,
-                    pdf_type: 'FM-HRD-30',
-                    data: formData,
                     status: 'submitted',
                     submitted_date: new Date().toISOString()
                 });
@@ -159,14 +148,13 @@ export default function FMHRD30Page() {
                 }
             });
             
-            queryClient.invalidateQueries({ queryKey: ['user_applicant', applicantId] });
-            queryClient.invalidateQueries({ queryKey: ['fm_hrd_30_pdf', applicantId] });
+            queryClient.invalidateQueries(['user_applicant', applicantId]);
+            queryClient.invalidateQueries(['fm_hrd_30_pdf', applicantId]);
             toast.success('ส่งเอกสารเรียบร้อยแล้ว');
-            setTimeout(() => navigate('/user-dashboard'), 500);
+            navigate('/user-dashboard');
         } catch (error) {
             console.error('Error acknowledging document:', error);
             toast.error('เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง');
-            setIsSubmitting(false);
         }
     };
 
@@ -210,11 +198,10 @@ export default function FMHRD30Page() {
                         </Button>
                         <Button 
                             onClick={handleAcknowledge}
-                            disabled={isAcknowledged || isSubmitting}
+                            disabled={isAcknowledged}
                             className="bg-green-600 hover:bg-green-700"
                         >
-                            {isSubmitting ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}
-                            {isAcknowledged ? '✓ ส่งเอกสารแล้ว' : 'ส่งเอกสาร'}
+                            {isAcknowledged ? '✓ ส่งเอกสารแล้ว' : <><Send className="w-4 h-4 mr-2" />ส่งเอกสาร</>}
                         </Button>
                     </div>
                 </div>
