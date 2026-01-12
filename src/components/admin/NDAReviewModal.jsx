@@ -19,19 +19,7 @@ export default function NDAReviewModal({ applicant, isOpen, onClose }) {
     const [companyData, setCompanyData] = useState({
         signerName: applicant?.nda_document?.company_data?.signerName || '',
         companySignature: applicant?.nda_document?.company_data?.companySignature || '',
-        companySignDate: applicant?.nda_document?.company_data?.companySignDate || '',
-        contractDate: applicant?.nda_document?.employee_data?.contractDate || '',
-        currentAddress: {
-            number: applicant?.nda_document?.employee_data?.currentAddress?.number || '',
-            moo: applicant?.nda_document?.employee_data?.currentAddress?.moo || '',
-            soi: applicant?.nda_document?.employee_data?.currentAddress?.soi || '',
-            road: applicant?.nda_document?.employee_data?.currentAddress?.road || '',
-            subdistrict: applicant?.nda_document?.employee_data?.currentAddress?.subdistrict || '',
-            district: applicant?.nda_document?.employee_data?.currentAddress?.district || '',
-            province: applicant?.nda_document?.employee_data?.currentAddress?.province || '',
-            zipcode: applicant?.nda_document?.employee_data?.currentAddress?.zipcode || ''
-        },
-        employeeSignDate: applicant?.nda_document?.employee_data?.employeeSignDate || ''
+        companySignDate: applicant?.nda_document?.company_data?.companySignDate || ''
     });
 
     const updateMutation = useMutation({
@@ -49,18 +37,11 @@ export default function NDAReviewModal({ applicant, isOpen, onClose }) {
     });
 
     const handleSave = () => {
-        const { contractDate, currentAddress, employeeSignDate, ...restCompanyData } = companyData;
         const updatedData = {
             nda_document: {
                 ...applicant.nda_document,
                 status: 'completed',
-                company_data: restCompanyData,
-                employee_data: {
-                    ...applicant.nda_document?.employee_data,
-                    contractDate,
-                    currentAddress,
-                    employeeSignDate
-                },
+                company_data: companyData,
                 completed_date: new Date().toISOString()
             }
         };
@@ -124,144 +105,54 @@ export default function NDAReviewModal({ applicant, isOpen, onClose }) {
 
                 <div className="space-y-4">
                     {/* Admin Form */}
-                     <div className="bg-slate-50 p-4 rounded-lg space-y-6">
-                         {/* Company Data */}
-                         <div className="space-y-4">
-                             <h3 className="font-semibold text-lg">ข้อมูลบริษัท</h3>
+                    <div className="bg-slate-50 p-4 rounded-lg space-y-4">
+                        <h3 className="font-semibold text-lg">กรอกข้อมูลบริษัท</h3>
+                        
+                        <div>
+                            <Label>ชื่อกรรมการผู้มีอำนาจลงนาม</Label>
+                            <Input
+                                value={companyData.signerName}
+                                onChange={(e) => setCompanyData({ ...companyData, signerName: e.target.value })}
+                                placeholder="ระบุชื่อกรรมการ"
+                            />
+                        </div>
 
-                             <div>
-                                 <Label>ชื่อกรรมการผู้มีอำนาจลงนาม</Label>
-                                 <Input
-                                     value={companyData.signerName}
-                                     onChange={(e) => setCompanyData({ ...companyData, signerName: e.target.value })}
-                                     placeholder="ระบุชื่อกรรมการ"
-                                 />
-                             </div>
+                        <div>
+                            <Label>ลายเซ็นกรรมการ</Label>
+                            <div className="space-y-2">
+                                <SignaturePad 
+                                    ref={signaturePadRef}
+                                    onSignatureCapture={(signature) => {
+                                        setCompanyData({ ...companyData, companySignature: signature });
+                                    }}
+                                />
+                                {companyData.companySignature && (
+                                    <div className="flex items-center gap-2">
+                                        <img src={companyData.companySignature} alt="Company signature" className="h-20 object-contain border rounded" />
+                                        <Button
+                                            variant="outline"
+                                            size="sm"
+                                            onClick={() => {
+                                                setCompanyData({ ...companyData, companySignature: '' });
+                                                signaturePadRef.current?.clear();
+                                            }}
+                                        >
+                                            <Trash2 className="w-4 h-4" />
+                                        </Button>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
 
-                             <div>
-                                 <Label>ลายเซ็นกรรมการ</Label>
-                                 <div className="space-y-2">
-                                     <SignaturePad 
-                                         ref={signaturePadRef}
-                                         onSignatureCapture={(signature) => {
-                                             setCompanyData({ ...companyData, companySignature: signature });
-                                         }}
-                                     />
-                                     {companyData.companySignature && (
-                                         <div className="flex items-center gap-2">
-                                             <img src={companyData.companySignature} alt="Company signature" className="h-20 object-contain border rounded" />
-                                             <Button
-                                                 variant="outline"
-                                                 size="sm"
-                                                 onClick={() => {
-                                                     setCompanyData({ ...companyData, companySignature: '' });
-                                                     signaturePadRef.current?.clear();
-                                                 }}
-                                             >
-                                                 <Trash2 className="w-4 h-4" />
-                                             </Button>
-                                         </div>
-                                     )}
-                                 </div>
-                             </div>
-
-                             <div>
-                                 <Label>วันที่ลงนาม (บริษัท)</Label>
-                                 <Input
-                                     type="date"
-                                     value={companyData.companySignDate}
-                                     onChange={(e) => setCompanyData({ ...companyData, companySignDate: e.target.value })}
-                                 />
-                             </div>
-                         </div>
-
-                         {/* Employee Data */}
-                         <div className="space-y-4 border-t pt-4">
-                             <h3 className="font-semibold text-lg">ข้อมูลพนักงาน</h3>
-
-                             <div>
-                                 <Label>วันที่สัญญา</Label>
-                                 <Input
-                                     type="date"
-                                     value={companyData.contractDate}
-                                     onChange={(e) => setCompanyData({ ...companyData, contractDate: e.target.value })}
-                                 />
-                             </div>
-
-                             <div>
-                                 <Label>วันที่ลงนาม (พนักงาน)</Label>
-                                 <Input
-                                     type="date"
-                                     value={companyData.employeeSignDate}
-                                     onChange={(e) => setCompanyData({ ...companyData, employeeSignDate: e.target.value })}
-                                 />
-                             </div>
-                         </div>
-
-                         {/* Address Data */}
-                         <div className="space-y-4 border-t pt-4">
-                             <h3 className="font-semibold text-lg">ที่อยู่ปัจจุบัน</h3>
-
-                             <div className="grid grid-cols-2 gap-4">
-                                 <div>
-                                     <Label>บ้านเลขที่</Label>
-                                     <Input
-                                         value={companyData.currentAddress.number}
-                                         onChange={(e) => setCompanyData({ ...companyData, currentAddress: { ...companyData.currentAddress, number: e.target.value } })}
-                                     />
-                                 </div>
-                                 <div>
-                                     <Label>หมู่</Label>
-                                     <Input
-                                         value={companyData.currentAddress.moo}
-                                         onChange={(e) => setCompanyData({ ...companyData, currentAddress: { ...companyData.currentAddress, moo: e.target.value } })}
-                                     />
-                                 </div>
-                                 <div>
-                                     <Label>ซอย</Label>
-                                     <Input
-                                         value={companyData.currentAddress.soi}
-                                         onChange={(e) => setCompanyData({ ...companyData, currentAddress: { ...companyData.currentAddress, soi: e.target.value } })}
-                                     />
-                                 </div>
-                                 <div>
-                                     <Label>ถนน</Label>
-                                     <Input
-                                         value={companyData.currentAddress.road}
-                                         onChange={(e) => setCompanyData({ ...companyData, currentAddress: { ...companyData.currentAddress, road: e.target.value } })}
-                                     />
-                                 </div>
-                                 <div>
-                                     <Label>ตำบล/แขวง</Label>
-                                     <Input
-                                         value={companyData.currentAddress.subdistrict}
-                                         onChange={(e) => setCompanyData({ ...companyData, currentAddress: { ...companyData.currentAddress, subdistrict: e.target.value } })}
-                                     />
-                                 </div>
-                                 <div>
-                                     <Label>อำเภอ/เขต</Label>
-                                     <Input
-                                         value={companyData.currentAddress.district}
-                                         onChange={(e) => setCompanyData({ ...companyData, currentAddress: { ...companyData.currentAddress, district: e.target.value } })}
-                                     />
-                                 </div>
-                                 <div>
-                                     <Label>จังหวัด</Label>
-                                     <Input
-                                         value={companyData.currentAddress.province}
-                                         onChange={(e) => setCompanyData({ ...companyData, currentAddress: { ...companyData.currentAddress, province: e.target.value } })}
-                                     />
-                                 </div>
-                                 <div>
-                                     <Label>รหัสไปรษณีย์</Label>
-                                     <Input
-                                         value={companyData.currentAddress.zipcode}
-                                         onChange={(e) => setCompanyData({ ...companyData, currentAddress: { ...companyData.currentAddress, zipcode: e.target.value } })}
-                                     />
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
+                        <div>
+                            <Label>วันที่ลงนาม (บริษัท)</Label>
+                            <Input
+                                type="date"
+                                value={companyData.companySignDate}
+                                onChange={(e) => setCompanyData({ ...companyData, companySignDate: e.target.value })}
+                            />
+                        </div>
+                    </div>
 
                     {/* Document Preview */}
                     <div className="bg-slate-100 p-4 rounded-lg">
