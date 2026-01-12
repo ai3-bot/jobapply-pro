@@ -18,7 +18,17 @@ export default function FMHRD27Page() {
     const [showForm, setShowForm] = useState(false);
     const [formData, setFormData] = useState({
         contractDate: '',
-        employeeSignDate: ''
+        employeeSignDate: '',
+        currentAddress: {
+            number: '',
+            moo: '',
+            soi: '',
+            road: '',
+            subdistrict: '',
+            district: '',
+            province: '',
+            zipcode: ''
+        }
     });
 
     useEffect(() => {
@@ -171,8 +181,8 @@ export default function FMHRD27Page() {
 
                 {/* Form Modal */}
                 {showForm && (
-                    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-                        <Card className="w-full max-w-md">
+                    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 overflow-y-auto">
+                        <Card className="w-full max-w-md my-8">
                             <CardHeader className="border-b bg-slate-50">
                                 <CardTitle>กรอกข้อมูลสัญญา NDA</CardTitle>
                             </CardHeader>
@@ -195,6 +205,109 @@ export default function FMHRD27Page() {
                                         onChange={(e) => setFormData({ ...formData, employeeSignDate: e.target.value })}
                                         className="w-full px-3 py-2 border border-slate-300 rounded-md"
                                     />
+                                </div>
+
+                                <div className="border-t pt-4 mt-4">
+                                    <h3 className="text-sm font-semibold text-slate-700 mb-3">ที่อยู่ปัจจุบัน (ถ้าต่างจากที่อยู่ที่กรอกไว้)</h3>
+                                    
+                                    <div className="grid grid-cols-2 gap-3">
+                                        <div>
+                                            <label className="block text-xs text-slate-600 mb-1">บ้านเลขที่</label>
+                                            <input
+                                                type="text"
+                                                value={formData.currentAddress.number}
+                                                onChange={(e) => setFormData({ 
+                                                    ...formData, 
+                                                    currentAddress: { ...formData.currentAddress, number: e.target.value }
+                                                })}
+                                                className="w-full px-2 py-1.5 border border-slate-300 rounded-md text-sm"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-xs text-slate-600 mb-1">หมู่</label>
+                                            <input
+                                                type="text"
+                                                value={formData.currentAddress.moo}
+                                                onChange={(e) => setFormData({ 
+                                                    ...formData, 
+                                                    currentAddress: { ...formData.currentAddress, moo: e.target.value }
+                                                })}
+                                                className="w-full px-2 py-1.5 border border-slate-300 rounded-md text-sm"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-xs text-slate-600 mb-1">ซอย</label>
+                                            <input
+                                                type="text"
+                                                value={formData.currentAddress.soi}
+                                                onChange={(e) => setFormData({ 
+                                                    ...formData, 
+                                                    currentAddress: { ...formData.currentAddress, soi: e.target.value }
+                                                })}
+                                                className="w-full px-2 py-1.5 border border-slate-300 rounded-md text-sm"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-xs text-slate-600 mb-1">ถนน</label>
+                                            <input
+                                                type="text"
+                                                value={formData.currentAddress.road}
+                                                onChange={(e) => setFormData({ 
+                                                    ...formData, 
+                                                    currentAddress: { ...formData.currentAddress, road: e.target.value }
+                                                })}
+                                                className="w-full px-2 py-1.5 border border-slate-300 rounded-md text-sm"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-xs text-slate-600 mb-1">ตำบล/แขวง</label>
+                                            <input
+                                                type="text"
+                                                value={formData.currentAddress.subdistrict}
+                                                onChange={(e) => setFormData({ 
+                                                    ...formData, 
+                                                    currentAddress: { ...formData.currentAddress, subdistrict: e.target.value }
+                                                })}
+                                                className="w-full px-2 py-1.5 border border-slate-300 rounded-md text-sm"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-xs text-slate-600 mb-1">อำเภอ/เขต</label>
+                                            <input
+                                                type="text"
+                                                value={formData.currentAddress.district}
+                                                onChange={(e) => setFormData({ 
+                                                    ...formData, 
+                                                    currentAddress: { ...formData.currentAddress, district: e.target.value }
+                                                })}
+                                                className="w-full px-2 py-1.5 border border-slate-300 rounded-md text-sm"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-xs text-slate-600 mb-1">จังหวัด</label>
+                                            <input
+                                                type="text"
+                                                value={formData.currentAddress.province}
+                                                onChange={(e) => setFormData({ 
+                                                    ...formData, 
+                                                    currentAddress: { ...formData.currentAddress, province: e.target.value }
+                                                })}
+                                                className="w-full px-2 py-1.5 border border-slate-300 rounded-md text-sm"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-xs text-slate-600 mb-1">รหัสไปรษณีย์</label>
+                                            <input
+                                                type="text"
+                                                value={formData.currentAddress.zipcode}
+                                                onChange={(e) => setFormData({ 
+                                                    ...formData, 
+                                                    currentAddress: { ...formData.currentAddress, zipcode: e.target.value }
+                                                })}
+                                                className="w-full px-2 py-1.5 border border-slate-300 rounded-md text-sm"
+                                            />
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div className="flex justify-end gap-2 pt-4">
