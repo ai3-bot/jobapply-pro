@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { base44 } from '@/api/base44Client';
-import { useMutation, useQueryClient, useQuery } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Loader2, FileDown, Eye } from "lucide-react";
 import CriminalCheckDocument from '@/components/application/pdf/CriminalCheckDocument';
 import SignaturePad from '@/components/admin/SignaturePad';
@@ -29,20 +29,6 @@ export default function CriminalCheckReviewModal({ applicant, isOpen, onClose })
         witnessName2: applicant?.criminal_check_document?.company_data?.witnessName2 || '',
         witness2Signature: applicant?.criminal_check_document?.company_data?.witness2Signature || ''
     });
-
-    const { data: existingPdfDoc } = useQuery({
-        queryKey: ['criminal_check_pdf', applicant?.id],
-        queryFn: async () => {
-            const docs = await base44.entities.PdfBase.filter({ 
-                applicant_id: applicant.id, 
-                pdf_type: 'Criminal-Check' 
-            });
-            return docs[0] || null;
-        },
-        enabled: !!applicant?.id
-    });
-
-    const employeeData = existingPdfDoc?.data || applicant.criminal_check_document?.employee_data || {};
 
     const updateMutation = useMutation({
         mutationFn: async (data) => {
@@ -112,6 +98,8 @@ export default function CriminalCheckReviewModal({ applicant, isOpen, onClose })
     };
 
     if (!applicant) return null;
+
+    const employeeData = applicant.criminal_check_document?.employee_data || {};
 
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
