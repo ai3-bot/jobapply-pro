@@ -15,12 +15,10 @@ export default function FMHRD30ReviewModal({ applicant, isOpen, onClose }) {
     const queryClient = useQueryClient();
     const [generatingPdf, setGeneratingPdf] = useState(false);
     const [formData, setFormData] = useState({
-        criminalCheckDate: '',
-        consentLetterDate: '',
-        employeeId: '',
-        position: '',
-        signaturePosition: '',
-        signatureDate: ''
+        proclamationNumber: '',
+        approverSignature: '',
+        approverName: '',
+        approverPosition: ''
     });
 
     const { data: pdfBaseDoc } = useQuery({
@@ -120,52 +118,31 @@ export default function FMHRD30ReviewModal({ applicant, isOpen, onClose }) {
                 <div className="space-y-4">
                     {/* Admin Form */}
                     <div className="bg-slate-50 p-4 rounded-lg space-y-4">
-                        <h3 className="font-semibold text-lg">กรอกข้อมูลเอกสาร FM-HRD-30</h3>
+                        <h3 className="font-semibold text-lg">กรอกข้อมูลการอนุมัติ FM-HRD-30</h3>
                         
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="space-y-4">
                             <div>
-                                <Label>วันที่ขึ้นต้นประกาศการตรวจประวัติอาชญากรรม</Label>
+                                <Label>เลขที่ประกาศ</Label>
                                 <Input
-                                    type="date"
-                                    value={formData.criminalCheckDate}
-                                    onChange={(e) => setFormData({ ...formData, criminalCheckDate: e.target.value })}
+                                    value={formData.proclamationNumber}
+                                    onChange={(e) => setFormData({ ...formData, proclamationNumber: e.target.value })}
+                                    placeholder="เช่น 001/2567"
                                 />
                             </div>
                             <div>
-                                <Label>วันที่หนังสือยินยอมให้หักเงินเดือน</Label>
+                                <Label>ชื่อผู้อนุมัติ</Label>
                                 <Input
-                                    type="date"
-                                    value={formData.consentLetterDate}
-                                    onChange={(e) => setFormData({ ...formData, consentLetterDate: e.target.value })}
-                                />
-                            </div>
-                            <div>
-                                <Label>รหัสพนักงาน</Label>
-                                <Input
-                                    value={formData.employeeId}
-                                    onChange={(e) => setFormData({ ...formData, employeeId: e.target.value })}
+                                    value={formData.approverName}
+                                    onChange={(e) => setFormData({ ...formData, approverName: e.target.value })}
+                                    placeholder="ชื่อ-สกุล"
                                 />
                             </div>
                             <div>
                                 <Label>ตำแหน่ง</Label>
                                 <Input
-                                    value={formData.position}
-                                    onChange={(e) => setFormData({ ...formData, position: e.target.value })}
-                                />
-                            </div>
-                            <div>
-                                <Label>ตำแหน่งลายเซ็น</Label>
-                                <Input
-                                    value={formData.signaturePosition}
-                                    onChange={(e) => setFormData({ ...formData, signaturePosition: e.target.value })}
-                                />
-                            </div>
-                            <div>
-                                <Label>วันที่ลายเซ็น</Label>
-                                <Input
-                                    type="date"
-                                    value={formData.signatureDate}
-                                    onChange={(e) => setFormData({ ...formData, signatureDate: e.target.value })}
+                                    value={formData.approverPosition}
+                                    onChange={(e) => setFormData({ ...formData, approverPosition: e.target.value })}
+                                    placeholder="กรรมการผู้จัดการ"
                                 />
                             </div>
                         </div>
