@@ -204,11 +204,10 @@ export default function FMHRD27Page() {
                         </Button>
                         <Button 
                             onClick={handleSubmit}
-                            disabled={submitMutation.isPending}
+                            disabled={submitMutation.isPending || existingPdfDoc?.status === 'submitted' || existingPdfDoc?.status === 'approved'}
                             className="bg-green-600 hover:bg-green-700"
                         >
-                            {submitMutation.isPending ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Send className="w-4 h-4 mr-2" />}
-                            ส่งเอกสาร
+                            {existingPdfDoc?.status === 'submitted' || existingPdfDoc?.status === 'approved' ? '✓ ส่งแล้ว' : submitMutation.isPending ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <><Send className="w-4 h-4 mr-2" />ส่งเอกสาร</>}
                         </Button>
                     </div>
                 </div>
