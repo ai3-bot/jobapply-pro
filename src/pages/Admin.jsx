@@ -19,7 +19,7 @@ import CriminalCheckReviewModal from '@/components/admin/CriminalCheckReviewModa
 import EmploymentContractReviewModal from '@/components/admin/EmploymentContractReviewModal';
 import FMHRD30ReviewModal from '@/components/admin/FMHRD30ReviewModal';
 
-function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewFMHRD19, onReviewCriminalCheck, onReviewEmploymentContract, onSelectApplicant, onReviewFMHRD27, onReviewFMHRD30 }) {
+function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewFMHRD19, onReviewCriminalCheck, onReviewEmploymentContract, onSelectApplicant, onReviewFMHRD27, onReviewFMHRD30, onSetCriminalCheckDoc }) {
     const { data: applicants = [], isLoading } = useQuery({
         queryKey: ['applicants'],
         queryFn: () => base44.entities.Applicant.list()
