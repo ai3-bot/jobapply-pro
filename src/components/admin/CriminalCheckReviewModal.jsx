@@ -252,7 +252,7 @@ export default function CriminalCheckReviewModal({ applicant, pdfDoc, isOpen, on
                                     }
                                 }}
                                 formData={employeeData}
-                                pdfData={pdfBaseData}
+                                pdfData={{ data: pdfDoc?.data }}
                             />
                         </div>
                     </div>
