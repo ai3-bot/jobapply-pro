@@ -7,6 +7,7 @@ import { base44 } from '@/api/base44Client';
 import { useMutation, useQueryClient, useQuery } from '@tanstack/react-query';
 import { Loader2, FileDown, Eye } from "lucide-react";
 import FMHRD30Document from '@/components/application/pdf/FMHRD30Document';
+import SignaturePad from '@/components/admin/SignaturePad';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import toast from 'react-hot-toast';
@@ -143,6 +144,16 @@ export default function FMHRD30ReviewModal({ applicant, isOpen, onClose }) {
                                     value={formData.approverPosition}
                                     onChange={(e) => setFormData({ ...formData, approverPosition: e.target.value })}
                                     placeholder="กรรมการผู้จัดการ"
+                                />
+                            </div>
+                            <div>
+                                <Label>ลายเซ็นผู้อนุมัติ</Label>
+                                <SignaturePad 
+                                    signatureUrl={formData.approverSignature}
+                                    onSave={(signature) => {
+                                        setFormData({ ...formData, approverSignature: signature });
+                                    }}
+                                    label="ลายเซ็นผู้อนุมัติ"
                                 />
                             </div>
                         </div>
