@@ -258,7 +258,7 @@ export default function FMHRD30Document({ applicant }) {
                     </p>
                     </div>
                 </div>
-                </div>
+            </div>
 
 
             {/* Footer */}
