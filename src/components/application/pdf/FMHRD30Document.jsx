@@ -181,7 +181,7 @@ export default function FMHRD30Document({ applicant, formData = {} }) {
                     ข้าพเจ้า นาย/นาง/นางสาว/อื่นๆ <span className={`border-b border-dotted border-slate-400 inline-block min-w-[300px] text-center px-2 pb-1 ${applicant?.full_name}`} style={{ verticalAlign: 'baseline', ...(!applicant?.full_name && { minHeight: '1.2em' }) }}>{applicant?.full_name || '\u00A0'}</span> รหัสพนักงาน <span className={`border-b border-dotted border-slate-400 inline-block min-w-[100px] text-center px-2 pb-1 ${formData.employeeId}`} style={{ verticalAlign: 'baseline', ...(!formData.employeeId && { minHeight: '1.2em' }) }}>{formData.employeeId || '\u00A0'}</span>
                 </p>
                 <p>
-                    เป็นพนักงานประจำตำแหน่ง <span className={`border-b border-dotted border-slate-400 inline-block min-w-[150px] text-center px-2 pb-1 ${formData.position || personalData.position_1}`} style={{ verticalAlign: 'baseline', ...(!formData.position && !personalData.position_1 && { minHeight: '1.2em' }) }}>{formData.position || personalData.position_1 || '\u00A0'}</span> แผนก <span className="inline-block border-b border-dotted border-slate-400 min-w-[150px] text-center">&nbsp;</span> เริ่มงานเมื่อวันที่ <span className="inline-block border-b border-dotted border-slate-400 min-w-[120px] text-center">&nbsp;</span>
+                    เป็นพนักงานประจำตำแหน่ง <span className={`border-b border-dotted border-slate-400 inline-block min-w-[150px] text-center px-2 pb-1 ${formData.position || personalData.position_1}`} style={{ verticalAlign: 'baseline', ...(!formData.position && !personalData.position_1 && { minHeight: '1.2em' }) }}>{formData.position || personalData.position_1 || '\u00A0'}</span> แผนก <span className="inline-block border-b border-dotted border-slate-400 min-w-[150px] text-center">&nbsp;</span> เริ่มงานเมื่อวันที่ <span className={`border-b border-dotted border-slate-400 inline-block min-w-[120px] text-center px-2 pb-1 ${applicant?.start_work_date}`} style={{ verticalAlign: 'baseline', ...(!applicant?.start_work_date && { minHeight: '1.2em' }) }}>{applicant?.start_work_date ? new Date(applicant.start_work_date).toLocaleDateString('th-TH', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '/') : '\u00A0'}</span>
                 </p>
             </div>
 
@@ -244,16 +244,8 @@ export default function FMHRD30Document({ applicant, formData = {} }) {
 
                     <p>
                         วันที่{" "}
-                        <span className={`border-b border-dotted border-slate-400 inline-block min-w-[50px] text-center px-2 pb-1 ${formData.signatureDay}`} style={{ verticalAlign: 'baseline', ...(!formData.signatureDay && { minHeight: '1.2em' }) }}>
-                        {formData.signatureDay || '\u00A0'}
-                        </span>{" "}
-                        เดือน{" "}
-                        <span className={`border-b border-dotted border-slate-400 inline-block min-w-[100px] text-center px-2 pb-1 ${formData.signatureMonth}`} style={{ verticalAlign: 'baseline', ...(!formData.signatureMonth && { minHeight: '1.2em' }) }}>
-                        {formData.signatureMonth || '\u00A0'}
-                        </span>{" "}
-                        พ.ศ.{" "}
-                        <span className={`border-b border-dotted border-slate-400 inline-block min-w-[80px] text-center px-2 pb-1 ${formData.signatureYear}`} style={{ verticalAlign: 'baseline', ...(!formData.signatureYear && { minHeight: '1.2em' }) }}>
-                        {formData.signatureYear || '\u00A0'}
+                        <span className={`border-b border-dotted border-slate-400 inline-block min-w-[200px] text-center px-2 pb-1 ${formData.signatureDate}`} style={{ verticalAlign: 'baseline', ...(!formData.signatureDate && { minHeight: '1.2em' }) }}>
+                        {formData.signatureDate ? new Date(formData.signatureDate).toLocaleDateString('th-TH', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '/') : '\u00A0'}
                         </span>
                     </p>
                     </div>
