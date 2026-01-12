@@ -61,6 +61,24 @@ export default function FMHRD27Page() {
         enabled: !!applicantId
     });
 
+    const saveMutation = useMutation({
+        mutationFn: async (data) => {
+            if (existingPdfDoc) {
+                return await base44.entities.PdfBase.update(existingPdfDoc.id, data);
+            } else {
+                return await base44.entities.PdfBase.create(data);
+            }
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries(['nda_pdf', applicantId]);
+            toast.success('บันทึกข้อมูลเรียบร้อยแล้ว');
+            setShowForm(false);
+        },
+        onError: () => {
+            toast.error('เกิดข้อผิดพลาดในการบันทึก');
+        }
+    });
+
     const submitMutation = useMutation({
         mutationFn: async (data) => {
             if (existingPdfDoc) {
@@ -79,6 +97,16 @@ export default function FMHRD27Page() {
             toast.error('เกิดข้อผิดพลาดในการส่งเอกสาร');
         }
     });
+
+    const handleSave = () => {
+        const pdfData = {
+            applicant_id: applicantId,
+            pdf_type: 'NDA',
+            data: formData,
+            status: 'draft'
+        };
+        saveMutation.mutate(pdfData);
+    };
 
     const handleSubmit = () => {
         const pdfData = {
@@ -335,9 +363,11 @@ export default function FMHRD27Page() {
                                         ปิด
                                     </Button>
                                     <Button 
-                                        onClick={() => setShowForm(false)}
+                                        onClick={handleSave}
+                                        disabled={saveMutation.isPending}
                                         className="bg-indigo-600 hover:bg-indigo-700"
                                     >
+                                        {saveMutation.isPending ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}
                                         บันทึก
                                     </Button>
                                 </div>
