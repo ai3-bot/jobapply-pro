@@ -174,8 +174,6 @@ export default function FMHRD27Page() {
         );
     }
 
-    const isApproved = existingPdfDoc?.status === 'approved';
-
     return (
         <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 p-6">
             <div className="max-w-5xl mx-auto space-y-6">
@@ -192,7 +190,6 @@ export default function FMHRD27Page() {
                     <div className="flex gap-2">
                         <Button 
                             onClick={() => setShowForm(true)}
-                            disabled={isApproved}
                             className="bg-indigo-600 hover:bg-indigo-700"
                         >
                             กรอกเอกสาร
@@ -207,10 +204,11 @@ export default function FMHRD27Page() {
                         </Button>
                         <Button 
                             onClick={handleSubmit}
-                            disabled={submitMutation.isPending || isApproved}
+                            disabled={submitMutation.isPending}
                             className="bg-green-600 hover:bg-green-700"
                         >
-                            {isApproved ? '✓ อนุมัติแล้ว' : submitMutation.isPending ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <><Send className="w-4 h-4 mr-2" />ส่งเอกสาร</>}
+                            {submitMutation.isPending ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Send className="w-4 h-4 mr-2" />}
+                            ส่งเอกสาร
                         </Button>
                     </div>
                 </div>
