@@ -639,9 +639,12 @@ export default function AdminPage() {
             {/* Criminal Check Review Modal */}
             <CriminalCheckReviewModal 
                 applicant={reviewingCriminalCheck}
-                pdfDoc={reviewingCriminalCheck?.pdfDoc}
+                pdfDoc={reviewingCriminalCheckDoc}
                 isOpen={!!reviewingCriminalCheck}
-                onClose={() => setReviewingCriminalCheck(null)}
+                onClose={() => {
+                    setReviewingCriminalCheck(null);
+                    setReviewingCriminalCheckDoc(null);
+                }}
             />
 
             {/* Employment Contract Review Modal */}
