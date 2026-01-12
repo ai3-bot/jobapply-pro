@@ -597,16 +597,17 @@ export default function AdminPage() {
                     </div>
                 ) : activeView === "documents" ? (
                     <DocumentsView 
-                        selectedApplicant={selectedApplicant}
-                        onSelectApplicant={() => setActiveView("dashboard")}
-                        onReviewNDA={setReviewingApplicant}
-                        onReviewPDPA={setReviewingPDPA}
-                        onReviewFMHRD19={setReviewingFMHRD19}
-                        onReviewCriminalCheck={setReviewingCriminalCheck}
-                        onReviewEmploymentContract={setReviewingEmploymentContract}
-                        onReviewFMHRD27={setReviewingFMHRD27Doc}
-                        onReviewFMHRD30={setReviewingFMHRD30}
-                    />
+                         selectedApplicant={selectedApplicant}
+                         onSelectApplicant={() => setActiveView("dashboard")}
+                         onReviewNDA={setReviewingApplicant}
+                         onReviewPDPA={setReviewingPDPA}
+                         onReviewFMHRD19={setReviewingFMHRD19}
+                         onReviewCriminalCheck={setReviewingCriminalCheck}
+                         onReviewEmploymentContract={setReviewingEmploymentContract}
+                         onReviewFMHRD27={setReviewingFMHRD27Doc}
+                         onReviewFMHRD30={setReviewingFMHRD30}
+                         onSetCriminalCheckDoc={setReviewingCriminalCheckDoc}
+                     />
                 ) : (
                     <div className="h-full overflow-y-auto">
                         <SettingsPanel />
