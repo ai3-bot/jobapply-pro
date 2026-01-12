@@ -119,8 +119,6 @@ export default function CriminalCheckReviewModal({ applicant, isOpen, onClose })
 
     if (!applicant) return null;
 
-    const employeeData = applicant.criminal_check_document?.employee_data || {};
-
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
             <DialogContent className="max-w-7xl max-h-[90vh] overflow-y-auto">
