@@ -115,13 +115,7 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                 {/* NDA Documents - FM-HRD-27 */}
                 <div>
                     <h2 className="text-2xl font-bold text-slate-800 mb-4">เอกสาร NDA (FM-HRD-27)</h2>
-                    {filteredFMHRD27.length === 0 && ndaDocs.length === 0 ? (
-                        <Card>
-                            <CardContent className="p-8 text-center text-slate-500">
-                                ยังไม่มีเอกสารที่ส่งมา
-                            </CardContent>
-                        </Card>
-                    ) : (
+                    {(filteredFMHRD27.length > 0 || ndaDocs.length > 0) ? (
                         <div className="grid grid-cols-1 gap-4">
                             {filteredFMHRD27.map(doc => {
                                 const applicant = selectedApplicant;
@@ -197,6 +191,12 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                                 </Card>
                             ))}
                         </div>
+                    ) : (
+                        <Card>
+                            <CardContent className="p-8 text-center text-slate-500">
+                                ยังไม่มีเอกสารที่ส่งมา
+                            </CardContent>
+                        </Card>
                     )}
                 </div>
 
