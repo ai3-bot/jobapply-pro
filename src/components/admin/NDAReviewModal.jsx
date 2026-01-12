@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { base44 } from '@/api/base44Client';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { Loader2, FileDown, Eye } from "lucide-react";
+import { Loader2, FileDown, Eye, Trash2 } from "lucide-react";
 import NDADocument from '@/components/application/pdf/NDADocument';
+import SignaturePad from '@/components/admin/SignaturePad';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import toast from 'react-hot-toast';
@@ -14,6 +15,7 @@ import toast from 'react-hot-toast';
 export default function NDAReviewModal({ applicant, isOpen, onClose }) {
     const queryClient = useQueryClient();
     const [generatingPdf, setGeneratingPdf] = useState(false);
+    const signaturePadRef = useRef(null);
     const [companyData, setCompanyData] = useState({
         signerName: applicant?.nda_document?.company_data?.signerName || '',
         companySignature: applicant?.nda_document?.company_data?.companySignature || '',
@@ -116,21 +118,30 @@ export default function NDAReviewModal({ applicant, isOpen, onClose }) {
                         </div>
 
                         <div>
-                            <Label>ลายเซ็นกรรมการ (อัพโหลดรูปภาพ)</Label>
-                            <Input
-                                type="file"
-                                accept="image/*"
-                                onChange={async (e) => {
-                                    const file = e.target.files?.[0];
-                                    if (file) {
-                                        const { file_url } = await base44.integrations.Core.UploadFile({ file });
-                                        setCompanyData({ ...companyData, companySignature: file_url });
-                                    }
-                                }}
-                            />
-                            {companyData.companySignature && (
-                                <img src={companyData.companySignature} alt="Company signature" className="mt-2 h-20 object-contain border rounded" />
-                            )}
+                            <Label>ลายเซ็นกรรมการ</Label>
+                            <div className="space-y-2">
+                                <SignaturePad 
+                                    ref={signaturePadRef}
+                                    onSignatureCapture={(signature) => {
+                                        setCompanyData({ ...companyData, companySignature: signature });
+                                    }}
+                                />
+                                {companyData.companySignature && (
+                                    <div className="flex items-center gap-2">
+                                        <img src={companyData.companySignature} alt="Company signature" className="h-20 object-contain border rounded" />
+                                        <Button
+                                            variant="outline"
+                                            size="sm"
+                                            onClick={() => {
+                                                setCompanyData({ ...companyData, companySignature: '' });
+                                                signaturePadRef.current?.clear();
+                                            }}
+                                        >
+                                            <Trash2 className="w-4 h-4" />
+                                        </Button>
+                                    </div>
+                                )}
+                            </div>
                         </div>
 
                         <div>
