@@ -24,7 +24,8 @@ export default function ApplicantList({ onSelect, selectedId }) {
             app.full_name.toLowerCase().includes(searchTerm.toLowerCase()) || 
             app.personal_data?.email?.toLowerCase().includes(searchTerm.toLowerCase())
             : true;
-        return matchesDate && matchesSearch;
+        const isSubmitted = app.status === 'interviewed' || app.status === 'accepted' || app.status === 'rejected' || app.status === 'pending_video';
+        return matchesDate && matchesSearch && isSubmitted;
     });
 
     return (
