@@ -47,7 +47,7 @@ export default function SPS103Document({ applicant, formData = {} }) {
                                 <div className="flex items-center ml-2 mt-2">
                                     {Array(10).fill('').map((_, idx) => (
                                         <React.Fragment key={idx}>
-                                            <div className="pb-1 border border-black text-center text-xs font-semibold min-w-[20px]">
+                                            <div className="pb-1 border border-black text-center text-xs font-semibold min-w-[20px] min-h-[20px]">
                                                 {formData.accountNumber && formData.accountNumber[idx] ? formData.accountNumber[idx] : '\u00A0'}
                                             </div>
                                             {(idx === 1 || idx === 8) && <div className="w-2 border-b border-black mb-0.5"></div>}
@@ -59,7 +59,7 @@ export default function SPS103Document({ applicant, formData = {} }) {
                                 <span className="mb-2">ลำดับที่สาขา</span>
                                 <div className="flex ml-2 mt-2">
                                     {Array(5).fill('').map((_, idx) => (
-                                        <div key={idx} className="pb-1 border border-black text-center text-xs font-semibold min-w-[20px]">
+                                        <div key={idx} className="pb-1 border border-black text-center text-xs font-semibold min-w-[20px] min-h-[20px]">
                                             {formData.branchOrder && formData.branchOrder[idx] ? formData.branchOrder[idx] : '\u00A0'}
                                         </div>
                                     ))}
@@ -186,7 +186,7 @@ export default function SPS103Document({ applicant, formData = {} }) {
                                 <div className="flex items-center">
                                     {Array(13).fill('').map((_, idx) => (
                                         <React.Fragment key={idx}>
-                                            <div className="pb-1 border border-black text-center text-xs font-semibold min-w-[20px]">
+                                            <div className="pb-1 border border-black text-center text-xs font-semibold min-w-[20px] min-h-[20px]">
                                                 {personalData.id_card ? personalData.id_card[idx] : '\u00A0'}
                                             </div>
                                             {(idx === 0 || idx === 4 || idx === 9 || idx === 11) && <div className="w-2 border-b border-black mb-0.5"></div>}
@@ -222,7 +222,7 @@ export default function SPS103Document({ applicant, formData = {} }) {
                         <div className="flex items-center">
                             {Array(8).fill('').map((_, idx) => (
                                 <React.Fragment key={idx}>
-                                    <div className="p-2 border border-black"></div>
+                                    <div className="pb-1 border border-black min-h-[20px] min-w-[20px]"></div>
                                     {(idx === 1 || idx === 3) && <div className="w-2 border-b border-black mb-0.5"></div>}
                                 </React.Fragment>
                             ))}
