@@ -36,12 +36,14 @@ export default function SPS902Document({ applicant, formData = {} }) {
                 </div>
             </div>
 
-            {/* ข้อมูลผู้ประกันตน */}
-            <div className="border border-slate-900 p-4 mb-4">
-                <h3 className="font-bold mb-3">ข้อมูลผู้ประกันตน</h3>
-                
-                <div className="space-y-3">
-                    <div className="grid grid-cols-3 gap-4">
+            {/* Row 2 & 3 (col-2) */}
+            <div className="grid grid-cols-2 gap-4 mb-4">
+                {/* Row 2 - Left */}
+                <div className="border border-slate-900 p-4">
+                    <h3 className="font-bold mb-3">ข้อมูลผู้ประกันตน</h3>
+                    
+                    <div className="space-y-3">
+                        <div className="grid grid-cols-3 gap-2">
                         <div>
                             <label className="text-sm">คำนำหน้า</label>
                             <div className="border-b border-dotted border-slate-400 min-h-[24px]">
