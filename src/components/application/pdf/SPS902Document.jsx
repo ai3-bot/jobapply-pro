@@ -57,7 +57,59 @@ export default function SPS902Document({ applicant, formData = {} }) {
                 <div className="border-b border-slate-900 p-2 bg-slate-100 font-bold text-sm">
                     1. รายละเอียดผู้ประกันตน
                 </div>
-                
+
+                {/* Basic Information - Single Column */}
+                <div className="p-2 border-b border-slate-900">
+                    {/* Name and Prefix */}
+                    <div className="flex gap-1 items-center text-xs mb-1">
+                        <span>ข้าพเจ้า</span>
+                        <label className="flex items-center gap-0.5">
+                            <PDFCheckbox checked={personalData.prefix === 'นาย'} />
+                            <span className="text-xs">นาย</span>
+                        </label>
+                        <label className="flex items-center gap-0.5">
+                            <PDFCheckbox checked={personalData.prefix === 'นางสาว'} />
+                            <span className="text-xs">นางสาว</span>
+                        </label>
+                        <label className="flex items-center gap-0.5">
+                            <PDFCheckbox checked={personalData.prefix === 'นาง'} />
+                            <span className="text-xs">นาง</span>
+                        </label>
+                        <span className="flex-1 border-b border-dotted border-slate-400 mx-1 min-h-[18px]">
+                            {personalData.first_name || '\u00A0'}
+                        </span>
+                        <span>ชื่อสกุล</span>
+                        <span className="flex-1 border-b border-dotted border-slate-400 ml-1 min-h-[18px]">
+                            {personalData.last_name || '\u00A0'}
+                        </span>
+                    </div>
+
+                    {/* ID Card and DOB */}
+                    <div className="flex items-center gap-1 text-xs">
+                        <span>เลขประจำตัวประชาชน</span>
+                        <div className="flex gap-0.5">
+                            {(personalData.id_card || '').split('').concat(Array(13).fill('')).slice(0, 13).map((digit, idx) => (
+                                <div key={idx} className="w-4 h-5 border border-slate-400 flex items-center justify-center text-xs">
+                                    {digit}
+                                </div>
+                            ))}
+                        </div>
+                        <span className="ml-2">เกิด วันที่</span>
+                        <span className="w-8 border-b border-dotted border-slate-400">
+                            {personalData.dob ? new Date(personalData.dob).toLocaleDateString('th-TH').split('/')[0] : ''}
+                        </span>
+                        <span>เดือน</span>
+                        <span className="w-12 border-b border-dotted border-slate-400">
+                            {personalData.dob ? new Date(personalData.dob).toLocaleDateString('th-TH').split('/')[1] : ''}
+                        </span>
+                        <span>พ.ศ.</span>
+                        <span className="w-10 border-b border-dotted border-slate-400">
+                            {personalData.dob ? (new Date(personalData.dob).getFullYear() + 543) : ''}
+                        </span>
+                    </div>
+                    <div className="text-xs italic mt-1">(สำหรับคนต่างด้าวให้กรอกเลขที่บัตรประกันสังคม)</div>
+                </div>
+
                 <div className="grid grid-cols-2 gap-0 divide-x divide-slate-900">
                     {/* Left Column - Section 33 */}
                     <div className="p-3 border-r border-slate-900">
