@@ -224,33 +224,35 @@ export default function SPS902Document({ applicant, formData = {} }) {
                 </div>
             </div>
 
-            {/* ลายเซ็น */}
-            <div className="mt-8 grid grid-cols-2 gap-8">
-                <div className="text-center">
-                    <div className="border-b border-slate-400 min-h-[60px] mb-2 mx-8 flex items-center justify-center">
-                        {applicant?.signature_url ? (
-                            <img src={applicant.signature_url} alt="Signature" crossOrigin="anonymous" className="h-[50px] object-contain" />
-                        ) : (
-                            '\u00A0'
-                        )}
+            {/* Row 4 & 5 (col-1) */}
+            <div className="border border-slate-900 p-4 mb-4">
+                <div className="mt-6 grid grid-cols-2 gap-8">
+                    <div className="text-center">
+                        <div className="border-b border-slate-400 min-h-[60px] mb-2 mx-8 flex items-center justify-center">
+                            {applicant?.signature_url ? (
+                                <img src={applicant.signature_url} alt="Signature" crossOrigin="anonymous" className="h-[50px] object-contain" />
+                            ) : (
+                                '\u00A0'
+                            )}
+                        </div>
+                        <p>ลายมือชื่อผู้ประกันตน</p>
+                        <p className="text-sm text-slate-600 mt-2">
+                            วันที่ {formData.signatureDate ? new Date(formData.signatureDate).toLocaleDateString('th-TH', {
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric'
+                            }) : '................................'}
+                        </p>
                     </div>
-                    <p>ลายมือชื่อผู้ประกันตน</p>
-                    <p className="text-sm text-slate-600 mt-2">
-                        วันที่ {formData.signatureDate ? new Date(formData.signatureDate).toLocaleDateString('th-TH', {
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric'
-                        }) : '................................'}
-                    </p>
-                </div>
-                <div className="text-center">
-                    <div className="border-b border-slate-400 min-h-[60px] mb-2 mx-8">
-                        \u00A0
+                    <div className="text-center">
+                        <div className="border-b border-slate-400 min-h-[60px] mb-2 mx-8">
+                            \u00A0
+                        </div>
+                        <p>ลายมือชื่อนายจ้าง/ผู้มีอำนาจลงนาม</p>
+                        <p className="text-sm text-slate-600 mt-2">
+                            วันที่ ................................
+                        </p>
                     </div>
-                    <p>ลายมือชื่อนายจ้าง/ผู้มีอำนาจลงนาม</p>
-                    <p className="text-sm text-slate-600 mt-2">
-                        วันที่ ................................
-                    </p>
                 </div>
             </div>
 
