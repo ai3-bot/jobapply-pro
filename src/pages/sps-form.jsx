@@ -227,17 +227,35 @@ export default function SPSFormPage() {
                                                     <Label>เลขที่บัญชี (10 หลัก)</Label>
                                                     <Input
                                                         value={formData.accountNumber}
-                                                        onChange={(e) => setFormData({ ...formData, accountNumber: e.target.value })}
-                                                        placeholder="เลขที่บัญชี"
+                                                        onChange={(e) => {
+                                                            const value = e.target.value.replace(/\D/g, '');
+                                                            if (value.length <= 10) {
+                                                                setFormData({ ...formData, accountNumber: value });
+                                                            }
+                                                        }}
+                                                        placeholder="เลขที่บัญชี (10 หลัก)"
+                                                        maxLength="10"
                                                     />
+                                                    {formData.accountNumber && formData.accountNumber.length !== 10 && (
+                                                        <p className="text-red-500 text-sm mt-1">ต้องเป็น 10 หลัก ({formData.accountNumber.length}/10)</p>
+                                                    )}
                                                 </div>
                                                 <div>
                                                     <Label>ลำดับที่สาขา</Label>
                                                     <Input
                                                         value={formData.branchOrder}
-                                                        onChange={(e) => setFormData({ ...formData, branchOrder: e.target.value })}
-                                                        placeholder="ลำดับที่สาขา"
+                                                        onChange={(e) => {
+                                                            const value = e.target.value.replace(/\D/g, '');
+                                                            if (value.length <= 5) {
+                                                                setFormData({ ...formData, branchOrder: value });
+                                                            }
+                                                        }}
+                                                        placeholder="ลำดับที่สาขา (5 หลัก)"
+                                                        maxLength="5"
                                                     />
+                                                    {formData.branchOrder && formData.branchOrder.length !== 5 && (
+                                                        <p className="text-red-500 text-sm mt-1">ต้องเป็น 5 หลัก ({formData.branchOrder.length}/5)</p>
+                                                    )}
                                                 </div>
                                                 <div>
                                                     <Label>วันที่ผู้ประกันตนเข้าทำงาน</Label>

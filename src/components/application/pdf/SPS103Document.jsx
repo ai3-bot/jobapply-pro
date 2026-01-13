@@ -64,7 +64,7 @@ export default function SPS103Document({ applicant, formData = {} }) {
                             <div className="flex items-center">
                                 <span className="mb-2">วันที่ผู้ประกันตนเข้าทำงาน</span>
                                 <span className="border-b border-dotted border-slate-400 flex-1 ml-2 inline-block min-h-[24px] pb-1">
-                                    {applicant?.start_work_date ? new Date(applicant.start_work_date).toLocaleDateString('th-TH') : '\u00A0'}
+                                    {applicant?.start_work_date ? new Date(applicant.start_work_date).toLocaleDateString('th-TH', { year: 'numeric', month: '2-digit', day: '2-digit' }).split('/').reverse().join('/') : '\u00A0'}
                                 </span>
                             </div>
                             <div className="flex items-center gap-2">
