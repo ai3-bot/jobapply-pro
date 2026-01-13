@@ -56,12 +56,59 @@ export default function SPSFormPage() {
         enabled: !!applicantId
     });
 
+    const { data: pdfData } = useQuery({
+        queryKey: ['sps_pdf_data', applicantId],
+        queryFn: async () => {
+            const pdfs = await base44.entities.PdfBase.list();
+            const spsType = applicant?.admin_data?.sps_form_type || '1-03';
+            return pdfs.find(p => p.applicant_id === applicantId && p.pdf_type === `SPS-${spsType}`);
+        },
+        enabled: !!applicantId
+    });
+
+    // Load saved form data into form on component mount or when pdf data changes
+    useEffect(() => {
+        if (pdfData?.data) {
+            setFormData(prevData => ({
+                ...prevData,
+                ...pdfData.data
+            }));
+        }
+    }, [pdfData]);
+
+    const saveMutation = useMutation({
+        mutationFn: async (data) => {
+            const spsType = applicant?.admin_data?.sps_form_type || '1-03';
+            const pdfType = `SPS-${spsType}`;
+            
+            if (pdfData?.id) {
+                // Update existing record
+                return await base44.entities.PdfBase.update(pdfData.id, { data });
+            } else {
+                // Create new record
+                return await base44.entities.PdfBase.create({
+                    applicant_id: applicantId,
+                    pdf_type: pdfType,
+                    data,
+                    status: 'draft'
+                });
+            }
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['sps_pdf_data', applicantId] });
+            toast.success('บันทึกข้อมูลเรียบร้อยแล้ว');
+        },
+        onError: () => {
+            toast.error('เกิดข้อผิดพลาดในการบันทึกข้อมูล');
+        }
+    });
+
     const submitMutation = useMutation({
         mutationFn: async (data) => {
             return await base44.entities.Applicant.update(applicantId, data);
         },
         onSuccess: () => {
-            queryClient.invalidateQueries(['user_applicant', applicantId]);
+            queryClient.invalidateQueries({ queryKey: ['user_applicant', applicantId] });
             toast.success('ส่งเอกสารเรียบร้อยแล้ว');
             navigate('/user-dashboard');
         },
@@ -390,6 +437,14 @@ export default function SPSFormPage() {
                                         onClick={() => setShowForm(false)}
                                     >
                                         ปิด
+                                    </Button>
+                                    <Button 
+                                        onClick={() => saveMutation.mutate(formData)}
+                                        disabled={saveMutation.isPending}
+                                        className="bg-blue-600 hover:bg-blue-700"
+                                    >
+                                        {saveMutation.isPending ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : '💾'}
+                                        บันทึก
                                     </Button>
                                 </div>
                             </CardContent>
