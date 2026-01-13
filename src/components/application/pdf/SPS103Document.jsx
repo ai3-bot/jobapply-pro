@@ -314,27 +314,27 @@ export default function SPS103Document({ applicant, formData = {} }) {
                         <div>
                             <div className="space-y-0.5 px-4 py-2">
                                 <div className="flex items-center gap-2">
-                                    <PDFCheckbox size="w-4 h-4" />
+                                    <PDFCheckbox checked={formData.hasPassport} size="w-4 h-4" />
                                     <span className="mb-2">หนังสือเดินทาง (PASSPORT) เลขที่</span>
-                                    <div className="border-b border-dotted border-slate-400 flex-1 px-2 pb-1" style={{ minHeight: '1.2em' }}></div>
+                                    <span className={`border-b border-dotted border-slate-400 flex-1 px-2 pb-1`} style={{ minHeight: '1.2em' }}>{formData.passportNumber || '\u00A0'}</span>
                                     <span className="mb-2">และ</span>
                                 </div>
                                 <div className="flex items-center gap-2 pl-4">
                                     <span className="mb-2">ใบอนุญาตทำงาน (WORK PERMIT) เลขที่</span>
-                                    <div className="border-b border-dotted border-slate-400 flex-1 px-2 pb-1" style={{ minHeight: '1.2em' }}></div>
+                                    <span className={`border-b border-dotted border-slate-400 flex-1 px-2 pb-1`} style={{ minHeight: '1.2em' }}>{formData.workPermitNumber || '\u00A0'}</span>
                                     <span className="mb-2">หรือ</span>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <PDFCheckbox size="w-4 h-4" checkType={'check'}/>
+                                    <PDFCheckbox checked={!!formData.otherDocumentType} size="w-4 h-4" checkType={'check'}/>
                                     <span className="mb-2">อื่นๆ (ระบุ)</span>
-                                    <div className="border-b border-dotted border-slate-400 w-48 px-2 pb-1" style={{ minHeight: '1.2em' }}></div>
+                                    <span className={`border-b border-dotted border-slate-400 w-48 px-2 pb-1`} style={{ minHeight: '1.2em' }}>{formData.otherDocumentType || '\u00A0'}</span>
                                     <span className="mb-2">เลขที่</span>
-                                    <div className="border-b border-dotted border-slate-400 flex-1 px-2 pb-1" style={{ minHeight: '1.2em' }}></div>
+                                    <span className={`border-b border-dotted border-slate-400 flex-1 px-2 pb-1`} style={{ minHeight: '1.2em' }}>{formData.otherDocumentNumber || '\u00A0'}</span>
                                     <span className="mb-2">และ</span>
                                 </div>
                                 <div className="flex items-center gap-2 pl-4">
                                     <span className="mb-2">ใบอนุญาตทำงาน (WORK PERMIT) เลขที่</span>
-                                    <div className="border-b border-dotted border-slate-400 flex-1 px-2 pb-1" style={{ minHeight: '1.2em' }}></div>
+                                    <span className={`border-b border-dotted border-slate-400 flex-1 px-2 pb-1`} style={{ minHeight: '1.2em' }}>{formData.otherWorkPermitNumber || '\u00A0'}</span>
                                 </div>
                             </div>
                             <div className="bordor-t"></div>
@@ -404,11 +404,11 @@ export default function SPS103Document({ applicant, formData = {} }) {
                         <h3 className="font-bold border-b border-slate-900 text-center items-center py-2">ข้อมูลการเลือกสถานพยาบาล</h3>
                         <div className="space-y-0 p-2">
                             <div>
-                                <p>8. ขอเลือกสถานพยาบาลประกันสังคม<span className="border-b border-dotted border-slate-400 inline-block w-[80px] mx-2 px-2 pb-1" style={{ minHeight: '1.2em' }}></span>(ผู้ประกันตนเป็นผู้เลือกสถานพยาบาล)</p>
+                                <p>8. ขอเลือกสถานพยาบาลประกันสังคม<span className={`border-b border-dotted border-slate-400 inline-block w-[80px] mx-2 px-2 pb-1`} style={{ minHeight: '1.2em' }}>{formData.hospitalChoice1 || '\u00A0'}</span>(ผู้ประกันตนเป็นผู้เลือกสถานพยาบาล)</p>
                                 <p className="pl-4 mt-2">หากไม่สามารถจัดสถานพยาบาลที่เลือกให้ได้ ขอเลือกสถานพยาบาลสำรองคือ</p>
                                 <div className="pl-8 space-y-1 mt-1">
-                                    <p>ลำดับที่ 1 ชื่อ<span className="border-b border-dotted border-slate-400 inline-block w-[300px] mx-1 px-2 pb-1" style={{ minHeight: '1.2em' }}></span>หรือ</p>
-                                    <p>ลำดับที่ 2 ชื่อ<span className="border-b border-dotted border-slate-400 inline-block w-[300px] mx-1 px-2 pb-1" style={{ minHeight: '1.2em' }}></span></p>
+                                    <p>ลำดับที่ 1 ชื่อ<span className={`border-b border-dotted border-slate-400 inline-block w-[300px] mx-1 px-2 pb-1`} style={{ minHeight: '1.2em' }}>{formData.hospitalChoice1 || '\u00A0'}</span>หรือ</p>
+                                    <p>ลำดับที่ 2 ชื่อ<span className={`border-b border-dotted border-slate-400 inline-block w-[300px] mx-1 px-2 pb-1`} style={{ minHeight: '1.2em' }}>{formData.hospitalChoice2 || '\u00A0'}</span></p>
                                 </div>
                             </div>
                             
