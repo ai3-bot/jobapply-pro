@@ -17,6 +17,7 @@ export default function SPSReviewModal({ applicant, pdfDoc, isOpen, onClose }) {
     const queryClient = useQueryClient();
     const [generatingPdf, setGeneratingPdf] = useState(false);
     const [employerData, setEmployerData] = useState({
+        employerName: '',
         employerSignature: '',
         employerPosition: '',
         employerSignDate: new Date().toISOString().split('T')[0],
@@ -43,6 +44,7 @@ export default function SPSReviewModal({ applicant, pdfDoc, isOpen, onClose }) {
     useEffect(() => {
         if (pdfDoc?.data?.employer_data) {
             setEmployerData({
+                employerName: pdfDoc.data.employer_data.employerName || '',
                 employerSignature: pdfDoc.data.employer_data.employerSignature || '',
                 employerPosition: pdfDoc.data.employer_data.employerPosition || '',
                 employerSignDate: pdfDoc.data.employer_data.employerSignDate || new Date().toISOString().split('T')[0],
@@ -159,6 +161,15 @@ export default function SPSReviewModal({ applicant, pdfDoc, isOpen, onClose }) {
                     <div className="bg-slate-50 p-4 rounded-lg space-y-4">
                         <h3 className="font-semibold text-lg">ส่วนของนายจ้าง</h3>
                         
+                        <div>
+                            <Label>ชื่อนายจ้าง</Label>
+                            <Input
+                                value={employerData.employerName}
+                                onChange={(e) => setEmployerData({ ...employerData, employerName: e.target.value })}
+                                placeholder="ชื่อ-สกุล นายจ้าง"
+                            />
+                        </div>
+
                         <div className="grid grid-cols-2 gap-4">
                             <div>
                                 <Label>ตำแหน่งผู้ลงนาม</Label>

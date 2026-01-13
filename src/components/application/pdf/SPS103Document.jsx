@@ -374,7 +374,7 @@ export default function SPS103Document({ applicant, formData = {} }) {
                                                 </div>
                                                 นายจ้าง
                                             </div>
-                                            <div>(<div className="inline-block border-b border-dotted border-slate-400 w-48 px-2 pb-1 text-center" style={{ minHeight: '1.2em' }}></div>)</div>
+                                            <div>(<div className="inline-block border-b border-dotted border-slate-400 w-48 px-2 pb-1 text-center" style={{ minHeight: '1.2em' }}>{formData.employerName || ''}</div>)</div>
                                             <div>ตำแหน่ง<div className="inline-block border-b border-dotted border-slate-400 w-40 mx-2 px-2 pb-1 text-left" style={{ minHeight: '1.2em' }}>{formData.employerPosition || ''}</div></div>
                                             <div>วันที่<div className="inline-block border-b border-dotted border-slate-400 w-40 mx-2 px-2 pb-1 text-left" style={{ minHeight: '1.2em' }}>{formData.employerSignDate ? new Date(formData.employerSignDate).toLocaleDateString('th-TH') : ''}</div></div>
                                         </div>
