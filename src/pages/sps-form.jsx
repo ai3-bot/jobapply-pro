@@ -123,10 +123,13 @@ export default function SPSFormPage() {
 
     const submitMutation = useMutation({
         mutationFn: async (data) => {
-            return await base44.entities.Applicant.update(applicantId, data);
+            return await base44.entities.PdfBase.update(data.pdf_data, { 
+                status: 'submitted',
+                submitted_date: data.submitted_date
+            });
         },
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['user_applicant', applicantId] });
+            queryClient.invalidateQueries({ queryKey: ['sps_pdf_data', applicantId] });
             toast.success('ส่งเอกสารเรียบร้อยแล้ว');
             navigate('/user-dashboard');
         },
@@ -178,15 +181,13 @@ export default function SPSFormPage() {
     };
 
     const handleSubmit = () => {
-        const spsData = {
-            sps_document: {
-                status: 'submitted',
-                form_type: applicant?.admin_data?.sps_form_type || '1-03',
-                form_data: formData,
+        if (pdfData?.id) {
+            submitMutation.mutate({
+                pdf_data: pdfData.id,
+                pdf_status: 'submitted',
                 submitted_date: new Date().toISOString()
-            }
-        };
-        submitMutation.mutate(spsData);
+            });
+        }
     };
 
     if (!applicant) {
