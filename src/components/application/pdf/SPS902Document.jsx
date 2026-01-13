@@ -27,10 +27,27 @@ export default function SPS902Document({ applicant, formData = {} }) {
                 <h1 className="text-[20px] font-bold">แบบเลือกสถานพยาบาลในการรับบริการทางการแพทย์</h1>
                 <div className="text-right text-xs space-y-0.5">
                     <div className="font-bold mt-1">สปส. 9-02</div>
-                    <div className="border border-black rounded-lg p-2 text-start w-full">
-                      <div className="border-b border-dotted border-black w-full m-auto">เลขที่รับ ...........................</div>
-                      <div className="border-b border-dotted border-black w-full m-auto">วันที่ .......................... เวลา ..............</div>
-                      <div className="border-b border-dotted border-black w-full m-auto">ลงชื่อ ............................. ผู้รับ</div>
+                    <div className="border border-black rounded-lg p-2 text-start w-[300px] ml-auto">
+                        {/* เลขที่รับ */}
+                        <div className="flex items-end gap-2">
+                        <span className="whitespace-nowrap">เลขที่รับ</span>
+                        <span className="flex-1 border-b border-dotted border-black h-3" />
+                        </div>
+
+                        {/* วันที่ / เวลา */}
+                        <div className="flex items-end gap-2 mt-1">
+                        <span className="whitespace-nowrap">วันที่</span>
+                        <span className="flex-1 border-b border-dotted border-black h-3" />
+                        <span className="whitespace-nowrap">เวลา</span>
+                        <span className="w-20 border-b border-dotted border-black h-3" />
+                        </div>
+
+                        {/* ลงชื่อ / ผู้รับ */}
+                        <div className="flex items-end gap-2 mt-1">
+                        <span className="whitespace-nowrap">ลงชื่อ</span>
+                        <span className="flex-1 border-b border-dotted border-black h-3" />
+                        <span className="whitespace-nowrap">ผู้รับ</span>
+                        </div>
                     </div>
                 </div>
             </div>
