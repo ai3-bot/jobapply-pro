@@ -23,9 +23,14 @@ export default function InsuranceEnrollmentReviewModal({ applicant, pdfDoc, isOp
         queryFn: async () => {
             if (!pdfDoc?.id) return null;
             console.log("Fetching PdfBase with id:", pdfDoc.id);
-            const doc = await base44.entities.PdfBase.read(pdfDoc.id);
-            console.log("Fetched doc:", doc);
-            return doc;
+            try {
+                const doc = await base44.entities.PdfBase.read(pdfDoc.id);
+                console.log("Fetched doc:", doc);
+                return doc;
+            } catch (error) {
+                console.error("Error fetching PdfBase:", error);
+                throw error;
+            }
         },
         enabled: !!pdfDoc?.id && isOpen
     });
