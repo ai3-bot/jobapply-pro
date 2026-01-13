@@ -21,21 +21,21 @@ export default function SPSFormPage() {
     const [showForm, setShowForm] = useState(false);
     const [formData, setFormData] = useState({
         // For SPS 1-03
+        employerName: '',
+        accountNumber: '',
+        branchOrder: '',
+        employmentType: '',
         previousEmployer: '',
         previousEmployerId: '',
         lastWorkDate: '',
         newEmployer: '',
         newEmployerId: '',
+        salary: '',
+        signatureDate: '',
         
         // For SPS 9-02
-        employerName: '',
-        employerId: '',
         educationLevel: '',
-        educationMajor: '',
-        
-        // Common
-        salary: '',
-        signatureDate: ''
+        educationMajor: ''
     });
 
     useEffect(() => {
@@ -209,67 +209,82 @@ export default function SPSFormPage() {
                                     // Form for SPS 1-03
                                     <div className="space-y-4">
                                         <div className="p-4 bg-blue-50 border border-blue-200 rounded">
-                                            <p className="text-sm font-medium">แบบฟอร์มนี้สำหรับผู้ที่มีประกันสังคมอยู่แล้ว และย้ายมาจากนายจ้างรายเดิม</p>
+                                            <p className="text-sm font-medium">แบบฟอร์มแจ้งการเปลี่ยนแปลงประกันสังคม (สปส. 1-03)</p>
                                         </div>
 
                                         <div>
-                                            <h3 className="font-semibold text-slate-800 mb-3">ข้อมูลนายจ้างเดิม</h3>
+                                            <h3 className="font-semibold text-slate-800 mb-3">ข้อมูลนายจ้าง</h3>
                                             <div className="space-y-3">
                                                 <div>
-                                                    <Label>ชื่อสถานประกอบการเดิม</Label>
+                                                    <Label>ชื่อสถานประกอบการ</Label>
                                                     <Input
-                                                        value={formData.previousEmployer}
-                                                        onChange={(e) => setFormData({ ...formData, previousEmployer: e.target.value })}
+                                                        value={formData.employerName}
+                                                        onChange={(e) => setFormData({ ...formData, employerName: e.target.value })}
                                                         placeholder="ชื่อบริษัท/ห้างร้าน"
                                                     />
                                                 </div>
                                                 <div>
-                                                    <Label>เลขที่นายจ้าง (10 หลัก)</Label>
+                                                    <Label>เลขที่บัญชี (10 หลัก)</Label>
                                                     <Input
-                                                        value={formData.previousEmployerId}
-                                                        onChange={(e) => setFormData({ ...formData, previousEmployerId: e.target.value })}
-                                                        placeholder="เลข 10 หลัก"
+                                                        value={formData.accountNumber}
+                                                        onChange={(e) => setFormData({ ...formData, accountNumber: e.target.value })}
+                                                        placeholder="เลขที่บัญชี"
                                                     />
                                                 </div>
                                                 <div>
-                                                    <Label>วันที่ออกจากงาน</Label>
+                                                    <Label>ลำดับที่สาขา</Label>
+                                                    <Input
+                                                        value={formData.branchOrder}
+                                                        onChange={(e) => setFormData({ ...formData, branchOrder: e.target.value })}
+                                                        placeholder="ลำดับที่สาขา"
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <Label>วันที่ผู้ประกันตนเข้าทำงาน</Label>
                                                     <Input
                                                         type="date"
-                                                        value={formData.lastWorkDate}
-                                                        onChange={(e) => setFormData({ ...formData, lastWorkDate: e.target.value })}
+                                                        value={formData.employmentStartDate || (applicant?.start_work_date ? new Date(applicant.start_work_date).toISOString().split('T')[0] : '')}
+                                                        onChange={(e) => setFormData({ ...formData, employmentStartDate: e.target.value })}
                                                     />
+                                                </div>
+                                                <div>
+                                                    <Label>ประเภทการจ้าง</Label>
+                                                    <select
+                                                        value={formData.employmentType}
+                                                        onChange={(e) => setFormData({ ...formData, employmentType: e.target.value })}
+                                                        className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                                    >
+                                                        <option value="">-- เลือก --</option>
+                                                        <option value="daily">รายวัน</option>
+                                                        <option value="monthly">รายเดือน</option>
+                                                        <option value="other">อื่นๆ</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div>
-                                            <h3 className="font-semibold text-slate-800 mb-3">ข้อมูลนายจ้างใหม่</h3>
-                                            <div className="space-y-3">
-                                                <div>
-                                                    <Label>ชื่อสถานประกอบการใหม่</Label>
-                                                    <Input
-                                                        value={formData.newEmployer}
-                                                        onChange={(e) => setFormData({ ...formData, newEmployer: e.target.value })}
-                                                        placeholder="ชื่อบริษัท/ห้างร้าน"
-                                                    />
-                                                </div>
-                                                <div>
-                                                    <Label>เลขที่นายจ้าง (10 หลัก)</Label>
-                                                    <Input
-                                                        value={formData.newEmployerId}
-                                                        onChange={(e) => setFormData({ ...formData, newEmployerId: e.target.value })}
-                                                        placeholder="เลข 10 หลัก"
-                                                    />
-                                                </div>
-                                                <div>
-                                                    <Label>อัตราค่าจ้าง (บาท/เดือน)</Label>
-                                                    <Input
-                                                        value={formData.salary}
-                                                        onChange={(e) => setFormData({ ...formData, salary: e.target.value })}
-                                                        placeholder="เงินเดือน"
-                                                    />
+                                            <h3 className="font-semibold text-slate-800 mb-3">ข้อมูลผู้ประกันตน</h3>
+                                            <div className="space-y-3 bg-slate-50 p-3 rounded">
+                                                <div className="text-sm text-slate-600 space-y-1">
+                                                    <p><span className="font-medium">ชื่อ:</span> {applicant?.full_name}</p>
+                                                    <p><span className="font-medium">เลขประจำตัวประชาชน:</span> {applicant?.personal_data?.id_card || '—'}</p>
+                                                    <p><span className="font-medium">เพศ:</span> {applicant?.personal_data?.gender === 'male' ? 'ชาย' : applicant?.personal_data?.gender === 'female' ? 'หญิง' : '—'}</p>
+                                                    <p><span className="font-medium">วันเดือนปีเกิด:</span> {applicant?.personal_data?.dob ? new Date(applicant.personal_data.dob).toLocaleDateString('th-TH') : '—'}</p>
+                                                    <p><span className="font-medium">สัญชาติ:</span> {applicant?.personal_data?.nationality || '—'}</p>
+                                                    <p><span className="font-medium">สถานภาพครอบครัว:</span> {applicant?.family_data?.marital_status === 'single' ? 'โสด' : applicant?.family_data?.marital_status === 'married' ? 'สมรส' : '—'}</p>
                                                 </div>
                                             </div>
+                                        </div>
+
+                                        <div>
+                                            <Label>อัตราค่าจ้าง (บาท/เดือน)</Label>
+                                            <Input
+                                                value={formData.salary}
+                                                onChange={(e) => setFormData({ ...formData, salary: e.target.value })}
+                                                placeholder="เงินเดือน"
+                                                type="number"
+                                            />
                                         </div>
 
                                         <div>
