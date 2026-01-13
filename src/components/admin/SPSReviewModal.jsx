@@ -19,7 +19,25 @@ export default function SPSReviewModal({ applicant, pdfDoc, isOpen, onClose }) {
     const [employerData, setEmployerData] = useState({
         employerSignature: '',
         employerPosition: '',
-        employerSignDate: new Date().toISOString().split('T')[0]
+        employerSignDate: new Date().toISOString().split('T')[0],
+        
+        // Officer Data
+        ssoCardNumber: '',
+        officerSignature: '',
+        officerName: '',
+        officerPosition: '',
+        officerSignDate: new Date().toISOString().split('T')[0],
+        
+        // Attached Documents
+        attachedDocs: {
+            idCard: false,
+            houseReg: false,
+            alienCard: false,
+            passport: false,
+            workPermit: false,
+            other: false,
+            otherText: ''
+        }
     });
 
     useEffect(() => {
@@ -27,7 +45,23 @@ export default function SPSReviewModal({ applicant, pdfDoc, isOpen, onClose }) {
             setEmployerData({
                 employerSignature: pdfDoc.data.employer_data.employerSignature || '',
                 employerPosition: pdfDoc.data.employer_data.employerPosition || '',
-                employerSignDate: pdfDoc.data.employer_data.employerSignDate || new Date().toISOString().split('T')[0]
+                employerSignDate: pdfDoc.data.employer_data.employerSignDate || new Date().toISOString().split('T')[0],
+                
+                ssoCardNumber: pdfDoc.data.employer_data.ssoCardNumber || '',
+                officerSignature: pdfDoc.data.employer_data.officerSignature || '',
+                officerName: pdfDoc.data.employer_data.officerName || '',
+                officerPosition: pdfDoc.data.employer_data.officerPosition || '',
+                officerSignDate: pdfDoc.data.employer_data.officerSignDate || new Date().toISOString().split('T')[0],
+                
+                attachedDocs: pdfDoc.data.employer_data.attachedDocs || {
+                    idCard: false,
+                    houseReg: false,
+                    alienCard: false,
+                    passport: false,
+                    workPermit: false,
+                    other: false,
+                    otherText: ''
+                }
             });
         }
     }, [pdfDoc]);
@@ -151,6 +185,144 @@ export default function SPSReviewModal({ applicant, pdfDoc, isOpen, onClose }) {
                                 onSave={(url) => setEmployerData({ ...employerData, employerSignature: url })}
                                 onDelete={() => setEmployerData({ ...employerData, employerSignature: '' })}
                             />
+                        </div>
+
+                        <div className="border-t pt-4">
+                            <h3 className="font-semibold text-lg mb-4">ส่วนของเจ้าหน้าที่</h3>
+                            
+                            <div className="mb-4">
+                                <Label>เลขที่บัตรประกันสังคม (13 หลัก)</Label>
+                                <Input 
+                                    value={employerData.ssoCardNumber}
+                                    onChange={(e) => setEmployerData({ ...employerData, ssoCardNumber: e.target.value })}
+                                    maxLength={13}
+                                    placeholder="เลขที่บัตรประกันสังคม"
+                                />
+                            </div>
+
+                            <div className="mb-4">
+                                <Label className="mb-2 block">เอกสารที่แนบ</Label>
+                                <div className="grid grid-cols-2 gap-2">
+                                    <label className="flex items-center gap-2">
+                                        <input 
+                                            type="checkbox" 
+                                            checked={employerData.attachedDocs.idCard}
+                                            onChange={(e) => setEmployerData({ 
+                                                ...employerData, 
+                                                attachedDocs: { ...employerData.attachedDocs, idCard: e.target.checked }
+                                            })}
+                                            className="w-4 h-4"
+                                        />
+                                        <span>สำเนาบัตรประจำตัวประชาชน</span>
+                                    </label>
+                                    <label className="flex items-center gap-2">
+                                        <input 
+                                            type="checkbox" 
+                                            checked={employerData.attachedDocs.houseReg}
+                                            onChange={(e) => setEmployerData({ 
+                                                ...employerData, 
+                                                attachedDocs: { ...employerData.attachedDocs, houseReg: e.target.checked }
+                                            })}
+                                            className="w-4 h-4"
+                                        />
+                                        <span>สำเนาทะเบียนบ้าน</span>
+                                    </label>
+                                    <label className="flex items-center gap-2">
+                                        <input 
+                                            type="checkbox" 
+                                            checked={employerData.attachedDocs.alienCard}
+                                            onChange={(e) => setEmployerData({ 
+                                                ...employerData, 
+                                                attachedDocs: { ...employerData.attachedDocs, alienCard: e.target.checked }
+                                            })}
+                                            className="w-4 h-4"
+                                        />
+                                        <span>สำเนาใบสำคัญประจำตัวคนต่างด้าว</span>
+                                    </label>
+                                    <label className="flex items-center gap-2">
+                                        <input 
+                                            type="checkbox" 
+                                            checked={employerData.attachedDocs.passport}
+                                            onChange={(e) => setEmployerData({ 
+                                                ...employerData, 
+                                                attachedDocs: { ...employerData.attachedDocs, passport: e.target.checked }
+                                            })}
+                                            className="w-4 h-4"
+                                        />
+                                        <span>สำเนาหนังสือเดินทาง</span>
+                                    </label>
+                                    <label className="flex items-center gap-2">
+                                        <input 
+                                            type="checkbox" 
+                                            checked={employerData.attachedDocs.workPermit}
+                                            onChange={(e) => setEmployerData({ 
+                                                ...employerData, 
+                                                attachedDocs: { ...employerData.attachedDocs, workPermit: e.target.checked }
+                                            })}
+                                            className="w-4 h-4"
+                                        />
+                                        <span>สำเนาใบอนุญาตทำงานคนต่างด้าว</span>
+                                    </label>
+                                    <div className="flex items-center gap-2 col-span-2">
+                                        <input 
+                                            type="checkbox" 
+                                            checked={employerData.attachedDocs.other}
+                                            onChange={(e) => setEmployerData({ 
+                                                ...employerData, 
+                                                attachedDocs: { ...employerData.attachedDocs, other: e.target.checked }
+                                            })}
+                                            className="w-4 h-4"
+                                        />
+                                        <span>อื่น ๆ</span>
+                                        <Input 
+                                            value={employerData.attachedDocs.otherText}
+                                            onChange={(e) => setEmployerData({ 
+                                                ...employerData, 
+                                                attachedDocs: { ...employerData.attachedDocs, otherText: e.target.value }
+                                            })}
+                                            placeholder="ระบุเอกสารอื่นๆ"
+                                            className="flex-1 h-8"
+                                            disabled={!employerData.attachedDocs.other}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-2 gap-4">
+                                <div>
+                                    <Label>ชื่อเจ้าหน้าที่</Label>
+                                    <Input 
+                                        value={employerData.officerName}
+                                        onChange={(e) => setEmployerData({ ...employerData, officerName: e.target.value })}
+                                        placeholder="ชื่อ-สกุล เจ้าหน้าที่"
+                                    />
+                                </div>
+                                <div>
+                                    <Label>ตำแหน่ง</Label>
+                                    <Input 
+                                        value={employerData.officerPosition}
+                                        onChange={(e) => setEmployerData({ ...employerData, officerPosition: e.target.value })}
+                                        placeholder="ตำแหน่งเจ้าหน้าที่"
+                                    />
+                                </div>
+                                <div>
+                                    <Label>วันที่ลงนาม</Label>
+                                    <Input 
+                                        type="date"
+                                        value={employerData.officerSignDate}
+                                        onChange={(e) => setEmployerData({ ...employerData, officerSignDate: e.target.value })}
+                                    />
+                                </div>
+                            </div>
+                            
+                            <div className="mt-4">
+                                <Label>ลายเซ็นเจ้าหน้าที่</Label>
+                                <SignaturePad 
+                                    signatureUrl={employerData.officerSignature}
+                                    onSave={(url) => setEmployerData({ ...employerData, officerSignature: url })}
+                                    onDelete={() => setEmployerData({ ...employerData, officerSignature: '' })}
+                                />
+                            </div>
                         </div>
                     </div>
 

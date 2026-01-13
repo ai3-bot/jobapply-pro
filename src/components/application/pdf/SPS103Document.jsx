@@ -48,7 +48,7 @@ export default function SPS103Document({ applicant, formData = {} }) {
                                     {Array(10).fill('').map((_, idx) => (
                                         <React.Fragment key={idx}>
                                             <div className="pb-1 border border-black text-center text-xs font-semibold min-w-[20px]">
-                                                {formData.accountNumber ? formData.accountNumber[idx] : '\u00A0'}
+                                                {formData.accountNumber && formData.accountNumber[idx] ? formData.accountNumber[idx] : '\u00A0'}
                                             </div>
                                             {(idx === 1 || idx === 8) && <div className="w-2 border-b border-black mb-0.5"></div>}
                                         </React.Fragment>
@@ -60,7 +60,7 @@ export default function SPS103Document({ applicant, formData = {} }) {
                                 <div className="flex ml-2 mt-2">
                                     {Array(5).fill('').map((_, idx) => (
                                         <div key={idx} className="pb-1 border border-black text-center text-xs font-semibold min-w-[20px]">
-                                            {formData.branchOrder ? formData.branchOrder[idx] : '\u00A0'}
+                                            {formData.branchOrder && formData.branchOrder[idx] ? formData.branchOrder[idx] : '\u00A0'}
                                         </div>
                                     ))}
                                 </div>
@@ -98,7 +98,9 @@ export default function SPS103Document({ applicant, formData = {} }) {
                                 <div className="flex items-center ml-1">
                                     {Array(13).fill('').map((_, idx) => (
                                         <React.Fragment key={idx}>
-                                            <div className="p-2 border border-black"></div>
+                                            <div className="pb-1 border border-black min-w-[20px] h-[30px] flex items-center justify-center text-xs font-semibold">
+                                                {formData.ssoCardNumber && formData.ssoCardNumber[idx] ? formData.ssoCardNumber[idx] : ''}
+                                            </div>
                                             {(idx === 2 || idx === 4 || idx === 11) && <div className="w-2 border-b border-black mb-0.5"></div>}
                                         </React.Fragment>
                                     ))}
@@ -361,8 +363,8 @@ export default function SPS103Document({ applicant, formData = {} }) {
                                         <div className="text-center">
                                             <div>ลงชื่อ<div className="inline-block border-b border-dotted border-slate-400 w-48 mx-2 px-2 pb-2" style={{ minHeight: '1.2em' }}></div>นายจ้าง</div>
                                             <div>(<div className="inline-block border-b border-dotted border-slate-400 w-48 px-2 pb-2" style={{ minHeight: '1.2em' }}></div>)</div>
-                                            <div>ตำแหน่ง<div className="inline-block border-b border-dotted border-slate-400 w-40 mx-2 px-2 pb-2" style={{ minHeight: '1.2em' }}></div></div>
-                                            <div>วันที่<div className="inline-block border-b border-dotted border-slate-400 w-40 mx-2 px-2 pb-2" style={{ minHeight: '1.2em' }}></div></div>
+                                            <div>ตำแหน่ง<div className="inline-block border-b border-dotted border-slate-400 w-40 mx-2 px-2 pb-1 text-left" style={{ minHeight: '1.2em' }}>{formData.employerPosition || ''}</div></div>
+                                            <div>วันที่<div className="inline-block border-b border-dotted border-slate-400 w-40 mx-2 px-2 pb-1 text-left" style={{ minHeight: '1.2em' }}>{formData.employerSignDate ? new Date(formData.employerSignDate).toLocaleDateString('th-TH') : ''}</div></div>
                                         </div>
                                     </div>
                                 </div>
@@ -374,28 +376,28 @@ export default function SPS103Document({ applicant, formData = {} }) {
                         <div className="p-2">
                             <div className="gird grid-col-6 gap-2">
                                 <div className="flex gap-2">
-                                    <PDFCheckbox size="w-4 h-4" checkType={'check'}/>
+                                    <PDFCheckbox size="w-4 h-4" checked={formData.attachedDocs?.idCard} checkType={'check'}/>
                                     <span className="mb-2">สำเนาบัตรประจำตัวประชาชน</span>
                                 </div>
                                 <div className="flex gap-2">
-                                    <PDFCheckbox size="w-4 h-4" checkType={'check'}/>
+                                    <PDFCheckbox size="w-4 h-4" checked={formData.attachedDocs?.houseReg} checkType={'check'}/>
                                     <span className="mb-2">สำเนาทะเบียนบ้าน</span>
                                 </div>
                                 <div className="flex gap-2">
-                                    <PDFCheckbox size="w-4 h-4" checkType={'check'}/>
+                                    <PDFCheckbox size="w-4 h-4" checked={formData.attachedDocs?.alienCard} checkType={'check'}/>
                                     <span className="mb-2">สำเนาใบสำคัญประจำตัวคนต่างด้าว</span>
                                 </div>
                                 <div className="flex gap-2">
-                                    <PDFCheckbox size="w-4 h-4" checkType={'check'}/>
+                                    <PDFCheckbox size="w-4 h-4" checked={formData.attachedDocs?.passport} checkType={'check'}/>
                                     <span className="mb-2">สำเนาหนังสือเดินทาง</span>
                                 </div>
                                 <div className="flex gap-2">
-                                    <PDFCheckbox size="w-4 h-4" checkType={'check'}/>
+                                    <PDFCheckbox size="w-4 h-4" checked={formData.attachedDocs?.workPermit} checkType={'check'}/>
                                     <span className="mb-2">สำเนาใบอนุญาตทำงานคนต่างด้าว</span>
                                 </div>
                                 <div className="flex gap-2">
-                                    <PDFCheckbox size="w-4 h-4" checkType={'check'}/>
-                                    <span className="mb-2">อื่น ๆ ............................</span>
+                                    <PDFCheckbox size="w-4 h-4" checked={formData.attachedDocs?.other} checkType={'check'}/>
+                                    <span className="mb-2">อื่น ๆ <span className="border-b border-dotted border-black inline-block min-w-[100px] px-1">{formData.attachedDocs?.otherText || ''}</span></span>
                                 </div>
                             </div>
                         </div>
@@ -454,11 +456,23 @@ export default function SPS103Document({ applicant, formData = {} }) {
                                     <div key={idx} className="p-2 border border-black"></div>
                                 ))}
                             </div>
-                            <div className="text-center space-y-0">
-                                <div>ลงชื่อ<div className="inline-block border-b border-dotted border-slate-400 w-32 mx-2 px-2 pb-2" style={{ minHeight: '1.2em' }}></div>เจ้าหน้าที่</div>
-                                <div>(<div className="inline-block border-b border-dotted border-slate-400 w-32 px-2 pb-2" style={{ minHeight: '1.2em' }}></div>)</div>
-                                <div>ตำแหน่ง<div className="inline-block border-b border-dotted border-slate-400 w-28 mx-2 px-2 pb-2" style={{ minHeight: '1.2em' }}></div></div>
-                                <div>วันที่<div className="inline-block border-b border-dotted border-slate-400 w-28 mx-2 px-2 pb-2" style={{ minHeight: '1.2em' }}></div></div>
+                            <div className="text-center space-y-0 relative">
+                                <div>ลงชื่อ
+                                    <div className="inline-block border-b border-dotted border-slate-400 w-32 mx-2 px-2 pb-1 relative" style={{ minHeight: '1.2em', verticalAlign: 'bottom' }}>
+                                        {formData.officerSignature && (
+                                            <img 
+                                                src={formData.officerSignature} 
+                                                alt="Officer Sig" 
+                                                className="absolute bottom-0 left-1/2 -translate-x-1/2 max-h-[40px] max-w-[100px] object-contain" 
+                                                crossOrigin="anonymous"
+                                            />
+                                        )}
+                                    </div>
+                                    เจ้าหน้าที่
+                                </div>
+                                <div>(<div className="inline-block border-b border-dotted border-slate-400 w-32 px-2 pb-1 text-center" style={{ minHeight: '1.2em' }}>{formData.officerName || '\u00A0'}</div>)</div>
+                                <div>ตำแหน่ง<div className="inline-block border-b border-dotted border-slate-400 w-28 mx-2 px-2 pb-1 text-center" style={{ minHeight: '1.2em' }}>{formData.officerPosition || '\u00A0'}</div></div>
+                                <div>วันที่<div className="inline-block border-b border-dotted border-slate-400 w-28 mx-2 px-2 pb-1 text-center" style={{ minHeight: '1.2em' }}>{formData.officerSignDate ? new Date(formData.officerSignDate).toLocaleDateString('th-TH') : '\u00A0'}</div></div>
                             </div>
                         </div>
                     </div>
