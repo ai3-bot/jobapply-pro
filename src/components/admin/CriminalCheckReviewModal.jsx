@@ -29,21 +29,11 @@ export default function CriminalCheckReviewModal({ applicant, pdfDoc, isOpen, on
 
     const updateMutation = useMutation({
         mutationFn: async (data) => {
-            // Update Applicant
-            await base44.entities.Applicant.update(applicant.id, data);
-            
-            // Update PdfBase status
-            if (pdfDoc?.id) {
-                await base44.entities.PdfBase.update(pdfDoc.id, {
-                    status: 'completed',
-                    approved_date: new Date().toISOString()
-                });
-            }
+            return await base44.entities.Applicant.update(applicant.id, data);
         },
         onSuccess: () => {
             queryClient.invalidateQueries(['applicants']);
-            queryClient.invalidateQueries(['pdf_base']);
-            toast.success('บันทึกและอนุมัติเอกสารเรียบร้อยแล้ว');
+            toast.success('บันทึกข้อมูลเรียบร้อยแล้ว');
             onClose();
         },
         onError: () => {
