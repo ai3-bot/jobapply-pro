@@ -13,6 +13,11 @@ import toast from 'react-hot-toast';
 export default function InsuranceEnrollmentReviewModal({ applicant, pdfDoc, isOpen, onClose }) {
     const queryClient = useQueryClient();
     const [generatingPdf, setGeneratingPdf] = useState(false);
+    const [insuranceFormData, setInsuranceFormData] = useState({
+        groupNumber: '',
+        certificateNumber: '',
+        signatureDate: ''
+    });
 
     const { data: insuranceData } = useQuery({
         queryKey: ['insurance_enrollment_detail', pdfDoc?.id],
@@ -83,10 +88,17 @@ export default function InsuranceEnrollmentReviewModal({ applicant, pdfDoc, isOp
     };
 
     const handleApprove = () => {
-        updateMutation.mutate({
+        const updatedData = {
+            data: {
+                ...(insuranceData?.data || {}),
+                groupNumber: insuranceFormData.groupNumber,
+                certificateNumber: insuranceFormData.certificateNumber,
+                signatureDate: insuranceFormData.signatureDate
+            },
             status: 'approved',
             approved_date: new Date().toISOString()
-        });
+        };
+        updateMutation.mutate(updatedData);
     };
 
     if (!applicant) return null;
@@ -99,6 +111,43 @@ export default function InsuranceEnrollmentReviewModal({ applicant, pdfDoc, isOp
                 </DialogHeader>
 
                 <div className="space-y-4">
+                    {/* Admin Form */}
+                    <div className="bg-slate-50 p-4 rounded-lg space-y-4">
+                        <h3 className="font-semibold text-lg">ข้อมูลประกันภัย</h3>
+                        
+                        <div>
+                            <label className="block text-sm font-medium text-slate-700 mb-2">กรมธรรม์ประกันกลุ่มเลขที่</label>
+                            <input
+                                type="text"
+                                value={insuranceFormData.groupNumber}
+                                onChange={(e) => setInsuranceFormData({ ...insuranceFormData, groupNumber: e.target.value })}
+                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                placeholder="เลขที่กรมธรรม์ประกันกลุ่ม"
+                            />
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-slate-700 mb-2">ใบรับรองเลขที่</label>
+                            <input
+                                type="text"
+                                value={insuranceFormData.certificateNumber}
+                                onChange={(e) => setInsuranceFormData({ ...insuranceFormData, certificateNumber: e.target.value })}
+                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                                placeholder="เลขที่ใบรับรอง"
+                            />
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-slate-700 mb-2">วันที่ลงนาม</label>
+                            <input
+                                type="date"
+                                value={insuranceFormData.signatureDate}
+                                onChange={(e) => setInsuranceFormData({ ...insuranceFormData, signatureDate: e.target.value })}
+                                className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                            />
+                        </div>
+                    </div>
+
                     {/* Document Preview */}
                     <div className="bg-slate-100 p-4 rounded-lg">
                         <div className="flex justify-between items-center mb-4">
@@ -128,7 +177,12 @@ export default function InsuranceEnrollmentReviewModal({ applicant, pdfDoc, isOp
                             <div className="insurance-enrollment-review-page">
                                 <InsuranceEnrollmentDocument 
                                     applicant={applicant}
-                                    formData={insuranceData?.data || {}}
+                                    formData={{
+                                        ...insuranceData?.data,
+                                        groupNumber: insuranceFormData.groupNumber,
+                                        certificateNumber: insuranceFormData.certificateNumber,
+                                        signatureDate: insuranceFormData.signatureDate
+                                    }}
                                 />
                             </div>
                         </div>
