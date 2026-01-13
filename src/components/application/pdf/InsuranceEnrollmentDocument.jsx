@@ -1,4 +1,5 @@
 import React from 'react';
+import PDFCheckbox from './PDFCheckbox';
 
 export default function InsuranceEnrollmentDocument({ applicant, formData = {} }) {
     const personalData = applicant?.personal_data || {};
@@ -82,14 +83,14 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
                                             <span>ชาย</span>
                                             <span>Male</span>
                                         </div>
-                                        <input type="checkbox" checked={personalData.gender === 'male'} readOnly className="w-3 h-3" />
+                                        <PDFCheckbox checked={personalData.gender === 'male'} checkType={'check'} />
                                     </label>
                                     <label className="flex space-between items-center gap-1 ">
                                         <div className="grid">
                                             <span>หญิง</span>
                                             <span>Female</span>
                                         </div>
-                                        <input type="checkbox" checked={personalData.gender === 'female'} readOnly className="w-3 h-3" />
+                                        <PDFCheckbox checked={personalData.gender === 'female'} checkType={'check'} />
                                     </label>
                                 </div>
                             </div>
@@ -103,14 +104,14 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
                                             <span>โสด</span>
                                             <span>Single</span>
                                         </div>
-                                        <input type="checkbox" checked={familyData.marital_status === 'single'} readOnly className="w-3 h-3" />
+                                        <PDFCheckbox checked={familyData.marital_status === 'single'} checkType={'check'} />
                                     </label>
                                     <label className="flex space-between items-center gap-1 ">
                                         <div className="grid">
                                             <span>สมรส</span>
                                             <span>Married</span>
                                         </div>
-                                        <input type="checkbox" checked={familyData.marital_status === 'married'} readOnly className="w-3 h-3" />
+                                        <PDFCheckbox checked={familyData.marital_status === 'married'} checkType={'check'} />
                                     </label>
                                 </div>
                             </div>
