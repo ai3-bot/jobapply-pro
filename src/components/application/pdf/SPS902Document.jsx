@@ -9,7 +9,7 @@ export default function SPS902Document({ applicant, formData = {} }) {
             className="pdpa-page bg-white mx-auto relative shadow-sm print:shadow-none"
             style={{ 
                 fontSize: "12px",
-                padding: '6mm',
+                padding: '3mm 6mm',
                 width: '210mm', 
                 minHeight: '297mm',
                 fontFamily: 'TH Sarabun New, Sarabun, sans-serif',
@@ -24,10 +24,10 @@ export default function SPS902Document({ applicant, formData = {} }) {
                     className="h-12 w-auto object-contain"
                     crossOrigin="anonymous"
                 />
-                <h1 className="text-[16px] font-bold">แบบเลือกสถานพยาบาลในการรับบริการทางการแพทย์</h1>
+                <h1 className="text-[20px] font-bold">แบบเลือกสถานพยาบาลในการรับบริการทางการแพทย์</h1>
                 <div className="text-right text-xs space-y-0.5">
                     <div className="font-bold mt-1">สปส. 9-02</div>
-                    <div className="border rounded-lg p-2">
+                    <div className="border border-black rounded-lg p-2">
                       <div>เลขที่รับ ...........................</div>
                       <div>วันที่ .......................... เวลา ..............</div>
                       <div>ลงชื่อ ............................. ผู้รับ</div>
