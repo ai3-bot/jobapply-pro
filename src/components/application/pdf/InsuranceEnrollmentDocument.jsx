@@ -161,12 +161,12 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
                             <div>
                                 <p className="">กรมธรรม์ประกันกลุ่มเลขที่</p>
                                 <p className="">Group No.</p>
-                                <div className="min-h-[20px] border-b border-dotted border-slate-400 px-1">{formData.policyNumber || '\u00A0'}</div>
+                                <div className="min-h-[20px]"></div>
                             </div>
                             <div>
                                 <p className="">ใบรับรองเลขที่</p>
                                 <p className="">Certificate No.</p>
-                                <div className="min-h-[20px] border-b border-dotted border-slate-400 px-1">{formData.certificateNumber || '\u00A0'}</div>
+                                <div className="min-h-[20px]"></div>
                             </div>
                         </div>
                     </div>
@@ -181,13 +181,13 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
                                 <p>ชื่อผู้รับประโยชน์<br/>Beneficiary</p>
                                 <p>ความสัมพันธ์<br/>Relationship</p>
                             </div>
-                            {(formData.beneficiaries || Array(2).fill(null)).map((ben, idx) => (
+                            {(formData.beneficiaries || Array(2).fill({ name: '', relationship: '' })).map((ben, idx) => (
                                 <div key={idx} className="grid grid-cols-2 gap-3">
                                     <div className="border-b border-dotted border-slate-400 min-h-[28px] px-1 pb-1">
-                                        {ben?.name || '\u00A0'}
+                                        {ben.name || '\u00A0'}
                                     </div>
                                     <div className="border-b border-dotted border-slate-400 min-h-[28px] px-1 pb-1">
-                                        {ben?.relationship || '\u00A0'}
+                                        {ben.relationship || '\u00A0'}
                                     </div>
                                 </div>
                             ))}

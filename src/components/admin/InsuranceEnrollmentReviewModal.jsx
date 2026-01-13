@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
@@ -14,11 +13,6 @@ import toast from 'react-hot-toast';
 export default function InsuranceEnrollmentReviewModal({ applicant, pdfDoc, isOpen, onClose }) {
     const queryClient = useQueryClient();
     const [generatingPdf, setGeneratingPdf] = useState(false);
-    const [formData, setFormData] = useState({
-        policyNumber: '',
-        certificateNumber: '',
-        beneficiaries: [{ name: '', relationship: '' }, { name: '', relationship: '' }]
-    });
 
     const { data: insuranceData } = useQuery({
         queryKey: ['insurance_enrollment_detail', pdfDoc?.id],
@@ -30,37 +24,22 @@ export default function InsuranceEnrollmentReviewModal({ applicant, pdfDoc, isOp
         enabled: !!pdfDoc?.id && isOpen
     });
 
-    useEffect(() => {
-        if (insuranceData?.data) {
-            setFormData({
-                policyNumber: insuranceData.data.policyNumber || '',
-                certificateNumber: insuranceData.data.certificateNumber || '',
-                beneficiaries: insuranceData.data.beneficiaries || [{ name: '', relationship: '' }, { name: '', relationship: '' }]
-            });
-        }
-    }, [insuranceData]);
-
     const updateMutation = useMutation({
         mutationFn: async (data) => {
-            return await base44.entities.PdfBase.update(pdfDoc.id, data);
+            return await base44.entities.PdfBase.update(pdfDoc.id, {
+                status: data.status,
+                approved_date: data.approved_date
+            });
         },
         onSuccess: () => {
             queryClient.invalidateQueries(['insurance_documents']);
-            toast.success('บันทึกข้อมูลเรียบร้อยแล้ว');
+            toast.success('อัปเดตสถานะเรียบร้อยแล้ว');
             onClose();
         },
         onError: () => {
-            toast.error('เกิดข้อผิดพลาดในการบันทึก');
+            toast.error('เกิดข้อผิดพลาดในการอัปเดต');
         }
     });
-
-    const handleApprove = () => {
-        updateMutation.mutate({
-            data: formData,
-            status: 'approved',
-            approved_date: new Date().toISOString()
-        });
-    };
 
     const handleGeneratePDF = async (action) => {
         const pages = document.querySelectorAll('.insurance-enrollment-review-page');
@@ -103,7 +82,12 @@ export default function InsuranceEnrollmentReviewModal({ applicant, pdfDoc, isOp
         }
     };
 
-
+    const handleApprove = () => {
+        updateMutation.mutate({
+            status: 'approved',
+            approved_date: new Date().toISOString()
+        });
+    };
 
     if (!applicant) return null;
 
@@ -115,64 +99,6 @@ export default function InsuranceEnrollmentReviewModal({ applicant, pdfDoc, isOp
                 </DialogHeader>
 
                 <div className="space-y-4">
-                    {/* Admin Form */}
-                    <div className="bg-slate-50 p-4 rounded-lg space-y-4">
-                        <h3 className="font-semibold text-lg">ข้อมูลประกันภัย</h3>
-                        
-                        <div className="grid grid-cols-2 gap-4">
-                            <div>
-                                <label className="text-sm font-medium">กรมธรรม์ประกันกลุ่มเลขที่</label>
-                                <Input
-                                    value={formData.policyNumber}
-                                    onChange={(e) => setFormData({ ...formData, policyNumber: e.target.value })}
-                                    placeholder="เลขที่กรมธรรม์"
-                                />
-                            </div>
-                            <div>
-                                <label className="text-sm font-medium">ใบรับรองเลขที่</label>
-                                <Input
-                                    value={formData.certificateNumber}
-                                    onChange={(e) => setFormData({ ...formData, certificateNumber: e.target.value })}
-                                    placeholder="เลขที่ใบรับรอง"
-                                />
-                            </div>
-                        </div>
-
-                        <div className="border-t pt-4">
-                            <h4 className="font-medium mb-4">ข้อมูลผู้รับประโยชน์</h4>
-                            <div className="space-y-4">
-                                {formData.beneficiaries.map((ben, idx) => (
-                                    <div key={idx} className="grid grid-cols-2 gap-4 pb-4 border-b last:border-b-0">
-                                        <div>
-                                            <label className="text-sm font-medium">ชื่อผู้รับประโยชน์ {idx + 1}</label>
-                                            <Input
-                                                value={ben.name || ''}
-                                                onChange={(e) => {
-                                                    const newBens = [...formData.beneficiaries];
-                                                    newBens[idx].name = e.target.value;
-                                                    setFormData({ ...formData, beneficiaries: newBens });
-                                                }}
-                                                placeholder="ชื่อผู้รับประโยชน์"
-                                            />
-                                        </div>
-                                        <div>
-                                            <label className="text-sm font-medium">ความสัมพันธ์</label>
-                                            <Input
-                                                value={ben.relationship || ''}
-                                                onChange={(e) => {
-                                                    const newBens = [...formData.beneficiaries];
-                                                    newBens[idx].relationship = e.target.value;
-                                                    setFormData({ ...formData, beneficiaries: newBens });
-                                                }}
-                                                placeholder="ความสัมพันธ์"
-                                            />
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-
                     {/* Document Preview */}
                     <div className="bg-slate-100 p-4 rounded-lg">
                         <div className="flex justify-between items-center mb-4">
@@ -202,7 +128,7 @@ export default function InsuranceEnrollmentReviewModal({ applicant, pdfDoc, isOp
                             <div className="insurance-enrollment-review-page">
                                 <InsuranceEnrollmentDocument 
                                     applicant={applicant}
-                                    formData={formData}
+                                    formData={insuranceData?.data || {}}
                                 />
                             </div>
                         </div>
