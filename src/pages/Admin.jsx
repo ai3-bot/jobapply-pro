@@ -19,8 +19,9 @@ import CriminalCheckReviewModal from '@/components/admin/CriminalCheckReviewModa
 import EmploymentContractReviewModal from '@/components/admin/EmploymentContractReviewModal';
 import FMHRD30ReviewModal from '@/components/admin/FMHRD30ReviewModal';
 import SPSReviewModal from '@/components/admin/SPSReviewModal';
+import InsuranceEnrollmentReviewModal from '@/components/admin/InsuranceEnrollmentReviewModal';
 
-function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewFMHRD19, onReviewCriminalCheck, onReviewEmploymentContract, onSelectApplicant, onReviewFMHRD27, onReviewFMHRD30, onSetCriminalCheckDoc, onReviewSPS }) {
+function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewFMHRD19, onReviewCriminalCheck, onReviewEmploymentContract, onSelectApplicant, onReviewFMHRD27, onReviewFMHRD30, onSetCriminalCheckDoc, onReviewSPS, onReviewInsurance }) {
     const { data: applicants = [], isLoading } = useQuery({
         queryKey: ['applicants'],
         queryFn: () => base44.entities.Applicant.list()
@@ -404,7 +405,11 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                                                     <Badge variant={doc.status === 'approved' ? 'success' : doc.status === 'submitted' ? 'default' : 'secondary'}>
                                                         {doc.status === 'approved' ? 'อนุมัติแล้ว' : doc.status === 'submitted' ? 'รอดำเนินการ' : 'แบบร่าง'}
                                                     </Badge>
-                                                    <Button size="sm">
+                                                    <Button 
+                                                        onClick={() => applicant && onReviewInsurance?.(doc)}
+                                                        size="sm"
+                                                        disabled={!applicant}
+                                                    >
                                                         ดูเอกสาร
                                                     </Button>
                                                 </div>
@@ -656,6 +661,7 @@ export default function AdminPage() {
     const [reviewingFMHRD27Doc, setReviewingFMHRD27Doc] = useState(null);
     const [reviewingFMHRD30, setReviewingFMHRD30] = useState(null);
     const [reviewingSPSDoc, setReviewingSPSDoc] = useState(null);
+    const [reviewingInsuranceDoc, setReviewingInsuranceDoc] = useState(null);
 
     useEffect(() => {
         const checkAccess = async () => {
@@ -747,6 +753,7 @@ export default function AdminPage() {
                          onReviewFMHRD30={setReviewingFMHRD30}
                          onSetCriminalCheckDoc={setReviewingCriminalCheckDoc}
                          onReviewSPS={setReviewingSPSDoc}
+                         onReviewInsurance={setReviewingInsuranceDoc}
                      />
                 ) : (
                     <div className="h-full overflow-y-auto">
@@ -817,6 +824,14 @@ export default function AdminPage() {
                 isOpen={!!reviewingSPSDoc}
                 onClose={() => setReviewingSPSDoc(null)}
              />
-            </div>
+
+             {/* Insurance Enrollment Review Modal */}
+             <InsuranceEnrollmentReviewModal 
+                applicant={selectedApplicant}
+                pdfDoc={reviewingInsuranceDoc}
+                isOpen={!!reviewingInsuranceDoc}
+                onClose={() => setReviewingInsuranceDoc(null)}
+             />
+             </div>
             );
             }
