@@ -21,13 +21,13 @@ export default function SPS902Document({ applicant, formData = {} }) {
                 <img 
                     src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6937c0bd189dcfc8f3a84e3b/7e3f209fb_image.png" 
                     alt="สำนักงานประกันสังคม" 
-                    className="h-12 w-auto object-contain"
+                    className="h-16 w-auto object-contain"
                     crossOrigin="anonymous"
                 />
                 <h1 className="text-[20px] font-bold">แบบเลือกสถานพยาบาลในการรับบริการทางการแพทย์</h1>
                 <div className="text-right text-xs space-y-0.5">
                     <div className="font-bold mt-1">สปส. 9-02</div>
-                    <div className="border border-black rounded-lg p-2">
+                    <div className="border border-black rounded-lg p-2 text-start w-full">
                       <div>เลขที่รับ ...........................</div>
                       <div>วันที่ .......................... เวลา ..............</div>
                       <div>ลงชื่อ ............................. ผู้รับ</div>
