@@ -16,18 +16,15 @@ export default function CriminalCheckReviewModal({ applicant, pdfDoc, isOpen, on
     const queryClient = useQueryClient();
     const [generatingPdf, setGeneratingPdf] = useState(false);
     const [companyData, setCompanyData] = useState({
-        companyLocation: applicant?.criminal_check_document?.company_data?.companyLocation || '',
-        companyName: applicant?.criminal_check_document?.company_data?.companyName || '',
-        companyAddress: applicant?.criminal_check_document?.company_data?.companyAddress || '',
-        authorizedPerson: applicant?.criminal_check_document?.company_data?.authorizedPerson || '',
-        authorizedId: applicant?.criminal_check_document?.company_data?.authorizedId || '',
-        authIdIssuedBy: applicant?.criminal_check_document?.company_data?.authIdIssuedBy || '',
-        authIdExpiry: applicant?.criminal_check_document?.company_data?.authIdExpiry || '',
+        receiverName: applicant?.criminal_check_document?.company_data?.receiverName || '',
         receiverSignature: applicant?.criminal_check_document?.company_data?.receiverSignature || '',
+        receiverDate: applicant?.criminal_check_document?.company_data?.receiverDate || '',
         witnessName1: applicant?.criminal_check_document?.company_data?.witnessName1 || '',
         witness1Signature: applicant?.criminal_check_document?.company_data?.witness1Signature || '',
+        witness1Date: applicant?.criminal_check_document?.company_data?.witness1Date || '',
         witnessName2: applicant?.criminal_check_document?.company_data?.witnessName2 || '',
-        witness2Signature: applicant?.criminal_check_document?.company_data?.witness2Signature || ''
+        witness2Signature: applicant?.criminal_check_document?.company_data?.witness2Signature || '',
+        witness2Date: applicant?.criminal_check_document?.company_data?.witness2Date || ''
     });
 
     const updateMutation = useMutation({
@@ -112,32 +109,7 @@ export default function CriminalCheckReviewModal({ applicant, pdfDoc, isOpen, on
                 <div className="space-y-4">
                     {/* Admin Form */}
                     <div className="bg-slate-50 p-4 rounded-lg space-y-4">
-                        <h3 className="font-semibold text-lg">กรอกข้อมูลบริษัทและผู้รับมอบอำนาจ</h3>
-                        
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <Label>ทำที่</Label>
-                                <Input
-                                    value={companyData.companyLocation}
-                                    onChange={(e) => setCompanyData({ ...companyData, companyLocation: e.target.value })}
-                                    placeholder="เช่น กรุงเทพมหานคร"
-                                />
-                            </div>
-                            <div>
-                                <Label>ชื่อบริษัท</Label>
-                                <Input
-                                    value={companyData.companyName}
-                                    onChange={(e) => setCompanyData({ ...companyData, companyName: e.target.value })}
-                                />
-                            </div>
-                            <div className="md:col-span-2">
-                                <Label>ที่อยู่บริษัท</Label>
-                                <Input
-                                    value={companyData.companyAddress}
-                                    onChange={(e) => setCompanyData({ ...companyData, companyAddress: e.target.value })}
-                                />
-                            </div>
-                        </div>
+                        <h3 className="font-semibold text-lg">ลงชื่อผู้รับมอบอำนาจและพยาน</h3>
 
                         <div className="border-t pt-4">
                             <h4 className="font-medium mb-3">ผู้รับมอบอำนาจ</h4>
@@ -145,34 +117,21 @@ export default function CriminalCheckReviewModal({ applicant, pdfDoc, isOpen, on
                                 <div>
                                     <Label>ชื่อผู้รับมอบอำนาจ</Label>
                                     <Input
-                                        value={companyData.authorizedPerson}
-                                        onChange={(e) => setCompanyData({ ...companyData, authorizedPerson: e.target.value })}
+                                        value={companyData.receiverName}
+                                        onChange={(e) => setCompanyData({ ...companyData, receiverName: e.target.value })}
+                                        placeholder="ชื่อ-นามสกุล"
                                     />
                                 </div>
                                 <div>
-                                    <Label>เลขบัตรประชาชน</Label>
-                                    <Input
-                                        value={companyData.authorizedId}
-                                        onChange={(e) => setCompanyData({ ...companyData, authorizedId: e.target.value })}
-                                    />
-                                </div>
-                                <div>
-                                    <Label>บัตรออกให้โดย</Label>
-                                    <Input
-                                        value={companyData.authIdIssuedBy}
-                                        onChange={(e) => setCompanyData({ ...companyData, authIdIssuedBy: e.target.value })}
-                                    />
-                                </div>
-                                <div>
-                                    <Label>บัตรหมดอายุ</Label>
+                                    <Label>วันที่</Label>
                                     <Input
                                         type="date"
-                                        value={companyData.authIdExpiry}
-                                        onChange={(e) => setCompanyData({ ...companyData, authIdExpiry: e.target.value })}
+                                        value={companyData.receiverDate}
+                                        onChange={(e) => setCompanyData({ ...companyData, receiverDate: e.target.value })}
                                     />
                                 </div>
                             </div>
-                            
+
                             <div className="mt-4">
                                 <Label>ลายเซ็นผู้รับมอบอำนาจ</Label>
                                 <SignaturePad 
@@ -183,14 +142,23 @@ export default function CriminalCheckReviewModal({ applicant, pdfDoc, isOpen, on
                         </div>
 
                         <div className="border-t pt-4">
-                            <h4 className="font-medium mb-3">ข้อมูลพยาน</h4>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <h4 className="font-medium mb-3">พยาน</h4>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
                                     <Label>ชื่อพยานคนที่ 1</Label>
                                     <Input
                                         value={companyData.witnessName1}
                                         onChange={(e) => setCompanyData({ ...companyData, witnessName1: e.target.value })}
+                                        placeholder="ชื่อ-นามสกุล"
                                     />
+                                    <div className="mt-2">
+                                        <Label>วันที่</Label>
+                                        <Input
+                                            type="date"
+                                            value={companyData.witness1Date}
+                                            onChange={(e) => setCompanyData({ ...companyData, witness1Date: e.target.value })}
+                                        />
+                                    </div>
                                     <div className="mt-2">
                                         <Label>ลายเซ็นพยานคนที่ 1</Label>
                                         <SignaturePad 
@@ -204,7 +172,16 @@ export default function CriminalCheckReviewModal({ applicant, pdfDoc, isOpen, on
                                     <Input
                                         value={companyData.witnessName2}
                                         onChange={(e) => setCompanyData({ ...companyData, witnessName2: e.target.value })}
+                                        placeholder="ชื่อ-นามสกุล"
                                     />
+                                    <div className="mt-2">
+                                        <Label>วันที่</Label>
+                                        <Input
+                                            type="date"
+                                            value={companyData.witness2Date}
+                                            onChange={(e) => setCompanyData({ ...companyData, witness2Date: e.target.value })}
+                                        />
+                                    </div>
                                     <div className="mt-2">
                                         <Label>ลายเซ็นพยานคนที่ 2</Label>
                                         <SignaturePad 
