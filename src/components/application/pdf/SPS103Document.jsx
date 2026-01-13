@@ -70,15 +70,15 @@ export default function SPS103Document({ applicant, formData = {} }) {
                             <div className="flex items-center gap-2">
                                 <span className="mb-2">ประเภทการจ้าง</span>
                                 <div className="flex items-center gap-1">
-                                    <div className="w-4 h-4 border border-black flex-shrink-0"></div>
+                                    <PDFCheckbox checked={formData.employmentType === 'daily'} checkType={'check'} />
                                     <span className="mb-2">รายวัน</span>
                                 </div>
                                 <div className="flex items-center gap-1">
-                                    <div className="w-4 h-4 border border-black flex-shrink-0"></div>
+                                    <PDFCheckbox checked={formData.employmentType === 'monthly'} checkType={'check'} />
                                     <span className="mb-2">รายเดือน</span>
                                 </div>
                                 <div className="flex items-center gap-1">
-                                    <div className="w-4 h-4 border border-black flex-shrink-0"></div>
+                                    <PDFCheckbox checked={formData.employmentType === 'other'} checkType={'check'} />
                                     <span className="mb-2">อื่นๆ</span>
                                 </div>
                             </div>
@@ -141,15 +141,11 @@ export default function SPS103Document({ applicant, formData = {} }) {
                             <div className="flex items-center gap-2">
                                 <span className="mb-2">2. เพศ</span>
                                 <label className="flex items-center gap-1">
-                                    <div className="w-4 h-4 border border-black flex-shrink-0">
-                                        {personalData.gender === 'male' && <div className="w-2 h-2 bg-black"></div>}
-                                    </div>
+                                    <PDFCheckbox checked={personalData.gender === 'male'} checkType={'check'} />
                                     <span className="mb-2">ชาย</span>
                                 </label>
                                 <label className="flex items-center gap-1">
-                                    <div className="w-4 h-4 border border-black flex-shrink-0">
-                                        {personalData.gender === 'female' && <div className="w-2 h-2 bg-black"></div>}
-                                    </div>
+                                    <PDFCheckbox checked={personalData.gender === 'female'} checkType={'check'} />
                                     <span className="mb-2">หญิง</span>
                                 </label>
                             </div>
@@ -236,42 +232,34 @@ export default function SPS103Document({ applicant, formData = {} }) {
                             <div className="items-center gap-2">
                                 <div className="ml-2 flex gap-2">
                                     <div className="flex items-center gap-1">
-                                        <div className="w-4 h-4 border border-black flex-shrink-0">
-                                            {familyData.marital_status === 'single' && <div className="w-2 h-2 bg-black"></div>}
-                                        </div>
+                                        <PDFCheckbox checked={familyData.marital_status === 'single'} checkType={'check'} />
                                         <span className="mb-2">1. โสด</span>
                                     </div>
                                     <div className="flex items-center gap-1">
-                                        <div className="w-4 h-4 border border-black flex-shrink-0">
-                                            {familyData.marital_status === 'married' && <div className="w-2 h-2 bg-black"></div>}
-                                        </div>
+                                        <PDFCheckbox checked={familyData.marital_status === 'married'} checkType={'check'} />
                                         <span className="mb-2">2. สมรส</span>
                                     </div>
                                     <div className="flex items-center gap-1">
-                                        <div className="w-4 h-4 border border-black flex-shrink-0"></div>
+                                        <PDFCheckbox checked={familyData.marital_status === 'widowed'} checkType={'check'} />
                                         <span className="mb-2">3. หม้าย</span>
                                     </div>
                                     <div className="flex items-center gap-1">
-                                        <div className="w-4 h-4 border border-black flex-shrink-0"></div>
+                                        <PDFCheckbox checked={familyData.marital_status === 'divorced'} checkType={'check'} />
                                         <span className="mb-2">4. หย่า</span>
                                     </div>
                                     <div className="flex items-center gap-1">
-                                        <div className="w-4 h-4 border border-black flex-shrink-0"></div>
+                                        <PDFCheckbox checked={familyData.marital_status === 'separated'} checkType={'check'} />
                                         <span className="mb-2">5. แยกกันอยู่</span>
                                     </div>
                                 </div>
                             </div>
                             <div className="flex items-center gap-2 pl-8">
                                 <div className="flex items-center gap-1">
-                                    <div className="w-4 h-4 border border-black flex-shrink-0">
-                                        {familyData.has_children === 'no' && <div className="w-2 h-2 bg-black"></div>}
-                                    </div>
+                                    <PDFCheckbox checked={familyData.has_children === 'no'} checkType={'check'} />
                                     <span className="mb-2">ไม่มีบุตร</span>
                                 </div>
                                 <div className="flex items-center gap-1">
-                                    <div className="w-4 h-4 border border-black flex-shrink-0">
-                                        {familyData.has_children === 'yes' && <div className="w-2 h-2 bg-black"></div>}
-                                    </div>
+                                    <PDFCheckbox checked={familyData.has_children === 'yes'} checkType={'check'} />
                                     <span className="mb-2">มีบุตรอายุไม่เกิน 6 ปี จำนวน</span>
                                 </div>
                                 <div className="border-b border-dotted border-black w-12 text-center">
