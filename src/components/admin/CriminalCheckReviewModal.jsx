@@ -27,13 +27,20 @@ export default function CriminalCheckReviewModal({ applicant, pdfDoc, isOpen, on
         witness2Date: applicant?.criminal_check_document?.company_data?.witness2Date || ''
     });
 
-    const updateMutation = useMutation({
+    const updatePdfMutation = useMutation({
         mutationFn: async (data) => {
-            return await base44.entities.Applicant.update(applicant.id, data);
+            // Update PdfBase entity
+            const existingPdf = pdfDoc;
+            if (existingPdf) {
+                return await base44.entities.PdfBase.update(existingPdf.id, data);
+            } else {
+                return await base44.entities.PdfBase.create(data);
+            }
         },
         onSuccess: () => {
             queryClient.invalidateQueries(['applicants']);
-            toast.success('บันทึกข้อมูลเรียบร้อยแล้ว');
+            queryClient.invalidateQueries(['pdf_documents']);
+            toast.success('บันทึกและอนุมัติเอกสารเรียบร้อยแล้ว');
             onClose();
         },
         onError: () => {
@@ -42,15 +49,17 @@ export default function CriminalCheckReviewModal({ applicant, pdfDoc, isOpen, on
     });
 
     const handleSave = () => {
-        const updatedData = {
-            criminal_check_document: {
-                ...applicant.criminal_check_document,
-                status: 'completed',
-                company_data: companyData,
-                completed_date: new Date().toISOString()
-            }
+        const pdfData = {
+            applicant_id: applicant.id,
+            pdf_type: 'Criminal-Check',
+            data: {
+                ...pdfDoc?.data,
+                company_data: companyData
+            },
+            status: 'approved',
+            approved_date: new Date().toISOString()
         };
-        updateMutation.mutate(updatedData);
+        updatePdfMutation.mutate(pdfData);
     };
 
     const handleGeneratePDF = async (action) => {
@@ -241,10 +250,10 @@ export default function CriminalCheckReviewModal({ applicant, pdfDoc, isOpen, on
                         </Button>
                         <Button 
                             onClick={handleSave}
-                            disabled={updateMutation.isPending}
+                            disabled={updatePdfMutation.isPending}
                             className="bg-green-600 hover:bg-green-700"
                         >
-                            {updateMutation.isPending ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}
+                            {updatePdfMutation.isPending ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}
                             บันทึกและอนุมัติเอกสาร
                         </Button>
                     </div>
