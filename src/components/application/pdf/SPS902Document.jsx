@@ -8,8 +8,8 @@ export default function SPS902Document({ applicant, formData = {} }) {
         <div 
             className="pdpa-page bg-white mx-auto relative shadow-sm print:shadow-none"
             style={{ 
-                fontSize: "11px",
-                padding: '10mm',
+                fontSize: "12px",
+                padding: '6mm',
                 width: '210mm', 
                 minHeight: '297mm',
                 fontFamily: 'TH Sarabun New, Sarabun, sans-serif',
