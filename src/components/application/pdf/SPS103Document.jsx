@@ -312,38 +312,29 @@ export default function SPS103Document({ applicant, formData = {} }) {
                     <div className="col-span-2 border-l border-r border-b border-slate-900">
                         <span className="ml-2">7. สำหรับคนต่างด้าว ให้กรอกข้อความ ดังนี้</span>
                         <div>
-                            <div className="space-y-1.5 px-4 py-2">
+                            <div className="space-y-0.5 px-4 py-2">
                                 <div className="flex items-center gap-2">
-                                    <PDFCheckbox checked={formData.documentType === 'passport'} checkType={'check'} />
+                                    <PDFCheckbox size="w-4 h-4" />
                                     <span className="mb-2">หนังสือเดินทาง (PASSPORT) เลขที่</span>
-                                    <span className={`border-b border-dotted border-slate-400 flex-1 text-center px-2 pb-1`} style={{ verticalAlign: 'baseline', ...(formData.passportNumber && { minHeight: '1.2em' }) }}>
-                                        {formData.passportNumber || '\u00A0'}
-                                    </span>
+                                    <div className="border-b border-dotted border-slate-400 flex-1 px-2 pb-1" style={{ minHeight: '1.2em' }}></div>
                                     <span className="mb-2">และ</span>
                                 </div>
-                                <div className="flex items-center gap-2 pl-8">
+                                <div className="flex items-center gap-2 pl-4">
                                     <span className="mb-2">ใบอนุญาตทำงาน (WORK PERMIT) เลขที่</span>
-                                    <span className={`border-b border-dotted border-slate-400 flex-1 text-center px-2 pb-1`} style={{ verticalAlign: 'baseline', ...(formData.workPermitNumber1 && { minHeight: '1.2em' }) }}>
-                                        {formData.workPermitNumber1 || '\u00A0'}
-                                    </span>
+                                    <div className="border-b border-dotted border-slate-400 flex-1 px-2 pb-1" style={{ minHeight: '1.2em' }}></div>
+                                    <span className="mb-2">หรือ</span>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <PDFCheckbox checked={formData.documentType === 'other'} checkType={'check'}/>
+                                    <PDFCheckbox size="w-4 h-4" checkType={'check'}/>
                                     <span className="mb-2">อื่นๆ (ระบุ)</span>
-                                    <span className={`border-b border-dotted border-slate-400 w-48 text-center px-2 pb-1`} style={{ verticalAlign: 'baseline', ...(formData.otherDocumentType && { minHeight: '1.2em' }) }}>
-                                        {formData.otherDocumentType || '\u00A0'}
-                                    </span>
+                                    <div className="border-b border-dotted border-slate-400 w-48 px-2 pb-1" style={{ minHeight: '1.2em' }}></div>
                                     <span className="mb-2">เลขที่</span>
-                                    <span className={`border-b border-dotted border-slate-400 flex-1 text-center px-2 pb-1`} style={{ verticalAlign: 'baseline', ...(formData.otherDocumentNumber && { minHeight: '1.2em' }) }}>
-                                        {formData.otherDocumentNumber || '\u00A0'}
-                                    </span>
+                                    <div className="border-b border-dotted border-slate-400 flex-1 px-2 pb-1" style={{ minHeight: '1.2em' }}></div>
                                     <span className="mb-2">และ</span>
                                 </div>
-                                <div className="flex items-center gap-2 pl-8">
+                                <div className="flex items-center gap-2 pl-4">
                                     <span className="mb-2">ใบอนุญาตทำงาน (WORK PERMIT) เลขที่</span>
-                                    <span className={`border-b border-dotted border-slate-400 flex-1 text-center px-2 pb-1`} style={{ verticalAlign: 'baseline', ...(formData.workPermitNumber2 && { minHeight: '1.2em' }) }}>
-                                        {formData.workPermitNumber2 || '\u00A0'}
-                                    </span>
+                                    <div className="border-b border-dotted border-slate-400 flex-1 px-2 pb-1" style={{ minHeight: '1.2em' }}></div>
                                 </div>
                             </div>
                             <div className="bordor-t"></div>
