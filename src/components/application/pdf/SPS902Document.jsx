@@ -61,7 +61,7 @@ export default function SPS902Document({ applicant, formData = {} }) {
                 {/* Basic Information - Single Column */}
                 <div className="p-2 border-b border-slate-900">
                     {/* Name and Prefix */}
-                    <div className="flex gap-1 items-center text-xs mb-1">
+                    <div className="flex gap-2 items-center text-xs mb-1">
                         <span>ข้าพเจ้า</span>
                         <label className="flex items-center gap-0.5">
                             <PDFCheckbox checked={personalData.prefix === 'นาย'} checkType={'check'}/>
