@@ -87,11 +87,16 @@ export default function InsuranceEnrollmentPage() {
     });
 
     const submitMutation = useMutation({
-        mutationFn: async (data) => {
-            return await base44.entities.Applicant.update(applicantId, data);
+        mutationFn: async () => {
+            if (insuranceData?.id) {
+                return await base44.entities.PdfBase.update(insuranceData.id, {
+                    status: 'submitted',
+                    submitted_date: new Date().toISOString()
+                });
+            }
         },
         onSuccess: () => {
-            queryClient.invalidateQueries(['user_applicant', applicantId]);
+            queryClient.invalidateQueries(['insurance_enrollment', applicantId]);
             toast.success('ส่งเอกสารเรียบร้อยแล้ว');
             navigate('/user-dashboard');
         },
@@ -142,14 +147,7 @@ export default function InsuranceEnrollmentPage() {
     };
 
     const handleSubmit = () => {
-        const insuranceData = {
-            insurance_enrollment_document: {
-                status: 'submitted',
-                form_data: formData,
-                submitted_date: new Date().toISOString()
-            }
-        };
-        submitMutation.mutate(insuranceData);
+        submitMutation.mutate();
     };
 
     if (!applicant) {
