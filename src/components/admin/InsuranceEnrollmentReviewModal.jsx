@@ -29,20 +29,27 @@ export default function InsuranceEnrollmentReviewModal({ applicant, pdfDoc, isOp
         enabled: !!pdfDoc?.id && isOpen
     });
 
+    useEffect(() => {
+        if (insuranceData?.data) {
+            setInsuranceFormData({
+                groupNumber: insuranceData.data.groupNumber || '',
+                certificateNumber: insuranceData.data.certificateNumber || '',
+                signatureDate: insuranceData.data.signatureDate || ''
+            });
+        }
+    }, [insuranceData]);
+
     const updateMutation = useMutation({
         mutationFn: async (data) => {
-            return await base44.entities.PdfBase.update(pdfDoc.id, {
-                status: data.status,
-                approved_date: data.approved_date
-            });
+            return await base44.entities.PdfBase.update(pdfDoc.id, data);
         },
         onSuccess: () => {
             queryClient.invalidateQueries(['insurance_documents']);
-            toast.success('อัปเดตสถานะเรียบร้อยแล้ว');
+            toast.success('บันทึกข้อมูลเรียบร้อยแล้ว');
             onClose();
         },
         onError: () => {
-            toast.error('เกิดข้อผิดพลาดในการอัปเดต');
+            toast.error('เกิดข้อผิดพลาดในการบันทึก');
         }
     });
 
