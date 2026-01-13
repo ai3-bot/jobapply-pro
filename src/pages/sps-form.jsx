@@ -598,7 +598,7 @@ export default function SPSFormPage() {
                                         disabled={saveMutation.isPending}
                                         className="bg-blue-600 hover:bg-blue-700"
                                     >
-                                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                                        {saveMutation.isPending ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}
                                         บันทึก
                                     </Button>
                                 </div>
