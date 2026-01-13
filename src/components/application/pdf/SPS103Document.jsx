@@ -38,7 +38,7 @@ export default function SPS103Document({ applicant, formData = {} }) {
                         <div className="space-y-0 p-2">
                             <div className="flex items-center">
                                 <span className="mb-2">ชื่อสถานประกอบการ</span>
-                                <span className="border-b border-dotted border-slate-400 flex-1 ml-2 min-h-[24px] pb-1 inline-block">
+                                <span className={`border-b border-dotted border-slate-400 flex-1 ml-2 text-center px-2 pb-1 inline-block ${formData.employerName}`} style={{ verticalAlign: 'baseline', ...(formData.employerName && { minHeight: '1.2em' }) }}>
                                     {formData.employerName || '\u00A0'}
                                 </span>
                             </div>
@@ -67,7 +67,7 @@ export default function SPS103Document({ applicant, formData = {} }) {
                             </div>
                             <div className="flex items-center">
                                 <span className="mb-2">วันที่ผู้ประกันตนเข้าทำงาน</span>
-                                <span className="border-b border-dotted border-slate-400 flex-1 ml-2 inline-block min-h-[24px] pb-1">
+                                <span className={`border-b border-dotted border-slate-400 flex-1 ml-2 text-center px-2 pb-1 inline-block`} style={{ verticalAlign: 'baseline', ...(applicant?.start_work_date && { minHeight: '1.2em' }) }}>
                                     {applicant?.start_work_date ? new Date(applicant.start_work_date).toLocaleDateString('th-TH', { year: 'numeric', month: '2-digit', day: '2-digit' }).split('/').reverse().join('/') : '\u00A0'}
                                 </span>
                             </div>
@@ -131,11 +131,11 @@ export default function SPS103Document({ applicant, formData = {} }) {
                                     <PDFCheckbox checked={personalData.prefix === 'นาง'} checkType={'check'}/>
                                     <span className="mb-2">นาง</span>
                                 </label>
-                                <span className="border-b border-dotted border-black flex-1 inline-block min-h-[24px] pb-1 ml-1">
+                                <span className={`border-b border-dotted border-black flex-1 text-center px-2 pb-1 inline-block ml-1`} style={{ verticalAlign: 'baseline', ...(personalData.first_name && { minHeight: '1.2em' }) }}>
                                     {personalData.first_name || '\u00A0'}
                                 </span>
                                 <span className="mb-2">ชื่อสกุล</span>
-                                <span className="border-b border-dotted border-black flex-1 inline-block min-h-[24px] pb-1 ml-1">
+                                <span className={`border-b border-dotted border-black flex-1 text-center px-2 pb-1 inline-block ml-1`} style={{ verticalAlign: 'baseline', ...(personalData.last_name && { minHeight: '1.2em' }) }}>
                                     {personalData.last_name || '\u00A0'}
                                 </span>
                             </div>
@@ -157,7 +157,7 @@ export default function SPS103Document({ applicant, formData = {} }) {
                             {/* 3. สัญชาติ */}
                             <div className="flex items-center gap-2">
                                 <span className="mb-2">3. สัญชาติ</span>
-                                <span className="border-b border-dotted border-slate-400 flex-1 inline-block min-h-[24px] pb-1">
+                                <span className={`border-b border-dotted border-slate-400 flex-1 text-center px-2 pb-1 inline-block`} style={{ verticalAlign: 'baseline', ...(personalData.nationality && { minHeight: '1.2em' }) }}>
                                     {personalData.nationality || '\u00A0'}
                                 </span>
                             </div>
@@ -165,15 +165,15 @@ export default function SPS103Document({ applicant, formData = {} }) {
                             {/* 4. เกิดวันที่ */}
                             <div className="flex items-center gap-2">
                                 <span className="mb-2">4. เกิดวันที่</span>
-                                <span className="border-b border-dotted border-slate-400 w-20 inline-block min-h-[24px] pb-1">
+                                <span className={`border-b border-dotted border-slate-400 w-20 text-center px-2 pb-1 inline-block`} style={{ verticalAlign: 'baseline', ...(personalData.dob && { minHeight: '1.2em' }) }}>
                                     {personalData.dob ? new Date(personalData.dob).toLocaleDateString('th-TH', { day: 'numeric' }) : '\u00A0'}
                                 </span>
                                 <span className="mb-2">เดือน</span>
-                                <span className="border-b border-dotted border-slate-400 flex-1 inline-block min-h-[24px] pb-1">
+                                <span className={`border-b border-dotted border-slate-400 flex-1 text-center px-2 pb-1 inline-block`} style={{ verticalAlign: 'baseline', ...(personalData.dob && { minHeight: '1.2em' }) }}>
                                     {personalData.dob ? new Date(personalData.dob).toLocaleDateString('th-TH', { month: 'long' }) : '\u00A0'}
                                 </span>
                                 <span className="mb-2">พ.ศ.</span>
-                                <span className="border-b border-dotted border-slate-400 w-24 inline-block min-h-[24px] pb-1">
+                                <span className={`border-b border-dotted border-slate-400 w-24 text-center px-2 pb-1 inline-block`} style={{ verticalAlign: 'baseline', ...(personalData.dob && { minHeight: '1.2em' }) }}>
                                     {personalData.dob ? (new Date(personalData.dob).getFullYear() + 543) : '\u00A0'}
                                 </span>
                             </div>
@@ -268,7 +268,7 @@ export default function SPS103Document({ applicant, formData = {} }) {
                                     <PDFCheckbox checked={familyData.has_children === 'yes'} checkType={'check'} />
                                     <span className="mb-2">มีบุตรอายุไม่เกิน 6 ปี จำนวน</span>
                                 </div>
-                                <div className="border-b border-dotted border-black w-12 text-center">
+                                <div className={`border-b border-dotted border-black w-12 text-center px-2 pb-1`} style={{ verticalAlign: 'baseline', ...(familyData.children_count && { minHeight: '1.2em' }) }}>
                                     {familyData.children_count || '\u00A0'}
                                 </div>
                                 <span className="mb-2">คน</span>
@@ -316,25 +316,25 @@ export default function SPS103Document({ applicant, formData = {} }) {
                                 <div className="flex items-center gap-2">
                                     <PDFCheckbox size="w-4 h-4" />
                                     <span className="mb-2">หนังสือเดินทาง (PASSPORT) เลขที่</span>
-                                    <div className="border-b border-dotted border-slate-400 flex-1 min-h-[18px]"></div>
+                                    <div className="border-b border-dotted border-slate-400 flex-1 px-2 pb-1" style={{ minHeight: '1.2em' }}></div>
                                     <span className="mb-2">และ</span>
                                 </div>
                                 <div className="flex items-center gap-2 pl-4">
                                     <span className="mb-2">ใบอนุญาตทำงาน (WORK PERMIT) เลขที่</span>
-                                    <div className="border-b border-dotted border-slate-400 flex-1 min-h-[18px]"></div>
+                                    <div className="border-b border-dotted border-slate-400 flex-1 px-2 pb-1" style={{ minHeight: '1.2em' }}></div>
                                     <span className="mb-2">หรือ</span>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <PDFCheckbox size="w-4 h-4" checkType={'check'}/>
                                     <span className="mb-2">อื่นๆ (ระบุ)</span>
-                                    <div className="border-b border-dotted border-slate-400 w-48 min-h-[18px]"></div>
+                                    <div className="border-b border-dotted border-slate-400 w-48 px-2 pb-1" style={{ minHeight: '1.2em' }}></div>
                                     <span className="mb-2">เลขที่</span>
-                                    <div className="border-b border-dotted border-slate-400 flex-1 min-h-[18px]"></div>
+                                    <div className="border-b border-dotted border-slate-400 flex-1 px-2 pb-1" style={{ minHeight: '1.2em' }}></div>
                                     <span className="mb-2">และ</span>
                                 </div>
                                 <div className="flex items-center gap-2 pl-4">
                                     <span className="mb-2">ใบอนุญาตทำงาน (WORK PERMIT) เลขที่</span>
-                                    <div className="border-b border-dotted border-slate-400 flex-1 min-h-[18px]"></div>
+                                    <div className="border-b border-dotted border-slate-400 flex-1 px-2 pb-1" style={{ minHeight: '1.2em' }}></div>
                                 </div>
                             </div>
                             <div className="bordor-t"></div>
@@ -353,10 +353,10 @@ export default function SPS103Document({ applicant, formData = {} }) {
                                     </div>
                                     <div className="flex justify-end space-y-1">
                                         <div className="text-center">
-                                            <div>ลงชื่อ<div className="inline-block border-b border-dotted border-slate-400 w-48 mx-2 pb-2 min-h-[20px]"></div>นายจ้าง</div>
-                                            <div>(<div className="inline-block border-b border-dotted border-slate-400 w-48 pb-2 min-h-[20px]"></div>)</div>
-                                            <div>ตำแหน่ง<div className="inline-block border-b border-dotted border-slate-400 w-40 mx-2 pb-2 min-h-[20px]"></div></div>
-                                            <div>วันที่<div className="inline-block border-b border-dotted border-slate-400 w-40 mx-2 pb-2 min-h-[20px]"></div></div>
+                                            <div>ลงชื่อ<div className="inline-block border-b border-dotted border-slate-400 w-48 mx-2 px-2 pb-2" style={{ minHeight: '1.2em' }}></div>นายจ้าง</div>
+                                            <div>(<div className="inline-block border-b border-dotted border-slate-400 w-48 px-2 pb-2" style={{ minHeight: '1.2em' }}></div>)</div>
+                                            <div>ตำแหน่ง<div className="inline-block border-b border-dotted border-slate-400 w-40 mx-2 px-2 pb-2" style={{ minHeight: '1.2em' }}></div></div>
+                                            <div>วันที่<div className="inline-block border-b border-dotted border-slate-400 w-40 mx-2 px-2 pb-2" style={{ minHeight: '1.2em' }}></div></div>
                                         </div>
                                     </div>
                                 </div>
@@ -404,11 +404,11 @@ export default function SPS103Document({ applicant, formData = {} }) {
                         <h3 className="font-bold border-b border-slate-900 text-center items-center py-2">ข้อมูลการเลือกสถานพยาบาล</h3>
                         <div className="space-y-0 p-2">
                             <div>
-                                <p>8. ขอเลือกสถานพยาบาลประกันสังคม<span className="border-b border-dotted border-slate-400 inline-block w-[80px] mx-2"></span>(ผู้ประกันตนเป็นผู้เลือกสถานพยาบาล)</p>
+                                <p>8. ขอเลือกสถานพยาบาลประกันสังคม<span className="border-b border-dotted border-slate-400 inline-block w-[80px] mx-2 px-2 pb-1" style={{ minHeight: '1.2em' }}></span>(ผู้ประกันตนเป็นผู้เลือกสถานพยาบาล)</p>
                                 <p className="pl-4 mt-2">หากไม่สามารถจัดสถานพยาบาลที่เลือกให้ได้ ขอเลือกสถานพยาบาลสำรองคือ</p>
                                 <div className="pl-8 space-y-1 mt-1">
-                                    <p>ลำดับที่ 1 ชื่อ<span className="border-b border-dotted border-slate-400 inline-block w-[300px] mx-1"></span>หรือ</p>
-                                    <p>ลำดับที่ 2 ชื่อ<span className="border-b border-dotted border-slate-400 inline-block w-[300px] mx-1"></span></p>
+                                    <p>ลำดับที่ 1 ชื่อ<span className="border-b border-dotted border-slate-400 inline-block w-[300px] mx-1 px-2 pb-1" style={{ minHeight: '1.2em' }}></span>หรือ</p>
+                                    <p>ลำดับที่ 2 ชื่อ<span className="border-b border-dotted border-slate-400 inline-block w-[300px] mx-1 px-2 pb-1" style={{ minHeight: '1.2em' }}></span></p>
                                 </div>
                             </div>
                             
@@ -449,10 +449,10 @@ export default function SPS103Document({ applicant, formData = {} }) {
                                 ))}
                             </div>
                             <div className="text-center space-y-0">
-                                <div>ลงชื่อ<div className="inline-block border-b border-dotted border-slate-400 w-32 mx-2 min-h-[20px]"></div>เจ้าหน้าที่</div>
-                                <div>(<div className="inline-block border-b border-dotted border-slate-400 w-32 min-h-[20px]"></div>)</div>
-                                <div>ตำแหน่ง<div className="inline-block border-b border-dotted border-slate-400 w-28 mx-2 min-h-[20px]"></div></div>
-                                <div>วันที่<div className="inline-block border-b border-dotted border-slate-400 w-28 mx-2 min-h-[20px]"></div></div>
+                                <div>ลงชื่อ<div className="inline-block border-b border-dotted border-slate-400 w-32 mx-2 px-2 pb-2" style={{ minHeight: '1.2em' }}></div>เจ้าหน้าที่</div>
+                                <div>(<div className="inline-block border-b border-dotted border-slate-400 w-32 px-2 pb-2" style={{ minHeight: '1.2em' }}></div>)</div>
+                                <div>ตำแหน่ง<div className="inline-block border-b border-dotted border-slate-400 w-28 mx-2 px-2 pb-2" style={{ minHeight: '1.2em' }}></div></div>
+                                <div>วันที่<div className="inline-block border-b border-dotted border-slate-400 w-28 mx-2 px-2 pb-2" style={{ minHeight: '1.2em' }}></div></div>
                             </div>
                         </div>
                     </div>
