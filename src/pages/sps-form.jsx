@@ -227,51 +227,25 @@ export default function SPSFormPage() {
                                                     <Label>เลขที่บัญชี (10 หลัก)</Label>
                                                     <Input
                                                         value={formData.accountNumber}
-                                                        onChange={(e) => {
-                                                            const val = e.target.value.replace(/[^0-9]/g, '');
-                                                            if (val.length <= 10) {
-                                                                setFormData({ ...formData, accountNumber: val });
-                                                            }
-                                                        }}
+                                                        onChange={(e) => setFormData({ ...formData, accountNumber: e.target.value })}
                                                         placeholder="เลขที่บัญชี"
-                                                        maxLength="10"
                                                     />
-                                                    {formData.accountNumber && formData.accountNumber.length !== 10 && (
-                                                        <p className="text-red-500 text-sm mt-1">ต้องเป็น 10 ตัวพอดี</p>
-                                                    )}
                                                 </div>
                                                 <div>
-                                                    <Label>ลำดับที่สาขา (5 หลัก)</Label>
+                                                    <Label>ลำดับที่สาขา</Label>
                                                     <Input
                                                         value={formData.branchOrder}
-                                                        onChange={(e) => {
-                                                            const val = e.target.value.replace(/[^0-9]/g, '');
-                                                            if (val.length <= 5) {
-                                                                setFormData({ ...formData, branchOrder: val });
-                                                            }
-                                                        }}
+                                                        onChange={(e) => setFormData({ ...formData, branchOrder: e.target.value })}
                                                         placeholder="ลำดับที่สาขา"
-                                                        maxLength="5"
                                                     />
-                                                    {formData.branchOrder && formData.branchOrder.length !== 5 && (
-                                                        <p className="text-red-500 text-sm mt-1">ต้องเป็น 5 ตัวพอดี</p>
-                                                    )}
                                                 </div>
                                                 <div>
                                                     <Label>วันที่ผู้ประกันตนเข้าทำงาน</Label>
-                                                    <div className="flex items-center gap-2">
-                                                        <Input
-                                                            type="date"
-                                                            value={formData.employmentStartDate || (applicant?.start_work_date ? new Date(applicant.start_work_date).toISOString().split('T')[0] : '')}
-                                                            onChange={(e) => setFormData({ ...formData, employmentStartDate: e.target.value })}
-                                                            className="flex-1"
-                                                        />
-                                                        {(formData.employmentStartDate || applicant?.start_work_date) && (
-                                                            <span className="text-sm text-slate-600 whitespace-nowrap">
-                                                                ({new Date(formData.employmentStartDate || applicant.start_work_date).toLocaleDateString('th-TH', { day: '2-digit', month: '2-digit', year: 'numeric' })})
-                                                            </span>
-                                                        )}
-                                                    </div>
+                                                    <Input
+                                                        type="date"
+                                                        value={formData.employmentStartDate || (applicant?.start_work_date ? new Date(applicant.start_work_date).toISOString().split('T')[0] : '')}
+                                                        onChange={(e) => setFormData({ ...formData, employmentStartDate: e.target.value })}
+                                                    />
                                                 </div>
                                                 <div>
                                                     <Label>ประเภทการจ้าง</Label>

@@ -44,20 +44,27 @@ export default function SPS103Document({ applicant, formData = {} }) {
                             </div>
                             <div className="flex items-center">
                                 <span className="mb-2">เลขที่บัญชี</span>
-                                <span className="border-b border-dotted border-slate-400 flex-1 ml-2 min-h-[24px] pb-1 inline-block text-center font-mono">
-                                    {formData.accountNumber || '\u00A0'}
-                                </span>
+                                <div className="flex items-center ml-2 mt-2">
+                                    {Array(10).fill('').map((_, idx) => (
+                                        <React.Fragment key={idx}>
+                                            <div className="p-2 border border-black"></div>
+                                            {(idx === 1 || idx === 8) && <div className="w-2 border-b border-black mb-0.5"></div>}
+                                        </React.Fragment>
+                                    ))}
+                                </div>
                             </div>
                             <div className="flex items-center">
                                 <span className="mb-2">ลำดับที่สาขา</span>
-                                <span className="border-b border-dotted border-slate-400 flex-1 ml-2 min-h-[24px] pb-1 inline-block text-center font-mono">
-                                    {formData.branchOrder || '\u00A0'}
-                                </span>
+                                <div className="flex ml-2 mt-2">
+                                    {Array(5).fill('').map((_, idx) => (
+                                        <div key={idx} className="p-2 border border-black"></div>
+                                    ))}
+                                </div>
                             </div>
                             <div className="flex items-center">
                                 <span className="mb-2">วันที่ผู้ประกันตนเข้าทำงาน</span>
-                                <span className="border-b border-dotted border-slate-400 flex-1 ml-2 inline-block min-h-[24px] pb-1 text-center">
-                                    {(formData.employmentStartDate || applicant?.start_work_date) ? new Date(formData.employmentStartDate || applicant.start_work_date).toLocaleDateString('th-TH', { day: '2-digit', month: '2-digit', year: 'numeric' }) : '\u00A0'}
+                                <span className="border-b border-dotted border-slate-400 flex-1 ml-2 inline-block min-h-[24px] pb-1">
+                                    {applicant?.start_work_date ? new Date(applicant.start_work_date).toLocaleDateString('th-TH') : '\u00A0'}
                                 </span>
                             </div>
                             <div className="flex items-center gap-2">
