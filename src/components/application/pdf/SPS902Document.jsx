@@ -255,7 +255,7 @@ export default function SPS902Document({ applicant, formData = {} }) {
                             </div>
 
                             {/* End Date */}
-                            <div className="text-xs">
+                            <div className="text-xs mb-0.5">
                                 <span>สิ้นสภาพความเป็นลูกจ้างเมื่อวันที่</span>
                                 <span className={`border-b border-dotted border-slate-400 inline-block min-w-[40px] text-center px-2 pb-1 mx-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>{'\u00A0'}</span>
                                 <span>เดือน</span>
