@@ -17,7 +17,7 @@ export default function SPS902Document({ applicant, formData = {} }) {
             }}
         >
             {/* Header */}
-            <div className="flex items-center justify-between mb-3 pb-2">
+            <div className="flex items-center justify-between mb-0.5 pb-2">
                 <img 
                     src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6937c0bd189dcfc8f3a84e3b/7e3f209fb_image.png" 
                     alt="สำนักงานประกันสังคม" 
@@ -26,7 +26,7 @@ export default function SPS902Document({ applicant, formData = {} }) {
                 />
                 <h1 className="text-[18px] font-bold">แบบเลือกสถานพยาบาลในการรับบริการทางการแพทย์</h1>
                 <div className="text-right text-xs space-y-0.5">
-                    <div className="font-bold mt-1">สปส. 9-02</div>
+                    <div className="font-bold mt-3">สปส. 9-02</div>
                     <div className="border border-black rounded-lg p-2 text-start w-[200px] ml-auto">
                         {/* เลขที่รับ */}
                         <div className="flex items-end gap-2">
