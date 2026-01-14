@@ -17,7 +17,7 @@ export default function SPS902Document({ applicant, formData = {} }) {
             }}
         >
             {/* Header */}
-            <div className="flex items-center justify-between mb-3 border-b border-slate-900 pb-2">
+            <div className="flex items-center justify-between mb-3 pb-2">
                 <img 
                     src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6937c0bd189dcfc8f3a84e3b/7e3f209fb_image.png" 
                     alt="สำนักงานประกันสังคม" 
@@ -54,7 +54,7 @@ export default function SPS902Document({ applicant, formData = {} }) {
 
             {/* Section 1: รายละเอียดผู้ประกันตน */}
             <div className="border border-slate-900 mb-4">
-                <div className="border-b border-slate-900 p-2 bg-slate-100 font-bold text-sm">
+                <div className="border-b border-slate-900 px-2 py-1 bg-slate-100 font-bold text-sm">
                     1. รายละเอียดผู้ประกันตน
                 </div>
 
