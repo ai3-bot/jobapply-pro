@@ -451,7 +451,7 @@ export default function SPS902Document({ applicant, formData = {} }) {
                         <div className="flex text-center text-xs">
                             <div className="text-xs">ลงวันที่</div>
                             <div className={`border-b border-dotted border-slate-400 inline-block w-20 text-center px-2 pb-1 mx-auto`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}></div>
-                            <div className="text-xs mt-1">เดือน........... พ.ศ.........</div>
+                            <div className="text-xs">เดือน........... พ.ศ.........</div>
                         </div>
                     </div>
                 </div>
