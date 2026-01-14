@@ -17,7 +17,7 @@ export default function PDFCheckbox({
     borderColor = "border-black",
     checkType = "square",
     checkColor = "bg-black",
-    checkSize = "w-2 h-2"
+    checkSize = "w-3 h-3"
 }) {
     const renderCheck = () => {
         if (!checked) return null;
