@@ -226,7 +226,7 @@ export default function SPS902Document({ applicant, formData = {} }) {
 
                             {/* Account and Branch */}
                             <div>
-                                <div>
+                                <div className="flex gap-2">
                                     <div className="text-xs mb-0.5">เลขที่บัญชี</div>
                                     <div className="flex items-center ml-2 mt-1.5">
                                         {Array(10).fill('').map((_, idx) => (
@@ -242,7 +242,7 @@ export default function SPS902Document({ applicant, formData = {} }) {
                             </div>
 
                             <div>
-                                <div>
+                                <div className="flex gap-2">
                                     <div className="text-xs mb-0.5">ลำดับที่สาขา</div>
                                     <div className="flex ml-2 mt-1.5">
                                         {Array(5).fill('').map((_, idx) => (
