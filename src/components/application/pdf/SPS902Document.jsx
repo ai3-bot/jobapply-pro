@@ -116,7 +116,7 @@ export default function SPS902Document({ applicant, formData = {} }) {
                 <div className="grid grid-cols-5 gap-0 divide-x divide-slate-900">
                     {/* Left Column - Section 33 */}
                     <div className="col-span-2 border-slate-900">
-                        <div className="text-xs font-bold px-3 py-2 border-b border-slate-900">
+                        <div className="text-xs font-bold px-3 pb-2 pt-1 border-b border-slate-900">
                             สำหรับผู้ประกันตนมาตรา 33
                         </div>
                         <div className="p-3">
@@ -157,17 +157,17 @@ export default function SPS902Document({ applicant, formData = {} }) {
                             <div className="mb-2 text-xs">
                                 <div className="mb-1">
                                     <span>เข้างานเมื่อวันที่</span>
-                                    <span className={`border-b border-dotted border-slate-400 inline-block min-w-[40px] text-center px-2 pb-1 mx-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>........</span>
+                                    <span className={`border-b border-dotted border-slate-400 inline-block min-w-[40px] text-center px-2 pb-1 mx-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>{'\u00A0'}</span>
                                     <span>เดือน</span>
-                                    <span className={`border-b border-dotted border-slate-400 inline-block min-w-[60px] text-center px-2 pb-1 mx-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>.............</span>
+                                    <span className={`border-b border-dotted border-slate-400 inline-block min-w-[60px] text-center px-2 pb-1 mx-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>{'\u00A0'}</span>
                                     <span>พ.ศ.</span>
-                                    <span className={`border-b border-dotted border-slate-400 inline-block min-w-[40px] text-center px-2 pb-1 mx-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>.........</span>
+                                    <span className={`border-b border-dotted border-slate-400 inline-block min-w-[40px] text-center px-2 pb-1 mx-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>{'\u00A0'}</span>
                                 </div>
                                 <div>
                                     <span>ได้รับค่าจ้างงวดสุดท้าย เมื่อเดือน</span>
-                                    <span className={`border-b border-dotted border-slate-400 inline-block min-w-[60px] text-center px-2 pb-1 mx-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>............</span>
+                                    <span className={`border-b border-dotted border-slate-400 inline-block min-w-[60px] text-center px-2 pb-1 mx-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>{'\u00A0'}</span>
                                     <span>พ.ศ.</span>
-                                    <span className={`border-b border-dotted border-slate-400 inline-block min-w-[40px] text-center px-2 pb-1 mx-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>.........</span>
+                                    <span className={`border-b border-dotted border-slate-400 inline-block min-w-[40px] text-center px-2 pb-1 mx-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>{'\u00A0'}</span>
                                 </div>
                             </div>
                         </div>
