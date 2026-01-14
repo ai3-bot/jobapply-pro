@@ -396,13 +396,13 @@ export default function SPS902Document({ applicant, formData = {} }) {
                     <div>
                         <span>และขอรับรองว่าข้อความข้างต้นเป็นจริงทุกประการ</span>
                     </div>
-                    <div className="flex justify-end items-end pt-4 gap-8">
+                    <div className="grid justify-end items-end pt-4 gap-8">
                         <div className="flex items-baseline gap-2 text-xs">
                             <span>ลงชื่อ</span>
                             <div className="border-b border-dotted border-slate-400 w-48 inline-block pb-0.5"></div>
                             <span>ผู้ประกันตน/ ผู้มีสิทธิ</span>
                         </div>
-                        <div className="flex items-center gap-1 text-xs">
+                        <div className="grid items-center gap-1 text-xs">
                             <span>ลงวันที่</span>
                             <span className={`border-b border-dotted border-slate-400 inline-block w-8 text-center px-1 pb-0.5`} style={{ minHeight: '1.2em' }}>{'\u00A0'}</span>
                             <span>เดือน</span>
