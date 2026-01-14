@@ -291,7 +291,7 @@ export default function SPS902Document({ applicant, formData = {} }) {
                                 <span className="mb-1">ขอเปลี่ยนสถานพยาบาล (โปรดระบุเหตุผล)</span>
                             </label>
                             <div className="ml-4 space-y-1">
-                                <div className="font-bold">เหตุผล</div>
+                                <div className="font-bold mb-1">เหตุผล</div>
                                 <label className="flex items-start gap-2">
                                     <PDFCheckbox checked={formData.changeReason === 'annual'} />
                                     <span className="mb-1">เปลี่ยนสถานพยาบาลประจำปี</span>
@@ -301,7 +301,7 @@ export default function SPS902Document({ applicant, formData = {} }) {
                                     <span className="mb-1">เปลี่ยนสถานพยาบาลระหว่างปี</span>
                                 </label>
                                 <div className="ml-4 space-y-1">
-                                    <div className="font-bold">เนื่องจาก</div>
+                                    <div className="font-bold mb-1">เนื่องจาก</div>
                                     <label className="flex items-start gap-2">
                                         <PDFCheckbox checked={formData.changeReasonDetail === 'address'} />
                                         <span className="mb-1">ย้ายที่อยู่</span>
