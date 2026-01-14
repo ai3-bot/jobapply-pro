@@ -188,75 +188,73 @@ export default function SPS902Document({ applicant, formData = {} }) {
 
                         <div className="p-2">
 
-                        </div>
-
-
-                        {/* Address */}
-                        <div className="mb-2 text-xs">
-                            <div className="mb-1">
-                                <span>ที่อยู่ปัจจุบันเลขที่</span>
-                                <span className={`border-b border-dotted border-slate-400 inline-block min-w-[80px] text-center px-2 pb-1 mx-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>{personalData.current_address?.number || '\u00A0'}</span>
-                                <span>หมู่ที่</span>
-                                <span className={`border-b border-dotted border-slate-400 inline-block min-w-[60px] text-center px-2 pb-1 mx-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>{personalData.current_address?.moo || '\u00A0'}</span>
-                                <span>ตรอก/ซอย</span>
-                                <span className={`border-b border-dotted border-slate-400 inline-block min-w-[100px] text-center px-2 pb-1 mx-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>{personalData.current_address?.road || '\u00A0'}</span>
-                            </div>
-                            <div className="mb-1">
-                                <span>ถนน</span>
-                                <span className={`border-b border-dotted border-slate-400 inline-block min-w-[150px] text-center px-2 pb-1 mx-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>{'\u00A0'}</span>
-                                <span>แขวง/ตำบล</span>
-                                <span className={`border-b border-dotted border-slate-400 inline-block min-w-[150px] text-center px-2 pb-1 mx-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>{personalData.current_address?.subdistrict || '\u00A0'}</span>
-                            </div>
-                            <div className="mb-1">
-                                <span>เขต/อำเภอ</span>
-                                <span className={`border-b border-dotted border-slate-400 inline-block min-w-[150px] text-center px-2 pb-1 mx-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>{personalData.current_address?.district || '\u00A0'}</span>
-                                <span>จังหวัด</span>
-                                <span className={`border-b border-dotted border-slate-400 inline-block min-w-[150px] text-center px-2 pb-1 mx-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>{personalData.current_address?.province || '\u00A0'}</span>
-                            </div>
-                            <div className="mb-1">
-                                <span>รหัสไปรษณีย์</span>
-                                <span className={`border-b border-dotted border-slate-400 inline-block min-w-[80px] text-center px-2 pb-1 mx-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>{personalData.current_address?.zipcode || '\u00A0'}</span>
-                                <span>โทรศัพท์มือถือ</span>
-                                <span className={`border-b border-dotted border-slate-400 inline-block min-w-[120px] text-center px-2 pb-1 mx-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>{personalData.mobile_phone || '\u00A0'}</span>
-                            </div>
-                        </div>
-
-                        {/* Last Employer */}
-                        <div className="mb-2 text-xs">
-                            <span>ชื่อสถานประกอบการสุดท้ายที่ทำงาน</span>
-                            <span className={`border-b border-dotted border-slate-400 inline-block min-w-[200px] text-center px-2 pb-1 mx-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>{'\u00A0'}</span>
-                        </div>
-
-                        {/* Account and Branch */}
-                        <div className="grid grid-cols-2 gap-2 mb-2">
-                            <div>
-                                <div className="text-xs mb-0.5">เลขที่บัญชี</div>
-                                <div className="flex gap-0.5">
-                                    {Array(10).fill('').map((_, idx) => (
-                                        <div key={idx} className="w-3.5 h-5 border border-slate-400 flex items-center justify-center text-xs">
-                                        </div>
-                                    ))}
+                            {/* Address */}
+                            <div className="mb-2 text-xs">
+                                <div className="mb-1">
+                                    <span>ที่อยู่ปัจจุบันเลขที่</span>
+                                    <span className={`border-b border-dotted border-slate-400 inline-block min-w-[80px] text-center px-2 pb-1 mx-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>{personalData.current_address?.number || '\u00A0'}</span>
+                                    <span>หมู่ที่</span>
+                                    <span className={`border-b border-dotted border-slate-400 inline-block min-w-[60px] text-center px-2 pb-1 mx-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>{personalData.current_address?.moo || '\u00A0'}</span>
+                                    <span>ตรอก/ซอย</span>
+                                    <span className={`border-b border-dotted border-slate-400 inline-block min-w-[100px] text-center px-2 pb-1 mx-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>{personalData.current_address?.road || '\u00A0'}</span>
+                                </div>
+                                <div className="mb-1">
+                                    <span>ถนน</span>
+                                    <span className={`border-b border-dotted border-slate-400 inline-block min-w-[150px] text-center px-2 pb-1 mx-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>{'\u00A0'}</span>
+                                    <span>แขวง/ตำบล</span>
+                                    <span className={`border-b border-dotted border-slate-400 inline-block min-w-[150px] text-center px-2 pb-1 mx-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>{personalData.current_address?.subdistrict || '\u00A0'}</span>
+                                </div>
+                                <div className="mb-1">
+                                    <span>เขต/อำเภอ</span>
+                                    <span className={`border-b border-dotted border-slate-400 inline-block min-w-[150px] text-center px-2 pb-1 mx-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>{personalData.current_address?.district || '\u00A0'}</span>
+                                    <span>จังหวัด</span>
+                                    <span className={`border-b border-dotted border-slate-400 inline-block min-w-[150px] text-center px-2 pb-1 mx-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>{personalData.current_address?.province || '\u00A0'}</span>
+                                </div>
+                                <div className="mb-1">
+                                    <span>รหัสไปรษณีย์</span>
+                                    <span className={`border-b border-dotted border-slate-400 inline-block min-w-[80px] text-center px-2 pb-1 mx-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>{personalData.current_address?.zipcode || '\u00A0'}</span>
+                                    <span>โทรศัพท์มือถือ</span>
+                                    <span className={`border-b border-dotted border-slate-400 inline-block min-w-[120px] text-center px-2 pb-1 mx-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>{personalData.mobile_phone || '\u00A0'}</span>
                                 </div>
                             </div>
-                            <div>
-                                <div className="text-xs mb-0.5">ลำดับที่สาขา</div>
-                                <div className="flex gap-0.5">
-                                    {Array(4).fill('').map((_, idx) => (
-                                        <div key={idx} className="w-4 h-5 border border-slate-400 flex items-center justify-center text-xs">
-                                        </div>
-                                    ))}
+
+                            {/* Last Employer */}
+                            <div className="mb-2 text-xs">
+                                <span>ชื่อสถานประกอบการสุดท้ายที่ทำงาน</span>
+                                <span className={`border-b border-dotted border-slate-400 inline-block min-w-[200px] text-center px-2 pb-1 mx-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>{'\u00A0'}</span>
+                            </div>
+
+                            {/* Account and Branch */}
+                            <div className="grid grid-cols-2 gap-2 mb-2">
+                                <div>
+                                    <div className="text-xs mb-0.5">เลขที่บัญชี</div>
+                                    <div className="flex gap-0.5">
+                                        {Array(10).fill('').map((_, idx) => (
+                                            <div key={idx} className="w-3.5 h-5 border border-slate-400 flex items-center justify-center text-xs">
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="text-xs mb-0.5">ลำดับที่สาขา</div>
+                                    <div className="flex gap-0.5">
+                                        {Array(4).fill('').map((_, idx) => (
+                                            <div key={idx} className="w-4 h-5 border border-slate-400 flex items-center justify-center text-xs">
+                                            </div>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        {/* End Date */}
-                        <div className="text-xs">
-                            <span>สิ้นสภาพความเป็นลูกจ้างเมื่อวันที่</span>
-                            <span className={`border-b border-dotted border-slate-400 inline-block min-w-[40px] text-center px-2 pb-1 mx-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>........</span>
-                            <span>เดือน</span>
-                            <span className={`border-b border-dotted border-slate-400 inline-block min-w-[60px] text-center px-2 pb-1 mx-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>............</span>
-                            <span>พ.ศ.</span>
-                            <span className={`border-b border-dotted border-slate-400 inline-block min-w-[40px] text-center px-2 pb-1 mx-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>.........</span>
+                            {/* End Date */}
+                            <div className="text-xs">
+                                <span>สิ้นสภาพความเป็นลูกจ้างเมื่อวันที่</span>
+                                <span className={`border-b border-dotted border-slate-400 inline-block min-w-[40px] text-center px-2 pb-1 mx-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>........</span>
+                                <span>เดือน</span>
+                                <span className={`border-b border-dotted border-slate-400 inline-block min-w-[60px] text-center px-2 pb-1 mx-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>............</span>
+                                <span>พ.ศ.</span>
+                                <span className={`border-b border-dotted border-slate-400 inline-block min-w-[40px] text-center px-2 pb-1 mx-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>.........</span>
+                            </div>
                         </div>
                     </div>
                 </div>
