@@ -399,11 +399,11 @@ export default function SPS902Document({ applicant, formData = {} }) {
                     <div className="flex justify-end items-start pt-4">
                         <div className="flex gap-4">
                             <div className="text-center">
-                                <p className="text-xs">ลงชื่อ</p>
-                                <div className="border-b border-dotted border-slate-400 w-48 mb-1"></div>
-                                <p className="text-xs">(ผู้ประกันตน/ ผู้มีสิทธิ)</p>
-                            </div>
-                            <div className="text-center">
+                                <div>
+                                    <p className="text-xs">ลงชื่อ</p>
+                                    <div className="border-b border-dotted border-slate-400 w-48 mb-1"></div>
+                                    <p className="text-xs">(ผู้ประกันตน/ ผู้มีสิทธิ)</p>
+                                </div>
                                 <p className="text-xs mb-1">ลงวันที่</p>
                                 <div className="flex items-center gap-1">
                                     <span className={`border-b border-dotted border-slate-400 inline-block w-8 text-center px-1 pb-0.5`} style={{ minHeight: '1.2em' }}>{'\u00A0'}</span>
