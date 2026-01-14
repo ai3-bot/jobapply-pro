@@ -87,11 +87,14 @@ export default function SPS902Document({ applicant, formData = {} }) {
                     {/* ID Card and DOB */}
                     <div className="flex items-center gap-1 text-xs">
                         <span>เลขประจำตัวประชาชน</span>
-                        <div className="flex gap-0.5">
-                            {(personalData.id_card || '').split('').concat(Array(13).fill('')).slice(0, 13).map((digit, idx) => (
-                                <div key={idx} className="w-4 h-5 border border-slate-400 flex items-center justify-center text-xs">
-                                    {digit}
-                                </div>
+                        <div className="flex items-center">
+                            {Array(13).fill('').map((_, idx) => (
+                                <React.Fragment key={idx}>
+                                    <div className="pb-1 border border-black text-center text-xs font-semibold min-w-[20px] min-h-[20px]">
+                                        {personalData.id_card ? personalData.id_card[idx] : '\u00A0'}
+                                    </div>
+                                    {(idx === 0 || idx === 4 || idx === 9 || idx === 11) && <div className="w-2 border-b border-black mb-0.5"></div>}
+                                </React.Fragment>
                             ))}
                         </div>
                         <span className="ml-2">เกิด วันที่</span>
