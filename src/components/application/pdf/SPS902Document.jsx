@@ -280,39 +280,39 @@ export default function SPS902Document({ applicant, formData = {} }) {
                         <div className="space-y-1 text-xs">
                             <label className="flex items-start gap-2">
                                 <PDFCheckbox checked={formData.hospitalSelection === 'not_selected'} />
-                                <span className="mb-0.5">ยังไม่ได้เลือกสถานพยาบาล</span>
+                                <span className="mb-1">ยังไม่ได้เลือกสถานพยาบาล</span>
                             </label>
                             <label className="flex items-start gap-2">
                                 <PDFCheckbox checked={formData.hospitalSelection === 'use_old'} />
-                                <span className="mb-0.5">ขอใช้สถานพยาบาลเดิม (กรณี มาตรา 38 และ 41)</span>
+                                <span className="mb-1">ขอใช้สถานพยาบาลเดิม (กรณี มาตรา 38 และ 41)</span>
                             </label>
                             <label className="flex items-start gap-2">
                                 <PDFCheckbox checked={formData.hospitalSelection === 'change'} />
-                                <span className="mb-0.5">ขอเปลี่ยนสถานพยาบาล (โปรดระบุเหตุผล)</span>
+                                <span className="mb-1">ขอเปลี่ยนสถานพยาบาล (โปรดระบุเหตุผล)</span>
                             </label>
                             <div className="ml-4 space-y-1">
                                 <div className="font-bold">เหตุผล</div>
                                 <label className="flex items-start gap-2">
                                     <PDFCheckbox checked={formData.changeReason === 'annual'} />
-                                    <span className="mb-0.5">เปลี่ยนสถานพยาบาลประจำปี</span>
+                                    <span className="mb-1">เปลี่ยนสถานพยาบาลประจำปี</span>
                                 </label>
                                 <label className="flex items-start gap-2">
                                     <PDFCheckbox checked={formData.changeReason === 'during_year'} />
-                                    <span className="mb-0.5">เปลี่ยนสถานพยาบาลระหว่างปี</span>
+                                    <span className="mb-1">เปลี่ยนสถานพยาบาลระหว่างปี</span>
                                 </label>
                                 <div className="ml-4 space-y-1">
                                     <div className="font-bold">เนื่องจาก</div>
                                     <label className="flex items-start gap-2">
                                         <PDFCheckbox checked={formData.changeReasonDetail === 'address'} />
-                                        <span className="mb-0.5">ย้ายที่อยู่</span>
+                                        <span className="mb-1">ย้ายที่อยู่</span>
                                     </label>
                                     <label className="flex items-start gap-2">
                                         <PDFCheckbox checked={formData.changeReasonDetail === 'workplace'} />
-                                        <span className="mb-0.5">เปลี่ยนสถานที่ทำงาน</span>
+                                        <span className="mb-1">เปลี่ยนสถานที่ทำงาน</span>
                                     </label>
                                     <label className="flex items-start gap-2">
                                         <PDFCheckbox checked={formData.changeReasonDetail === 'other'} />
-                                        <span className="mb-0.5">อื่นๆ (ระบุ)</span>
+                                        <span className="mb-1">อื่นๆ (ระบุ)</span>
                                         <span className={`border-b border-dotted border-slate-400 inline-block w-20 text-center px-2 pb-1`} style={{ minHeight: '1.2em' }}>
                                             {'' || '\u00A0'}
                                         </span>
@@ -333,7 +333,7 @@ export default function SPS902Document({ applicant, formData = {} }) {
                         <div className="mb-3 text-xs">
                             <label className="flex items-start gap-2 mb-1">
                                 <PDFCheckbox checked={formData.selectHospital === 'yes'} />
-                                <span className=" mb-0.5">ข้าพเจ้า (ผู้ประกันตน/คนพิการซึ่งเป็นผู้ประกันตน/ผู้มีสิทธิ)ขอเลือกสถานพยาบาล</span>
+                                <span className=" mb-1">ข้าพเจ้า (ผู้ประกันตน/คนพิการซึ่งเป็นผู้ประกันตน/ผู้มีสิทธิ)ขอเลือกสถานพยาบาล</span>
                             </label>
                             <div className="space-y-2 ml-1">
                                 <div className="flex items-center gap-1">
@@ -383,7 +383,7 @@ export default function SPS902Document({ applicant, formData = {} }) {
                         <div className="text-xs">
                             <label className="flex items-start gap-2">
                                 <PDFCheckbox checked={formData.disabledPerson === 'yes'} />
-                                <span className="mb-0.5">ข้าพเจ้าคนพิการซึ่งเป็นผู้ประกันตน ขอรับบริการสาธารณสุขจาก สำนักงานหลักประกันสุขภาพแห่งชาติ (สปสช.)</span>
+                                <span className="mb-1">ข้าพเจ้าคนพิการซึ่งเป็นผู้ประกันตน ขอรับบริการสาธารณสุขจาก สำนักงานหลักประกันสุขภาพแห่งชาติ (สปสช.)</span>
                             </label>
                         </div>
                     </div>
