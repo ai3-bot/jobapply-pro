@@ -141,6 +141,9 @@ export default function SPS902Document({ applicant, formData = {} }) {
                                         ))}
                                     </div>
                                 </div>
+                            </div>
+                            
+                            <div>
                                 <div>
                                     <div className="text-xs mb-0.5">ลำดับที่สาขา</div>
                                     <div className="flex gap-0.5">
