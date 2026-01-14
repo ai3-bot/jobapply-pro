@@ -122,7 +122,7 @@ export default function SPS902Document({ applicant, formData = {} }) {
                         <div className="p-3">
 
                             {/* Current Employer */}
-                            <div className="mb-2">
+                            <div>
                                 <div className="text-xs mb-1">ปัจจุบันทำงานกับสถานประกอบการชื่อ</div>
                                 <div className={`border-b border-dotted border-slate-400 inline-block w-full text-center px-2 pb-1 mb-1 ${formData.employerName}`} style={{ verticalAlign: 'baseline', ...(!formData.employerName && { minHeight: '1.2em' }) }}>
                                     {formData.employerName || '\u00A0'}
@@ -130,33 +130,34 @@ export default function SPS902Document({ applicant, formData = {} }) {
                             </div>
 
                             {/* Account and Branch */}
-                            <div className="mb-2">
-                                <div className="text-xs mb-0.5">เลขที่บัญชี</div>
-                                <div className="flex items-center ml-2 mt-2">
-                                    {Array(10).fill('').map((_, idx) => (
-                                        <React.Fragment key={idx}>
-                                            <div className="pb-1 border border-black text-center text-xs font-semibold min-w-[20px] min-h-[20px]">
-                                                {formData.accountNumber && formData.accountNumber[idx] ? formData.accountNumber[idx] : '\u00A0'}
-                                            </div>
-                                            {(idx === 1 || idx === 8) && <div className="w-2 border-b border-black mb-0.5"></div>}
-                                        </React.Fragment>
-                                    ))}
+                            <div className="grid grid-cols-2 gap-2">
+                                <div>
+                                    <div className="text-xs mb-0.5">เลขที่บัญชี</div>
+                                    <div className="flex items-center ml-2 mt-2">
+                                        {Array(10).fill('').map((_, idx) => (
+                                            <React.Fragment key={idx}>
+                                                <div className="pb-1 border border-black text-center text-xs font-semibold min-w-[20px] min-h-[20px]">
+                                                    {formData.accountNumber && formData.accountNumber[idx] ? formData.accountNumber[idx] : '\u00A0'}
+                                                </div>
+                                                {(idx === 2 || idx === 9) && <div className="w-2 border-b border-black mb-0.5"></div>}
+                                            </React.Fragment>
+                                        ))}
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            <div>
-                                <div className="text-xs mb-0.5">ลำดับที่สาขา</div>
-                                <div className="flex ml-2 mt-2">
-                                    {Array(5).fill('').map((_, idx) => (
-                                        <div key={idx} className="pb-1 border border-black text-center text-xs font-semibold min-w-[20px] min-h-[20px]">
-                                            {formData.branchOrder && formData.branchOrder[idx] ? formData.branchOrder[idx] : '\u00A0'}
-                                        </div>
-                                    ))}
+                                <div>
+                                    <div className="text-xs mb-0.5">ลำดับที่สาขา</div>
+                                    <div className="flex ml-2 mt-2">
+                                        {Array(5).fill('').map((_, idx) => (
+                                            <div key={idx} className="pb-1 border border-black text-center text-xs font-semibold min-w-[20px] min-h-[20px]">
+                                                {formData.branchNumber && formData.branchNumber[idx] ? formData.branchNumber[idx] : '\u00A0'}
+                                            </div>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
 
                             {/* Start Date and Last Pay */}
-                            <div className="mb-2 text-xs">
+                            <div className="text-xs">
                                 <div className="mb-1">
                                     <span>เข้างานเมื่อวันที่</span>
                                     <span className={`border-b border-dotted border-slate-400 inline-block min-w-[40px] text-center px-2 pb-1 mx-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>{'\u00A0'}</span>
