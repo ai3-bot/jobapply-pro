@@ -432,7 +432,10 @@ export default function SPS902Document({ applicant, formData = {} }) {
                             <PDFCheckbox checked={formData.staffDecision === 'disapprove'} />
                             <span>ไม่เห็นสมควรจัดสถานพยาบาล ระบุเหตุผล</span>
                         </label>
-                        <div className={`border-b border-dotted border-slate-400 inline-block w-full text-center px-2 pb-1 ml-5`} style={{ verticalAlign: 'baseline', minHeight: '2.5em' }}>{'\u00A0'}</div>
+                        <div className="ml-5 space-y-1">
+                            <div className={`border-b border-dotted border-slate-400 w-full text-center px-2 pb-1`} style={{ minHeight: '1.2em' }}>{formData.reasonLine1 || '\u00A0'}</div>
+                            <div className={`border-b border-dotted border-slate-400 w-full text-center px-2 pb-1`} style={{ minHeight: '1.2em' }}>{formData.reasonLine2 || '\u00A0'}</div>
+                        </div>
                     </div>
 
                     <div className="flex justify-between items-end mt-3">
