@@ -429,11 +429,11 @@ export default function SPS902Document({ applicant, formData = {} }) {
                     <div className="space-y-1 mb-3">
                         <label className="flex items-center gap-2 text-xs">
                             <PDFCheckbox checked={formData.staffDecision === 'approve'} />
-                            <span>เห็นสมควรจัดสถานพยาบาล</span>
+                            <span className="mb-1">เห็นสมควรจัดสถานพยาบาล</span>
                         </label>
                         <div className="flex items-baseline gap-2 text-xs mb-1">
                             <PDFCheckbox checked={formData.staffDecision === 'disapprove'} />
-                            <span>ไม่เห็นสมควรจัดสถานพยาบาล ระบุเหตุผล</span>
+                            <span className="mb-1">ไม่เห็นสมควรจัดสถานพยาบาล ระบุเหตุผล</span>
                             <div className={`border-b border-dotted border-slate-400 flex-1 pb-0.5`} style={{ minHeight: '1.2em' }}>{formData.reasonLine1 || '\u00A0'}</div>
                         </div>
                         <div className="ml-5">
