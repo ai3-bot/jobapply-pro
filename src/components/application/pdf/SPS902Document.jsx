@@ -189,7 +189,7 @@ export default function SPS902Document({ applicant, formData = {} }) {
                         <div className="p-2">
 
                             {/* Address */}
-                            <div className="mb-2 text-xs">
+                            <div className="text-xs">
                                 <div className="mb-1">
                                     <span>ที่อยู่ปัจจุบันเลขที่</span>
                                     <span className={`border-b border-dotted border-slate-400 inline-block min-w-[80px] text-center px-2 pb-1 mx-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>{personalData.current_address?.number || '\u00A0'}</span>
@@ -219,13 +219,13 @@ export default function SPS902Document({ applicant, formData = {} }) {
                             </div>
 
                             {/* Last Employer */}
-                            <div className="mb-2 text-xs">
+                            <div className="text-xs">
                                 <span>ชื่อสถานประกอบการสุดท้ายที่ทำงาน</span>
                                 <span className={`border-b border-dotted border-slate-400 inline-block min-w-[200px] text-center px-2 pb-1 mx-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>{'\u00A0'}</span>
                             </div>
 
                             {/* Account and Branch */}
-                            <div className="grid grid-cols-2 gap-2 mb-2">
+                            <div>
                                 <div>
                                     <div className="text-xs mb-0.5">เลขที่บัญชี</div>
                                     <div className="flex gap-0.5">
@@ -235,6 +235,9 @@ export default function SPS902Document({ applicant, formData = {} }) {
                                         ))}
                                     </div>
                                 </div>
+                            </div>
+
+                            <div>
                                 <div>
                                     <div className="text-xs mb-0.5">ลำดับที่สาขา</div>
                                     <div className="flex gap-0.5">
