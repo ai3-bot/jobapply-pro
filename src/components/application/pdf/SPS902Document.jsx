@@ -65,15 +65,15 @@ export default function SPS902Document({ applicant, formData = {} }) {
                         <span className="mb-0.5">ข้าพเจ้า</span>
                         <label className="flex items-center gap-0.5">
                             <PDFCheckbox checked={personalData.prefix === 'นาย'} checkType={'check'}/>
-                            <span className="text-xs">นาย</span>
+                            <span className="text-xs mb-0.5">นาย</span>
                         </label>
                         <label className="flex items-center gap-0.5">
                             <PDFCheckbox checked={personalData.prefix === 'นางสาว'} checkType={'check'}/>
-                            <span className="text-xs">นางสาว</span>
+                            <span className="text-xs mb-0.5">นางสาว</span>
                         </label>
                         <label className="flex items-center gap-0.5">
                             <PDFCheckbox checked={personalData.prefix === 'นาง'} checkType={'check'}/>
-                            <span className="text-xs">นาง</span>
+                            <span className="text-xs mb-0.5">นาง</span>
                         </label>
                         <span className={`border-b border-dotted border-slate-400 inline-block flex-1 text-center px-2 pb-1 mx-1 ${personalData.first_name}`} style={{ verticalAlign: 'baseline', ...(!personalData.first_name && { minHeight: '1.2em' }) }}>
                             {personalData.first_name || '\u00A0'}
