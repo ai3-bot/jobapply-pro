@@ -228,10 +228,14 @@ export default function SPS902Document({ applicant, formData = {} }) {
                             <div>
                                 <div>
                                     <div className="text-xs mb-0.5">เลขที่บัญชี</div>
-                                    <div className="flex gap-0.5">
+                                    <div className="flex items-center ml-2 mt-2">
                                         {Array(10).fill('').map((_, idx) => (
-                                            <div key={idx} className="w-3.5 h-5 border border-slate-400 flex items-center justify-center text-xs">
-                                            </div>
+                                            <React.Fragment key={idx}>
+                                                <div className="pb-1 border border-black text-center text-xs font-semibold min-w-[20px] min-h-[20px]">
+                                                    {formData.accountNumber && formData.accountNumber[idx] ? formData.accountNumber[idx] : '\u00A0'}
+                                                </div>
+                                                {(idx === 1 || idx === 8) && <div className="w-2 border-b border-black mb-0.5"></div>}
+                                            </React.Fragment>
                                         ))}
                                     </div>
                                 </div>
@@ -240,9 +244,10 @@ export default function SPS902Document({ applicant, formData = {} }) {
                             <div>
                                 <div>
                                     <div className="text-xs mb-0.5">ลำดับที่สาขา</div>
-                                    <div className="flex gap-0.5">
-                                        {Array(4).fill('').map((_, idx) => (
-                                            <div key={idx} className="w-4 h-5 border border-slate-400 flex items-center justify-center text-xs">
+                                    <div className="flex ml-2 mt-2">
+                                        {Array(5).fill('').map((_, idx) => (
+                                            <div key={idx} className="pb-1 border border-black text-center text-xs font-semibold min-w-[20px] min-h-[20px]">
+                                                {formData.branchNumber && formData.branchNumber[idx] ? formData.branchNumber[idx] : '\u00A0'}
                                             </div>
                                         ))}
                                     </div>
