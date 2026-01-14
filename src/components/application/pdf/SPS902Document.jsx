@@ -373,7 +373,7 @@ export default function SPS902Document({ applicant, formData = {} }) {
             {/* Section 3: Staff Remarks */}
             <div className="border border-slate-900">
                 <div className="border-b border-slate-900 p-2 bg-slate-100 font-bold text-sm">
-                    สำหรับเจ้าหน้าที่
+                    3. สำหรับเจ้าหน้าที่
                 </div>
                 
                 <div className="p-3">
