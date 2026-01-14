@@ -119,7 +119,7 @@ export default function SPS902Document({ applicant, formData = {} }) {
                         <div className="text-xs font-bold px-3 pb-2 pt-1 border-b border-slate-900">
                             สำหรับผู้ประกันตนมาตรา 33
                         </div>
-                        <div className="p-3">
+                        <div className="p-2">
 
                             {/* Current Employer */}
                             <div>
