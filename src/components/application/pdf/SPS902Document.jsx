@@ -378,7 +378,7 @@ export default function SPS902Document({ applicant, formData = {} }) {
                         </div>
 
                         {/* Disabled Person Section */}
-                        <div className="mt-3 pt-3 border-t border-slate-300 text-xs">
+                        <div className="text-xs">
                             <label className="flex items-start gap-2">
                                 <PDFCheckbox checked={formData.disabledPerson === 'yes'} />
                                 <span>ข้าพเจ้าคนพิการซึ่งเป็นผู้ประกันตน ขอรับบริการสาธารณสุขจาก สำนักงานหลักประกันสุขภาพแห่งชาติ (สปสช.)</span>
