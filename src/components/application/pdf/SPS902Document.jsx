@@ -172,7 +172,7 @@ export default function SPS902Document({ applicant, formData = {} }) {
                     </div>
 
                     {/* Right Column - Section 39 and 38, 41 */}
-                    <div className="col-span-2 p-3">
+                    <div className="col-span-3 p-3">
                         <div className="text-xs font-bold mb-2 pb-2 border-b border-slate-900">
                             สำหรับผู้ประกันตนมาตรา 39 และบุคคลตามมาตรา 38 และมาตรา 41
                         </div>
