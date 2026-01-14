@@ -441,7 +441,7 @@ export default function SPS902Document({ applicant, formData = {} }) {
                         </div>
                     </div>
 
-                    <div className="grid justify-end items-end pt-1 gap-2">
+                    <div className="grid justify-end items-end pt-0.5 gap-2">
                         <div className="flex items-baseline gap-2 text-xs">
                             <span>ลงชื่อ</span>
                             <div className="border-b border-dotted border-slate-400 w-40 inline-block pb-0.5"></div>
