@@ -585,19 +585,11 @@ export default function SPSFormPage() {
                                                     />
                                                 </div>
                                                 <div>
-                                                    <Label>ลงชื่อผู้รับ</Label>
-                                                    <Input
-                                                        value={formData.receivedSignature}
-                                                        onChange={(e) => setFormData({ ...formData, receivedSignature: e.target.value })}
-                                                        placeholder="ลงชื่อผู้รับ"
-                                                    />
-                                                </div>
-                                                <div>
-                                                    <Label>ผู้รับ</Label>
+                                                    <Label>ลงชื่อ/ผู้รับ</Label>
                                                     <Input
                                                         value={formData.receivedBy}
                                                         onChange={(e) => setFormData({ ...formData, receivedBy: e.target.value })}
-                                                        placeholder="ชื่อผู้รับเอกสาร"
+                                                        placeholder="ลงชื่อ/ผู้รับ"
                                                     />
                                                 </div>
                                             </div>
