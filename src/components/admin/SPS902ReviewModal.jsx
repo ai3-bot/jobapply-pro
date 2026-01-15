@@ -26,8 +26,11 @@ export default function SPS902ReviewModal({ isOpen, onClose, applicant, pdfData 
     });
 
     useEffect(() => {
+        console.log('pdfData:', pdfData);
+        console.log('pdfData?.data:', pdfData?.data);
         if (pdfData?.data) {
             const staffData = pdfData.data.staff_data || pdfData.data;
+            console.log('staffData:', staffData);
             setFormData({
                 staffDecision: staffData.staffDecision || '',
                 reasonLine1: staffData.reasonLine1 || '',
