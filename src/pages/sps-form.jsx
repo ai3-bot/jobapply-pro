@@ -55,7 +55,6 @@ export default function SPSFormPage() {
         receiptNumber: '',
         receiptDate: '',
         receiptTime: '',
-        receivedSignature: '',
         receivedBy: '',
         educationLevel: '',
         educationMajor: '',
