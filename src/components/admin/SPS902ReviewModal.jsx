@@ -41,11 +41,20 @@ export default function SPS902ReviewModal({ isOpen, onClose, applicant, pdfData 
 
     const saveMutation = useMutation({
         mutationFn: async (data) => {
-            const mergedData = { ...pdfData.data, ...data };
-            return await base44.entities.PdfBase.update(pdfData.id, { data: mergedData });
+            if (!pdfData) return null;
+            const updatedData = {
+                data: {
+                    ...(pdfData.data || {}),
+                    staff_data: data
+                },
+                status: 'approved',
+                approved_date: new Date().toISOString()
+            };
+            return await base44.entities.PdfBase.update(pdfData.id, updatedData);
         },
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['sps_pdf_data'] });
+            queryClient.invalidateQueries({ queryKey: ['sps_documents'] });
             toast.success('บันทึกข้อมูลเรียบร้อยแล้ว');
             onClose();
         },
