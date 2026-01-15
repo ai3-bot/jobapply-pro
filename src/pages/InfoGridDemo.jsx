@@ -172,6 +172,83 @@ const SplitPanel = ({ data, title, icon: Icon }) => (
     </Card>
 );
 
+// Template 8: Dot Separator (Minimal)
+const DotSeparator = ({ data, title, icon: Icon }) => (
+    <Card className="border-slate-200 shadow-sm">
+        {(title || Icon) && (
+            <CardHeader className="pb-3">
+                <CardTitle className="text-base font-semibold flex items-center gap-2 text-slate-800">
+                    {Icon && <Icon className="w-4 h-4 text-indigo-500" />}
+                    {title}
+                </CardTitle>
+            </CardHeader>
+        )}
+        <CardContent className="p-4 space-y-3">
+            {Object.entries(data).map(([key, value], idx) => (
+                <div key={key} className="flex justify-between items-baseline gap-4">
+                    <span className="text-sm font-medium text-slate-600">{key.replace(/_/g, ' ')}</span>
+                    <span className="flex-1 border-b border-dotted border-slate-300"></span>
+                    <span className="text-sm font-bold text-slate-800 text-right">{value || '-'}</span>
+                </div>
+            ))}
+        </CardContent>
+    </Card>
+);
+
+// Template 9: Colored Header Cards
+const ColoredHeaders = ({ data, title, icon: Icon }) => (
+    <Card className="border-slate-200 shadow-sm">
+        {(title || Icon) && (
+            <CardHeader className="pb-3 border-b border-slate-50 bg-slate-50/50">
+                <CardTitle className="text-base font-semibold flex items-center gap-2 text-slate-800">
+                    {Icon && <Icon className="w-4 h-4 text-indigo-500" />}
+                    {title}
+                </CardTitle>
+            </CardHeader>
+        )}
+        <CardContent className="p-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {Object.entries(data).map(([key, value]) => (
+                    <div key={key} className="rounded-lg overflow-hidden border border-slate-200">
+                        <div className="bg-gradient-to-r from-indigo-500 to-indigo-600 px-3 py-2">
+                            <p className="text-xs font-semibold text-white uppercase">{key.replace(/_/g, ' ')}</p>
+                        </div>
+                        <div className="px-3 py-3 bg-white">
+                            <p className="text-sm font-bold text-slate-800">{value || '-'}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </CardContent>
+    </Card>
+);
+
+// Template 10: Hover Highlight
+const HoverHighlight = ({ data, title, icon: Icon }) => (
+    <Card className="border-slate-200 shadow-sm">
+        {(title || Icon) && (
+            <CardHeader className="pb-3 border-b border-slate-50 bg-slate-50/50">
+                <CardTitle className="text-base font-semibold flex items-center gap-2 text-slate-800">
+                    {Icon && <Icon className="w-4 h-4 text-indigo-500" />}
+                    {title}
+                </CardTitle>
+            </CardHeader>
+        )}
+        <CardContent className="p-3">
+            <div className="space-y-2">
+                {Object.entries(data).map(([key, value]) => (
+                    <div key={key} className="px-4 py-3 rounded-lg hover:bg-indigo-50 transition-colors cursor-default border border-slate-100 hover:border-indigo-300">
+                        <div className="flex justify-between items-center gap-4">
+                            <span className="text-sm font-medium text-slate-600">{key.replace(/_/g, ' ')}</span>
+                            <span className="text-sm font-bold text-slate-800">{value || '-'}</span>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </CardContent>
+    </Card>
+);
+
 export default function InfoGridDemo() {
     const sampleData = {
         first_name: 'นาย',
