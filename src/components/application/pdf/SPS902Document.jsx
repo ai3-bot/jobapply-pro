@@ -458,9 +458,6 @@ export default function SPS902Document({ applicant, formData = {} }) {
                             <span className="mb-1">ไม่เห็นสมควรจัดสถานพยาบาล ระบุเหตุผล</span>
                             <div className={`border-b border-dotted border-slate-400 flex-1 pb-1`} style={{ minHeight: '1.2em' }}>{formData.reasonLine1 || '\u00A0'}</div>
                         </div>
-                        <div className="ml-5">
-                            <div className={`border-b border-dotted border-slate-400 w-full text-center px-2 pb-1`} style={{ minHeight: '1.2em' }}>{formData.reasonLine2 || '\u00A0'}</div>
-                        </div>
                     </div>
 
                     <div className="grid justify-end items-end pt-1 gap-1">
