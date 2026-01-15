@@ -54,7 +54,11 @@ export default function SPSFormPage() {
         educationLevel: '',
         educationMajor: '',
         showSection33: true,
-        showSection39: true
+        showSection39: true,
+
+        // For SPS 9-02 - Section 39
+        section39AccountNumber: '',
+        section39BranchNumber: ''
         });
 
     useEffect(() => {
@@ -641,7 +645,9 @@ export default function SPSFormPage() {
                                                                 ...formData, 
                                                                 showSection39: false,
                                                                 lastEmployerName: '',
-                                                                employmentEndDate: ''
+                                                                employmentEndDate: '',
+                                                                section39AccountNumber: '',
+                                                                section39BranchNumber: ''
                                                             });
                                                         } else {
                                                             setFormData({ ...formData, showSection39: true });
@@ -666,16 +672,50 @@ export default function SPSFormPage() {
                                                         />
                                                     </div>
                                                     <div>
-                                                        <Label>สิ้นสภาพความเป็นลูกจ้างเมื่อวันที่</Label>
-                                                        <Input
-                                                            type="date"
-                                                            value={formData.employmentEndDate}
-                                                            onChange={(e) => setFormData({ ...formData, employmentEndDate: e.target.value })}
-                                                        />
+                                                         <Label>สิ้นสภาพความเป็นลูกจ้างเมื่อวันที่</Label>
+                                                         <Input
+                                                             type="date"
+                                                             value={formData.employmentEndDate}
+                                                             onChange={(e) => setFormData({ ...formData, employmentEndDate: e.target.value })}
+                                                         />
+                                                     </div>
+                                                     <div>
+                                                         <Label>เลขที่บัญชี (10 หลัก)</Label>
+                                                         <Input
+                                                             value={formData.section39AccountNumber}
+                                                             onChange={(e) => {
+                                                                 const value = e.target.value.replace(/\D/g, '');
+                                                                 if (value.length <= 10) {
+                                                                     setFormData({ ...formData, section39AccountNumber: value });
+                                                                 }
+                                                             }}
+                                                             placeholder="เลขที่บัญชี (10 หลัก)"
+                                                             maxLength="10"
+                                                         />
+                                                         {formData.section39AccountNumber && formData.section39AccountNumber.length !== 10 && (
+                                                             <p className="text-red-500 text-sm mt-1">ต้องเป็น 10 หลัก ({formData.section39AccountNumber.length}/10)</p>
+                                                         )}
+                                                     </div>
+                                                     <div>
+                                                         <Label>ลำดับที่สาขา (5 หลัก)</Label>
+                                                         <Input
+                                                             value={formData.section39BranchNumber}
+                                                             onChange={(e) => {
+                                                                 const value = e.target.value.replace(/\D/g, '');
+                                                                 if (value.length <= 5) {
+                                                                     setFormData({ ...formData, section39BranchNumber: value });
+                                                                 }
+                                                             }}
+                                                             placeholder="ลำดับที่สาขา (5 หลัก)"
+                                                             maxLength="5"
+                                                         />
+                                                         {formData.section39BranchNumber && formData.section39BranchNumber.length !== 5 && (
+                                                             <p className="text-red-500 text-sm mt-1">ต้องเป็น 5 หลัก ({formData.section39BranchNumber.length}/5)</p>
+                                                         )}
+                                                     </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        )}
+                                                    </div>
+                                                    )}
 
                                         <div>
                                             <h3 className="font-semibold text-slate-800 mb-3">วุฒิการศึกษา</h3>
