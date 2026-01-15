@@ -82,11 +82,10 @@ export default function EmploymentContractReviewModal({ applicant, isOpen, onClo
     const handleGeneratePDF = async (action) => {
         setGeneratingPdf(true);
         try {
-            // Wait a moment for content to be fully rendered
             await new Promise(resolve => setTimeout(resolve, 500));
             
-            const content = document.querySelector('#employment-contract-pdf-content');
-            if (!content) {
+            const pages = document.querySelectorAll('#employment-contract-pdf-content .pdpa-page');
+            if (!pages.length) {
                 toast.error("ไม่พบเนื้อหาเอกสาร กรุณาลองใหม่");
                 return;
             }
@@ -94,20 +93,23 @@ export default function EmploymentContractReviewModal({ applicant, isOpen, onClo
             const pdf = new jsPDF('p', 'mm', 'a4');
             const pdfWidth = pdf.internal.pageSize.getWidth();
             
-            const canvas = await html2canvas(content, {
-                scale: 2,
-                useCORS: true,
-                logging: false,
-                windowWidth: 1200,
-                backgroundColor: '#ffffff',
-                allowTaint: true
-            });
+            for (let i = 0; i < pages.length; i++) {
+                const canvas = await html2canvas(pages[i], {
+                    scale: 1.5,
+                    useCORS: true,
+                    logging: false,
+                    windowWidth: 1200,
+                    backgroundColor: '#ffffff',
+                    allowTaint: true
+                });
 
-            const imgData = canvas.toDataURL('image/png');
-            const imgWidth = pdfWidth;
-            const imgHeight = (canvas.height * imgWidth) / canvas.width;
+                const imgData = canvas.toDataURL('image/png', 0.8);
+                const imgWidth = pdfWidth;
+                const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-            pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+                if (i > 0) pdf.addPage();
+                pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+            }
 
             if (action === 'download') {
                 pdf.save(`EmploymentContract_${applicant?.full_name || 'Document'}.pdf`);
@@ -116,7 +118,7 @@ export default function EmploymentContractReviewModal({ applicant, isOpen, onClo
             }
         } catch (error) {
             console.error("PDF Generation failed", error);
-            toast.error("เกิดข้อผิดพลาดในการสร้าง PDF: " + error.message);
+            toast.error("เกิดข้อผิดพลาดในการสร้าง PDF");
         } finally {
             setGeneratingPdf(false);
         }
