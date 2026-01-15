@@ -227,6 +227,33 @@ export default function InfoGridDemo() {
                         </div>
                         <DefinitionList data={sampleData} title="ข้อมูลพื้นฐาน" icon={User} />
                     </div>
+
+                    {/* Template 5 */}
+                    <div>
+                        <div className="flex items-center gap-2 mb-4">
+                            <div className="w-8 h-8 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center font-bold text-sm">5</div>
+                            <h2 className="text-xl font-bold text-slate-800">Accent Left Border</h2>
+                        </div>
+                        <AccentBorder data={sampleData} title="ข้อมูลพื้นฐาน" icon={User} />
+                    </div>
+
+                    {/* Template 6 */}
+                    <div>
+                        <div className="flex items-center gap-2 mb-4">
+                            <div className="w-8 h-8 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center font-bold text-sm">6</div>
+                            <h2 className="text-xl font-bold text-slate-800">Badge Style</h2>
+                        </div>
+                        <BadgeStyle data={sampleData} title="ข้อมูลพื้นฐาน" icon={User} />
+                    </div>
+
+                    {/* Template 7 */}
+                    <div>
+                        <div className="flex items-center gap-2 mb-4">
+                            <div className="w-8 h-8 rounded-full bg-cyan-100 text-cyan-600 flex items-center justify-center font-bold text-sm">7</div>
+                            <h2 className="text-xl font-bold text-slate-800">Split Panel</h2>
+                        </div>
+                        <SplitPanel data={sampleData} title="ข้อมูลพื้นฐาน" icon={User} />
+                    </div>
                 </div>
             </div>
         </div>
