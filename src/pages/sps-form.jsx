@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import SPS103Document from '@/components/application/pdf/SPS103Document';
 import SPS902Document from '@/components/application/pdf/SPS902Document';
-import SignaturePadField from '@/components/SignaturePadField';
+import SignaturePad from '@/components/admin/SignaturePad';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import toast from 'react-hot-toast';
