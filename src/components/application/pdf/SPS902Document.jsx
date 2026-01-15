@@ -31,21 +31,29 @@ export default function SPS902Document({ applicant, formData = {} }) {
                          {/* เลขที่รับ */}
                          <div className="flex items-end gap-2">
                          <span className="whitespace-nowrap">เลขที่รับ</span>
-                         <span className="flex-1 border-b border-dotted border-black h-3 text-center">{formData.receiptNumber || ''}</span>
+                         <span className={`border-b border-dotted border-slate-400 inline-block flex-1 text-center px-2 pb-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>
+                             {formData.receiptNumber || '\u00A0'}
+                         </span>
                          </div>
 
                          {/* วันที่ / เวลา */}
                          <div className="flex items-end gap-2 mt-1">
                          <span className="whitespace-nowrap">วันที่</span>
-                         <span className="flex-1 border-b border-dotted border-black h-3 text-center">{formData.receiptDate ? new Date(formData.receiptDate).toLocaleDateString('th-TH') : ''}</span>
+                         <span className={`border-b border-dotted border-slate-400 inline-block flex-1 text-center px-2 pb-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>
+                             {formData.receiptDate ? new Date(formData.receiptDate).toLocaleDateString('th-TH') : '\u00A0'}
+                         </span>
                          <span className="whitespace-nowrap">เวลา</span>
-                         <span className="w-20 border-b border-dotted border-black h-3 text-center">{formData.receiptTime || ''}</span>
+                         <span className={`border-b border-dotted border-slate-400 inline-block text-center px-2 pb-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em', width: '80px' }}>
+                             {formData.receiptTime || '\u00A0'}
+                         </span>
                          </div>
 
                          {/* ลงชื่อ / ผู้รับ */}
                          <div className="flex items-end gap-2 mt-1">
                          <span className="whitespace-nowrap">ลงชื่อ</span>
-                         <span className="flex-1 border-b border-dotted border-black h-3 text-center">{formData.receivedBy || ''}</span>
+                         <span className={`border-b border-dotted border-slate-400 inline-block flex-1 text-center px-2 pb-1`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}>
+                             {formData.receivedBy || '\u00A0'}
+                         </span>
                          </div>
                      </div>
                 </div>
