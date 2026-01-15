@@ -27,15 +27,15 @@ export default function SPS902ReviewModal({ isOpen, onClose, applicant, pdfData 
 
     useEffect(() => {
         if (pdfData?.data) {
-            setFormData(prev => ({
-                ...prev,
-                staffDecision: pdfData.data.staffDecision || '',
-                reasonLine1: pdfData.data.reasonLine1 || '',
-                reasonLine2: pdfData.data.reasonLine2 || '',
-                staffName: pdfData.data.staffName || '',
-                staffSignature: pdfData.data.staffSignature || '',
-                staffSignatureDate: pdfData.data.staffSignatureDate || ''
-            }));
+            const staffData = pdfData.data.staff_data || pdfData.data;
+            setFormData({
+                staffDecision: staffData.staffDecision || '',
+                reasonLine1: staffData.reasonLine1 || '',
+                reasonLine2: staffData.reasonLine2 || '',
+                staffName: staffData.staffName || '',
+                staffSignature: staffData.staffSignature || '',
+                staffSignatureDate: staffData.staffSignatureDate || ''
+            });
         }
     }, [pdfData]);
 
