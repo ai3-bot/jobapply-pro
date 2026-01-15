@@ -17,14 +17,15 @@ export default function PDFCheckbox({
     borderColor = "border-black",
     checkType = "square",
     checkColor = "bg-black",
-    checkSize = "w-3 h-3"
+    checkSize = "w-3 h-3",
+    checkboxClass = ""
 }) {
     const renderCheck = () => {
         if (!checked) return null;
 
         switch (checkType) {
             case "square":
-                return <div className={`${checkSize} ${checkColor}`}></div>;
+                return <div className={`${checkSize} ${checkColor} ${checkboxClass}`}></div>;
             
             case "check":
                 return <Check className={`${checkSize.replace('w-', 'w-').replace('h-', 'h-')} ${checkColor.replace('bg-', 'text-')}`} strokeWidth={3} />;
