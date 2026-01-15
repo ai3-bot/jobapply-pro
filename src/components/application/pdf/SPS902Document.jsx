@@ -446,32 +446,38 @@ export default function SPS902Document({ applicant, formData = {} }) {
                     สำหรับเจ้าหน้าที่
                 </div>
                 
-                <div className="px-3 py-2">
-                    <div className="space-y-1 mb-3">
+                <div className="px-3">
+                    <div className="text-xs font-bold mb-1">ความเห็นเจ้าหน้าที่</div>
+                    <div className="space-y-0.5 mb-1">
                         <label className="flex items-center gap-2 text-xs">
                             <PDFCheckbox checked={formData.staffDecision === 'approve'} checkType={'check'} checkboxClass={'items-end'}/>
-                            <span>เห็นสมควรจัดสถานพยาบาล</span>
+                            <span className="mb-1">เห็นสมควรจัดสถานพยาบาล</span>
                         </label>
-                        <label className="flex items-center gap-2 text-xs">
+                        <div className="flex items-baseline gap-2 text-xs mb-1">
                             <PDFCheckbox checked={formData.staffDecision === 'disapprove'} checkType={'check'} checkboxClass={'items-end'}/>
-                            <span>ไม่เห็นสมควรจัดสถานพยาบาล</span>
-                        </label>
+                            <span className="mb-1">ไม่เห็นสมควรจัดสถานพยาบาล ระบุเหตุผล</span>
+                            <div className={`border-b border-dotted border-slate-400 flex-1 pb-1`} style={{ minHeight: '1.2em' }}>{formData.reasonLine1 || '\u00A0'}</div>
+                        </div>
+                        <div className="ml-5">
+                            <div className={`border-b border-dotted border-slate-400 w-full text-center px-2 pb-1`} style={{ minHeight: '1.2em' }}>{formData.reasonLine2 || '\u00A0'}</div>
+                        </div>
                     </div>
 
-                    <div className="grid justify-end items-end gap-2">
+                    <div className="grid justify-end items-end pt-1 gap-1">
                         <div className="flex items-baseline gap-2 text-xs">
                             <span>ลงชื่อ</span>
                             <div className="border-b border-dotted border-slate-400 w-40 inline-block pb-1"></div>
                             <span>เจ้าหน้าที่</span>
                         </div>
-                        <div className="flex items-center gap-1 text-xs">
-                            <span>ลงวันที่</span>
-                            <div className={`border-b border-dotted border-slate-400 inline-block w-8 text-center px-1 pb-1`} style={{ minHeight: '1.2em' }}>{formData.staffSignatureDate ? new Date(formData.staffSignatureDate).toLocaleDateString('th-TH').split('/')[0] : '\u00A0'}</div>
-                            <span>เดือน</span>
-                            <div className={`border-b border-dotted border-slate-400 inline-block w-20 text-center px-1 pb-1`} style={{ minHeight: '1.2em' }}>{formData.staffSignatureDate ? new Date(formData.staffSignatureDate).toLocaleDateString('th-TH').split('/')[1] : '\u00A0'}</div>
-                            <span>พ.ศ.</span>
-                            <div className={`border-b border-dotted border-slate-400 inline-block w-8 text-center px-1 pb-1`} style={{ minHeight: '1.2em' }}>{formData.staffSignatureDate ? (new Date(formData.staffSignatureDate).getFullYear() + 543) : '\u00A0'}</div>
-                        </div>
+                        <p className="mb-1 text-center">(<span className={`border-b border-dotted border-slate-400 inline-block min-w-[150px] text-center px-2 pb-1 ${applicant?.full_name}`} style={{ verticalAlign: 'baseline', ...(!applicant?.full_name && { minHeight: '1.2em' }) }}>{applicant?.full_name || '\u00A0'}</span>)</p>
+                        <div className="flex items-center gap-1 text-xs mb-1">
+                             <div className="text-xs">ลงวันที่</div>
+                             <div className={`border-b border-dotted border-slate-400 inline-block w-8 text-center px-1 pb-1`} style={{ minHeight: '1.2em' }}>{formData.staffSignatureDate ? new Date(formData.staffSignatureDate).toLocaleDateString('th-TH').split('/')[0] : '\u00A0'}</div>
+                             <div className="text-xs">เดือน</div>
+                             <div className={`border-b border-dotted border-slate-400 inline-block w-20 text-center px-1 pb-1`} style={{ minHeight: '1.2em' }}>{formData.staffSignatureDate ? new Date(formData.staffSignatureDate).toLocaleDateString('th-TH').split('/')[1] : '\u00A0'}</div>
+                             <div className="text-xs">พ.ศ.</div>
+                             <div className={`border-b border-dotted border-slate-400 inline-block w-8 text-center px-1 pb-1`} style={{ minHeight: '1.2em' }}>{formData.staffSignatureDate ? (new Date(formData.staffSignatureDate).getFullYear() + 543) : '\u00A0'}</div>
+                         </div>
                     </div>
                 </div>
             </div>
