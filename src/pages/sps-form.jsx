@@ -75,8 +75,10 @@ export default function SPSFormPage() {
         hospital3Code: '',
         disabledPerson: '',
         declarationSignatureDate: '',
+        declarationSignature: '',
         staffDecision: '',
         staffSignatureDate: '',
+        staffSignature: '',
         reasonLine1: '',
         reasonLine2: ''
         });
