@@ -52,7 +52,8 @@ export default function SPSFormPage() {
         
         // For SPS 9-02
         educationLevel: '',
-        educationMajor: ''
+        educationMajor: '',
+        spsSection: 'section33'
     });
 
     useEffect(() => {
