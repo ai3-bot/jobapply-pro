@@ -331,6 +331,33 @@ export default function InfoGridDemo() {
                         </div>
                         <SplitPanel data={sampleData} title="ข้อมูลพื้นฐาน" icon={User} />
                     </div>
+
+                    {/* Template 8 */}
+                    <div>
+                        <div className="flex items-center gap-2 mb-4">
+                            <div className="w-8 h-8 rounded-full bg-teal-100 text-teal-600 flex items-center justify-center font-bold text-sm">8</div>
+                            <h2 className="text-xl font-bold text-slate-800">Dot Separator (Minimal)</h2>
+                        </div>
+                        <DotSeparator data={sampleData} title="ข้อมูลพื้นฐาน" icon={User} />
+                    </div>
+
+                    {/* Template 9 */}
+                    <div>
+                        <div className="flex items-center gap-2 mb-4">
+                            <div className="w-8 h-8 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center font-bold text-sm">9</div>
+                            <h2 className="text-xl font-bold text-slate-800">Colored Header Cards</h2>
+                        </div>
+                        <ColoredHeaders data={sampleData} title="ข้อมูลพื้นฐาน" icon={User} />
+                    </div>
+
+                    {/* Template 10 */}
+                    <div>
+                        <div className="flex items-center gap-2 mb-4">
+                            <div className="w-8 h-8 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center font-bold text-sm">10</div>
+                            <h2 className="text-xl font-bold text-slate-800">Hover Highlight</h2>
+                        </div>
+                        <HoverHighlight data={sampleData} title="ข้อมูลพื้นฐาน" icon={User} />
+                    </div>
                 </div>
             </div>
         </div>
