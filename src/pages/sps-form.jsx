@@ -73,12 +73,15 @@ export default function SPSFormPage() {
         enabled: !!applicantId
     });
 
+    // Get SPS type from URL parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const spsTypeFromUrl = urlParams.get('type') || '1-03';
+
     const { data: pdfData } = useQuery({
-        queryKey: ['sps_pdf_data', applicantId],
+        queryKey: ['sps_pdf_data', applicantId, spsTypeFromUrl],
         queryFn: async () => {
             const pdfs = await base44.entities.PdfBase.list();
-            const spsType = applicant?.admin_data?.sps_form_type || '1-03';
-            return pdfs.find(p => p.applicant_id === applicantId && p.pdf_type === `SPS-${spsType}`);
+            return pdfs.find(p => p.applicant_id === applicantId && p.pdf_type === `SPS-${spsTypeFromUrl}`);
         },
         enabled: !!applicantId
     });
@@ -95,8 +98,7 @@ export default function SPSFormPage() {
 
     const saveMutation = useMutation({
         mutationFn: async (data) => {
-            const spsType = applicant?.admin_data?.sps_form_type || '1-03';
-            const pdfType = `SPS-${spsType}`;
+            const pdfType = `SPS-${spsTypeFromUrl}`;
             
             if (pdfData?.id) {
                 // Update existing record
@@ -112,7 +114,7 @@ export default function SPSFormPage() {
             }
         },
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['sps_pdf_data', applicantId] });
+            queryClient.invalidateQueries({ queryKey: ['sps_pdf_data', applicantId, spsTypeFromUrl] });
             setShowForm(false);
             toast.success('บันทึกข้อมูลเรียบร้อยแล้ว');
         },
@@ -129,7 +131,7 @@ export default function SPSFormPage() {
             });
         },
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['sps_pdf_data', applicantId] });
+            queryClient.invalidateQueries({ queryKey: ['sps_pdf_data', applicantId, spsTypeFromUrl] });
             toast.success('ส่งเอกสารเรียบร้อยแล้ว');
             navigate('/user-dashboard');
         },
@@ -166,9 +168,8 @@ export default function SPSFormPage() {
                 pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
             }
 
-            const spsType = applicant?.admin_data?.sps_form_type || '1-03';
             if (action === 'download') {
-                pdf.save(`SPS_${spsType}_${applicant?.full_name || 'Document'}.pdf`);
+                pdf.save(`SPS_${spsTypeFromUrl}_${applicant?.full_name || 'Document'}.pdf`);
             } else {
                 window.open(pdf.output('bloburl'), '_blank');
             }

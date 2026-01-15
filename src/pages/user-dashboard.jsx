@@ -76,8 +76,9 @@ export default function UserDashboard() {
         { id: 4, name: 'FM-HRD-27', description: 'สัญญา NDA (ไม่เปิดเผยข้อมูล)', link: '/fm-hrd-27', pdfType: 'NDA' },
         { id: 5, name: 'FM-HRD-30', description: 'การตรวจประวัติอาชญากรรม', link: '/fm-hrd-30', pdfType: 'FM-HRD-30' },
         { id: 6, name: 'หนังสือมอบอำนาจในการตรวจประวัติอาชญากรรม', description: 'หนังสือมอบอำนาจตรวจประวัติ', link: '/criminal-check-form', pdfType: 'Criminal-Check' },
-        { id: 7, name: 'แบบสปส.', description: 'แบบฟอร์มประกันสังคม', link: '/sps-form', pdfType: 'SPS-1-03', spsType: applicant?.admin_data?.sps_form_type || '1-03' },
-        { id: 8, name: 'ใบขอเอาประกัน', description: 'แบบฟอร์มประกันภัยพนักงาน', link: '/insurance-enrollment', pdfType: 'Insurance-Enrollment' }
+        { id: 7, name: 'แบบสปส. 1-03', description: 'แบบฟอร์มประกันสังคม (มีประกันอยู่แล้ว)', link: '/sps-form?type=1-03', pdfType: 'SPS-1-03' },
+        { id: 8, name: 'แบบสปส. 9-02', description: 'แบบฟอร์มประกันสังคม (ยังไม่มีประกัน)', link: '/sps-form?type=9-02', pdfType: 'SPS-9-02' },
+        { id: 9, name: 'ใบขอเอาประกัน', description: 'แบบฟอร์มประกันภัยพนักงาน', link: '/insurance-enrollment', pdfType: 'Insurance-Enrollment' }
     ];
 
     const getDocumentStatus = (pdfType) => {
