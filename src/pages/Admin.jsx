@@ -67,12 +67,19 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                 }
             });
 
-    const { data: spsDocuments = [] } = useQuery({
-        queryKey: ['sps_documents'],
+    const { data: sps103Documents = [] } = useQuery({
+        queryKey: ['sps_103_documents'],
         queryFn: async () => {
-            const docs1 = await base44.entities.PdfBase.filter({ pdf_type: 'SPS-1-03' });
-            const docs2 = await base44.entities.PdfBase.filter({ pdf_type: 'SPS-9-02' });
-            return [...docs1, ...docs2];
+            const docs = await base44.entities.PdfBase.filter({ pdf_type: 'SPS-1-03' });
+            return docs;
+        }
+    });
+
+    const { data: sps902Documents = [] } = useQuery({
+        queryKey: ['sps_902_documents'],
+        queryFn: async () => {
+            const docs = await base44.entities.PdfBase.filter({ pdf_type: 'SPS-9-02' });
+            return docs;
         }
     });
 
@@ -109,7 +116,8 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
     const filteredFMHRD30 = fmhrd30Documents.filter(doc => doc.applicant_id === selectedApplicant.id && (doc.status === 'submitted' || doc.status === 'approved'));
     const filteredFMHRD27 = fmhrd27Documents.filter(doc => doc.applicant_id === selectedApplicant.id && (doc.status === 'submitted' || doc.status === 'approved'));
     const filteredCriminalCheck = criminalCheckDocuments.filter(doc => doc.applicant_id === selectedApplicant.id && (doc.status === 'submitted' || doc.status === 'approved'));
-    const filteredSPS = spsDocuments.filter(doc => doc.applicant_id === selectedApplicant.id && (doc.status === 'submitted' || doc.status === 'approved'));
+    const filteredSPS103 = sps103Documents.filter(doc => doc.applicant_id === selectedApplicant.id && (doc.status === 'submitted' || doc.status === 'approved'));
+    const filteredSPS902 = sps902Documents.filter(doc => doc.applicant_id === selectedApplicant.id && (doc.status === 'submitted' || doc.status === 'approved'));
     const filteredInsurance = insuranceDocuments.filter(doc => doc.applicant_id === selectedApplicant.id && (doc.status === 'submitted' || doc.status === 'approved'));
     const ndaDocs = [selectedApplicant].filter(a => 
         a.nda_document?.status === 'submitted' || a.nda_document?.status === 'completed'
@@ -300,10 +308,10 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                     )}
                 </div>
 
-                {/* SPS Documents */}
+                {/* SPS 1-03 Documents */}
                 <div>
-                    <h2 className="text-2xl font-bold text-slate-800 mb-4">เอกสารประกันสังคม (SPS)</h2>
-                    {filteredSPS.length === 0 ? (
+                    <h2 className="text-2xl font-bold text-slate-800 mb-4">เอกสารประกันสังคม สปส. 1-03 (มีประกันอยู่แล้ว)</h2>
+                    {filteredSPS103.length === 0 ? (
                         <Card>
                             <CardContent className="p-8 text-center text-slate-500">
                                 ยังไม่มีเอกสารที่ส่งมา
@@ -311,7 +319,7 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                         </Card>
                     ) : (
                         <div className="grid grid-cols-1 gap-4">
-                            {filteredSPS.map(doc => {
+                            {filteredSPS103.map(doc => {
                                 const applicant = selectedApplicant;
                                 const docData = doc.data || {};
                                 return (
@@ -321,6 +329,67 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                                                 <div className="flex items-center gap-4 flex-1">
                                                     <div className="w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center">
                                                         <FileCheck className="w-6 h-6 text-pink-600" />
+                                                    </div>
+                                                    <div className="flex-1">
+                                                        <h3 className="font-semibold text-lg">{applicant?.full_name || '-'}</h3>
+                                                        <div className="grid grid-cols-3 gap-4 mt-2 text-sm text-slate-600">
+                                                            <div>
+                                                                <p className="text-xs text-slate-500">ประเภทแบบฟอร์ม</p>
+                                                                <p className="font-medium">{doc.pdf_type}</p>
+                                                            </div>
+                                                            <div>
+                                                                <p className="text-xs text-slate-500">วันที่ส่ง</p>
+                                                                <p className="font-medium">{doc.submitted_date ? new Date(doc.submitted_date).toLocaleDateString('th-TH') : '-'}</p>
+                                                            </div>
+                                                            <div>
+                                                                <p className="text-xs text-slate-500">ID เอกสาร</p>
+                                                                <p className="font-medium text-xs">{doc.id.substring(0, 8)}...</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="flex items-center gap-3">
+                                                    <Badge variant={doc.status === 'approved' ? 'success' : doc.status === 'submitted' ? 'default' : 'secondary'}>
+                                                        {doc.status === 'approved' ? 'อนุมัติแล้ว' : doc.status === 'submitted' ? 'รอดำเนินการ' : 'แบบร่าง'}
+                                                    </Badge>
+                                                    <Button 
+                                                        onClick={() => applicant && onReviewSPS?.(doc)}
+                                                        size="sm"
+                                                        disabled={!applicant}
+                                                    >
+                                                        ดูเอกสาร
+                                                    </Button>
+                                                </div>
+                                            </div>
+                                        </CardContent>
+                                    </Card>
+                                );
+                            })}
+                        </div>
+                    )}
+                </div>
+
+                {/* SPS 9-02 Documents */}
+                <div>
+                    <h2 className="text-2xl font-bold text-slate-800 mb-4">เอกสารประกันสังคม สปส. 9-02 (ยังไม่มีประกัน)</h2>
+                    {filteredSPS902.length === 0 ? (
+                        <Card>
+                            <CardContent className="p-8 text-center text-slate-500">
+                                ยังไม่มีเอกสารที่ส่งมา
+                            </CardContent>
+                        </Card>
+                    ) : (
+                        <div className="grid grid-cols-1 gap-4">
+                            {filteredSPS902.map(doc => {
+                                const applicant = selectedApplicant;
+                                const docData = doc.data || {};
+                                return (
+                                    <Card key={doc.id} className="hover:shadow-md transition-shadow">
+                                        <CardContent className="p-6">
+                                            <div className="flex items-center justify-between">
+                                                <div className="flex items-center gap-4 flex-1">
+                                                    <div className="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center">
+                                                        <FileCheck className="w-6 h-6 text-purple-600" />
                                                     </div>
                                                     <div className="flex-1">
                                                         <h3 className="font-semibold text-lg">{applicant?.full_name || '-'}</h3>
