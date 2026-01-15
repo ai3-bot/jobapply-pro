@@ -532,7 +532,22 @@ export default function SPSFormPage() {
                                                 <input
                                                     type="checkbox"
                                                     checked={formData.showSection33}
-                                                    onChange={(e) => setFormData({ ...formData, showSection33: e.target.checked })}
+                                                    onChange={(e) => {
+                                                        if (!e.target.checked) {
+                                                            setFormData({ 
+                                                                ...formData, 
+                                                                showSection33: false,
+                                                                employerName: '',
+                                                                accountNumber: '',
+                                                                branchNumber: '',
+                                                                employmentStartDate: '',
+                                                                lastSalaryMonth: '',
+                                                                salary: ''
+                                                            });
+                                                        } else {
+                                                            setFormData({ ...formData, showSection33: true });
+                                                        }
+                                                    }}
                                                     className="w-4 h-4 rounded"
                                                 />
                                                 <span className="text-sm font-medium">สำหรับผู้ประกันตนมาตรา 33</span>
@@ -620,7 +635,18 @@ export default function SPSFormPage() {
                                                 <input
                                                     type="checkbox"
                                                     checked={formData.showSection39}
-                                                    onChange={(e) => setFormData({ ...formData, showSection39: e.target.checked })}
+                                                    onChange={(e) => {
+                                                        if (!e.target.checked) {
+                                                            setFormData({ 
+                                                                ...formData, 
+                                                                showSection39: false,
+                                                                lastEmployerName: '',
+                                                                employmentEndDate: ''
+                                                            });
+                                                        } else {
+                                                            setFormData({ ...formData, showSection39: true });
+                                                        }
+                                                    }}
                                                     className="w-4 h-4 rounded"
                                                 />
                                                 <span className="text-sm font-medium">สำหรับผู้ประกันตนมาตรา 39 และบุคคลตามมาตรา 38 และมาตรา 41</span>
