@@ -889,12 +889,20 @@ export default function AdminPage() {
                  onClose={() => setReviewingFMHRD30(null)}
              />
 
-             {/* SPS Review Modal */}
+             {/* SPS 1-03 Review Modal */}
              <SPSReviewModal 
                 applicant={selectedApplicant}
-                pdfDoc={reviewingSPSDoc}
-                isOpen={!!reviewingSPSDoc}
-                onClose={() => setReviewingSPSDoc(null)}
+                pdfDoc={reviewingSPS103Doc}
+                isOpen={!!reviewingSPS103Doc}
+                onClose={() => setReviewingSPS103Doc(null)}
+             />
+
+             {/* SPS 9-02 Review Modal */}
+             <SPS902ReviewModal 
+                applicant={selectedApplicant}
+                pdfDoc={reviewingSPS902Doc}
+                isOpen={!!reviewingSPS902Doc}
+                onClose={() => setReviewingSPS902Doc(null)}
              />
 
              {/* Insurance Enrollment Review Modal */}
