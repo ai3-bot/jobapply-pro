@@ -19,7 +19,6 @@ export default function SPS902ReviewModal({ isOpen, onClose, applicant, pdfDoc }
     const [formData, setFormData] = useState({
         staffDecision: '',
         reasonLine1: '',
-        reasonLine2: '',
         staffName: '',
         staffSignature: '',
         staffSignatureDate: ''
@@ -34,8 +33,6 @@ export default function SPS902ReviewModal({ isOpen, onClose, applicant, pdfDoc }
             setFormData({
                 staffDecision: staffData.staffDecision || '',
                 reasonLine1: staffData.reasonLine1 || '',
-                reasonLine2: staffData.reasonLine2 || '',
-                staffName: staffData.staffName || '',
                 staffSignature: staffData.staffSignature || '',
                 staffSignatureDate: staffData.staffSignatureDate || ''
             });
@@ -186,12 +183,6 @@ export default function SPS902ReviewModal({ isOpen, onClose, applicant, pdfDoc }
                                     value={formData.reasonLine1}
                                     onChange={(e) => setFormData({ ...formData, reasonLine1: e.target.value })}
                                     placeholder="ระบุเหตุผล"
-                                    className="min-h-16"
-                                />
-                                <Textarea
-                                    value={formData.reasonLine2}
-                                    onChange={(e) => setFormData({ ...formData, reasonLine2: e.target.value })}
-                                    placeholder="ระบุเหตุผล (ต่อ)"
                                     className="min-h-16"
                                 />
                             </div>
