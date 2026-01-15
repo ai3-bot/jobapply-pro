@@ -459,11 +459,14 @@ export default function SPS902Document({ applicant, formData = {} }) {
                             <span>เจ้าหน้าที่</span>
                         </div>
                         <p className="mb-1 text-center">(<span className={`border-b border-dotted border-slate-400 inline-block min-w-[150px] text-center px-2 pb-1 ${applicant?.full_name}`} style={{ verticalAlign: 'baseline', ...(!applicant?.full_name && { minHeight: '1.2em' }) }}>{applicant?.full_name || '\u00A0'}</span>)</p>
-                        <div className="flex text-center text-xs mb-1">
-                            <div className="text-xs">ลงวันที่</div>
-                            <div className={`border-b border-dotted border-slate-400 inline-block w-20 text-center px-2 pb-1 mx-auto`} style={{ verticalAlign: 'baseline', minHeight: '1.2em' }}></div>
-                            <div className="text-xs">เดือน........... พ.ศ.........</div>
-                        </div>
+                        <div className="flex items-center gap-1 text-xs mb-1">
+                             <div className="text-xs">ลงวันที่</div>
+                             <div className={`border-b border-dotted border-slate-400 inline-block w-8 text-center px-1 pb-0.5`} style={{ minHeight: '1.2em' }}>{formData.staffSignatureDate ? new Date(formData.staffSignatureDate).toLocaleDateString('th-TH').split('/')[0] : '\u00A0'}</div>
+                             <div className="text-xs">เดือน</div>
+                             <div className={`border-b border-dotted border-slate-400 inline-block w-20 text-center px-1 pb-0.5`} style={{ minHeight: '1.2em' }}>{formData.staffSignatureDate ? new Date(formData.staffSignatureDate).toLocaleDateString('th-TH').split('/')[1] : '\u00A0'}</div>
+                             <div className="text-xs">พ.ศ.</div>
+                             <div className={`border-b border-dotted border-slate-400 inline-block w-8 text-center px-1 pb-0.5`} style={{ minHeight: '1.2em' }}>{formData.staffSignatureDate ? (new Date(formData.staffSignatureDate).getFullYear() + 543) : '\u00A0'}</div>
+                         </div>
                     </div>
                 </div>
             </div>
