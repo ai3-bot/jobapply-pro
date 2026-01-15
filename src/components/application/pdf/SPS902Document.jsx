@@ -439,7 +439,7 @@ export default function SPS902Document({ applicant, formData = {} }) {
                     สำหรับเจ้าหน้าที่
                 </div>
                 
-                <div className="px-3 py-1">
+                <div className="px-3">
                     <div className="text-xs font-bold mb-1">ความเห็นเจ้าหน้าที่</div>
                     <div className="space-y-1 mb-1">
                         <label className="flex items-center gap-2 text-xs">
