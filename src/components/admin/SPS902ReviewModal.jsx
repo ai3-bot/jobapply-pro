@@ -26,10 +26,10 @@ export default function SPS902ReviewModal({ isOpen, onClose, applicant, pdfDoc }
     });
 
     useEffect(() => {
-        console.log('pdfData:', pdfData);
-        console.log('pdfData?.data:', pdfData?.data);
-        if (pdfData?.data) {
-            const staffData = pdfData.data.staff_data || pdfData.data;
+        console.log('pdfDoc:', pdfDoc);
+        console.log('pdfDoc?.data:', pdfDoc?.data);
+        if (pdfDoc?.data) {
+            const staffData = pdfDoc.data.staff_data || pdfDoc.data;
             console.log('staffData:', staffData);
             setFormData({
                 staffDecision: staffData.staffDecision || '',
@@ -40,7 +40,7 @@ export default function SPS902ReviewModal({ isOpen, onClose, applicant, pdfDoc }
                 staffSignatureDate: staffData.staffSignatureDate || ''
             });
         }
-    }, [pdfData]);
+    }, [pdfDoc]);
 
     const saveMutation = useMutation({
         mutationFn: async (data) => {
