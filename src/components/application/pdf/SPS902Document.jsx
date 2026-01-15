@@ -482,12 +482,6 @@ export default function SPS902Document({ applicant, formData = {} }) {
                     </div>
                 </div>
             </div>
-
-            {/* Footer Note */}
-            <div className="text-xs text-center text-slate-600">
-                สำนักงานประกันสังคมยกเลิกการพิมพ์บัตรรับรองสิทธิการรักษาพยาบาล ตั้งแต่ปี 2561 เป็นต้นไป
-                โดยสามารถตรวจสอบสิทธิการรักษาพยาบาลได้ที่ www.sso.go.th หรือ สายด่วนประกันสังคม โทร. 1506
-            </div>
         </div>
     );
 }
