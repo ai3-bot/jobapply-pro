@@ -12,6 +12,7 @@ import pdpaForm from './pages/pdpa-form';
 import spsForm from './pages/sps-form';
 import userDashboard from './pages/user-dashboard';
 import userLogin from './pages/user-login';
+import InfoGridDemo from './pages/InfoGridDemo';
 import __Layout from './Layout.jsx';
 
 
@@ -30,6 +31,7 @@ export const PAGES = {
     "sps-form": spsForm,
     "user-dashboard": userDashboard,
     "user-login": userLogin,
+    "InfoGridDemo": InfoGridDemo,
 }
 
 export const pagesConfig = {
