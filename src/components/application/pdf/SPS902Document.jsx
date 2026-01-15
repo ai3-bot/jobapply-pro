@@ -329,7 +329,7 @@ export default function SPS902Document({ applicant, formData = {} }) {
                                     <label className="flex items-center gap-1">
                                         <PDFCheckbox checked={formData.changeReasonDetail === 'other'} checkType={'check'}/>
                                         <span className="mb-0">อื่นๆ (ระบุ)</span>
-                                        <span className={`border-b border-dotted border-slate-400 inline-block w-20 text-center px-2 pb-1`} style={{ minHeight: '1.2em' }}>
+                                        <span className={`border-b border-dotted border-slate-400 inline-block w-28 text-center px-2 pb-1`} style={{ minHeight: '1.2em' }}>
                                             {formData.otherReason || '\u00A0'}
                                         </span>
                                     </label>
@@ -414,7 +414,7 @@ export default function SPS902Document({ applicant, formData = {} }) {
                         <div className="flex items-baseline gap-2 text-xs">
                             <span>ลงชื่อ</span>
                             {formData.declarationSignature ? (
-                                <img src={formData.declarationSignature} alt="Signature" className="h-12 object-contain" />
+                                <img src={formData.declarationSignature} alt="Signature" className="h-10 object-contain" />
                             ) : (
                                 <div className="border-b border-dotted border-slate-400 w-40 inline-block pb-0.5"></div>
                             )}
