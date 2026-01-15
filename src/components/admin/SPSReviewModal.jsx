@@ -101,30 +101,39 @@ export default function SPSReviewModal({ applicant, pdfDoc, isOpen, onClose }) {
     };
 
     const handleGeneratePDF = async (action) => {
-        // Use a specific class or ID that wraps the SPS document content
         const content = document.querySelector('#sps-review-content');
         if (!content) return;
 
         setGeneratingPdf(true);
         try {
+            const pages = content.querySelectorAll('.pdpa-page');
+            if (pages.length === 0) {
+                toast.error("ไม่พบเนื้อหาเอกสาร");
+                setGeneratingPdf(false);
+                return;
+            }
+
             const pdf = new jsPDF('p', 'mm', 'a4');
             const pdfWidth = pdf.internal.pageSize.getWidth();
-            
-            // The document might have multiple pages (SPS103 usually fits on one but let's handle if it overflows or if we just want the container)
-            // SPS components are designed to be A4 size usually.
-            
-            const canvas = await html2canvas(content, {
-                scale: 2,
-                useCORS: true,
-                logging: false,
-                windowWidth: 1200
-            });
 
-            const imgData = canvas.toDataURL('image/png');
-            const imgWidth = pdfWidth;
-            const imgHeight = (canvas.height * imgWidth) / canvas.width;
+            for (let i = 0; i < pages.length; i++) {
+                const page = pages[i];
+                const canvas = await html2canvas(page, {
+                    scale: 2,
+                    useCORS: true,
+                    logging: false,
+                    windowWidth: 1200
+                });
 
-            pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+                const imgData = canvas.toDataURL('image/png');
+                const imgWidth = pdfWidth;
+                const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+                if (i > 0) {
+                    pdf.addPage();
+                }
+                pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+            }
 
             if (action === 'download') {
                 pdf.save(`${pdfDoc?.pdf_type || 'SPS'}_${applicant?.full_name || 'Document'}.pdf`);
@@ -133,7 +142,7 @@ export default function SPSReviewModal({ applicant, pdfDoc, isOpen, onClose }) {
             }
         } catch (error) {
             console.error("PDF Generation failed", error);
-            alert("เกิดข้อผิดพลาดในการสร้าง PDF");
+            toast.error("เกิดข้อผิดพลาดในการสร้าง PDF");
         } finally {
             setGeneratingPdf(false);
         }
