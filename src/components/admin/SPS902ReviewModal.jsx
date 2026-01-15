@@ -74,11 +74,11 @@ export default function SPS902ReviewModal({ isOpen, onClose, applicant, pdfData 
                     <DialogTitle>ตรวจสอบและลงนามเอกสาร สปส. 9-02 - {applicant?.full_name}</DialogTitle>
                 </DialogHeader>
 
-                <div className="space-y-6 py-4">
+                <div className="space-y-4 py-4">
                     {/* Staff Decision */}
-                    <div className="space-y-3 p-4 bg-blue-50 border border-blue-200 rounded">
-                        <Label className="text-base font-semibold">ความเห็นเจ้าหน้าที่</Label>
-                        <div className="space-y-2">
+                    <div className="space-y-2">
+                        <Label className="font-semibold">ความเห็นเจ้าหน้าที่</Label>
+                        <div className="space-y-2 ml-2">
                             <label className="flex items-center gap-3">
                                 <input
                                     type="radio"
@@ -99,39 +99,32 @@ export default function SPS902ReviewModal({ isOpen, onClose, applicant, pdfData 
                                     onChange={(e) => setFormData({ ...formData, staffDecision: e.target.value })}
                                     className="w-4 h-4"
                                 />
-                                <span className="text-sm">ไม่เห็นสมควรจัดสถานพยาบาล</span>
+                                <span className="text-sm">ไม่เห็นสมควรจัดสถานพยาบาล ระบุเหตุผล</span>
                             </label>
                         </div>
                     </div>
 
                     {/* Reason Section */}
                     {formData.staffDecision === 'disapprove' && (
-                        <div className="space-y-3 p-4 bg-yellow-50 border border-yellow-200 rounded">
-                            <Label className="text-base font-semibold">ระบุเหตุผล</Label>
-                            <div>
-                                <Label className="text-xs mb-2 block">บรรทัดที่ 1</Label>
-                                <Textarea
-                                    value={formData.reasonLine1}
-                                    onChange={(e) => setFormData({ ...formData, reasonLine1: e.target.value })}
-                                    placeholder="ระบุเหตุผล"
-                                    className="min-h-20"
-                                />
-                            </div>
-                            <div>
-                                <Label className="text-xs mb-2 block">บรรทัดที่ 2</Label>
-                                <Textarea
-                                    value={formData.reasonLine2}
-                                    onChange={(e) => setFormData({ ...formData, reasonLine2: e.target.value })}
-                                    placeholder="ระบุเหตุผล (ต่อ)"
-                                    className="min-h-20"
-                                />
-                            </div>
+                        <div className="space-y-2 ml-6">
+                            <Textarea
+                                value={formData.reasonLine1}
+                                onChange={(e) => setFormData({ ...formData, reasonLine1: e.target.value })}
+                                placeholder="ระบุเหตุผล"
+                                className="min-h-16"
+                            />
+                            <Textarea
+                                value={formData.reasonLine2}
+                                onChange={(e) => setFormData({ ...formData, reasonLine2: e.target.value })}
+                                placeholder="ระบุเหตุผล (ต่อ)"
+                                className="min-h-16"
+                            />
                         </div>
                     )}
 
                     {/* Signature Section */}
-                    <div className="space-y-3 p-4 bg-purple-50 border border-purple-200 rounded">
-                        <Label className="text-base font-semibold">ลายเซ็นเจ้าหน้าที่</Label>
+                    <div className="space-y-2">
+                        <Label className="font-semibold">ลงชื่อ เจ้าหน้าที่</Label>
                         <SignaturePad
                             signatureUrl={formData.staffSignature}
                             onSave={(sig) => setFormData({ ...formData, staffSignature: sig })}
@@ -140,11 +133,10 @@ export default function SPS902ReviewModal({ isOpen, onClose, applicant, pdfData 
                     </div>
 
                     {/* Date Section */}
-                    <div className="space-y-3 p-4 bg-green-50 border border-green-200 rounded">
-                        <Label className="text-base font-semibold">ลงวันที่</Label>
+                    <div className="space-y-2">
+                        <Label className="font-semibold">ลงวันที่</Label>
                         <div className="grid grid-cols-3 gap-3">
                             <div>
-                                <Label className="text-xs mb-2 block">วันที่</Label>
                                 <Input
                                     type="number"
                                     min="1"
@@ -159,7 +151,6 @@ export default function SPS902ReviewModal({ isOpen, onClose, applicant, pdfData 
                                 />
                             </div>
                             <div>
-                                <Label className="text-xs mb-2 block">เดือน</Label>
                                 <select
                                     value={formData.staffSignatureDate ? new Date(formData.staffSignatureDate).getMonth() : ''}
                                     onChange={(e) => {
@@ -177,7 +168,6 @@ export default function SPS902ReviewModal({ isOpen, onClose, applicant, pdfData 
                                 </select>
                             </div>
                             <div>
-                                <Label className="text-xs mb-2 block">พ.ศ.</Label>
                                 <Input
                                     type="number"
                                     min="2500"
