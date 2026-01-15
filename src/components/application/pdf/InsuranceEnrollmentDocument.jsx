@@ -12,10 +12,9 @@ export default function InsuranceEnrollmentDocument({ applicant, formData = {} }
                 fontSize: "12px",
                 padding: '6mm',
                 width: '210mm', 
-                minHeight: 'auto',
+                minHeight: '297mm',
                 fontFamily: 'TH Sarabun New, Sarabun, sans-serif',
-                lineHeight: '1.3',
-                pageBreakInside: 'avoid'
+                lineHeight: '1.3'
             }}
         >
             {/* Header */}
