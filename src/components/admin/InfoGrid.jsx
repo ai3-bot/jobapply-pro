@@ -44,6 +44,8 @@ const RenderValue = ({ value, label }) => {
 export default function InfoGrid({ data, title, icon: Icon }) {
     if (!data || Object.keys(data).length === 0) return null;
 
+    const filteredData = Object.entries(data).filter(([, v]) => v !== null && v !== undefined && v !== '');
+
     return (
         <Card className="border-slate-200 shadow-sm">
             {(title || Icon) && (
@@ -55,20 +57,15 @@ export default function InfoGrid({ data, title, icon: Icon }) {
                 </CardHeader>
             )}
             <CardContent className="p-4">
-                <div className="grid grid-cols-1 gap-y-4 gap-x-8">
-                    {Object.entries(data).map(([key, value]) => {
-                         // Skip bulky nested objects from the main grid, handled separately if needed, 
-                         // or let RenderValue handle them if they are small. 
-                         // For big sections like 'history', we might want to handle them differently, but RenderValue supports arrays.
-                         return (
-                            <div key={key} className="space-y-1">
-                                <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">{key.replace(/_/g, ' ')}</p>
-                                <div className="text-sm">
-                                    <RenderValue value={value} label={key} />
-                                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {filteredData.map(([key, value]) => (
+                        <div key={key} className="bg-slate-50 border border-slate-100 rounded-lg p-3 hover:border-slate-200 transition-colors">
+                            <p className="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-1">{key.replace(/_/g, ' ')}</p>
+                            <div className="text-sm font-medium">
+                                <RenderValue value={value} label={key} />
                             </div>
-                         );
-                    })}
+                        </div>
+                    ))}
                 </div>
             </CardContent>
         </Card>
