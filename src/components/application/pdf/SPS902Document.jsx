@@ -326,9 +326,9 @@ export default function SPS902Document({ applicant, formData = {} }) {
                                         <PDFCheckbox checked={formData.changeReasonDetail === 'workplace'} checkType={'check'}/>
                                         <span className="mb-1">เปลี่ยนสถานที่ทำงาน</span>
                                     </label>
-                                    <label className="flex items-start gap-2">
+                                    <label className="flex items-center gap-1">
                                         <PDFCheckbox checked={formData.changeReasonDetail === 'other'} checkType={'check'}/>
-                                        <span className="mb-1">อื่นๆ (ระบุ)</span>
+                                        <span className="mb-0">อื่นๆ (ระบุ)</span>
                                         <span className={`border-b border-dotted border-slate-400 inline-block w-20 text-center px-2 pb-1`} style={{ minHeight: '1.2em' }}>
                                             {'' || '\u00A0'}
                                         </span>
