@@ -80,8 +80,8 @@ export default function EmploymentContractReviewModal({ applicant, isOpen, onClo
     };
 
     const handleGeneratePDF = async (action) => {
-        const pages = document.querySelectorAll('.employment-contract-page');
-        if (!pages || pages.length === 0) return;
+        const content = document.querySelector('#employment-contract-pdf-content');
+        if (!content) return;
 
         setGeneratingPdf(true);
         try {
