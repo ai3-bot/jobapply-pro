@@ -258,14 +258,12 @@ export default function EmploymentContractReviewModal({ applicant, isOpen, onClo
                     </div>
 
                     {/* Hidden div for PDF generation */}
-                    <div className="hidden">
-                        <div id="employment-contract-pdf-content">
-                            <EmploymentContractDocument
-                                applicant={applicant}
-                                formData={pdfDoc?.data || {}}
-                                companyData={companyData}
-                            />
-                        </div>
+                    <div id="employment-contract-hidden" style={{ display: 'none' }}>
+                        <EmploymentContractDocument
+                            applicant={applicant}
+                            formData={pdfDoc?.data || {}}
+                            companyData={companyData}
+                        />
                     </div>
 
                     {/* Actions */}
