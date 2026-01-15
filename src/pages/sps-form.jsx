@@ -52,10 +52,8 @@ export default function SPSFormPage() {
         
         // For SPS 9-02
         educationLevel: '',
-        educationMajor: '',
-        // SPS 9-02 - Section selection
-        spsSection: '33', // '33' or '39-38-41'
-        });
+        educationMajor: ''
+    });
 
     useEffect(() => {
         const id = localStorage.getItem('user_applicant_id');
@@ -525,21 +523,6 @@ export default function SPSFormPage() {
                                     <div className="space-y-4">
                                         <div className="p-4 bg-blue-50 border border-blue-200 rounded">
                                             <p className="text-sm font-medium">แบบฟอร์มนี้สำหรับผู้ที่ยังไม่เคยมีประกันสังคม</p>
-                                        </div>
-
-                                        <div>
-                                            <h3 className="font-semibold text-slate-800 mb-3">เลือกประเภทผู้ประกันตน</h3>
-                                            <div className="mb-4">
-                                                <Label>ผู้ประกันตนมาตรา</Label>
-                                                <select
-                                                    value={formData.spsSection}
-                                                    onChange={(e) => setFormData({ ...formData, spsSection: e.target.value })}
-                                                    className="w-full px-3 py-2 border border-slate-300 rounded-md"
-                                                >
-                                                    <option value="33">มาตรา 33 - ผู้ประกันตนที่มีประกอบการ</option>
-                                                    <option value="39-38-41">มาตรา 39 และ 38, 41 - ลูกจ้างเดิม</option>
-                                                </select>
-                                            </div>
                                         </div>
 
                                         <div>

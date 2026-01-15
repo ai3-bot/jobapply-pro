@@ -3,8 +3,6 @@ import PDFCheckbox from './PDFCheckbox';
 
 export default function SPS902Document({ applicant, formData = {} }) {
     const personalData = applicant?.personal_data || {};
-    const showSection33 = formData.spsSection !== '39-38-41';
-    const showSection39 = formData.spsSection === '39-38-41';
     
     return (
         <div 
@@ -117,7 +115,6 @@ export default function SPS902Document({ applicant, formData = {} }) {
 
                 <div className="grid grid-cols-5 gap-0 divide-x divide-slate-900">
                     {/* Left Column - Section 33 */}
-                    {showSection33 && (
                     <div className="col-span-2 border-slate-900">
                         <div className="text-xs font-bold px-3 pb-3 mr-28 pt-1 border-b border-r border-slate-900">
                             สำหรับผู้ประกันตนมาตรา 33
@@ -192,10 +189,8 @@ export default function SPS902Document({ applicant, formData = {} }) {
                         </div>
 
                     </div>
-                    )}
 
                     {/* Right Column - Section 39 and 38, 41 */}
-                    {showSection39 && (
                     <div className="col-span-3">
                         <div className="text-xs font-bold px-3 pb-3 pt-1 border-b border-slate-900">
                             สำหรับผู้ประกันตนมาตรา 39 และบุคคลตามมาตรา 38 และมาตรา 41
@@ -286,7 +281,6 @@ export default function SPS902Document({ applicant, formData = {} }) {
                             </div>
                         </div>
                     </div>
-                    )}
                 </div>
             </div>
 
