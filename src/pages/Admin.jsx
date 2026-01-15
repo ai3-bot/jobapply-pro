@@ -22,7 +22,7 @@ import SPSReviewModal from '@/components/admin/SPSReviewModal';
 import SPS902ReviewModal from '@/components/admin/SPS902ReviewModal';
 import InsuranceEnrollmentReviewModal from '@/components/admin/InsuranceEnrollmentReviewModal';
 
-function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewFMHRD19, onReviewCriminalCheck, onReviewEmploymentContract, onSelectApplicant, onReviewFMHRD27, onReviewFMHRD30, onSetCriminalCheckDoc, onReviewSPS, onReviewInsurance }) {
+function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewFMHRD19, onReviewCriminalCheck, onReviewEmploymentContract, onSelectApplicant, onReviewFMHRD27, onReviewFMHRD30, onSetCriminalCheckDoc, onReviewSPS103, onReviewSPS902, onReviewInsurance }) {
     const { data: applicants = [], isLoading } = useQuery({
         queryKey: ['applicants'],
         queryFn: () => base44.entities.Applicant.list()
