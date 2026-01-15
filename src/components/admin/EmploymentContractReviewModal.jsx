@@ -80,11 +80,17 @@ export default function EmploymentContractReviewModal({ applicant, isOpen, onClo
     };
 
     const handleGeneratePDF = async (action) => {
-        const content = document.querySelector('#employment-contract-pdf-content');
-        if (!content) return;
-
         setGeneratingPdf(true);
         try {
+            // Wait a moment for content to be fully rendered
+            await new Promise(resolve => setTimeout(resolve, 500));
+            
+            const content = document.querySelector('#employment-contract-pdf-content');
+            if (!content) {
+                toast.error("ไม่พบเนื้อหาเอกสาร กรุณาลองใหม่");
+                return;
+            }
+
             const pdf = new jsPDF('p', 'mm', 'a4');
             const pdfWidth = pdf.internal.pageSize.getWidth();
             
@@ -92,7 +98,9 @@ export default function EmploymentContractReviewModal({ applicant, isOpen, onClo
                 scale: 2,
                 useCORS: true,
                 logging: false,
-                windowWidth: 1200
+                windowWidth: 1200,
+                backgroundColor: '#ffffff',
+                allowTaint: true
             });
 
             const imgData = canvas.toDataURL('image/png');
@@ -108,7 +116,7 @@ export default function EmploymentContractReviewModal({ applicant, isOpen, onClo
             }
         } catch (error) {
             console.error("PDF Generation failed", error);
-            toast.error("เกิดข้อผิดพลาดในการสร้าง PDF");
+            toast.error("เกิดข้อผิดพลาดในการสร้าง PDF: " + error.message);
         } finally {
             setGeneratingPdf(false);
         }
