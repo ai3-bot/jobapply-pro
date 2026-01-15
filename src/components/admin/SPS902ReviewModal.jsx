@@ -13,7 +13,7 @@ import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import toast from 'react-hot-toast';
 
-export default function SPS902ReviewModal({ isOpen, onClose, applicant, pdfData }) {
+export default function SPS902ReviewModal({ isOpen, onClose, applicant, pdfDoc }) {
     const queryClient = useQueryClient();
     const [generatingPdf, setGeneratingPdf] = useState(false);
     const [formData, setFormData] = useState({
