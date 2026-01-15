@@ -52,6 +52,11 @@ export default function SPSFormPage() {
         childBirthYear3: '',
         
         // For SPS 9-02
+        receiptNumber: '',
+        receiptDate: '',
+        receiptTime: '',
+        receivedSignature: '',
+        receivedBy: '',
         educationLevel: '',
         educationMajor: '',
         showSection33: true,
