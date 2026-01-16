@@ -1,21 +1,18 @@
 import React, { useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Check, Loader2 } from 'lucide-react';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 export default function ApplicationPreview() {
-    const [searchParams] = useSearchParams();
-    const applicantId = searchParams.get('applicantId');
+    const [selectedApplicantId, setSelectedApplicantId] = useState('');
 
-    const { data: applicant, isLoading } = useQuery({
-        queryKey: ['applicant', applicantId],
-        queryFn: async () => {
-            const applicants = await base44.entities.Applicant.list();
-            return applicants.find(a => a.id === applicantId);
-        },
-        enabled: !!applicantId
+    const { data: applicants = [], isLoading: applicantsLoading } = useQuery({
+        queryKey: ['applicants_preview'],
+        queryFn: () => base44.entities.Applicant.list()
     });
+
+    const applicant = applicants.find(a => a.id === selectedApplicantId);
 
     const { data: settings } = useQuery({
         queryKey: ['system_settings_layout'],
@@ -25,7 +22,7 @@ export default function ApplicationPreview() {
 
     const appLogo = settings?.find(s => s.key === 'app_logo')?.value;
 
-    if (isLoading) {
+    if (applicantsLoading) {
         return (
             <div className="min-h-screen flex items-center justify-center">
                 <Loader2 className="w-8 h-8 animate-spin text-indigo-600" />
@@ -35,10 +32,29 @@ export default function ApplicationPreview() {
 
     if (!applicant) {
         return (
-            <div className="min-h-screen flex items-center justify-center">
-                <div className="text-center">
-                    <h2 className="text-xl font-semibold text-slate-800 mb-2">ไม่พบข้อมูลผู้สมัคร</h2>
-                    <p className="text-slate-500">กรุณาเลือกผู้สมัครจากหน้า Admin Dashboard</p>
+            <div className="min-h-screen bg-slate-50 py-8">
+                <div className="max-w-[210mm] mx-auto bg-white shadow-lg rounded-lg p-8">
+                    <h1 className="text-2xl font-bold text-center mb-8">ดูใบสมัครงาน</h1>
+                    <div className="space-y-4">
+                        <label className="block">
+                            <span className="text-sm font-semibold text-slate-700 mb-2 block">เลือกผู้สมัคร</span>
+                            <Select value={selectedApplicantId} onValueChange={setSelectedApplicantId}>
+                                <SelectTrigger className="w-full">
+                                    <SelectValue placeholder="-- เลือกผู้สมัคร --" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    {applicants.map(app => (
+                                        <SelectItem key={app.id} value={app.id}>
+                                            {app.full_name} - {new Date(app.submission_date).toLocaleDateString('th-TH')}
+                                        </SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
+                        </label>
+                        {applicants.length === 0 && (
+                            <p className="text-slate-500 text-center py-8">ยังไม่มีข้อมูลผู้สมัคร</p>
+                        )}
+                    </div>
                 </div>
             </div>
         );
@@ -76,6 +92,25 @@ export default function ApplicationPreview() {
 
     return (
         <div className="min-h-screen bg-slate-50 py-8" style={{ fontFamily: 'TH Sarabun New, Sarabun, sans-serif' }}>
+            <div className="max-w-[210mm] mx-auto">
+                <div className="bg-white shadow-lg rounded-lg p-6 mb-6">
+                    <label className="block mb-2">
+                        <span className="text-sm font-semibold text-slate-700">เลือกผู้สมัคร</span>
+                        <Select value={selectedApplicantId} onValueChange={setSelectedApplicantId}>
+                            <SelectTrigger className="w-full mt-2">
+                                <SelectValue placeholder="-- เลือกผู้สมัคร --" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                {applicants.map(app => (
+                                    <SelectItem key={app.id} value={app.id}>
+                                        {app.full_name} - {new Date(app.submission_date).toLocaleDateString('th-TH')}
+                                    </SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
+                    </label>
+                </div>
+            </div>
             <div className="max-w-[210mm] mx-auto bg-white shadow-lg">
                 {/* Page 1 */}
                 <div className="p-8 border-b-4 border-slate-200">
