@@ -76,15 +76,13 @@ export default function PDFLayoutType2({ applicant }) {
                 <div className={`absolute ${footerBottom} right-[10mm] text-[10px] text-slate-500`}>
                     {pageNum} | {totalPages}
                 </div>
-                <div className={`absolute ${footerBottom} left-[50%] -translate-x-1/2 text-[9px] text-slate-400 text-center mt-4`}>
+                <div className={`absolute ${footerBottom} left-[50%] -translate-x-1/2 text-[9px] text-slate-400 text-center`}>
                      FM-HRD-10 Rev.03 10/10/66 <br/>
                      www.ko.in.th Strategy . AI . DX . Sustainability
                 </div>
             </div>
         );
     };
-
-
 
     return (
         <div className="flex flex-col items-center">
