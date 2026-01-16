@@ -1,6 +1,7 @@
 import Admin from './pages/Admin';
 import Application from './pages/Application';
 import Home from './pages/Home';
+import InfoGridDemo from './pages/InfoGridDemo';
 import PDFPreview from './pages/PDFPreview';
 import criminalCheckForm from './pages/criminal-check-form';
 import employmentContract from './pages/employment-contract';
@@ -12,7 +13,6 @@ import pdpaForm from './pages/pdpa-form';
 import spsForm from './pages/sps-form';
 import userDashboard from './pages/user-dashboard';
 import userLogin from './pages/user-login';
-import InfoGridDemo from './pages/InfoGridDemo';
 import __Layout from './Layout.jsx';
 
 
@@ -20,6 +20,7 @@ export const PAGES = {
     "Admin": Admin,
     "Application": Application,
     "Home": Home,
+    "InfoGridDemo": InfoGridDemo,
     "PDFPreview": PDFPreview,
     "criminal-check-form": criminalCheckForm,
     "employment-contract": employmentContract,
@@ -31,7 +32,6 @@ export const PAGES = {
     "sps-form": spsForm,
     "user-dashboard": userDashboard,
     "user-login": userLogin,
-    "InfoGridDemo": InfoGridDemo,
 }
 
 export const pagesConfig = {

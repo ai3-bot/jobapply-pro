@@ -249,6 +249,83 @@ const HoverHighlight = ({ data, title, icon: Icon }) => (
     </Card>
 );
 
+// Template 11: Icon Labels
+const IconLabels = ({ data, title, icon: Icon }) => (
+    <Card className="border-slate-200 shadow-sm">
+        {(title || Icon) && (
+            <CardHeader className="pb-3 border-b border-slate-50 bg-slate-50/50">
+                <CardTitle className="text-base font-semibold flex items-center gap-2 text-slate-800">
+                    {Icon && <Icon className="w-4 h-4 text-indigo-500" />}
+                    {title}
+                </CardTitle>
+            </CardHeader>
+        )}
+        <CardContent className="p-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {Object.entries(data).map(([key, value]) => (
+                    <div key={key} className="flex items-start gap-3">
+                        <div className="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <User className="w-4 h-4 text-indigo-600" />
+                        </div>
+                        <div>
+                            <p className="text-xs font-semibold text-slate-500 uppercase mb-1">{key.replace(/_/g, ' ')}</p>
+                            <p className="text-sm font-bold text-slate-800">{value || '-'}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </CardContent>
+    </Card>
+);
+
+// Template 12: Gradient Background
+const GradientBackground = ({ data, title, icon: Icon }) => (
+    <Card className="border-slate-200 shadow-sm overflow-hidden">
+        {(title || Icon) && (
+            <CardHeader className="pb-3 bg-gradient-to-r from-indigo-500 to-purple-600">
+                <CardTitle className="text-base font-semibold flex items-center gap-2 text-white">
+                    {Icon && <Icon className="w-4 h-4" />}
+                    {title}
+                </CardTitle>
+            </CardHeader>
+        )}
+        <CardContent className="p-4 bg-gradient-to-br from-slate-50 to-white">
+            <div className="space-y-3">
+                {Object.entries(data).map(([key, value]) => (
+                    <div key={key} className="bg-white rounded-lg px-4 py-3 shadow-sm border border-slate-100">
+                        <p className="text-xs font-semibold text-slate-500 uppercase mb-1">{key.replace(/_/g, ' ')}</p>
+                        <p className="text-sm font-bold text-slate-800">{value || '-'}</p>
+                    </div>
+                ))}
+            </div>
+        </CardContent>
+    </Card>
+);
+
+// Template 13: Compact Inline
+const CompactInline = ({ data, title, icon: Icon }) => (
+    <Card className="border-slate-200 shadow-sm">
+        {(title || Icon) && (
+            <CardHeader className="pb-3">
+                <CardTitle className="text-base font-semibold flex items-center gap-2 text-slate-800">
+                    {Icon && <Icon className="w-4 h-4 text-indigo-500" />}
+                    {title}
+                </CardTitle>
+            </CardHeader>
+        )}
+        <CardContent className="p-4">
+            <div className="flex flex-wrap gap-x-6 gap-y-3">
+                {Object.entries(data).map(([key, value]) => (
+                    <div key={key} className="inline-flex items-baseline gap-2">
+                        <span className="text-xs font-semibold text-slate-500 uppercase">{key.replace(/_/g, ' ')}:</span>
+                        <span className="text-sm font-bold text-slate-800">{value || '-'}</span>
+                    </div>
+                ))}
+            </div>
+        </CardContent>
+    </Card>
+);
+
 export default function InfoGridDemo() {
     const sampleData = {
         first_name: 'นาย',
