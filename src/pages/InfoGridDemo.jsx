@@ -562,6 +562,15 @@ export default function InfoGridDemo() {
                         </div>
                         <A4Document data={sampleData} title="ข้อมูลพื้นฐาน" icon={User} />
                     </div>
+
+                    {/* Template 15 */}
+                    <div className="col-span-full">
+                        <div className="flex items-center gap-2 mb-4">
+                            <div className="w-8 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-sm">15</div>
+                            <h2 className="text-xl font-bold text-slate-800">Form-like Layout (แบบฟอร์มที่มี borders)</h2>
+                        </div>
+                        <FormLikeLayout data={sampleData} title="ใบสมัครงาน" icon={User} />
+                    </div>
                 </div>
             </div>
         </div>
