@@ -90,9 +90,9 @@ export default function PDFLayoutType2({ applicant }) {
             {/* ================= PAGE 1 ================= */}
             <PageContainer pageNum={1} totalPages={4} showLogo={true} pageHeight="300mm" logoTopOffset="top-[15mm]">
                  {/* --- Top Section --- */}
-                <div className="flex justify-between items-start mb-4">
+                <div className="flex justify-between items-start mb-1">
                     {/* Top Left Box */}
-                    <div className="border-[0.5px] border-black p-2 w-[40mm] text-[15px] space-y-0.5">
+                    <div className="border-[0.5px] border-black p-2 w-[40mm] text-[15px] space-y-1">
                         <div className="relative pl-5 h-4 flex items-center">
                             <div className={`absolute left-0 top-0.5 w-3 h-3 border border-black rounded-[1px] bg-white flex items-center justify-center`}>
                                 {admin.hr_systems?.web_hr && <Check className="w-2.5 h-2.5" />}
@@ -186,7 +186,7 @@ export default function PDFLayoutType2({ applicant }) {
 
                     {/* Personal Data & Photo */}
                     <div className="p-3 grid grid-cols-12 gap-1">
-                        <div className="col-span-10 space-y-1.5">
+                        <div className="col-span-10 space-y-3">
                             <div className="flex gap-2">
                                  <Field label="ชื่อ-สกุล (ภาษาไทย)" value={`${p.prefix || ''} ${p.first_name || ''} ${p.last_name || ''}`} className="flex-[3]" />
                                  <Field label="ชื่อเล่น" value={p.thai_nickname} className="flex-[2]" />
@@ -219,7 +219,7 @@ export default function PDFLayoutType2({ applicant }) {
                     </div>
 
                     {/* Address Section */}
-                    <div className="border-t-[0.5px] border-black p-3 space-y-1.5">
+                    <div className="border-t-[0.5px] border-black p-3 space-y-3">
                          <div className="flex flex-wrap gap-x-2 gap-y-1 items-end">
                             <span className="font-bold whitespace-nowrap">ที่อยู่ตามทะเบียนบ้าน</span>
                             <span className="whitespace-nowrap">เลขที่</span> <DottedLine value={p.registered_address?.number} className="w-16 text-center" />
@@ -265,10 +265,10 @@ export default function PDFLayoutType2({ applicant }) {
 
                     {/* Status Section */}
                     <div className="border-t-[0.5px] border-black p-3">
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-2 gap-8">
                             <div>
-                                 <div className="font-bold underline mb-1">สถานภาพ (ชาย)</div>
-                                 <div className="space-y-1 pl-1">
+                                 <div className="font-bold underline mb-2">สถานภาพ (ชาย)</div>
+                                 <div className="space-y-1.5 pl-1">
                                      <div className="flex gap-4">
                                          <div className="relative pl-5 h-4 flex items-center mr-4">
                                             <div className={`absolute left-0 top-2 w-3 h-3 border border-black flex items-center justify-center rounded-[1px] bg-white`}>
@@ -306,8 +306,8 @@ export default function PDFLayoutType2({ applicant }) {
                                  </div>
                             </div>
                             <div>
-                                 <div className="font-bold underline mb-1">สถานภาพ (หญิง)</div>
-                                 <div className="space-y-1 pl-1">
+                                 <div className="font-bold underline mb-2">สถานภาพ (หญิง)</div>
+                                 <div className="space-y-1.5 pl-1">
                                      <div className="flex gap-4">
                                          <div className="relative pl-5 h-4 flex items-center w-[250px]">
                                             <div className={`absolute left-0 top-2 w-3 h-3 border border-black flex items-center justify-center rounded-[1px] bg-white`}>
@@ -622,7 +622,7 @@ export default function PDFLayoutType2({ applicant }) {
                      {/* --- Statement --- */}
                      <div>
                         <div className="text-center font-bold text-[14px] border-[0.5px] border-black bg-slate-50 py-1 mb-[-0.5px]">คำแถลง (กรุณาระบุตามจริงเท่านั้น)</div>
-                        <div className="border-[0.5px] border-black p-3 text-[15px] space-y-1.5">
+                        <div className="border-[0.5px] border-black p-3 text-[15px] space-y-2">
                             <div className="flex gap-1 items-center flex-nowrap">
                                 <span className="w-5 shrink-0 relative top-[1px]">1.</span>
                                 <span className="whitespace-nowrap relative top-[1px]">ท่านสามารถปฏิบัติงานล่วงเวลาได้หรือไม่</span>
@@ -688,7 +688,7 @@ export default function PDFLayoutType2({ applicant }) {
                                 <span className="relative top-[1px]">ท่านมีโรคติดต่อร้ายแรงหรือไม่ เช่น กาฬโรค/ไข้ทรพิษหรือฝีดาษ/วัณโรค /HIV/Covid-19 อื่นๆ โปรดระบุให้ชัดเจน...............................</span>
                             </div>
 
-                            <div className="space-y-0.5">
+                            <div className="space-y-1">
                                 <div className="flex items-center gap-1 flex-wrap">
                                     <span className="w-5 shrink-0 relative top-[1px]">9.</span>
                                     <span className="whitespace-nowrap relative top-[1px]">ท่านมีข้อบกพร่องเกี่ยวกับร่างกาย หรือไม่</span>
@@ -705,7 +705,7 @@ export default function PDFLayoutType2({ applicant }) {
                                 </div>
                             </div>
 
-                            <div className="space-y-0.5">
+                            <div className="space-y-1">
                                 <div className="flex gap-1 items-center flex-wrap">
                                     <span className="w-5 shrink-0 relative top-[1px]">10.</span>
                                     <span className="whitespace-nowrap relative top-[1px]">ท่านมีหนี้สินหรือภาระด้านใด อาทิ</span>
@@ -885,24 +885,24 @@ export default function PDFLayoutType2({ applicant }) {
 
                     {/* Attitude Section */}
                     <div className="border-[0.5px] border-black p-2">
-                        <div className="font-bold mb-1 text-[15px]">ทัศนคติในการทำงานของท่านที่ทำให้บริษัทฯได้รู้จักท่านมากขึ้น</div>
+                        <div className="font-bold mb-2 text-[15px]">ทัศนคติในการทำงานของท่านที่ทำให้บริษัทฯได้รู้จักท่านมากขึ้น</div>
                         <DottedLine value={applicant.attitude} className="mb-1 w-full" />
                         <DottedLine value="" className="w-full" />
                     </div>
 
                     {/* Declaration with Signature */}
                     <div className="border-[0.5px] border-black p-2 text-[14px]">
-                        <div className="text-justify leading-snug mb-2">
+                        <div className="text-justify leading-snug mb-4">
                             <p>
                                 ข้าพเจ้าขอรับรองว่า ข้อความดังกล่าวทั้งหมดในใบสมัครงานและเอกสารแนบนี้เป็นความจริงทุกประการ หลังจากบริษัทฯได้เข้ามาทำงานแล้วหากปรากฏว่า ข้อความในใบสมัครงานและเอกสารแนบที่นำมาแสดงต่างๆ หรือรายละเอียดที่ให้ไว้ไม่เป็นความจริง หรือเป็นเท็จ บริษัทฯ มีสิทธิ์ที่เลิกจ้างข้าพเจ้าได้ โดยไม่ต้องจ่ายเงินชดเชยหรือค่าเสียหายใดๆ ทั้งสิ้น ข้าพเจ้ายินยอมให้บริษัทฯตรวจสอบข้อมูลย้อนหลังจากการทำงานที่เดิม รวมถึงยินยอมให้ตรวจสอบประวัติอาญากรรมและเครดิตบูโรทั้งสิ้น และข้าพเจ้ายินยอมให้แพทย์หรือโรงพยาบาลให้ข้อมูลที่จำเป็นเกี่ยวกับสุขภาพของข้าพเจ้า ซึ่งมีผลกระทบต่อการปฏิบัติงานในบริษัท
                             </p>
                         </div>
                         
-                        <div className="text-right mb-2">
-                            <div className="font-bold mb-1">ข้าพเจ้าขอลงนามรับรองการให้ข้อมูลตามจริงทุกประการ</div>
+                        <div className="text-right mb-3">
+                            <div className="font-bold mb-2">ข้าพเจ้าขอลงนามรับรองการให้ข้อมูลตามจริงทุกประการ</div>
                         </div>
 
-                        <div className="text-right space-y-1">
+                        <div className="text-right space-y-2">
                             <div className="flex justify-end items-center gap-2">
                                 <span>ลงชื่อ</span>
                                 {applicant.signature_url ? (
@@ -941,8 +941,8 @@ export default function PDFLayoutType2({ applicant }) {
 
                     {/* Test Results */}
                     <div className="border-[0.5px] border-black p-2 text-[14px]">
-                        <div className="font-bold mb-0.5">(ทดสอบผู้สมัครงาน)</div>
-                        <div className="space-y-0.5 ml-4">
+                        <div className="font-bold mb-1">(ทดสอบผู้สมัครงาน)</div>
+                        <div className="space-y-1 ml-4">
                             <div className="flex items-end gap-2">
                                 <span>(บันทึกการทดสอบครั้งที่ 1)</span>
                                 <span>ตัวเลข</span><DottedLine value={admin.test_results?.test1_number} className="w-20" />
@@ -971,7 +971,7 @@ export default function PDFLayoutType2({ applicant }) {
                             <span>รายละเอียดในการสัมภาษณ์</span>
                             <DottedLine value={admin.interview?.interview_details} className="flex-1" />
                         </div>
-                        <DottedLine value="" className="w-full mb-0.5" />
+                        <DottedLine value="" className="w-full mb-1" />
                         <DottedLine value="" className="w-full" />
                     </div>
 
