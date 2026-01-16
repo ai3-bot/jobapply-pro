@@ -326,6 +326,56 @@ const CompactInline = ({ data, title, icon: Icon }) => (
     </Card>
 );
 
+// Template 14: A4 Document Style (PDF-like)
+const A4Document = ({ data, title, icon: Icon }) => (
+    <div className="w-full max-w-[210mm] mx-auto bg-white shadow-2xl" style={{ aspectRatio: '210/297' }}>
+        {/* A4 Paper */}
+        <div className="w-full h-full p-8 sm:p-12 overflow-auto">
+            {/* Document Header */}
+            <div className="border-b-2 border-slate-800 pb-4 mb-6">
+                <div className="flex items-center justify-between">
+                    <div>
+                        {Icon && <Icon className="w-8 h-8 text-indigo-600 mb-2" />}
+                        <h1 className="text-2xl font-bold text-slate-900">{title}</h1>
+                    </div>
+                    <div className="text-right text-sm text-slate-600">
+                        <p>วันที่: {new Date().toLocaleDateString('th-TH')}</p>
+                        <p>เลขที่เอกสาร: #001234</p>
+                    </div>
+                </div>
+            </div>
+
+            {/* Document Content */}
+            <div className="space-y-6">
+                {Object.entries(data).map(([key, value], idx) => (
+                    <div key={key} className="grid grid-cols-3 gap-4 border-b border-slate-200 pb-3">
+                        <div className="col-span-1 font-semibold text-slate-700">
+                            {idx + 1}. {key.replace(/_/g, ' ')}
+                        </div>
+                        <div className="col-span-2 text-slate-900 font-medium">
+                            {value || '-'}
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            {/* Document Footer */}
+            <div className="mt-12 pt-6 border-t border-slate-300">
+                <div className="grid grid-cols-2 gap-8">
+                    <div className="text-center">
+                        <div className="border-b border-slate-400 mb-2 pb-8"></div>
+                        <p className="text-sm text-slate-600">ผู้จัดทำ</p>
+                    </div>
+                    <div className="text-center">
+                        <div className="border-b border-slate-400 mb-2 pb-8"></div>
+                        <p className="text-sm text-slate-600">ผู้อนุมัติ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+);
+
 export default function InfoGridDemo() {
     const sampleData = {
         first_name: 'นาย',
