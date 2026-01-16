@@ -30,7 +30,7 @@ export default function PDFLayoutType2({ applicant }) {
     );
 
     const Field = ({ label, value, width = "auto", labelWidth="auto", className = "" }) => (
-        <div className={`flex items-end text-[12px] leading-tight ${className}`} style={{ width: className ? 'auto' : width }}>
+        <div className={`flex items-end text-[16px] leading-tight ${className}`} style={{ width: className ? 'auto' : width }}>
             <span className="font-bold text-slate-800 mr-1 whitespace-nowrap pb-1" style={{ width: labelWidth }}>{label}</span>
             <div className="flex-1 border-b-[1.5px] border-dotted border-black text-slate-900 px-2 pb-1 text-center truncate">
                 {value || "-"}
@@ -38,7 +38,7 @@ export default function PDFLayoutType2({ applicant }) {
         </div>
     );
 
-    const CheckBox = ({ label, checked, textSize="text-[11px]", width="w-[300px]" }) => (
+    const CheckBox = ({ label, checked, textSize="text-[15px]", width="w-[300px]" }) => (
         <div className={`relative pl-5 h-4 flex items-center ${width}`}>
             <div className={`absolute left-0 top-2.5 w-3 h-3 border-[0.5px] border-black rounded-[1px] bg-white flex items-center justify-center`}>
                 {checked && <Check className="w-2.5 h-2.5" />}
@@ -51,7 +51,7 @@ export default function PDFLayoutType2({ applicant }) {
         const footerBottom = pageNum === 2 ? 'bottom-[20mm]' : pageNum === 3 || pageNum === 4 ? 'bottom-[25mm]' : 'bottom-[10mm]';
         return (
             <div 
-                className="bg-white text-slate-900 p-[10mm] mx-auto relative text-[12px] font-sans mb-8 shadow-sm print:shadow-none print:mb-0"
+                className="bg-white text-slate-900 p-[10mm] mx-auto relative text-[16px] font-sans mb-8 shadow-sm print:shadow-none print:mb-0"
                 style={{ 
                     width: '210mm', 
                     minHeight: pageHeight,
@@ -67,17 +67,17 @@ export default function PDFLayoutType2({ applicant }) {
                         {appLogo ? (
                             <img src={appLogo} alt="Logo" crossOrigin="anonymous" className="h-[60px] w-auto object-contain" />
                         ) : (
-                            <div className="h-[60px] w-[80px] bg-slate-100 rounded flex items-center justify-center text-[10px] text-slate-400">LOGO</div>
+                            <div className="h-[60px] w-[80px] bg-slate-100 rounded flex items-center justify-center text-[14px] text-slate-400">LOGO</div>
                         )}
                     </div>
                 )}
                 {children}
 
                 {/* Footer */}
-                <div className={`absolute ${footerBottom} right-[10mm] text-[10px] text-slate-500`}>
+                <div className={`absolute ${footerBottom} right-[10mm] text-[14px] text-slate-500`}>
                     {pageNum} | {totalPages}
                 </div>
-                <div className={`absolute ${footerBottom} left-[50%] -translate-x-1/2 text-[9px] text-slate-400 text-center`}>
+                <div className={`absolute ${footerBottom} left-[50%] -translate-x-1/2 text-[12px] text-slate-400 text-center`}>
                      FM-HRD-10 Rev.03 10/10/66 <br/>
                      www.ko.in.th Strategy . AI . DX . Sustainability
                 </div>
@@ -92,7 +92,7 @@ export default function PDFLayoutType2({ applicant }) {
                  {/* --- Top Section --- */}
                 <div className="flex justify-between items-start mb-4">
                     {/* Top Left Box */}
-                    <div className="border-[0.5px] border-black p-2 w-[40mm] text-[11px] space-y-1">
+                    <div className="border-[0.5px] border-black p-2 w-[40mm] text-[15px] space-y-1">
                         <div className="relative pl-5 h-4 flex items-center">
                             <div className={`absolute left-0 top-0.5 w-3 h-3 border border-black rounded-[1px] bg-white flex items-center justify-center`}>
                                 {admin.hr_systems?.web_hr && <Check className="w-2.5 h-2.5" />}
@@ -126,18 +126,18 @@ export default function PDFLayoutType2({ applicant }) {
                 </div>
 
                 {/* Application Date */}
-                <div className="mb-4 font-bold text-[12px]">
+                <div className="mb-4 font-bold text-[16px]">
                     วันที่เขียนใบสมัครงาน &nbsp;&nbsp; {p.application_date || "____________________"}
                 </div>
 
                 {/* Disclaimer */}
-                <div className="text-[10px] text-justify leading-snug mb-4">
+                <div className="text-[14px] text-justify leading-snug mb-4">
                     ใบสมัครงานเป็นส่วนหนึ่งในการพิจารณา โปรดกรอกข้อความตามจริงด้วยตัวเองให้ครบถ้วน อนึ่งในกรณีที่ท่าน ไม่ผ่านการพิจารณา รับเข้าทำงาน ข้อมูลในใบสมัครจะถูกเก็บรักษาไว้เป็นระยะเวลา 1 เดือน หากมีการพิจารณาตำแหน่งอื่นๆ อีกครั้งตามความเหมาะสม อนึ่งในกรณีที่ท่านผ่าน การพิจารณารับเข้าทำงาน ข้อมูลในใบสมัครจะถูกเก็บรักษาไว้ตลอดระยะเวลาการเป็นพนักงาน/ลูกจ้างของ บริษัทฯและหากท่านพ้นสภาพจากการเป็นพนักงาน/ลูกจ้างแล้วนั้น บริษัทฯจะเก็บรักษาไว้ต่อเนื่องอีกเป็นระยะเวลา 2 ปี หากมีกรณี ต้องใช้เป็นหลักฐานประกอบการพิจารณาตามกฎหมาย พนักงานหรือผู้มาติดต่อสมัครงาน ยินยอมให้เก็บรวบรวมข้อมูลส่วนบุคคลใน นามของบริษัท เค แอนด์ โอ ซิสเต็มส์ แอนด์ คอนซัลติ้ง จำกัด เป็นผู้ควบคุมข้อมูลส่วนบุคคล ประมวลผลเก็บรวบรวมหรือเปิดเผยข้อมูล ส่วนบุคคล (PDPA) รวมถึงข้อมูลอื่นใดตามที่ได้ระบุไว้ใน พรบ.คุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 "กฎหมายคุ้มครองข้อมูลส่วน บุคคล" และ "ข้อมูลส่วนบุคคลที่มีความอ่อนไหวเป็นพิเศษ"เพื่อเป็นส่วนหนึ่งของการพิจารณาบุคลากรตามเงื่อนไขบริษัทฯ
                 </div>
 
                 {/* --- HR Section --- */}
                 <div className="border-[0.5px] border-black p-3 mb-3 rounded-sm relative">
-                    <div className="absolute -top-2 left-2 bg-white px-1 font-bold text-[12px]">(สำหรับ จนท.)</div>
+                    <div className="absolute -top-2 left-2 bg-white px-1 font-bold text-[16px]">(สำหรับ จนท.)</div>
                     <div className="grid grid-cols-12 gap-2 mb-3 mt-1">
                         <div className="col-span-4 flex items-end"><span className="font-bold mr-2 pb-1">รหัสพนักงาน</span><DottedLine value={admin.hr_info?.employee_id} className="flex-1" /></div>
                         <div className="col-span-4 flex items-end"><span className="font-bold mr-2 pb-1">วันที่เริ่มงานจริง</span><DottedLine value={admin.hr_info?.actual_start_date} className="flex-1" /></div>
@@ -147,7 +147,7 @@ export default function PDFLayoutType2({ applicant }) {
                         <div className="flex items-end gap-2"><span className="font-bold pb-1">ไซด์เสื้อ</span><DottedLine value={admin.hr_info?.shirt_size} className="w-16 text-center" /></div>
                         <div className="flex items-end gap-2"><span className="font-bold pb-1">จำนวน</span><DottedLine value={admin.hr_info?.shirt_quantity} className="w-16 text-center" /></div>
                     </div>
-                    <div className="grid grid-cols-3 gap-x-1 gap-y-1 text-[11px]">
+                    <div className="grid grid-cols-3 gap-x-1 gap-y-1 text-[15px]">
                         <CheckBox label="รูปถ่าย 1-3 รูป" checked={admin.documents?.photos} />
                         <CheckBox label="สำเนาบัตรประชาชน 3 ฉบับ" checked={admin.documents?.id_card_copy} />
                         <CheckBox label="สำเนาทะเบียนบ้าน" checked={admin.documents?.house_registration} />
@@ -174,7 +174,7 @@ export default function PDFLayoutType2({ applicant }) {
                 <div className="border-[0.5px] border-black rounded-sm">
                     {/* Position Row */}
                     <div className="p-3 border-b-[0.5px] border-black bg-slate-50/50">
-                        <div className="flex gap-4 items-end text-[12px] leading-tight">
+                        <div className="flex gap-4 items-end text-[16px] leading-tight">
                             <div className="font-bold whitespace-nowrap pb-1">สมัครงานในตำแหน่ง 1</div>
                             <div className="border-b-[1.5px] border-dotted border-black flex-1 px-2 pb-1 text-center font-medium truncate">{p.position_1}</div>
                             <div className="font-bold whitespace-nowrap pb-1">2</div>
@@ -212,7 +212,7 @@ export default function PDFLayoutType2({ applicant }) {
                                  {applicant.photo_url ? (
                                     <img src={applicant.photo_url} alt="Photo" className="w-full h-full object-cover absolute inset-0" />
                                 ) : (
-                                    <span className="text-slate-300 text-[10px]">รูปภาพ</span>
+                                    <span className="text-slate-300 text-[14px]">รูปภาพ</span>
                                 )}
                             </div>
                         </div>
@@ -240,13 +240,13 @@ export default function PDFLayoutType2({ applicant }) {
                                     <div className={`absolute left-0 top-2 w-3 h-3 border border-black flex items-center justify-center rounded-[1px] bg-white`}>
                                         {p.current_address_type === 'own' && <Check className="w-2.5 h-2.5" />}
                                     </div>
-                                    <span className="text-[11px] text-slate-900">บ้านตนเอง</span>
+                                    <span className="text-[15px] text-slate-900">บ้านตนเอง</span>
                                 </div>
                                 <div className="relative pl-5 h-4 flex items-center w-[150px]">
                                     <div className={`absolute left-0 top-2 w-3 h-3 border border-black flex items-center justify-center rounded-[1px] bg-white`}>
                                         {p.current_address_type === 'rent' && <Check className="w-2.5 h-2.5" />}
                                     </div>
-                                    <span className="text-[11px] text-slate-900">บ้านเช่า / หอพัก</span>
+                                    <span className="text-[15px] text-slate-900">บ้านเช่า / หอพัก</span>
                                 </div>
                             </div>
                          </div>
@@ -274,33 +274,33 @@ export default function PDFLayoutType2({ applicant }) {
                                             <div className={`absolute left-0 top-2 w-3 h-3 border border-black flex items-center justify-center rounded-[1px] bg-white`}>
                                                 {p.military_status === 'exempted' && <Check className="w-2.5 h-2.5" />}
                                             </div>
-                                            <span className="text-[11px] text-slate-900">ได้รับการยกเว้นทางทหาร</span>
+                                            <span className="text-[15px] text-slate-900">ได้รับการยกเว้นทางทหาร</span>
                                          </div>
                                          <div className="relative pl-5 h-4 flex items-center">
                                             <div className={`absolute left-0 top-2 w-3 h-3 border border-black flex items-center justify-center rounded-[1px] bg-white`}>
                                                 {p.military_status === 'served' && <Check className="w-2.5 h-2.5" />}
                                             </div>
-                                            <span className="text-[11px] text-slate-900">เกณฑ์ทหารแล้ว</span>
+                                            <span className="text-[15px] text-slate-900">เกณฑ์ทหารแล้ว</span>
                                          </div>
                                      </div>
                                      <div className="relative pl-5 h-4 flex items-center">
                                         <div className={`absolute left-0 top-2 w-3 h-3 border border-black flex items-center justify-center rounded-[1px] bg-white`}>
                                             {p.military_status === 'not_served' && <Check className="w-2.5 h-2.5" />}
                                         </div>
-                                        <span className="text-[11px] text-slate-900">ยังไม่ได้รับการเกณฑ์</span>
+                                        <span className="text-[15px] text-slate-900">ยังไม่ได้รับการเกณฑ์</span>
                                      </div>
                                      <div className="flex gap-4">
                                          <div className="relative pl-5 h-4 flex items-center mr-4">
                                             <div className={`absolute left-0 top-2 w-3 h-3 border border-black flex items-center justify-center rounded-[1px] bg-white`}>
                                                 {f.marital_status === 'single' && <Check className="w-2.5 h-2.5" />}
                                             </div>
-                                            <span className="text-[11px] text-slate-900">ยังไม่สมรส</span>
+                                            <span className="text-[15px] text-slate-900">ยังไม่สมรส</span>
                                          </div>
                                          <div className="relative pl-5 h-4 flex items-center">
                                             <div className={`absolute left-0 top-2 w-3 h-3 border border-black flex items-center justify-center rounded-[1px] bg-white`}>
                                                 {f.marital_status === 'married' && <Check className="w-2.5 h-2.5" />}
                                             </div>
-                                            <span className="text-[11px] text-slate-900">สมรสแล้ว</span>
+                                            <span className="text-[15px] text-slate-900">สมรสแล้ว</span>
                                          </div>
                                      </div>
                                  </div>
@@ -312,7 +312,7 @@ export default function PDFLayoutType2({ applicant }) {
                                          <div className="relative pl-5 h-4 flex items-center w-[250px]">
                                             <div className={`absolute left-0 top-2 w-3 h-3 border border-black flex items-center justify-center rounded-[1px] bg-white`}>
                                             </div>
-                                            <span className="text-[11px] text-slate-900">ไม่อยู่ระหว่างการตั้งครรภ์</span>
+                                            <span className="text-[15px] text-slate-900">ไม่อยู่ระหว่างการตั้งครรภ์</span>
                                          </div>
                                      </div>
                                      <div className="flex gap-4">
@@ -320,19 +320,19 @@ export default function PDFLayoutType2({ applicant }) {
                                             <div className={`absolute left-0 top-2 w-3 h-3 border border-black flex items-center justify-center rounded-[1px] bg-white`}>
                                                 {f.has_children === 'yes' && <Check className="w-2.5 h-2.5" />}
                                             </div>
-                                            <span className="text-[11px] text-slate-900">มีบุตรแล้ว</span>
+                                            <span className="text-[15px] text-slate-900">มีบุตรแล้ว</span>
                                          </div>
                                          <div className="relative pl-5 h-4 flex items-center">
                                             <div className={`absolute left-0 top-2 w-3 h-3 border border-black flex items-center justify-center rounded-[1px] bg-white`}>
                                                 {f.has_children === 'no' && <Check className="w-2.5 h-2.5" />}
                                             </div>
-                                            <span className="text-[11px] text-slate-900">ยังไม่มีบุตร</span>
+                                            <span className="text-[15px] text-slate-900">ยังไม่มีบุตร</span>
                                          </div>
                                      </div>
                                      <div className="relative pl-5 h-4 flex items-center">
                                         <div className={`absolute left-0 top-2 w-3 h-3 border border-black flex items-center justify-center rounded-[1px] bg-white`}>
                                         </div>
-                                        <span className="text-[11px] text-slate-900">อยู่ระหว่างการตั้งครรภ์ ระบุ สัปดาห์ที่ตั้งครรภ์</span>
+                                        <span className="text-[15px] text-slate-900">อยู่ระหว่างการตั้งครรภ์ ระบุ สัปดาห์ที่ตั้งครรภ์</span>
                                      </div>
                                  </div>
                             </div>
@@ -347,7 +347,7 @@ export default function PDFLayoutType2({ applicant }) {
 
 
                     {/* --- Family Status --- */}
-                    <div className="border-[0.5px] border-black p-2 rounded-sm text-[11px]">
+                    <div className="border-[0.5px] border-black p-2 rounded-sm text-[15px]">
                         <div className="flex items-center gap-2 mb-2">
                              <span className="font-bold underline">สถานะทางครอบครัว</span>
                              <div className="flex gap-4 ml-4 items-end">
@@ -355,13 +355,13 @@ export default function PDFLayoutType2({ applicant }) {
                                     <div className={`absolute left-0 top-2.5 w-3 h-3 border-[0.5px] border-black flex items-center justify-center rounded-[1px] bg-white`}>
                                         {f.marital_status === 'single' && <Check className="w-2.5 h-2.5" />}
                                     </div>
-                                    <span className="text-[11px] text-slate-900 pt-1">โสด</span>
+                                    <span className="text-[15px] text-slate-900 pt-1">โสด</span>
                                 </div>
                                 <div className="relative pl-5 h-4 flex items-center w-[100px]">
                                     <div className={`absolute left-0 top-2.5 w-3 h-3 border-[0.5px] border-black flex items-center justify-center rounded-[1px] bg-white`}>
                                         {f.marital_status === 'married' && <Check className="w-2.5 h-2.5" />}
                                     </div>
-                                    <span className="text-[11px] text-slate-900 pt-1">แต่งงานแล้ว</span>
+                                    <span className="text-[15px] text-slate-900 pt-1">แต่งงานแล้ว</span>
                                 </div>
                              </div>
                         </div>
@@ -377,7 +377,7 @@ export default function PDFLayoutType2({ applicant }) {
                          <div className="flex gap-2">
                             <span className="font-bold whitespace-nowrap">กรณีมีบุตรแล้ว</span>
                             <Field label="จำนวนบุตร" value={f.children_count} className="w-[80px]" labelWidth="auto" />
-                            <span className="text-[12px] pt-1">คน</span>
+                            <span className="text-[16px] pt-1">คน</span>
                             <Field label="ปัจจุบันบุตรอยู่ในความดูแลของบุคคลใด เช่น คุณยาย / คุณย่า หรือตนเอง" value={f.children_caretaker} className="flex-1" />
                         </div>
                     </div>
@@ -385,7 +385,7 @@ export default function PDFLayoutType2({ applicant }) {
                     {/* --- Education History --- */}
                     <div>
                         <div className="text-center font-bold text-[14px] mb-0.5 pb-[1px]">ประวัติการศึกษา</div>
-                        <table className="w-full border-collapse text-[11px]">
+                        <table className="w-full border-collapse text-[15px]">
                             <thead>
                                 <tr className="bg-slate-50 text-center">
                                     <th className="border-l-[0.5px] border-b-[0.5px] border-t-[0.5px] border-black p-1 w-[15%]">ระดับ</th>
@@ -437,7 +437,7 @@ export default function PDFLayoutType2({ applicant }) {
                              
                              <div className="grid grid-cols-12">
                                  {/* Language Table */}
-                                 <div className="col-span-4 border-r-[0.5px] border-black text-[10px]">
+                                 <div className="col-span-4 border-r-[0.5px] border-black text-[14px]">
                                      <div className="grid grid-cols-5 border-b-[0.5px] border-black text-center bg-slate-50 h-[40px]">
                                          <div className="col-span-2 p-1 border-r-[0.5px] border-black font-bold flex items-center justify-center">ภาษา</div>
                                          <div className="col-span-3 p-1 flex items-center justify-center font-bold">
@@ -453,7 +453,7 @@ export default function PDFLayoutType2({ applicant }) {
                                          <div key={idx} className="grid grid-cols-5 border-b-[0.5px] border-black last:border-b-0 h-[28px]">
                                              <div className="col-span-2 pl-1 border-r-[0.5px] border-black font-medium flex items-center h-full truncate">
                                                  {item.l}
-                                                 {item.n && s.languages?.[item.n] && <span className="ml-1 text-[9px] text-slate-600">({s.languages[item.n]})</span>}
+                                                 {item.n && s.languages?.[item.n] && <span className="ml-1 text-[12px] text-slate-600">({s.languages[item.n]})</span>}
                                              </div>
                                              <div className="col-span-3 h-full flex items-center justify-center px-2">
                                                  {s.languages?.[item.k] || ''}
@@ -463,7 +463,7 @@ export default function PDFLayoutType2({ applicant }) {
                                  </div>
 
                                  {/* Office Equipment */}
-                                 <div className="col-span-4 border-r-[0.5px] border-black text-[11px]">
+                                 <div className="col-span-4 border-r-[0.5px] border-black text-[15px]">
                                      <div className="grid grid-cols-5 border-b-[0.5px] border-black font-bold text-center bg-slate-50 h-[40px]">
                                          <div className="col-span-3 p-1 border-r-[0.5px] border-black flex items-center justify-center">ประเภท</div>
                                          <div className="p-1 border-r-[0.5px] border-black flex items-center justify-center">ได้</div>
@@ -484,7 +484,7 @@ export default function PDFLayoutType2({ applicant }) {
                                  </div>
 
                                  {/* Special Skills */}
-                                 <div className="col-span-4 text-[11px]">
+                                 <div className="col-span-4 text-[15px]">
                                      <div className="grid grid-cols-5 border-b-[0.5px] border-black font-bold text-center bg-slate-50 h-[40px]">
                                          <div className="col-span-3 p-1 border-r-[0.5px] border-black flex items-center justify-center">ประเภท</div>
                                          <div className="p-1 border-r-[0.5px] border-black flex items-center justify-center">ได้</div>
@@ -516,7 +516,7 @@ export default function PDFLayoutType2({ applicant }) {
                     {/* --- Training History --- */}
                     <div>
                         <div className="text-center font-bold text-[14px] mb-1">ประวัติการฝึกอบรม</div>
-                        <table className="w-full border-collapse text-[11px]">
+                        <table className="w-full border-collapse text-[15px]">
                             <thead>
                                 <tr className="bg-slate-50 text-center">
                                     <th className="border-l-[0.5px] border-b-[0.5px] border-t-[0.5px] border-black p-1 w-[10%]">ลำดับ</th>
@@ -550,27 +550,27 @@ export default function PDFLayoutType2({ applicant }) {
 
                      {/* --- Work History --- */}
                      <div>
-                        <table className="w-full border-collapse border-[0.5px] border-black text-[10px]">
+                        <table className="w-full border-collapse border-[0.5px] border-black text-[14px]">
                             <thead>
                                 <tr>
                                     <th colSpan={5} className="border-r-[0.5px] border-b-[0.5px] border-black p-2 align-top">
-                                        <div className="text-center font-bold text-[12px] underline mb-1">ประวัติการทำงาน</div>
+                                        <div className="text-center font-bold text-[16px] underline mb-1">ประวัติการทำงาน</div>
                                         <div className="flex justify-center gap-6 font-normal">
                                             <div className="relative pl-5 h-4 flex items-center">
                                                 <div className={`absolute left-0 top-2.5 w-3 h-3 border-[0.5px] border-black flex items-center justify-center rounded-[1px] bg-white`}>
                                                     {exp.has_experience === 'no' && <Check className="w-2.5 h-2.5" />}
                                                 </div>
-                                                <span className="text-[11px] text-slate-900 pt-1">ไม่มีประสบการณ์ทำงาน</span>
+                                                <span className="text-[15px] text-slate-900 pt-1">ไม่มีประสบการณ์ทำงาน</span>
                                             </div>
                                             <div className="relative pl-5 h-4 flex items-center">
                                                 <div className={`absolute left-0 top-2.5 w-3 h-3 border-[0.5px] border-black flex items-center justify-center rounded-[1px] bg-white`}>
                                                     {exp.has_experience === 'yes' && <Check className="w-2.5 h-2.5" />}
                                                 </div>
-                                                <span className="text-[11px] text-slate-900 pt-1">มีประสบการณ์ทำงานระบุ (เรียงลำดับจากล่าสุด)</span>
+                                                <span className="text-[15px] text-slate-900 pt-1">มีประสบการณ์ทำงานระบุ (เรียงลำดับจากล่าสุด)</span>
                                             </div>
                                         </div>
                                     </th>
-                                    <th colSpan={2} className="border-b-[0.5px] border-black p-2 align-middle text-center font-bold text-[11px]">
+                                    <th colSpan={2} className="border-b-[0.5px] border-black p-2 align-middle text-center font-bold text-[15px]">
                                         เงินเดือน/บาท
                                     </th>
                                 </tr>
@@ -602,11 +602,11 @@ export default function PDFLayoutType2({ applicant }) {
                                 {/* Footer / Consent Row */}
                                 <tr>
                                     <td colSpan={7} className="p-2 align-top">
-                                        <div className="text-[10px] space-y-1">
+                                        <div className="text-[14px] space-y-1">
                                             <div>
                                                 <span>ท่านจะขัดข้องหรือไม่ถ้าหากทางบริษัทฯ จะติดต่อสอบถามไปยังบริษัทฯ(เดิม)หรือบริษัทฯปัจจุบัน</span>
-                                                <span className="ml-4 inline-block align-middle"><CheckBox label="ไม่ขัดข้อง" checked={exp.contact_previous_employer?.status === 'allowed'} width="w-[100px]" textSize="text-[10px]" /></span>
-                                                <span className="ml-4 inline-block align-middle"><CheckBox label="ขัดข้อง" checked={exp.contact_previous_employer?.status === 'not_allowed'} width="w-[80px]" textSize="text-[10px]" /></span>
+                                                <span className="ml-4 inline-block align-middle"><CheckBox label="ไม่ขัดข้อง" checked={exp.contact_previous_employer?.status === 'allowed'} width="w-[100px]" textSize="text-[14px]" /></span>
+                                                <span className="ml-4 inline-block align-middle"><CheckBox label="ขัดข้อง" checked={exp.contact_previous_employer?.status === 'not_allowed'} width="w-[80px]" textSize="text-[14px]" /></span>
                                             </div>
                                             <div className="flex">
                                                 <span className="relative top-[-2px]">เพราะ</span>
@@ -622,7 +622,7 @@ export default function PDFLayoutType2({ applicant }) {
                      {/* --- Statement --- */}
                      <div>
                         <div className="text-center font-bold text-[14px] border-[0.5px] border-black bg-slate-50 py-1 mb-[-0.5px]">คำแถลง (กรุณาระบุตามจริงเท่านั้น)</div>
-                        <div className="border-[0.5px] border-black p-3 text-[11px] space-y-2">
+                        <div className="border-[0.5px] border-black p-3 text-[15px] space-y-2">
                             <div className="flex gap-1 items-center flex-nowrap">
                                 <span className="w-5 shrink-0 relative top-[1px]">1.</span>
                                 <span className="whitespace-nowrap relative top-[1px]">ท่านสามารถปฏิบัติงานล่วงเวลาได้หรือไม่</span>
@@ -739,7 +739,7 @@ export default function PDFLayoutType2({ applicant }) {
                      </div>
 
                      {/* --- Referral --- */}
-                     <div className="border-[0.5px] border-black p-2 pb-3 text-[11px] space-y-2.5">
+                     <div className="border-[0.5px] border-black p-2 pb-3 text-[15px] space-y-2.5">
                          <div className="flex items-end">
                             <span className="relative top-[1px]">ข้าพเจ้ายื่นใบสมัครโดยการแนะนำของ</span>
                             <DottedLine value={ref.referred_by} className="flex-1 text-center relative top-2" />
@@ -755,15 +755,15 @@ export default function PDFLayoutType2({ applicant }) {
                      </div>
 
                      {/* --- Parents --- */}
-                     <div className="border-[0.5px] border-black p-2 text-[11px] space-y-2.5">
-                         <div className="font-bold underline text-center text-[12px]">ประวัติครอบครัว</div>
+                     <div className="border-[0.5px] border-black p-2 text-[15px] space-y-2.5">
+                         <div className="font-bold underline text-center text-[16px]">ประวัติครอบครัว</div>
                          
                          {/* Father - 3 lines */}
                          <div className="flex flex-wrap items-end gap-1">
                              <span>ชื่อ-สกุล บิดา</span>
                              <DottedLine value={par.father?.name} className="w-[50mm] relative top-[3px]" />
-                             <CheckBox label="ถึงแก่กรรม" checked={par.father?.status === 'deceased'} width="w-[22mm]" textSize="text-[11px]" />
-                             <CheckBox label="มีชีวิตอยู่" checked={par.father?.status === 'alive'} width="w-[22mm]" textSize="text-[11px]" />
+                             <CheckBox label="ถึงแก่กรรม" checked={par.father?.status === 'deceased'} width="w-[22mm]" textSize="text-[15px]" />
+                             <CheckBox label="มีชีวิตอยู่" checked={par.father?.status === 'alive'} width="w-[22mm]" textSize="text-[15px]" />
                              <span>อายุ</span>
                              <DottedLine value={par.father?.age} className="w-[12mm] text-center relative top-[3px]" />
                              <span>ปี</span>
@@ -797,8 +797,8 @@ export default function PDFLayoutType2({ applicant }) {
                          <div className="flex flex-wrap items-end gap-1 pt-2">
                              <span>ชื่อ-สกุล มารดา</span>
                              <DottedLine value={par.mother?.name} className="w-[48mm] relative top-[3px]" />
-                             <CheckBox label="ถึงแก่กรรม" checked={par.mother?.status === 'deceased'} width="w-[22mm]" textSize="text-[11px]" />
-                             <CheckBox label="มีชีวิตอยู่" checked={par.mother?.status === 'alive'} width="w-[22mm]" textSize="text-[11px]" />
+                             <CheckBox label="ถึงแก่กรรม" checked={par.mother?.status === 'deceased'} width="w-[22mm]" textSize="text-[15px]" />
+                             <CheckBox label="มีชีวิตอยู่" checked={par.mother?.status === 'alive'} width="w-[22mm]" textSize="text-[15px]" />
                              <span>อายุ</span>
                              <DottedLine value={par.mother?.age} className="w-[12mm] text-center relative top-[3px]" />
                              <span>ปี</span>
@@ -846,10 +846,10 @@ export default function PDFLayoutType2({ applicant }) {
                 <div className="mt-[-15mm] space-y-2">
                     
                     {/* Emergency Contact Table */}
-                    <div className="text-[11px] mb-1">
+                    <div className="text-[15px] mb-1">
                         <span className="font-bold">กรณี <span className="underline">ฉุกเฉิน เร่งด่วน</span> สามารถติดต่อบุคคลอ้างอิงได้ที่</span>
                     </div>
-                    <table className="w-full border-collapse text-[10px]">
+                    <table className="w-full border-collapse text-[14px]">
                         <thead>
                             <tr className="bg-slate-50">
                                 <th className="border-l-[0.5px] border-b-[0.5px] border-t-[0.5px] border-black p-1 text-center w-[20%]">ชื่อ-สกุล</th>
@@ -885,13 +885,13 @@ export default function PDFLayoutType2({ applicant }) {
 
                     {/* Attitude Section */}
                     <div className="border-[0.5px] border-black p-2">
-                        <div className="font-bold mb-2 text-[11px]">ทัศนคติในการทำงานของท่านที่ทำให้บริษัทฯได้รู้จักท่านมากขึ้น</div>
+                        <div className="font-bold mb-2 text-[15px]">ทัศนคติในการทำงานของท่านที่ทำให้บริษัทฯได้รู้จักท่านมากขึ้น</div>
                         <DottedLine value={applicant.attitude} className="mb-1 w-full" />
                         <DottedLine value="" className="w-full" />
                     </div>
 
                     {/* Declaration with Signature */}
-                    <div className="border-[0.5px] border-black p-2 text-[10px]">
+                    <div className="border-[0.5px] border-black p-2 text-[14px]">
                         <div className="text-justify leading-snug mb-4">
                             <p>
                                 ข้าพเจ้าขอรับรองว่า ข้อความดังกล่าวทั้งหมดในใบสมัครงานและเอกสารแนบนี้เป็นความจริงทุกประการ หลังจากบริษัทฯได้เข้ามาทำงานแล้วหากปรากฏว่า ข้อความในใบสมัครงานและเอกสารแนบที่นำมาแสดงต่างๆ หรือรายละเอียดที่ให้ไว้ไม่เป็นความจริง หรือเป็นเท็จ บริษัทฯ มีสิทธิ์ที่เลิกจ้างข้าพเจ้าได้ โดยไม่ต้องจ่ายเงินชดเชยหรือค่าเสียหายใดๆ ทั้งสิ้น ข้าพเจ้ายินยอมให้บริษัทฯตรวจสอบข้อมูลย้อนหลังจากการทำงานที่เดิม รวมถึงยินยอมให้ตรวจสอบประวัติอาญากรรมและเครดิตบูโรทั้งสิ้น และข้าพเจ้ายินยอมให้แพทย์หรือโรงพยาบาลให้ข้อมูลที่จำเป็นเกี่ยวกับสุขภาพของข้าพเจ้า ซึ่งมีผลกระทบต่อการปฏิบัติงานในบริษัท
@@ -935,12 +935,12 @@ export default function PDFLayoutType2({ applicant }) {
                     </div>
 
                     {/* HR Section */}
-                    <div className="text-center font-bold text-[11px] bg-slate-50 border-[0.5px] border-black py-1">
+                    <div className="text-center font-bold text-[15px] bg-slate-50 border-[0.5px] border-black py-1">
                         สำหรับบริษัทฯ ใช้กรอกรายละเอียดบันทึกการสัมภาษณ์
                     </div>
 
                     {/* Test Results */}
-                    <div className="border-[0.5px] border-black p-2 text-[10px]">
+                    <div className="border-[0.5px] border-black p-2 text-[14px]">
                         <div className="font-bold mb-1">(ทดสอบผู้สมัครงาน)</div>
                         <div className="space-y-1 ml-4">
                             <div className="flex items-end gap-2">
@@ -963,7 +963,7 @@ export default function PDFLayoutType2({ applicant }) {
                     </div>
 
                     {/* Interview Notes */}
-                    <div className="border-[0.5px] border-black border-t-0 p-2 text-[10px]">
+                    <div className="border-[0.5px] border-black border-t-0 p-2 text-[14px]">
                         <div className="flex items-start gap-2 mb-1">
                             <span className="font-bold">(บันทึกการผู้สัมภาษณ์)</span>
                             <span>: ลงชื่อ ผู้สัมภาษณ์</span>
@@ -976,13 +976,13 @@ export default function PDFLayoutType2({ applicant }) {
                     </div>
 
                     {/* Approval Section */}
-                    <div className="grid grid-cols-3 gap-0 text-[9px]">
+                    <div className="grid grid-cols-3 gap-0 text-[12px]">
                         {/* First Row - 3 columns */}
                         <div className="border-[0.5px] border-black p-1.5">
                             <div className="font-bold text-center mb-1 pb-1 border-b border-black">เจ้าหน้าที่สรรหาว่าจ้าง</div>
                             <div className="text-center mb-2">ผู้ดำเนินการ</div>
                             <div className="flex flex-col items-center gap-1 mb-1">
-                                <span className="text-[8px]">ลงชื่อ</span>
+                                <span className="text-[11px]">ลงชื่อ</span>
                                 {admin.approvals?.recruiter?.signature ? (
                                     <div className="flex flex-col items-center w-32">
                                         <img src={admin.approvals.recruiter.signature} alt="Signature" crossOrigin="anonymous" className="max-h-10 object-contain mb-1" />
@@ -991,19 +991,19 @@ export default function PDFLayoutType2({ applicant }) {
                                 ) : (
                                     <div className="border-b-[1px] border-dotted border-black w-32 h-10"></div>
                                 )}
-                                <div className="text-center text-[8px]">({admin.approvals?.recruiter?.name || "..........................................."})</div>
+                                <div className="text-center text-[11px]">({admin.approvals?.recruiter?.name || "..........................................."})</div>
                             </div>
-                            <div className="text-center text-[8px]">วันที่ {admin.approvals?.recruiter?.date || ".........../.........../..........."}</div>
+                            <div className="text-center text-[11px]">วันที่ {admin.approvals?.recruiter?.date || ".........../.........../..........."}</div>
                         </div>
                         
                         <div className="border-[0.5px] border-black border-l-0 p-1.5">
                             <div className="font-bold text-center mb-1 pb-1 border-b border-black">กรรมการ</div>
                             <div className="flex gap-2 mb-2 justify-center">
-                                <CheckBox label="อนุมัติรับ" checked={admin.approvals?.committee?.decision === 'approved'} width="w-auto" textSize="text-[9px]" />
-                                <CheckBox label="ไม่รับ" checked={admin.approvals?.committee?.decision === 'rejected'} width="w-auto" textSize="text-[9px]" />
+                                <CheckBox label="อนุมัติรับ" checked={admin.approvals?.committee?.decision === 'approved'} width="w-auto" textSize="text-[12px]" />
+                                <CheckBox label="ไม่รับ" checked={admin.approvals?.committee?.decision === 'rejected'} width="w-auto" textSize="text-[12px]" />
                             </div>
                             <div className="flex flex-col items-center gap-1 mb-1">
-                                <span className="text-[8px]">ลงชื่อ</span>
+                                <span className="text-[11px]">ลงชื่อ</span>
                                 {admin.approvals?.committee?.signature ? (
                                     <div className="flex flex-col items-center w-32">
                                         <img src={admin.approvals.committee.signature} alt="Signature" crossOrigin="anonymous" className="max-h-10 object-contain mb-1" />
@@ -1012,19 +1012,19 @@ export default function PDFLayoutType2({ applicant }) {
                                 ) : (
                                     <div className="border-b-[1px] border-dotted border-black w-32 h-10"></div>
                                 )}
-                                <div className="text-center text-[8px]">({admin.approvals?.committee?.name || "..........................................."})</div>
+                                <div className="text-center text-[11px]">({admin.approvals?.committee?.name || "..........................................."})</div>
                             </div>
-                            <div className="text-center text-[8px]">วันที่ {admin.approvals?.committee?.date || ".........../.........../..........."}</div>
+                            <div className="text-center text-[11px]">วันที่ {admin.approvals?.committee?.date || ".........../.........../..........."}</div>
                         </div>
                         
                         <div className="border-[0.5px] border-black border-l-0 p-1.5">
                             <div className="font-bold text-center mb-2 pb-1 border-b border-black">ผู้จัดการฝ่ายบุคคล</div>
                             <div className="flex gap-2 mb-2 justify-center">
-                                <CheckBox label="อนุมัติรับ" checked={admin.approvals?.hr_manager?.decision === 'approved'} width="w-auto" textSize="text-[9px]" />
-                                <CheckBox label="ไม่รับ" checked={admin.approvals?.hr_manager?.decision === 'rejected'} width="w-auto" textSize="text-[9px]" />
+                                <CheckBox label="อนุมัติรับ" checked={admin.approvals?.hr_manager?.decision === 'approved'} width="w-auto" textSize="text-[12px]" />
+                                <CheckBox label="ไม่รับ" checked={admin.approvals?.hr_manager?.decision === 'rejected'} width="w-auto" textSize="text-[12px]" />
                             </div>
                             <div className="flex flex-col items-center gap-1 mb-1">
-                                <span className="text-[8px]">ลงชื่อ</span>
+                                <span className="text-[11px]">ลงชื่อ</span>
                                 {admin.approvals?.hr_manager?.signature ? (
                                     <div className="flex flex-col items-center w-32">
                                         <img src={admin.approvals.hr_manager.signature} alt="Signature" crossOrigin="anonymous" className="max-h-10 object-contain mb-1" />
@@ -1033,20 +1033,20 @@ export default function PDFLayoutType2({ applicant }) {
                                 ) : (
                                     <div className="border-b-[1px] border-dotted border-black w-32 h-10"></div>
                                 )}
-                                <div className="text-center text-[8px]">({admin.approvals?.hr_manager?.name || "..........................................."})</div>
+                                <div className="text-center text-[11px]">({admin.approvals?.hr_manager?.name || "..........................................."})</div>
                             </div>
-                            <div className="text-center text-[8px]">วันที่ {admin.approvals?.hr_manager?.date || ".........../.........../..........."}</div>
+                            <div className="text-center text-[11px]">วันที่ {admin.approvals?.hr_manager?.date || ".........../.........../..........."}</div>
                         </div>
 
                         {/* Second Row - 2 columns */}
                         <div className="border-[0.5px] border-black border-t-0 p-1.5">
                             <div className="font-bold text-center mb-1 pb-1 border-b border-black">หัวหน้าแผนก/หัวหน้างานต้นสังกัด</div>
                             <div className="flex gap-2 mb-2 justify-center">
-                                <CheckBox label="อนุมัติรับ" checked={admin.approvals?.department_head?.decision === 'approved'} width="w-auto" textSize="text-[9px]" />
-                                <CheckBox label="ไม่รับ" checked={admin.approvals?.department_head?.decision === 'rejected'} width="w-auto" textSize="text-[9px]" />
+                                <CheckBox label="อนุมัติรับ" checked={admin.approvals?.department_head?.decision === 'approved'} width="w-auto" textSize="text-[12px]" />
+                                <CheckBox label="ไม่รับ" checked={admin.approvals?.department_head?.decision === 'rejected'} width="w-auto" textSize="text-[12px]" />
                             </div>
                             <div className="flex flex-col items-center gap-1 mb-1">
-                                <span className="text-[8px]">ลงชื่อ</span>
+                                <span className="text-[11px]">ลงชื่อ</span>
                                 {admin.approvals?.department_head?.signature ? (
                                     <div className="flex flex-col items-center w-32">
                                         <img src={admin.approvals.department_head.signature} alt="Signature" crossOrigin="anonymous" className="max-h-10 object-contain mb-1" />
@@ -1055,18 +1055,18 @@ export default function PDFLayoutType2({ applicant }) {
                                 ) : (
                                     <div className="border-b-[1px] border-dotted border-black w-32 h-10"></div>
                                 )}
-                                <div className="text-center text-[8px]">({admin.approvals?.department_head?.name || "..........................................."})</div>
+                                <div className="text-center text-[11px]">({admin.approvals?.department_head?.name || "..........................................."})</div>
                             </div>
-                            <div className="text-center text-[8px]">วันที่ {admin.approvals?.department_head?.date || ".........../.........../..........."}</div>
+                            <div className="text-center text-[11px]">วันที่ {admin.approvals?.department_head?.date || ".........../.........../..........."}</div>
                         </div>
 
                         <div className="border-[0.5px] border-black border-l-0 border-t-0 p-1.5 col-span-2">
                             <div className="font-bold text-center mb-1 pb-1 border-b border-black">ความเห็นกรรมการผู้อนุมัติ หรือผู้ดำเนินการกระทำแทน</div>
                             <div className="flex gap-4 mb-1 justify-start">
                                 <span>ผลการพิจารณา</span>
-                                <CheckBox label="ผ่าน" checked={admin.approvals?.final_decision?.result === 'passed'} width="w-auto" textSize="text-[9px]" />
-                                <CheckBox label="ไม่ผ่าน" checked={admin.approvals?.final_decision?.result === 'failed'} width="w-auto" textSize="text-[9px]" />
-                                <CheckBox label="รอพิจารณา" checked={admin.approvals?.final_decision?.result === 'pending'} width="w-auto" textSize="text-[9px]" />
+                                <CheckBox label="ผ่าน" checked={admin.approvals?.final_decision?.result === 'passed'} width="w-auto" textSize="text-[12px]" />
+                                <CheckBox label="ไม่ผ่าน" checked={admin.approvals?.final_decision?.result === 'failed'} width="w-auto" textSize="text-[12px]" />
+                                <CheckBox label="รอพิจารณา" checked={admin.approvals?.final_decision?.result === 'pending'} width="w-auto" textSize="text-[12px]" />
                             </div>
                             <div className="mb-0.5">สังกัด/แผนก<DottedLine value={admin.approvals?.final_decision?.department} className="inline-block w-24 ml-1 align-middle relative top-[4px]" />รับพิจารณา ตำแหน่ง<DottedLine value={admin.approvals?.final_decision?.position} className="inline-block w-24 ml-1 align-middle relative top-[4px]" /></div>
                             <div className="mb-0.5">อัตราเงินเดือน<DottedLine value={admin.approvals?.final_decision?.salary} className="inline-block w-60 ml-1 align-middle relative top-[4px]" /></div>
