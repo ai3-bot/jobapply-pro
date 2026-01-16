@@ -376,6 +376,47 @@ const A4Document = ({ data, title, icon: Icon }) => (
     </div>
 );
 
+// Template 15: Form-like Layout (แบบฟอร์มที่มี borders)
+const FormLikeLayout = ({ data, title, icon: Icon }) => (
+    <div className="w-full max-w-[210mm] mx-auto bg-white shadow-2xl p-8">
+        {/* Header */}
+        <div className="text-center mb-6 pb-4 border-b-2 border-slate-800">
+            <h1 className="text-2xl font-bold text-slate-900">{title}</h1>
+            <p className="text-sm text-slate-600 mt-2">วันที่เสนอใบสมัครงาน: {new Date().toLocaleDateString('th-TH')}</p>
+        </div>
+
+        {/* Form Content with borders */}
+        <div className="border-2 border-slate-800">
+            {Object.entries(data).map(([key, value], idx) => (
+                <div key={key} className="grid grid-cols-3 border-b-2 border-slate-800 last:border-b-0">
+                    <div className="col-span-1 border-r-2 border-slate-800 px-4 py-3 bg-slate-50 font-semibold text-slate-700 text-sm">
+                        {key.replace(/_/g, ' ')}
+                    </div>
+                    <div className="col-span-2 px-4 py-3 text-slate-900 font-medium text-sm">
+                        {value || '-'}
+                    </div>
+                </div>
+            ))}
+        </div>
+
+        {/* Footer Section */}
+        <div className="grid grid-cols-3 gap-6 mt-8 pt-6 border-t border-slate-300">
+            <div className="text-center">
+                <div className="border-b-2 border-slate-400 mb-2 pb-12"></div>
+                <p className="text-xs text-slate-600">ผู้สมัคร</p>
+            </div>
+            <div className="text-center">
+                <div className="border-b-2 border-slate-400 mb-2 pb-12"></div>
+                <p className="text-xs text-slate-600">ผู้รับสมัคร</p>
+            </div>
+            <div className="text-center">
+                <div className="border-b-2 border-slate-400 mb-2 pb-12"></div>
+                <p className="text-xs text-slate-600">ผู้อนุมัติ</p>
+            </div>
+        </div>
+    </div>
+);
+
 export default function InfoGridDemo() {
     const sampleData = {
         first_name: 'นาย',
