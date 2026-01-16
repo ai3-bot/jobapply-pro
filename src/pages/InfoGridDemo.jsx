@@ -435,6 +435,33 @@ export default function InfoGridDemo() {
                         </div>
                         <HoverHighlight data={sampleData} title="ข้อมูลพื้นฐาน" icon={User} />
                     </div>
+
+                    {/* Template 11 */}
+                    <div>
+                        <div className="flex items-center gap-2 mb-4">
+                            <div className="w-8 h-8 rounded-full bg-violet-100 text-violet-600 flex items-center justify-center font-bold text-sm">11</div>
+                            <h2 className="text-xl font-bold text-slate-800">Icon Labels</h2>
+                        </div>
+                        <IconLabels data={sampleData} title="ข้อมูลพื้นฐาน" icon={User} />
+                    </div>
+
+                    {/* Template 12 */}
+                    <div>
+                        <div className="flex items-center gap-2 mb-4">
+                            <div className="w-8 h-8 rounded-full bg-fuchsia-100 text-fuchsia-600 flex items-center justify-center font-bold text-sm">12</div>
+                            <h2 className="text-xl font-bold text-slate-800">Gradient Background</h2>
+                        </div>
+                        <GradientBackground data={sampleData} title="ข้อมูลพื้นฐาน" icon={User} />
+                    </div>
+
+                    {/* Template 13 */}
+                    <div>
+                        <div className="flex items-center gap-2 mb-4">
+                            <div className="w-8 h-8 rounded-full bg-lime-100 text-lime-600 flex items-center justify-center font-bold text-sm">13</div>
+                            <h2 className="text-xl font-bold text-slate-800">Compact Inline</h2>
+                        </div>
+                        <CompactInline data={sampleData} title="ข้อมูลพื้นฐาน" icon={User} />
+                    </div>
                 </div>
             </div>
         </div>
