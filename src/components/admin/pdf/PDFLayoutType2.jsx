@@ -57,7 +57,7 @@ export default function PDFLayoutType2({ applicant }) {
                     minHeight: pageHeight,
                     height: pageHeight,
                     maxHeight: pageHeight,
-                    fontFamily: 'Sarabun, sans-serif',
+                    fontFamily: 'TH Sarabun New, Sarabun, sans-serif',
                     ...(pageNum < totalPages && { pageBreakAfter: 'always' }),
                     overflow: 'visible'
                 }}
@@ -136,7 +136,7 @@ export default function PDFLayoutType2({ applicant }) {
                 </div>
 
                 {/* --- HR Section --- */}
-                <div className="border-[0.5px] border-black p-3 mb-2 rounded-sm relative">
+                <div className="border-[0.5px] border-black p-3 mb-3 rounded-sm relative">
                     <div className="absolute -top-2 left-2 bg-white px-1 font-bold text-[12px]">(สำหรับ จนท.)</div>
                     <div className="grid grid-cols-12 gap-2 mb-3 mt-1">
                         <div className="col-span-4 flex items-end"><span className="font-bold mr-2 pb-1">รหัสพนักงาน</span><DottedLine value={admin.hr_info?.employee_id} className="flex-1" /></div>
@@ -343,12 +343,12 @@ export default function PDFLayoutType2({ applicant }) {
 
             {/* ================= PAGE 2 ================= */}
             <PageContainer pageNum={2} totalPages={4}>
-                <div className="mt-[5mm] space-y-1">
+                <div className="mt-[5mm] space-y-2">
 
 
                     {/* --- Family Status --- */}
                     <div className="border-[0.5px] border-black p-2 rounded-sm text-[11px]">
-                        <div className="flex items-center gap-2 mb-1">
+                        <div className="flex items-center gap-2 mb-2">
                              <span className="font-bold underline">สถานะทางครอบครัว</span>
                              <div className="flex gap-4 ml-4 items-end">
                                 <div className="relative pl-5 h-4 flex items-center w-[60px]">
@@ -546,7 +546,7 @@ export default function PDFLayoutType2({ applicant }) {
 
             {/* ================= PAGE 3 ================= */}
             <PageContainer pageNum={3} totalPages={4} logoTopOffset="top-[-20px]">
-                <div className="mt-[5mm] space-y-1">
+                <div className="mt-[5mm] space-y-2">
 
                      {/* --- Work History --- */}
                      <div>
@@ -622,7 +622,7 @@ export default function PDFLayoutType2({ applicant }) {
                      {/* --- Statement --- */}
                      <div>
                         <div className="text-center font-bold text-[14px] border-[0.5px] border-black bg-slate-50 py-1 mb-[-0.5px]">คำแถลง (กรุณาระบุตามจริงเท่านั้น)</div>
-                        <div className="border-[0.5px] border-black p-3 text-[11px] space-y-1.5">
+                        <div className="border-[0.5px] border-black p-3 text-[11px] space-y-2">
                             <div className="flex gap-1 items-center flex-nowrap">
                                 <span className="w-5 shrink-0 relative top-[1px]">1.</span>
                                 <span className="whitespace-nowrap relative top-[1px]">ท่านสามารถปฏิบัติงานล่วงเวลาได้หรือไม่</span>
@@ -739,7 +739,7 @@ export default function PDFLayoutType2({ applicant }) {
                      </div>
 
                      {/* --- Referral --- */}
-                     <div className="border-[0.5px] border-black p-2 pb-3 text-[11px] space-y-2">
+                     <div className="border-[0.5px] border-black p-2 pb-3 text-[11px] space-y-2.5">
                          <div className="flex items-end">
                             <span className="relative top-[1px]">ข้าพเจ้ายื่นใบสมัครโดยการแนะนำของ</span>
                             <DottedLine value={ref.referred_by} className="flex-1 text-center relative top-2" />
@@ -755,7 +755,7 @@ export default function PDFLayoutType2({ applicant }) {
                      </div>
 
                      {/* --- Parents --- */}
-                     <div className="border-[0.5px] border-black p-2 text-[11px] space-y-2">
+                     <div className="border-[0.5px] border-black p-2 text-[11px] space-y-2.5">
                          <div className="font-bold underline text-center text-[12px]">ประวัติครอบครัว</div>
                          
                          {/* Father - 3 lines */}
@@ -843,7 +843,7 @@ export default function PDFLayoutType2({ applicant }) {
 
             {/* ================= PAGE 4 ================= */}
             <PageContainer pageNum={4} totalPages={4} pageHeight={"290mm"} logoTopOffset="top-[-20mm]">
-                <div className="mt-[-15mm] space-y-1">
+                <div className="mt-[-15mm] space-y-2">
                     
                     {/* Emergency Contact Table */}
                     <div className="text-[11px] mb-1">
