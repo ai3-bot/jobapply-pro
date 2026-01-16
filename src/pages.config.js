@@ -1,7 +1,6 @@
 import Admin from './pages/Admin';
 import Application from './pages/Application';
 import Home from './pages/Home';
-import InfoGridDemo from './pages/InfoGridDemo';
 import PDFPreview from './pages/PDFPreview';
 import criminalCheckForm from './pages/criminal-check-form';
 import employmentContract from './pages/employment-contract';
@@ -20,7 +19,6 @@ export const PAGES = {
     "Admin": Admin,
     "Application": Application,
     "Home": Home,
-    "InfoGridDemo": InfoGridDemo,
     "PDFPreview": PDFPreview,
     "criminal-check-form": criminalCheckForm,
     "employment-contract": employmentContract,
