@@ -73,10 +73,6 @@ export default function PDFLayoutType2({ applicant }) {
                 {children}
 
                 {/* Footer */}
-                <div className={`absolute ${footerBottom} left-[10mm] flex gap-2 mt-8`}>
-                     <div className="h-8 w-8 rounded-full border border-slate-300"></div>
-                     <div className="h-8 w-8 rounded-full border border-slate-300"></div>
-                </div>
                 <div className={`absolute ${footerBottom} right-[10mm] text-[10px] text-slate-500`}>
                     {pageNum} | {totalPages}
                 </div>
