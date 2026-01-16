@@ -49,7 +49,7 @@ export default function InfoGrid({ data, title, icon: Icon }) {
     return (
         <Card className="border-slate-200 shadow-sm">
             {(title || Icon) && (
-                <CardHeader className="pb-3 border-b border-slate-50 bg-slate-50/50">
+                <CardHeader className="pb-3">
                     <CardTitle className="text-base font-semibold flex items-center gap-2 text-slate-800">
                         {Icon && <Icon className="w-4 h-4 text-indigo-500" />}
                         {title}
@@ -57,11 +57,12 @@ export default function InfoGrid({ data, title, icon: Icon }) {
                 </CardHeader>
             )}
             <CardContent className="p-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="space-y-2">
                     {filteredData.map(([key, value]) => (
-                        <div key={key} className="bg-slate-50 border border-slate-100 rounded-lg p-3 hover:border-slate-200 transition-colors">
-                            <p className="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-1">{key.replace(/_/g, ' ')}</p>
-                            <div className="text-sm font-medium">
+                        <div key={key} className="flex justify-between items-baseline gap-4">
+                            <span className="text-sm font-medium text-slate-600">{key.replace(/_/g, ' ')}</span>
+                            <span className="flex-1 border-b border-dotted border-slate-300"></span>
+                            <div className="text-sm font-bold text-slate-800 text-right">
                                 <RenderValue value={value} label={key} />
                             </div>
                         </div>
