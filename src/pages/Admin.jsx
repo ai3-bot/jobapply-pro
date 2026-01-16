@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Users, Settings as SettingsIcon, LayoutDashboard, FileCheck } from "lucide-react";
+import { Users, Settings as SettingsIcon, LayoutDashboard, FileCheck, Download, Loader2 } from "lucide-react";
 import { useNavigate } from 'react-router-dom';
 import { base44 } from '@/api/base44Client';
 import { useQuery } from '@tanstack/react-query';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import JSZip from 'jszip';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 import ApplicantList from '@/components/admin/ApplicantList';
 import ApplicantDetail from '@/components/admin/ApplicantDetail';
@@ -23,6 +26,8 @@ import SPS902ReviewModal from '@/components/admin/SPS902ReviewModal';
 import InsuranceEnrollmentReviewModal from '@/components/admin/InsuranceEnrollmentReviewModal';
 
 function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewFMHRD19, onReviewCriminalCheck, onReviewEmploymentContract, onSelectApplicant, onReviewFMHRD27, onReviewFMHRD30, onSetCriminalCheckDoc, onReviewSPS103, onReviewSPS902, onReviewInsurance }) {
+    const [downloadingAll, setDownloadingAll] = useState(false);
+    
     const { data: applicants = [], isLoading } = useQuery({
         queryKey: ['applicants'],
         queryFn: () => base44.entities.Applicant.list()
@@ -132,6 +137,131 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
         a.criminal_check_document?.status === 'submitted' || a.criminal_check_document?.status === 'completed'
     );
 
+    const handleDownloadAll = async () => {
+        if (!selectedApplicant) return;
+        
+        setDownloadingAll(true);
+        try {
+            const zip = new JSZip();
+            const documentsFolder = zip.folder(selectedApplicant.full_name);
+            
+            // Helper function to generate PDF from component
+            const generatePDFBlob = async (componentId) => {
+                const element = document.getElementById(componentId);
+                if (!element) return null;
+                
+                const canvas = await html2canvas(element, {
+                    scale: 2,
+                    useCORS: true,
+                    logging: false,
+                    windowWidth: 1200
+                });
+                
+                const imgData = canvas.toDataURL('image/png');
+                const pdf = new jsPDF('p', 'mm', 'a4');
+                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const pdfHeight = pdf.internal.pageSize.getHeight();
+                const imgWidth = pdfWidth;
+                const imgHeight = (canvas.height * imgWidth) / canvas.width;
+                
+                let heightLeft = imgHeight;
+                let position = 0;
+                
+                pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                heightLeft -= pdfHeight;
+                
+                while (heightLeft >= 0) {
+                    position = heightLeft - imgHeight;
+                    pdf.addPage();
+                    pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                    heightLeft -= pdfHeight;
+                }
+                
+                return pdf.output('blob');
+            };
+            
+            // Load document components dynamically and generate PDFs
+            const documentTypes = [
+                { docs: filteredFMHRD27, name: 'NDA', component: 'NDADocument' },
+                { docs: filteredFMHRD19, name: 'FM-HRD-19', component: 'FMH19Document' },
+                { docs: filteredSPS103, name: 'SPS-1-03', component: 'SPS103Document' },
+                { docs: filteredSPS902, name: 'SPS-9-02', component: 'SPS902Document' },
+                { docs: filteredInsurance, name: 'Insurance', component: 'InsuranceEnrollmentDocument' },
+                { docs: filteredEmploymentContract, name: 'Employment-Contract', component: 'EmploymentContractDocument' },
+                { docs: filteredFMHRD30, name: 'FM-HRD-30', component: 'FMHRD30Document' },
+                { docs: filteredCriminalCheck, name: 'Criminal-Check', component: 'CriminalCheckDocument' }
+            ];
+            
+            // Create temporary container for rendering documents
+            const tempContainer = document.createElement('div');
+            tempContainer.style.position = 'fixed';
+            tempContainer.style.left = '-9999px';
+            tempContainer.style.top = '0';
+            document.body.appendChild(tempContainer);
+            
+            for (const docType of documentTypes) {
+                for (let i = 0; i < docType.docs.length; i++) {
+                    const doc = docType.docs[i];
+                    
+                    // Dynamically import and render component
+                    try {
+                        const componentModule = await import(`../components/application/pdf/${docType.component}.jsx`);
+                        const DocumentComponent = componentModule.default;
+                        
+                        // Create a temporary div to render the component
+                        const tempDiv = document.createElement('div');
+                        tempDiv.id = `temp-doc-${docType.name}-${i}`;
+                        tempContainer.appendChild(tempDiv);
+                        
+                        // Render component using React
+                        const { createRoot } = await import('react-dom/client');
+                        const root = createRoot(tempDiv);
+                        
+                        await new Promise((resolve) => {
+                            root.render(
+                                React.createElement(DocumentComponent, {
+                                    applicant: selectedApplicant,
+                                    formData: doc.data || {},
+                                    previewMode: true
+                                })
+                            );
+                            setTimeout(resolve, 1000); // Wait for rendering
+                        });
+                        
+                        // Generate PDF
+                        const blob = await generatePDFBlob(`temp-doc-${docType.name}-${i}`);
+                        if (blob) {
+                            documentsFolder.file(`${docType.name}_${i + 1}.pdf`, blob);
+                        }
+                        
+                        root.unmount();
+                        tempDiv.remove();
+                    } catch (error) {
+                        console.error(`Failed to generate ${docType.name}:`, error);
+                    }
+                }
+            }
+            
+            // Cleanup
+            document.body.removeChild(tempContainer);
+            
+            // Generate and download ZIP
+            const zipBlob = await zip.generateAsync({ type: 'blob' });
+            const url = URL.createObjectURL(zipBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `${selectedApplicant.full_name}_Documents.zip`;
+            link.click();
+            URL.revokeObjectURL(url);
+            
+        } catch (error) {
+            console.error('Error downloading documents:', error);
+            alert('เกิดข้อผิดพลาดในการดาวน์โหลดเอกสาร');
+        } finally {
+            setDownloadingAll(false);
+        }
+    };
+
     if (isLoading) {
         return (
             <div className="h-full flex items-center justify-center">
@@ -143,6 +273,27 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
     return (
         <div className="h-full overflow-y-auto p-6">
             <div className="max-w-6xl mx-auto space-y-8">
+                {/* Download All Button */}
+                <div className="flex justify-between items-center">
+                    <h1 className="text-3xl font-bold text-slate-800">เอกสารของ {selectedApplicant.full_name}</h1>
+                    <Button 
+                        onClick={handleDownloadAll}
+                        disabled={downloadingAll}
+                        className="bg-indigo-600 hover:bg-indigo-700"
+                    >
+                        {downloadingAll ? (
+                            <>
+                                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                                กำลังดาวน์โหลด...
+                            </>
+                        ) : (
+                            <>
+                                <Download className="w-4 h-4 mr-2" />
+                                ดาวน์โหลดทุกเอกสาร
+                            </>
+                        )}
+                    </Button>
+                </div>
                 {/* NDA Documents - FM-HRD-27 */}
                 <div>
                     <h2 className="text-2xl font-bold text-slate-800 mb-4">เอกสาร NDA (FM-HRD-27)</h2>
