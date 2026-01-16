@@ -136,7 +136,7 @@ export default function PDFLayoutType2({ applicant }) {
                 </div>
 
                 {/* --- HR Section --- */}
-                <div className="border-[0.5px] border-black p-3 mb-3 rounded-sm relative">
+                <div className="border-[0.5px] border-black p-3 mb-1 rounded-sm relative">
                     <div className="absolute left-2 bg-white px-1 font-bold text-[16px]">(สำหรับ จนท.)</div>
                     <div className="grid grid-cols-12 gap-2 mb-1 mt-1">
                         <div className="col-span-4 flex items-end"><span className="font-bold mr-2 pb-1">รหัสพนักงาน</span><DottedLine value={admin.hr_info?.employee_id} className="flex-1" /></div>
@@ -168,7 +168,7 @@ export default function PDFLayoutType2({ applicant }) {
                     </div>
                 </div>
 
-                <div className="text-center font-bold text-[14px] my-2">ประวัติส่วนตัว</div>
+                <div className="text-center font-bold text-[18px] my-2">ประวัติส่วนตัว</div>
 
                 {/* --- Main Info Box --- */}
                 <div className="border-[0.5px] border-black rounded-sm">
