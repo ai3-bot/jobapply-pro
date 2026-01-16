@@ -40,7 +40,8 @@ export default function PDFLayoutType2({ applicant }) {
 
     const CheckBox = ({ label, checked, textSize="text-[11px]", width="w-[300px]" }) => (
         <div className={`relative pl-5 h-4 flex items-center ${width}`}>
-            <div className={`absolute left-0 top-2.5 w-3 h-3 border-[0.5px] border-black rounded-[1px] ${checked ? 'bg-slate-800' : 'bg-white'}`}>
+            <div className={`absolute left-0 top-2.5 w-3 h-3 border-[0.5px] border-black rounded-[1px] bg-white flex items-center justify-center`}>
+                {checked && <Check className="w-2.5 h-2.5" />}
             </div>
             <span className={`${textSize} text-slate-900 pt-1`}>{label}</span>
         </div>
@@ -93,22 +94,26 @@ export default function PDFLayoutType2({ applicant }) {
                     {/* Top Left Box */}
                     <div className="border-[0.5px] border-black p-2 w-[40mm] text-[11px] space-y-1">
                         <div className="relative pl-5 h-4 flex items-center">
-                            <div className={`absolute left-0 top-0.5 w-3 h-3 border border-black rounded-[1px] ${admin.hr_systems?.web_hr ? 'bg-slate-800' : 'bg-white'}`}>
+                            <div className={`absolute left-0 top-0.5 w-3 h-3 border border-black rounded-[1px] bg-white flex items-center justify-center`}>
+                                {admin.hr_systems?.web_hr && <Check className="w-2.5 h-2.5" />}
                             </div>
                             <span className="leading-none absolute bottom-2.5">Web HR</span>
                         </div>
                         <div className="relative pl-5 h-4 flex items-center">
-                            <div className={`absolute left-0 top-0.5 w-3 h-3 border border-black rounded-[1px] ${admin.hr_systems?.sps_in ? 'bg-slate-800' : 'bg-white'}`}>
+                            <div className={`absolute left-0 top-0.5 w-3 h-3 border border-black rounded-[1px] bg-white flex items-center justify-center`}>
+                                {admin.hr_systems?.sps_in && <Check className="w-2.5 h-2.5" />}
                             </div>
                             <span className="leading-none absolute bottom-2.5">สปส.(เข้า){admin.hr_systems?.sps_in_details ? admin.hr_systems.sps_in_details : '......'}</span>
                         </div>
                         <div className="relative pl-5 h-4 flex items-center">
-                            <div className={`absolute left-0 top-0.5 w-3 h-3 border border-black rounded-[1px] ${admin.hr_systems?.b_plus ? 'bg-slate-800' : 'bg-white'}`}>
+                            <div className={`absolute left-0 top-0.5 w-3 h-3 border border-black rounded-[1px] bg-white flex items-center justify-center`}>
+                                {admin.hr_systems?.b_plus && <Check className="w-2.5 h-2.5" />}
                             </div>
                             <span className="leading-none absolute bottom-2.5">B-plus</span>
                         </div>
                         <div className="relative pl-5 h-4 flex items-center">
-                            <div className={`absolute left-0 top-0.5 w-3 h-3 border border-black rounded-[1px] ${admin.hr_systems?.sps_out ? 'bg-slate-800' : 'bg-white'}`}>
+                            <div className={`absolute left-0 top-0.5 w-3 h-3 border border-black rounded-[1px] bg-white flex items-center justify-center`}>
+                                {admin.hr_systems?.sps_out && <Check className="w-2.5 h-2.5" />}
                             </div>
                             <span className="leading-none absolute bottom-2.5">สปส.(ออก){admin.hr_systems?.sps_out_details ? admin.hr_systems.sps_out_details : '......'}</span>
                         </div>
@@ -232,14 +237,14 @@ export default function PDFLayoutType2({ applicant }) {
                             <span className="font-bold whitespace-nowrap">ที่อยู่ปัจจุบัน เป็น</span>
                             <div className="flex items-center gap-4 px-2">
                                 <div className="relative pl-5 h-4 flex items-center w-[80px]">
-                                    <div className={`absolute left-0 top-2 w-3 h-3 border border-black flex items-center justify-center rounded-[1px] ${p.current_address_type === 'own' ? 'bg-slate-200' : 'bg-white'}`}>
-                                        {p.current_address_type === 'own' && <div className="w-1.5 h-1.5 bg-slate-800 rounded-[0.5px]" />}
+                                    <div className={`absolute left-0 top-2 w-3 h-3 border border-black flex items-center justify-center rounded-[1px] bg-white`}>
+                                        {p.current_address_type === 'own' && <Check className="w-2.5 h-2.5" />}
                                     </div>
                                     <span className="text-[11px] text-slate-900">บ้านตนเอง</span>
                                 </div>
                                 <div className="relative pl-5 h-4 flex items-center w-[150px]">
-                                    <div className={`absolute left-0 top-2 w-3 h-3 border border-black flex items-center justify-center rounded-[1px] ${p.current_address_type === 'rent' ? 'bg-slate-200' : 'bg-white'}`}>
-                                        {p.current_address_type === 'rent' && <div className="w-1.5 h-1.5 bg-slate-800 rounded-[0.5px]" />}
+                                    <div className={`absolute left-0 top-2 w-3 h-3 border border-black flex items-center justify-center rounded-[1px] bg-white`}>
+                                        {p.current_address_type === 'rent' && <Check className="w-2.5 h-2.5" />}
                                     </div>
                                     <span className="text-[11px] text-slate-900">บ้านเช่า / หอพัก</span>
                                 </div>
@@ -266,34 +271,34 @@ export default function PDFLayoutType2({ applicant }) {
                                  <div className="space-y-1.5 pl-1">
                                      <div className="flex gap-4">
                                          <div className="relative pl-5 h-4 flex items-center mr-4">
-                                            <div className={`absolute left-0 top-2 w-3 h-3 border border-black flex items-center justify-center rounded-[1px] ${p.military_status === 'exempted' ? 'bg-slate-200' : 'bg-white'}`}>
-                                                {p.military_status === 'exempted' && <div className="w-1.5 h-1.5 bg-slate-800 rounded-[0.5px]" />}
+                                            <div className={`absolute left-0 top-2 w-3 h-3 border border-black flex items-center justify-center rounded-[1px] bg-white`}>
+                                                {p.military_status === 'exempted' && <Check className="w-2.5 h-2.5" />}
                                             </div>
                                             <span className="text-[11px] text-slate-900">ได้รับการยกเว้นทางทหาร</span>
                                          </div>
                                          <div className="relative pl-5 h-4 flex items-center">
-                                            <div className={`absolute left-0 top-2 w-3 h-3 border border-black flex items-center justify-center rounded-[1px] ${p.military_status === 'served' ? 'bg-slate-200' : 'bg-white'}`}>
-                                                {p.military_status === 'served' && <div className="w-1.5 h-1.5 bg-slate-800 rounded-[0.5px]" />}
+                                            <div className={`absolute left-0 top-2 w-3 h-3 border border-black flex items-center justify-center rounded-[1px] bg-white`}>
+                                                {p.military_status === 'served' && <Check className="w-2.5 h-2.5" />}
                                             </div>
                                             <span className="text-[11px] text-slate-900">เกณฑ์ทหารแล้ว</span>
                                          </div>
                                      </div>
                                      <div className="relative pl-5 h-4 flex items-center">
-                                        <div className={`absolute left-0 top-2 w-3 h-3 border border-black flex items-center justify-center rounded-[1px] ${p.military_status === 'not_served' ? 'bg-slate-200' : 'bg-white'}`}>
-                                            {p.military_status === 'not_served' && <div className="w-1.5 h-1.5 bg-slate-800 rounded-[0.5px]" />}
+                                        <div className={`absolute left-0 top-2 w-3 h-3 border border-black flex items-center justify-center rounded-[1px] bg-white`}>
+                                            {p.military_status === 'not_served' && <Check className="w-2.5 h-2.5" />}
                                         </div>
                                         <span className="text-[11px] text-slate-900">ยังไม่ได้รับการเกณฑ์</span>
                                      </div>
                                      <div className="flex gap-4">
                                          <div className="relative pl-5 h-4 flex items-center mr-4">
-                                            <div className={`absolute left-0 top-2 w-3 h-3 border border-black flex items-center justify-center rounded-[1px] ${f.marital_status === 'single' ? 'bg-slate-200' : 'bg-white'}`}>
-                                                {f.marital_status === 'single' && <div className="w-1.5 h-1.5 bg-slate-800 rounded-[0.5px]" />}
+                                            <div className={`absolute left-0 top-2 w-3 h-3 border border-black flex items-center justify-center rounded-[1px] bg-white`}>
+                                                {f.marital_status === 'single' && <Check className="w-2.5 h-2.5" />}
                                             </div>
                                             <span className="text-[11px] text-slate-900">ยังไม่สมรส</span>
                                          </div>
                                          <div className="relative pl-5 h-4 flex items-center">
-                                            <div className={`absolute left-0 top-2 w-3 h-3 border border-black flex items-center justify-center rounded-[1px] ${f.marital_status === 'married' ? 'bg-slate-200' : 'bg-white'}`}>
-                                                {f.marital_status === 'married' && <div className="w-1.5 h-1.5 bg-slate-800 rounded-[0.5px]" />}
+                                            <div className={`absolute left-0 top-2 w-3 h-3 border border-black flex items-center justify-center rounded-[1px] bg-white`}>
+                                                {f.marital_status === 'married' && <Check className="w-2.5 h-2.5" />}
                                             </div>
                                             <span className="text-[11px] text-slate-900">สมรสแล้ว</span>
                                          </div>
@@ -312,14 +317,14 @@ export default function PDFLayoutType2({ applicant }) {
                                      </div>
                                      <div className="flex gap-4">
                                          <div className="relative pl-5 h-4 flex items-center mr-4">
-                                            <div className={`absolute left-0 top-2 w-3 h-3 border border-black flex items-center justify-center rounded-[1px] ${f.has_children === 'yes' ? 'bg-slate-200' : 'bg-white'}`}>
-                                                {f.has_children === 'yes' && <div className="w-1.5 h-1.5 bg-slate-800 rounded-[0.5px]" />}
+                                            <div className={`absolute left-0 top-2 w-3 h-3 border border-black flex items-center justify-center rounded-[1px] bg-white`}>
+                                                {f.has_children === 'yes' && <Check className="w-2.5 h-2.5" />}
                                             </div>
                                             <span className="text-[11px] text-slate-900">มีบุตรแล้ว</span>
                                          </div>
                                          <div className="relative pl-5 h-4 flex items-center">
-                                            <div className={`absolute left-0 top-2 w-3 h-3 border border-black flex items-center justify-center rounded-[1px] ${f.has_children === 'no' ? 'bg-slate-200' : 'bg-white'}`}>
-                                                {f.has_children === 'no' && <div className="w-1.5 h-1.5 bg-slate-800 rounded-[0.5px]" />}
+                                            <div className={`absolute left-0 top-2 w-3 h-3 border border-black flex items-center justify-center rounded-[1px] bg-white`}>
+                                                {f.has_children === 'no' && <Check className="w-2.5 h-2.5" />}
                                             </div>
                                             <span className="text-[11px] text-slate-900">ยังไม่มีบุตร</span>
                                          </div>
@@ -347,14 +352,14 @@ export default function PDFLayoutType2({ applicant }) {
                              <span className="font-bold underline">สถานะทางครอบครัว</span>
                              <div className="flex gap-4 ml-4 items-end">
                                 <div className="relative pl-5 h-4 flex items-center w-[60px]">
-                                    <div className={`absolute left-0 top-2.5 w-3 h-3 border-[0.5px] border-black flex items-center justify-center rounded-[1px] ${f.marital_status === 'single' ? 'bg-slate-200' : 'bg-white'}`}>
-                                        {f.marital_status === 'single' && <div className="w-1.5 h-1.5 bg-slate-800 rounded-[0.5px]" />}
+                                    <div className={`absolute left-0 top-2.5 w-3 h-3 border-[0.5px] border-black flex items-center justify-center rounded-[1px] bg-white`}>
+                                        {f.marital_status === 'single' && <Check className="w-2.5 h-2.5" />}
                                     </div>
                                     <span className="text-[11px] text-slate-900 pt-1">โสด</span>
                                 </div>
                                 <div className="relative pl-5 h-4 flex items-center w-[100px]">
-                                    <div className={`absolute left-0 top-2.5 w-3 h-3 border-[0.5px] border-black flex items-center justify-center rounded-[1px] ${f.marital_status === 'married' ? 'bg-slate-200' : 'bg-white'}`}>
-                                        {f.marital_status === 'married' && <div className="w-1.5 h-1.5 bg-slate-800 rounded-[0.5px]" />}
+                                    <div className={`absolute left-0 top-2.5 w-3 h-3 border-[0.5px] border-black flex items-center justify-center rounded-[1px] bg-white`}>
+                                        {f.marital_status === 'married' && <Check className="w-2.5 h-2.5" />}
                                     </div>
                                     <span className="text-[11px] text-slate-900 pt-1">แต่งงานแล้ว</span>
                                 </div>
@@ -552,14 +557,14 @@ export default function PDFLayoutType2({ applicant }) {
                                         <div className="text-center font-bold text-[12px] underline mb-1">ประวัติการทำงาน</div>
                                         <div className="flex justify-center gap-6 font-normal">
                                             <div className="relative pl-5 h-4 flex items-center">
-                                                <div className={`absolute left-0 top-2.5 w-3 h-3 border-[0.5px] border-black flex items-center justify-center rounded-[1px] ${exp.has_experience === 'no' ? 'bg-slate-200' : 'bg-white'}`}>
-                                                    {exp.has_experience === 'no' && <div className="w-1.5 h-1.5 bg-slate-800 rounded-[0.5px]" />}
+                                                <div className={`absolute left-0 top-2.5 w-3 h-3 border-[0.5px] border-black flex items-center justify-center rounded-[1px] bg-white`}>
+                                                    {exp.has_experience === 'no' && <Check className="w-2.5 h-2.5" />}
                                                 </div>
                                                 <span className="text-[11px] text-slate-900 pt-1">ไม่มีประสบการณ์ทำงาน</span>
                                             </div>
                                             <div className="relative pl-5 h-4 flex items-center">
-                                                <div className={`absolute left-0 top-2.5 w-3 h-3 border-[0.5px] border-black flex items-center justify-center rounded-[1px] ${exp.has_experience === 'yes' ? 'bg-slate-200' : 'bg-white'}`}>
-                                                    {exp.has_experience === 'yes' && <div className="w-1.5 h-1.5 bg-slate-800 rounded-[0.5px]" />}
+                                                <div className={`absolute left-0 top-2.5 w-3 h-3 border-[0.5px] border-black flex items-center justify-center rounded-[1px] bg-white`}>
+                                                    {exp.has_experience === 'yes' && <Check className="w-2.5 h-2.5" />}
                                                 </div>
                                                 <span className="text-[11px] text-slate-900 pt-1">มีประสบการณ์ทำงานระบุ (เรียงลำดับจากล่าสุด)</span>
                                             </div>
