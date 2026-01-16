@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { Check, Loader2 } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import PDFLayoutType2 from '@/components/admin/pdf/PDFLayoutType2';
 
 export default function ApplicationPreview() {
     const [selectedApplicantId, setSelectedApplicantId] = useState('');
