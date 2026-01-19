@@ -1002,7 +1002,6 @@ export default function PDFLayoutType2({ applicant }) {
                             <DottedLine value={admin.interview?.interview_details} className="flex-1" />
                         </div>
                         <DottedLine value="" className="w-full mb-1" />
-                        <DottedLine value="" className="w-full" />
                     </div>
 
                     {/* Approval Section */}
