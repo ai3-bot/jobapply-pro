@@ -928,7 +928,7 @@ export default function PDFLayoutType2({ applicant }) {
                             </p>
                         </div>
                         
-                        <div className="text-right mb2-">
+                        <div className="text-right mb-2">
                             <div className="font-bold mb-2">ข้าพเจ้าขอลงนามรับรองการให้ข้อมูลตามจริงทุกประการ</div>
                         </div>
 
