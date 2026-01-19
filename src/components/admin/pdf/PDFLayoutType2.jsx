@@ -941,7 +941,7 @@ export default function PDFLayoutType2({ applicant }) {
                                         <div className="border-b-[1.5px] border-dotted border-black w-full"></div>
                                     </div>
                                 ) : (
-                                    <div className="border-b-[1.5px] border-dotted border-black w-[200px] h-[50px] inline-block"></div>
+                                    <div className="border-b-[1.5px] border-dotted border-black w-[200px] h-[30px] inline-block"></div>
                                 )}
                                 <span>ผู้สมัคร</span>
                             </div>
@@ -1017,7 +1017,7 @@ export default function PDFLayoutType2({ applicant }) {
                                         <div className="border-b-[1px] border-dotted border-black w-full"></div>
                                     </div>
                                 ) : (
-                                    <div className="border-b-[1px] border-dotted border-black w-32 h-10"></div>
+                                    <div className="border-b-[1px] border-dotted border-black w-32 h-6"></div>
                                 )}
                                 <div className="text-center">({admin.approvals?.recruiter?.name || "..........................................."})</div>
                             </div>
@@ -1038,7 +1038,7 @@ export default function PDFLayoutType2({ applicant }) {
                                         <div className="border-b-[1px] border-dotted border-black w-full"></div>
                                     </div>
                                 ) : (
-                                    <div className="border-b-[1px] border-dotted border-black w-32 h-10"></div>
+                                    <div className="border-b-[1px] border-dotted border-black w-32 h-6"></div>
                                 )}
                                 <div className="text-center">({admin.approvals?.committee?.name || "..........................................."})</div>
                             </div>
@@ -1059,7 +1059,7 @@ export default function PDFLayoutType2({ applicant }) {
                                         <div className="border-b-[1px] border-dotted border-black w-full"></div>
                                     </div>
                                 ) : (
-                                    <div className="border-b-[1px] border-dotted border-black w-32 h-10"></div>
+                                    <div className="border-b-[1px] border-dotted border-black w-32 h-6"></div>
                                 )}
                                 <div className="text-center">({admin.approvals?.hr_manager?.name || "..........................................."})</div>
                             </div>
@@ -1081,7 +1081,7 @@ export default function PDFLayoutType2({ applicant }) {
                                         <div className="border-b-[1px] border-dotted border-black w-full"></div>
                                     </div>
                                 ) : (
-                                    <div className="border-b-[1px] border-dotted border-black w-32 h-10"></div>
+                                    <div className="border-b-[1px] border-dotted border-black w-32 h-6"></div>
                                 )}
                                 <div className="text-center">({admin.approvals?.department_head?.name || "..........................................."})</div>
                             </div>
