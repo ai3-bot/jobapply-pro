@@ -1013,7 +1013,7 @@ export default function PDFLayoutType2({ applicant }) {
                                 <span>ลงชื่อ</span>
                                 {admin.approvals?.recruiter?.signature ? (
                                     <div className="flex flex-col items-center w-32">
-                                        <img src={admin.approvals.recruiter.signature} alt="Signature" crossOrigin="anonymous" className="max-h-10 object-contain mb-1" />
+                                        <img src={admin.approvals.recruiter.signature} alt="Signature" crossOrigin="anonymous" className="max-h-6 object-contain mb-1" />
                                         <div className="border-b-[1px] border-dotted border-black w-full"></div>
                                     </div>
                                 ) : (
@@ -1034,7 +1034,7 @@ export default function PDFLayoutType2({ applicant }) {
                                 <span>ลงชื่อ</span>
                                 {admin.approvals?.committee?.signature ? (
                                     <div className="flex flex-col items-center w-32">
-                                        <img src={admin.approvals.committee.signature} alt="Signature" crossOrigin="anonymous" className="max-h-10 object-contain mb-1" />
+                                        <img src={admin.approvals.committee.signature} alt="Signature" crossOrigin="anonymous" className="max-h-6 object-contain mb-1" />
                                         <div className="border-b-[1px] border-dotted border-black w-full"></div>
                                     </div>
                                 ) : (
@@ -1055,7 +1055,7 @@ export default function PDFLayoutType2({ applicant }) {
                                 <span>ลงชื่อ</span>
                                 {admin.approvals?.hr_manager?.signature ? (
                                     <div className="flex flex-col items-center w-32">
-                                        <img src={admin.approvals.hr_manager.signature} alt="Signature" crossOrigin="anonymous" className="max-h-10 object-contain mb-1" />
+                                        <img src={admin.approvals.hr_manager.signature} alt="Signature" crossOrigin="anonymous" className="max-h-6 object-contain mb-1" />
                                         <div className="border-b-[1px] border-dotted border-black w-full"></div>
                                     </div>
                                 ) : (
@@ -1077,7 +1077,7 @@ export default function PDFLayoutType2({ applicant }) {
                                 <span>ลงชื่อ</span>
                                 {admin.approvals?.department_head?.signature ? (
                                     <div className="flex flex-col items-center w-32">
-                                        <img src={admin.approvals.department_head.signature} alt="Signature" crossOrigin="anonymous" className="max-h-10 object-contain mb-1" />
+                                        <img src={admin.approvals.department_head.signature} alt="Signature" crossOrigin="anonymous" className="max-h-6 object-contain mb-1" />
                                         <div className="border-b-[1px] border-dotted border-black w-full"></div>
                                     </div>
                                 ) : (
