@@ -873,7 +873,7 @@ export default function PDFLayoutType2({ applicant }) {
 
             {/* ================= PAGE 4 ================= */}
             <PageContainer pageNum={4} totalPages={4} pageHeight={"290mm"} logoTopOffset="top-[-20mm]">
-                <div className="mt-[-15mm] space-y-2">
+                <div className="mt-[-15mm] space-y-1">
                     
                     {/* Emergency Contact Table */}
                     <div className="text-[15px] mb-1">
