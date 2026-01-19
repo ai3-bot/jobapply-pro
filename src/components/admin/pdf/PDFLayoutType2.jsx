@@ -556,7 +556,7 @@ export default function PDFLayoutType2({ applicant }) {
             </PageContainer>
 
             {/* ================= PAGE 3 ================= */}
-            <PageContainer pageNum={3} totalPages={4} logoTopOffset="top-[-20px]">
+            <PageContainer pageNum={3} totalPages={4} logoTopOffset="top-[-30px]">
                 <div className="mt-[3mm] space-y-1">
 
                      {/* --- Work History --- */}
@@ -715,7 +715,7 @@ export default function PDFLayoutType2({ applicant }) {
                             <div className="space-y-1">
                                 <div className="flex items-center gap-1 flex-wrap">
                                     <span className="w-5 shrink-0 relative top-[1px]">9.</span>
-                                    <span className="whitespace-nowrap relative top-[1px]">ท่านมีข้อบกพร่องเกี่ยวกับร่างกาย หรือไม่</span>
+                                    <span className="whitespace-nowrap relative top-[1px] ml-12">ท่านมีข้อบกพร่องเกี่ยวกับร่างกาย หรือไม่</span>
                                     <CheckBox label="สายตาปกติ" checked={st.physical_conditions?.eyes === 'normal'} width="w-[90px] textSize=[12px]" />
                                     <CheckBox label="สายตาไม่ปกติ ระบุ.........." checked={st.physical_conditions?.eyes === 'abnormal'} width="w-auto textSize=[12px]" />
                                     <CheckBox label="การฟังปกติ" checked={st.physical_conditions?.hearing === 'normal'} width="w-[90px] textSize=[12px]" />
