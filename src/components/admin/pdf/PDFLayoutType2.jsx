@@ -381,8 +381,8 @@ export default function PDFLayoutType2({ applicant }) {
                             <Field label="อาชีพ" value={f.spouse_occupation} className="w-[150px]" />
                         </div>
                         <div className="flex gap-2 mb-1">
-                            <Field label="สถานที่ทำงาน" value={f.spouse_workplace} className="w-[250px]" />
-                            <Field label="เบอร์โทรศัพท์ที่สามารถติดต่อได้สะดวก" value={f.spouse_phone} className="w-[250px]" />
+                            <Field label="สถานที่ทำงาน" value={f.spouse_workplace} className="flex-1" />
+                            <Field label="เบอร์โทรศัพท์ที่สามารถติดต่อได้สะดวก" value={f.spouse_phone} className="flex-1" />
                         </div>
                          <div className="flex gap-2">
                             <span className="font-bold">กรณีมีบุตรแล้ว</span>
