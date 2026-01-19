@@ -36,7 +36,7 @@ export default function ApplicantList({ onSelect, selectedId }) {
                     <Input 
                         placeholder="ค้นหาชื่อ..." 
                         className="pl-9 bg-white"
-                        value={searchTerm}
+                        value={'พีรพล สมชาย'}
                         onChange={(e) => setSearchTerm(e.target.value)}
                     />
                 </div>
