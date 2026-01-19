@@ -238,37 +238,41 @@ export default function FormStep1({ data, updateData, photo }) {
                     </Select>
                 </div>
 
-                <div className="space-y-2">
-                    <Label>สถานะทางทหาร</Label>
-                    <div className="space-y-1">
-                         <div className="flex items-center space-x-2">
-                            <Checkbox id="mil_exempt" checked={data.military_status === 'exempted'} onCheckedChange={() => updateData('personal_data', 'military_status', 'exempted')} />
-                            <label htmlFor="mil_exempt" className="text-sm">ได้รับการยกเว้นทางทหาร</label>
-                         </div>
-                         <div className="flex items-center space-x-2">
-                            <Checkbox id="mil_served" checked={data.military_status === 'served'} onCheckedChange={() => updateData('personal_data', 'military_status', 'served')} />
-                            <label htmlFor="mil_served" className="text-sm">เกณฑ์ทหารแล้ว</label>
-                         </div>
-                         <div className="flex items-center space-x-2">
-                            <Checkbox id="mil_not" checked={data.military_status === 'not_served'} onCheckedChange={() => updateData('personal_data', 'military_status', 'not_served')} />
-                            <label htmlFor="mil_not" className="text-sm">ยังไม่ได้รับการเกณฑ์ทหาร</label>
-                         </div>
-                    </div>
-                </div>
+                {data.gender === 'male' && (
+                    <>
+                        <div className="space-y-2">
+                            <Label>สถานะทางทหาร</Label>
+                            <div className="space-y-1">
+                                 <div className="flex items-center space-x-2">
+                                    <Checkbox id="mil_exempt" checked={data.military_status === 'exempted'} onCheckedChange={() => updateData('personal_data', 'military_status', 'exempted')} />
+                                    <label htmlFor="mil_exempt" className="text-sm cursor-pointer">ได้รับการยกเว้นทางทหาร</label>
+                                 </div>
+                                 <div className="flex items-center space-x-2">
+                                    <Checkbox id="mil_served" checked={data.military_status === 'served'} onCheckedChange={() => updateData('personal_data', 'military_status', 'served')} />
+                                    <label htmlFor="mil_served" className="text-sm cursor-pointer">เกณฑ์ทหารแล้ว</label>
+                                 </div>
+                                 <div className="flex items-center space-x-2">
+                                    <Checkbox id="mil_not" checked={data.military_status === 'not_served'} onCheckedChange={() => updateData('personal_data', 'military_status', 'not_served')} />
+                                    <label htmlFor="mil_not" className="text-sm cursor-pointer">ยังไม่ได้รับการเกณฑ์ทหาร</label>
+                                 </div>
+                            </div>
+                        </div>
 
-                <div className="space-y-2">
-                    <Label>สถานะอุปสมบท</Label>
-                    <div className="space-y-1">
-                        <div className="flex items-center space-x-2">
-                            <Checkbox id="ord_not" checked={data.ordination_status === 'not_yet'} onCheckedChange={() => updateData('personal_data', 'ordination_status', 'not_yet')} />
-                            <label htmlFor="ord_not" className="text-sm">ยังไม่อุปสมบท</label>
-                         </div>
-                         <div className="flex items-center space-x-2">
-                            <Checkbox id="ord_done" checked={data.ordination_status === 'ordained'} onCheckedChange={() => updateData('personal_data', 'ordination_status', 'ordained')} />
-                            <label htmlFor="ord_done" className="text-sm">อุปสมบทแล้ว</label>
-                         </div>
-                    </div>
-                </div>
+                        <div className="space-y-2">
+                            <Label>สถานะอุปสมบท</Label>
+                            <div className="space-y-1">
+                                <div className="flex items-center space-x-2">
+                                    <Checkbox id="ord_not" checked={data.ordination_status === 'not_yet'} onCheckedChange={() => updateData('personal_data', 'ordination_status', 'not_yet')} />
+                                    <label htmlFor="ord_not" className="text-sm cursor-pointer">ยังไม่อุปสมบท</label>
+                                 </div>
+                                 <div className="flex items-center space-x-2">
+                                    <Checkbox id="ord_done" checked={data.ordination_status === 'ordained'} onCheckedChange={() => updateData('personal_data', 'ordination_status', 'ordained')} />
+                                    <label htmlFor="ord_done" className="text-sm cursor-pointer">อุปสมบทแล้ว</label>
+                                 </div>
+                            </div>
+                        </div>
+                    </>
+                )}
             </div>
         </div>
 
