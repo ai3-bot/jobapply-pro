@@ -716,16 +716,12 @@ export default function PDFLayoutType2({ applicant }) {
                                 <div className="flex items-center gap-1 flex-wrap">
                                     <span className="w-5 shrink-0 relative top-[1px]">9.</span>
                                     <span className="relative top-[1px]">ท่านมีข้อบกพร่องเกี่ยวกับร่างกาย หรือไม่</span>
-                                    <div className="grid grid-col-2">
-                                        <div>
-                                            <CheckBox label="สายตาปกติ" checked={st.physical_conditions?.eyes === 'normal'} width="w-[90px] textSize=[12px]" />
-                                            <CheckBox label="สายตาไม่ปกติ ระบุ.........." checked={st.physical_conditions?.eyes === 'abnormal'} width="w-auto textSize=[12px]" />
-                                        </div>
-                                        <div>
-                                            <CheckBox label="การฟังปกติ" checked={st.physical_conditions?.hearing === 'normal'} width="w-[90px] textSize=[12px]" />
-                                            <CheckBox label="การฟังไม่ปกติ ระบุ.........." checked={st.physical_conditions?.hearing === 'abnormal'} width="w-auto textSize=[12px]" />
-                                        </div>
-                                    </div>
+                                </div>
+                                <div className="gflex items-center gap-1 ml-6 flex-wrap">
+                                    <CheckBox label="สายตาปกติ" checked={st.physical_conditions?.eyes === 'normal'} width="w-[90px] textSize=[12px]" />
+                                    <CheckBox label="สายตาไม่ปกติ ระบุ.........." checked={st.physical_conditions?.eyes === 'abnormal'} width="w-auto textSize=[12px]" />
+                                    <CheckBox label="การฟังปกติ" checked={st.physical_conditions?.hearing === 'normal'} width="w-[90px] textSize=[12px]" />
+                                    <CheckBox label="การฟังไม่ปกติ ระบุ.........." checked={st.physical_conditions?.hearing === 'abnormal'} width="w-auto textSize=[12px]" />
                                 </div>
                                 <div className="flex items-center gap-1 ml-6 flex-wrap">
                                     <CheckBox label="การพูดปกติ" checked={st.physical_conditions?.speaking === 'normal'} width="w-[90px] textSize=[12px]" />
