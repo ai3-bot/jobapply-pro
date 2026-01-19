@@ -41,7 +41,7 @@ export default function PDFLayoutType2({ applicant }) {
     );
 
     const Field = ({ label, value, width = "auto", labelWidth="auto", className = "" }) => (
-        <div className={`flex items-end text-[16px] leading-tight ${className}`} style={{ width: className ? 'auto' : width }}>
+        <div className={`flex items-end leading-tight ${className}`} style={{ width: className ? 'auto' : width }}>
             <span className="font-bold text-slate-800 mr-1 whitespace-nowrap pb-1" style={{ width: labelWidth }}>{label}</span>
             <div className="flex-1 border-b-[1.5px] border-dotted border-black text-slate-900 px-2 pb-1 text-center truncate">
                 {value || "-"}
@@ -49,7 +49,7 @@ export default function PDFLayoutType2({ applicant }) {
         </div>
     );
 
-    const CheckBox = ({ label, checked, textSize="text-[15px]", width="w-[300px]" }) => (
+    const CheckBox = ({ label, checked,, width="w-[300px]" }) => (
         <div className={`relative pl-5 h-4 flex items-center ${width}`}>
             <div className={`absolute left-0 top-2.5 w-3 h-3 border-[0.5px] border-black rounded-[1px] bg-white flex items-center justify-center`}>
                 {checked && <Check className="w-2.5 h-2.5" />}
@@ -79,17 +79,17 @@ export default function PDFLayoutType2({ applicant }) {
                         {appLogo ? (
                             <img src={appLogo} alt="Logo" crossOrigin="anonymous" className="h-[60px] w-auto object-contain" />
                         ) : (
-                            <div className="h-[60px] w-[80px] bg-slate-100 rounded flex items-center justify-center text-[14px] text-slate-400">LOGO</div>
+                            <div className="h-[60px] w-[80px] bg-slate-100 rounded flex items-center justify-center text-slate-400">LOGO</div>
                         )}
                     </div>
                 )}
                 {children}
 
                 {/* Footer */}
-                <div className={`absolute ${footerBottom} right-[10mm] text-[14px] text-slate-500`}>
+                <div className={`absolute ${footerBottom} right-[10mm] text-slate-500`}>
                     {pageNum} | {totalPages}
                 </div>
-                <div className={`absolute ${footerBottom} left-[50%] -translate-x-1/2 text-[12px] text-slate-400 text-center`}>
+                <div className={`absolute ${footerBottom} left-[50%] -translate-x-1/2 text-slate-400 text-center`}>
                      FM-HRD-10 Rev.03 10/10/66 <br/>
                      www.ko.in.th Strategy . AI . DX . Sustainability
                 </div>
