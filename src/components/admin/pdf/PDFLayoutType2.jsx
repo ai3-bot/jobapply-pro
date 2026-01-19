@@ -447,7 +447,7 @@ export default function PDFLayoutType2({ applicant }) {
                              
                              <div className="grid grid-cols-12">
                                  {/* Language Table */}
-                                 <div className="col-span-4 border-r-[0.5px] border-black text-[14px]">
+                                 <div className="col-span-4 border-r-[0.5px] border-black">
                                      <div className="grid grid-cols-5 border-b-[0.5px] border-black text-center bg-slate-50 h-[40px]">
                                          <div className="col-span-2 p-1 border-r-[0.5px] border-black font-bold flex items-center justify-center">ภาษา</div>
                                          <div className="col-span-3 p-1 flex items-center justify-center font-bold">
@@ -560,7 +560,7 @@ export default function PDFLayoutType2({ applicant }) {
 
                      {/* --- Work History --- */}
                      <div>
-                        <table className="w-full border-collapse border-[0.5px] border-black text-[14px]">
+                        <table className="w-full border-collapse border-[0.5px] border-black">
                             <thead>
                                 <tr>
                                     <th colSpan={5} className="border-r-[0.5px] border-b-[0.5px] border-black p-2 align-top">
@@ -570,13 +570,13 @@ export default function PDFLayoutType2({ applicant }) {
                                                 <div className={`absolute left-0 top-2.5 w-3 h-3 border-[0.5px] border-black flex items-center justify-center rounded-[1px] bg-white`}>
                                                     {exp.has_experience === 'no' && <Check className="w-2.5 h-2.5" />}
                                                 </div>
-                                                <span className="text-[15px] text-slate-900 pt-1">ไม่มีประสบการณ์ทำงาน</span>
+                                                <span className=" text-slate-900 pt-1">ไม่มีประสบการณ์ทำงาน</span>
                                             </div>
                                             <div className="relative pl-5 h-4 flex items-center">
                                                 <div className={`absolute left-0 top-2.5 w-3 h-3 border-[0.5px] border-black flex items-center justify-center rounded-[1px] bg-white`}>
                                                     {exp.has_experience === 'yes' && <Check className="w-2.5 h-2.5" />}
                                                 </div>
-                                                <span className="text-[15px] text-slate-900 pt-1">มีประสบการณ์ทำงานระบุ (เรียงลำดับจากล่าสุด)</span>
+                                                <span className=" text-slate-900 pt-1">มีประสบการณ์ทำงานระบุ (เรียงลำดับจากล่าสุด)</span>
                                             </div>
                                         </div>
                                     </th>
@@ -772,8 +772,8 @@ export default function PDFLayoutType2({ applicant }) {
                          <div className="flex flex-wrap items-end gap-1">
                              <span>ชื่อ-สกุล บิดา</span>
                              <DottedLine value={par.father?.name} className="w-[50mm] relative top-[3px]" />
-                             <CheckBox label="ถึงแก่กรรม" checked={par.father?.status === 'deceased'} width="w-[22mm]" textSize="text-[15px]" />
-                             <CheckBox label="มีชีวิตอยู่" checked={par.father?.status === 'alive'} width="w-[22mm]" textSize="text-[15px]" />
+                             <CheckBox label="ถึงแก่กรรม" checked={par.father?.status === 'deceased'} width="w-[22mm]" />
+                             <CheckBox label="มีชีวิตอยู่" checked={par.father?.status === 'alive'} width="w-[22mm]" />
                              <span>อายุ</span>
                              <DottedLine value={par.father?.age} className="w-[12mm] text-center relative top-[3px]" />
                              <span>ปี</span>
