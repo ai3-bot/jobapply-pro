@@ -616,8 +616,8 @@ export default function PDFLayoutType2({ applicant }) {
                                         <div className="text-[14px] space-y-1">
                                             <div>
                                                 <span>ท่านจะขัดข้องหรือไม่ถ้าหากทางบริษัทฯ จะติดต่อสอบถามไปยังบริษัทฯ(เดิม)หรือบริษัทฯปัจจุบัน</span>
-                                                <span className="ml-4 inline-block align-middle"><CheckBox label="ไม่ขัดข้อง" checked={exp.contact_previous_employer?.status === 'allowed'} width="w-[100px]" textSize="text-[14px]" /></span>
-                                                <span className="ml-4 inline-block align-middle"><CheckBox label="ขัดข้อง" checked={exp.contact_previous_employer?.status === 'not_allowed'} width="w-[80px]" textSize="text-[14px]" /></span>
+                                                <span className="ml-4 inline-block align-middle"><CheckBox label="ไม่ขัดข้อง" checked={exp.contact_previous_employer?.status === 'allowed'} width="w-[100px]"/></span>
+                                                <span className="ml-4 inline-block align-middle"><CheckBox label="ขัดข้อง" checked={exp.contact_previous_employer?.status === 'not_allowed'} width="w-[80px]"/></span>
                                             </div>
                                             <div className="flex">
                                                 <span className="relative top-[-2px]">เพราะ</span>
