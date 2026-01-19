@@ -253,13 +253,13 @@ export default function PDFLayoutType2({ applicant }) {
                                     <div className={`absolute left-0 top-2 w-3 h-3 border border-black flex items-center justify-center rounded-[1px] bg-white`}>
                                         {p.current_address_type === 'own' && <Check className="w-2.5 h-2.5" />}
                                     </div>
-                                    <span className="text-[15px] text-slate-900">บ้านตนเอง</span>
+                                    <span className="text-slate-900">บ้านตนเอง</span>
                                 </div>
                                 <div className="relative pl-5 h-4 flex items-center w-[150px]">
                                     <div className={`absolute left-0 top-2 w-3 h-3 border border-black flex items-center justify-center rounded-[1px] bg-white`}>
                                         {p.current_address_type === 'rent' && <Check className="w-2.5 h-2.5" />}
                                     </div>
-                                    <span className="text-[15px] text-slate-900">บ้านเช่า / หอพัก</span>
+                                    <span className="text-slate-900">บ้านเช่า / หอพัก</span>
                                 </div>
                             </div>
                          </div>
