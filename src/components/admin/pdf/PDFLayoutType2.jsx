@@ -556,7 +556,7 @@ export default function PDFLayoutType2({ applicant }) {
 
             {/* ================= PAGE 3 ================= */}
             <PageContainer pageNum={3} totalPages={4} logoTopOffset="top-[-20px]">
-                <div className="mt-[5mm] space-y-2">
+                <div className="mt-[3mm] space-y-1">
 
                      {/* --- Work History --- */}
                      <div>
@@ -585,13 +585,13 @@ export default function PDFLayoutType2({ applicant }) {
                                     </th>
                                 </tr>
                                 <tr className="text-center bg-slate-50">
-                                    <th className="border-r-[0.5px] border-b-[0.5px] border-black p-1 w-[12%]">วัน/เดือน/ปี<br/>เริ่มงาน - ออก</th>
+                                    <th className="border-r-[0.5px] border-b-[0.5px] border-l-[0.5px] border-black p-1 w-[12%]">วัน/เดือน/ปี<br/>เริ่มงาน - ออก</th>
                                     <th className="border-r-[0.5px] border-b-[0.5px] border-black p-1 w-[18%]">ชื่อสถานที่ทำงาน</th>
                                     <th className="border-r-[0.5px] border-b-[0.5px] border-black p-1 w-[18%]">ชื่อ - เบอร์โทร<br/>(นายจ้าง)</th>
                                     <th className="border-r-[0.5px] border-b-[0.5px] border-black p-1 w-[15%]">ตำแหน่งสุดท้าย</th>
                                     <th className="border-r-[0.5px] border-b-[0.5px] border-black p-1 w-[15%]">สาเหตุที่ลาออก</th>
                                     <th className="border-r-[0.5px] border-b-[0.5px] border-black p-1 w-[11%]">เข้า/บาท</th>
-                                    <th className="border-b-[0.5px] border-black p-1 w-[11%]">ออก/บาท</th>
+                                    <th className="border-b-[0.5px] border-r-[0.5px] border-black p-1 w-[11%]">ออก/บาท</th>
                                 </tr>
                             </thead>
                             <tbody>
