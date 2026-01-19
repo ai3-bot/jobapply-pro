@@ -463,7 +463,7 @@ export default function PDFLayoutType2({ applicant }) {
                                          <div key={idx} className="grid grid-cols-5 border-b-[0.5px] border-black last:border-b-0 h-[28px]">
                                              <div className="col-span-2 pl-1 border-r-[0.5px] border-black font-medium flex items-center h-full truncate">
                                                  {item.l}
-                                                 {item.n && s.languages?.[item.n] && <span className="ml-1 text-[12px] text-slate-600">({s.languages[item.n]})</span>}
+                                                 {item.n && s.languages?.[item.n] && <span className="ml-1 text-slate-600">({s.languages[item.n]})</span>}
                                              </div>
                                              <div className="col-span-3 h-full flex items-center justify-center px-2">
                                                  {s.languages?.[item.k] || ''}
@@ -986,7 +986,7 @@ export default function PDFLayoutType2({ applicant }) {
                     </div>
 
                     {/* Approval Section */}
-                    <div className="grid grid-cols-3 gap-0 text-[12px]">
+                    <div className="grid grid-cols-3 gap-0">
                         {/* First Row - 3 columns */}
                         <div className="border-[0.5px] border-black p-1.5">
                             <div className="font-bold text-center mb-1 pb-1 border-b border-black">เจ้าหน้าที่สรรหาว่าจ้าง</div>
@@ -1001,9 +1001,9 @@ export default function PDFLayoutType2({ applicant }) {
                                 ) : (
                                     <div className="border-b-[1px] border-dotted border-black w-32 h-10"></div>
                                 )}
-                                <div className="text-center text-[11px]">({admin.approvals?.recruiter?.name || "..........................................."})</div>
+                                <div className="text-center text-[12px]">({admin.approvals?.recruiter?.name || "..........................................."})</div>
                             </div>
-                            <div className="text-center text-[11px]">วันที่ {admin.approvals?.recruiter?.date || ".........../.........../..........."}</div>
+                            <div className="text-center text-[12px]">วันที่ {admin.approvals?.recruiter?.date || ".........../.........../..........."}</div>
                         </div>
                         
                         <div className="border-[0.5px] border-black border-l-0 p-1.5">
@@ -1013,7 +1013,7 @@ export default function PDFLayoutType2({ applicant }) {
                                 <CheckBox label="ไม่รับ" checked={admin.approvals?.committee?.decision === 'rejected'} width="w-auto" textSize="text-[12px]" />
                             </div>
                             <div className="flex flex-col items-center gap-1 mb-1">
-                                <span className="text-[11px]">ลงชื่อ</span>
+                                <span className="text-[12px]">ลงชื่อ</span>
                                 {admin.approvals?.committee?.signature ? (
                                     <div className="flex flex-col items-center w-32">
                                         <img src={admin.approvals.committee.signature} alt="Signature" crossOrigin="anonymous" className="max-h-10 object-contain mb-1" />
@@ -1022,9 +1022,9 @@ export default function PDFLayoutType2({ applicant }) {
                                 ) : (
                                     <div className="border-b-[1px] border-dotted border-black w-32 h-10"></div>
                                 )}
-                                <div className="text-center text-[11px]">({admin.approvals?.committee?.name || "..........................................."})</div>
+                                <div className="text-center text-[12px]">({admin.approvals?.committee?.name || "..........................................."})</div>
                             </div>
-                            <div className="text-center text-[11px]">วันที่ {admin.approvals?.committee?.date || ".........../.........../..........."}</div>
+                            <div className="text-center text-[12px]">วันที่ {admin.approvals?.committee?.date || ".........../.........../..........."}</div>
                         </div>
                         
                         <div className="border-[0.5px] border-black border-l-0 p-1.5">
@@ -1034,7 +1034,7 @@ export default function PDFLayoutType2({ applicant }) {
                                 <CheckBox label="ไม่รับ" checked={admin.approvals?.hr_manager?.decision === 'rejected'} width="w-auto" textSize="text-[12px]" />
                             </div>
                             <div className="flex flex-col items-center gap-1 mb-1">
-                                <span className="text-[11px]">ลงชื่อ</span>
+                                <span className="text-[12px]">ลงชื่อ</span>
                                 {admin.approvals?.hr_manager?.signature ? (
                                     <div className="flex flex-col items-center w-32">
                                         <img src={admin.approvals.hr_manager.signature} alt="Signature" crossOrigin="anonymous" className="max-h-10 object-contain mb-1" />
@@ -1043,9 +1043,9 @@ export default function PDFLayoutType2({ applicant }) {
                                 ) : (
                                     <div className="border-b-[1px] border-dotted border-black w-32 h-10"></div>
                                 )}
-                                <div className="text-center text-[11px]">({admin.approvals?.hr_manager?.name || "..........................................."})</div>
+                                <div className="text-center text-[12px]">({admin.approvals?.hr_manager?.name || "..........................................."})</div>
                             </div>
-                            <div className="text-center text-[11px]">วันที่ {admin.approvals?.hr_manager?.date || ".........../.........../..........."}</div>
+                            <div className="text-center text-[12px]">วันที่ {admin.approvals?.hr_manager?.date || ".........../.........../..........."}</div>
                         </div>
 
                         {/* Second Row - 2 columns */}
@@ -1056,7 +1056,7 @@ export default function PDFLayoutType2({ applicant }) {
                                 <CheckBox label="ไม่รับ" checked={admin.approvals?.department_head?.decision === 'rejected'} width="w-auto" textSize="text-[12px]" />
                             </div>
                             <div className="flex flex-col items-center gap-1 mb-1">
-                                <span className="text-[11px]">ลงชื่อ</span>
+                                <span className="text-[12px]">ลงชื่อ</span>
                                 {admin.approvals?.department_head?.signature ? (
                                     <div className="flex flex-col items-center w-32">
                                         <img src={admin.approvals.department_head.signature} alt="Signature" crossOrigin="anonymous" className="max-h-10 object-contain mb-1" />
@@ -1065,9 +1065,9 @@ export default function PDFLayoutType2({ applicant }) {
                                 ) : (
                                     <div className="border-b-[1px] border-dotted border-black w-32 h-10"></div>
                                 )}
-                                <div className="text-center text-[11px]">({admin.approvals?.department_head?.name || "..........................................."})</div>
+                                <div className="text-center text-[12px]">({admin.approvals?.department_head?.name || "..........................................."})</div>
                             </div>
-                            <div className="text-center text-[11px]">วันที่ {admin.approvals?.department_head?.date || ".........../.........../..........."}</div>
+                            <div className="text-center text-[12px]">วันที่ {admin.approvals?.department_head?.date || ".........../.........../..........."}</div>
                         </div>
 
                         <div className="border-[0.5px] border-black border-l-0 border-t-0 p-1.5 col-span-2">
