@@ -54,7 +54,7 @@ export default function PDFLayoutType2({ applicant }) {
             <div className={`absolute left-0 top-2.5 w-3 h-3 border-[0.5px] border-black rounded-[1px] bg-white flex items-center justify-center`}>
                 {checked && <Check className="w-2.5 h-2.5" />}
             </div>
-            <span className={`${textSize} text-slate-900 pt-1`}>{label}</span>
+            <span className="text-slate-900 pt-1">{label}</span>
         </div>
     );
 
