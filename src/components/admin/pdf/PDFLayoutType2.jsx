@@ -357,7 +357,7 @@ export default function PDFLayoutType2({ applicant }) {
             <PageContainer pageNum={2} totalPages={4}>
                 <div className="mt-[5mm] space-y-0.5">
                     {/* --- Family Status --- */}
-                    <div className="border-[0.5px] border-black px-2 py-1 rounded-sm text-[15px]">
+                    <div className="border-[0.5px] border-black px-2 py-1 rounded-sm">
                         <div className="flex items-center gap-2 mb-2">
                              <span className="font-bold underline">สถานะทางครอบครัว</span>
                              <div className="flex gap-4 ml-4 items-end">
@@ -395,7 +395,7 @@ export default function PDFLayoutType2({ applicant }) {
                     {/* --- Education History --- */}
                     <div>
                         <div className="text-center font-bold text-[14px] mb-0.5 pb-[1px]">ประวัติการศึกษา</div>
-                        <table className="w-full border-collapse text-[15px]">
+                        <table className="w-full border-collapse">
                             <thead>
                                 <tr className="bg-slate-50 text-center">
                                     <th className="border-l-[0.5px] border-b-[0.5px] border-t-[0.5px] border-black p-1 w-[15%]">ระดับ</th>
@@ -473,7 +473,7 @@ export default function PDFLayoutType2({ applicant }) {
                                  </div>
 
                                  {/* Office Equipment */}
-                                 <div className="col-span-4 border-r-[0.5px] border-black text-[15px]">
+                                 <div className="col-span-4 border-r-[0.5px] border-black">
                                      <div className="grid grid-cols-5 border-b-[0.5px] border-black font-bold text-center bg-slate-50 h-[40px]">
                                          <div className="col-span-3 p-1 border-r-[0.5px] border-black flex items-center justify-center">ประเภท</div>
                                          <div className="p-1 border-r-[0.5px] border-black flex items-center justify-center">ได้</div>
@@ -494,7 +494,7 @@ export default function PDFLayoutType2({ applicant }) {
                                  </div>
 
                                  {/* Special Skills */}
-                                 <div className="col-span-4 text-[15px]">
+                                 <div className="col-span-4">
                                      <div className="grid grid-cols-5 border-b-[0.5px] border-black font-bold text-center bg-slate-50 h-[40px]">
                                          <div className="col-span-3 p-1 border-r-[0.5px] border-black flex items-center justify-center">ประเภท</div>
                                          <div className="p-1 border-r-[0.5px] border-black flex items-center justify-center">ได้</div>
@@ -526,7 +526,7 @@ export default function PDFLayoutType2({ applicant }) {
                     {/* --- Training History --- */}
                     <div>
                         <div className="text-center font-bold text-[14px] mb-1">ประวัติการฝึกอบรม</div>
-                        <table className="w-full border-collapse text-[15px]">
+                        <table className="w-full border-collapse">
                             <thead>
                                 <tr className="bg-slate-50 text-center">
                                     <th className="border-l-[0.5px] border-b-[0.5px] border-t-[0.5px] border-black p-1 w-[10%]">ลำดับ</th>
@@ -580,7 +580,7 @@ export default function PDFLayoutType2({ applicant }) {
                                             </div>
                                         </div>
                                     </th>
-                                    <th colSpan={2} className="border-b-[0.5px] border-black p-2 align-middle text-center font-bold text-[15px]">
+                                    <th colSpan={2} className="border-b-[0.5px] border-black p-2 align-middle text-center font-bold">
                                         เงินเดือน/บาท
                                     </th>
                                 </tr>
@@ -632,7 +632,7 @@ export default function PDFLayoutType2({ applicant }) {
                      {/* --- Statement --- */}
                      <div>
                         <div className="text-center font-bold text-[14px] border-[0.5px] border-black bg-slate-50 py-1 mb-[-0.5px]">คำแถลง (กรุณาระบุตามจริงเท่านั้น)</div>
-                        <div className="border-[0.5px] border-black p-3 text-[15px] space-y-2">
+                        <div className="border-[0.5px] border-black p-3 space-y-2">
                             <div className="flex gap-1 items-center flex-nowrap">
                                 <span className="w-5 shrink-0 relative top-[1px]">1.</span>
                                 <span className="whitespace-nowrap relative top-[1px]">ท่านสามารถปฏิบัติงานล่วงเวลาได้หรือไม่</span>
@@ -749,7 +749,7 @@ export default function PDFLayoutType2({ applicant }) {
                      </div>
 
                      {/* --- Referral --- */}
-                     <div className="border-[0.5px] border-black p-2 pb-3 text-[15px] space-y-2.5">
+                     <div className="border-[0.5px] border-black p-2 pb-3 space-y-2.5">
                          <div className="flex items-end">
                             <span className="relative top-[1px]">ข้าพเจ้ายื่นใบสมัครโดยการแนะนำของ</span>
                             <DottedLine value={ref.referred_by} className="flex-1 text-center relative top-2" />
@@ -765,7 +765,7 @@ export default function PDFLayoutType2({ applicant }) {
                      </div>
 
                      {/* --- Parents --- */}
-                     <div className="border-[0.5px] border-black p-2 text-[15px] space-y-2.5">
+                     <div className="border-[0.5px] border-black p-2 space-y-2.5">
                          <div className="font-bold underline text-center">ประวัติครอบครัว</div>
                          
                          {/* Father - 3 lines */}
@@ -895,7 +895,7 @@ export default function PDFLayoutType2({ applicant }) {
 
                     {/* Attitude Section */}
                     <div className="border-[0.5px] border-black p-2">
-                        <div className="font-bold mb-2 text-[15px]">ทัศนคติในการทำงานของท่านที่ทำให้บริษัทฯได้รู้จักท่านมากขึ้น</div>
+                        <div className="font-bold mb-2">ทัศนคติในการทำงานของท่านที่ทำให้บริษัทฯได้รู้จักท่านมากขึ้น</div>
                         <DottedLine value={applicant.attitude} className="mb-1 w-full" />
                         <DottedLine value="" className="w-full" />
                     </div>
@@ -945,7 +945,7 @@ export default function PDFLayoutType2({ applicant }) {
                     </div>
 
                     {/* HR Section */}
-                    <div className="text-center font-bold text-[15px] bg-slate-50 border-[0.5px] border-black py-1">
+                    <div className="text-center font-bold bg-slate-50 border-[0.5px] border-black py-1">
                         สำหรับบริษัทฯ ใช้กรอกรายละเอียดบันทึกการสัมภาษณ์
                     </div>
 
