@@ -769,16 +769,16 @@ export default function PDFLayoutType2({ applicant }) {
                      {/* --- Referral --- */}
                      <div className="border-[0.5px] border-black px-2 pb-1 space-y-0.5">
                          <div className="flex items-end">
-                            <span className="relative top-[-2px]">ข้าพเจ้ายื่นใบสมัครโดยการแนะนำของ</span>
-                            <DottedLine value={ref.referred_by} className="flex-1 text-center relative top-2" />
-                            <span className="relative top-[-2px]">ความสัมพันธ์</span>
-                            <DottedLine value={ref.referred_by_relationship} className="w-[40mm] text-center relative top-2" />
+                            <span className="relative top-[3px]">ข้าพเจ้ายื่นใบสมัครโดยการแนะนำของ</span>
+                            <DottedLine value={ref.referred_by} className="flex-1 text-center relative top-4" />
+                            <span className="relative top-[3px]">ความสัมพันธ์</span>
+                            <DottedLine value={ref.referred_by_relationship} className="w-[40mm] text-center relative top-4" />
                          </div>
                          <div className="flex items-end">
-                            <span className="relative top-[-2px]">บุคคลในองค์กรนี้ที่ข้าพเจ้ารู้จักคุ้นเคย</span>
-                            <DottedLine value={ref.acquaintance_name} className="flex-1 text-center relative top-2" />
-                            <span className="relative top-[-2px]">ความสัมพันธ์</span>
-                            <DottedLine value={ref.acquaintance_relationship} className="w-[40mm] text-center relative top-2" />
+                            <span className="relative top-[3px]">บุคคลในองค์กรนี้ที่ข้าพเจ้ารู้จักคุ้นเคย</span>
+                            <DottedLine value={ref.acquaintance_name} className="flex-1 text-center relative top-4" />
+                            <span className="relative top-[3px]">ความสัมพันธ์</span>
+                            <DottedLine value={ref.acquaintance_relationship} className="w-[40mm] text-center relative top-4" />
                          </div>
                      </div>
 
