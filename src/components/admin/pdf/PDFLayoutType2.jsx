@@ -647,7 +647,10 @@ export default function PDFLayoutType2({ applicant }) {
                                 <span className="whitespace-nowrap relative top-[1px]">ท่านเคยเป็นผู้ต้องหาหรือต้องคำพิพากษาในคดีอาญา/แพ่งหรือไม่</span>
                                 <CheckBox label="ไม่เคย" checked={st.has_legal_cases === 'never'} width="w-[60px]" />
                                 <CheckBox label="เคย" checked={st.has_legal_cases === 'ever'} width="w-[50px]" />
-                                <span className="relative top-[1px]">ด้วยคดี.......................................................เมื่อปี พ.ศ..........</span>
+                                <span className="relative top-[1px]">ด้วยคดี</span>
+                                <span className="border-b border-dotted border-black min-w-[150px] px-1 pb-1 relative top-2">{st.has_legal_cases === 'ever' ? st.has_legal_cases_details : ''}</span>
+                                <span className="relative top-[1px]">เมื่อปี พ.ศ.</span>
+                                <span className="border-b border-dotted border-black min-w-[60px] px-1 pb-1 relative top-2">{st.has_legal_cases === 'ever' ? st.has_legal_cases_year : ''}</span>
                             </div>
 
                             <div className="flex gap-1 items-center flex-wrap">
@@ -655,7 +658,12 @@ export default function PDFLayoutType2({ applicant }) {
                                 <span className="whitespace-nowrap relative top-[1px]">ท่านเคยเสพสารเสพติดหรือเคยรับการบำบัด</span>
                                 <CheckBox label="ไม่เคย" checked={st.has_drug_history === 'never'} width="w-[60px]" />
                                 <CheckBox label="เคย" checked={st.has_drug_history === 'ever'} width="w-[50px]" />
-                                <span className="relative top-[1px]">ระบุประเภท.............................สถานที่บำบัด.....................เมื่อปี พ.ศ..........</span>
+                                <span className="relative top-[1px]">ระบุประเภท</span>
+                                <span className="border-b border-dotted border-black min-w-[80px] px-1 pb-1 relative top-2">{st.has_drug_history === 'ever' ? st.has_drug_history_type : ''}</span>
+                                <span className="relative top-[1px]">สถานที่บำบัด</span>
+                                <span className="border-b border-dotted border-black min-w-[80px] px-1 pb-1 relative top-2">{st.has_drug_history === 'ever' ? st.has_drug_history_place : ''}</span>
+                                <span className="relative top-[1px]">เมื่อปี พ.ศ.</span>
+                                <span className="border-b border-dotted border-black min-w-[60px] px-1 pb-1 relative top-2">{st.has_drug_history === 'ever' ? st.has_drug_history_year : ''}</span>
                             </div>
 
                             <div className="flex gap-1 items-center flex-wrap">
@@ -690,12 +698,17 @@ export default function PDFLayoutType2({ applicant }) {
                                 <span className="whitespace-nowrap relative top-[1px]">ท่านเคยเจ็บป่วยมากกว่า 3 วันติดต่อกันในรอบ 12 เดือนที่ผ่านมาหรือไม่</span>
                                 <CheckBox label="ไม่เคย" checked={st.recent_major_illness === 'never'} width="w-[60px]" />
                                 <CheckBox label="เคย" checked={st.recent_major_illness === 'ever'} width="w-[50px]" />
-                                <span className="relative top-[1px]">ระบุโรค.........................................</span>
+                                <span className="relative top-[1px]">ระบุโรค</span>
+                                <span className="border-b border-dotted border-black min-w-[150px] px-1 pb-1 relative top-2">{st.recent_major_illness === 'ever' ? st.recent_major_illness_details : ''}</span>
                             </div>
 
-                            <div className="flex gap-1 items-center">
+                            <div className="flex gap-1 items-center flex-wrap">
                                 <span className="w-5 shrink-0 relative top-[1px]">8.</span>
-                                <span className="relative top-[1px]">ท่านมีโรคติดต่อร้ายแรงหรือไม่ เช่น กาฬโรค/ไข้ทรพิษหรือฝีดาษ/วัณโรค /HIV/Covid-19 อื่นๆ โปรดระบุให้ชัดเจน...............................</span>
+                                <span className="relative top-[1px]">ท่านมีโรคติดต่อร้ายแรงหรือไม่ เช่น กาฬโรค/ไข้ทรพิษหรือฝีดาษ/วัณโรค /HIV/Covid-19</span>
+                                <CheckBox label="ไม่มี" checked={st.has_contagious_disease === 'no'} width="w-[60px]" />
+                                <CheckBox label="มี" checked={st.has_contagious_disease === 'yes'} width="w-[50px]" />
+                                <span className="relative top-[1px]">อื่นๆ โปรดระบุให้ชัดเจน</span>
+                                <span className="border-b border-dotted border-black flex-1 min-w-[100px] px-1 pb-1 relative top-2">{st.has_contagious_disease === 'yes' ? st.has_contagious_disease_details : ''}</span>
                             </div>
 
                             <div className="space-y-1">
@@ -735,14 +748,18 @@ export default function PDFLayoutType2({ applicant }) {
                                 <span className="w-5 shrink-0 relative top-[1px]">11.</span>
                                 <span className="whitespace-nowrap relative top-[1px]">ท่านยินยอมให้บริษัทฯตรวจสอบประวัติอาชญากรรมหรือไม่</span>
                                 <CheckBox label="ยินยอม" checked={st.criminal_record_check_consent === 'agree'} width="w-[70px]" />
-                                <CheckBox label="ไม่ยินยอม เพราะ........................................" checked={st.criminal_record_check_consent === 'disagree'} width="w-auto" />
+                                <CheckBox label="ไม่ยินยอม" checked={st.criminal_record_check_consent === 'disagree'} width="w-[80px]" />
+                                <span className="relative top-[1px]">เพราะ</span>
+                                <span className="border-b border-dotted border-black flex-1 min-w-[150px] px-1 pb-1 relative top-2">{st.criminal_record_check_consent === 'disagree' ? st.criminal_record_check_consent_reason : ''}</span>
                             </div>
 
                             <div className="flex gap-1 items-center flex-wrap">
                                 <span className="w-5 shrink-0 relative top-[1px]">12.</span>
                                 <span className="whitespace-nowrap relative top-[1px]">ท่านยินยอมให้บริษัทฯตรวจสอบเครดิตบูโรหรือไม่</span>
                                 <CheckBox label="ยินยอม" checked={st.credit_bureau_check_consent === 'agree'} width="w-[70px]" />
-                                <CheckBox label="ไม่ยินยอม เพราะ........................................" checked={st.credit_bureau_check_consent === 'disagree'} width="w-auto" />
+                                <CheckBox label="ไม่ยินยอม" checked={st.credit_bureau_check_consent === 'disagree'} width="w-[80px]" />
+                                <span className="relative top-[1px]">เพราะ</span>
+                                <span className="border-b border-dotted border-black flex-1 min-w-[150px] px-1 pb-1 relative top-2">{st.credit_bureau_check_consent === 'disagree' ? st.credit_bureau_check_consent_reason : ''}</span>
                             </div>
 
                         </div>
