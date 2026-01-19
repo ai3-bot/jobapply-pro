@@ -633,7 +633,7 @@ export default function PDFLayoutType2({ applicant }) {
                      {/* --- Statement --- */}
                      <div>
                         <div className="text-center font-bold text-[14px] border-[0.5px] border-black bg-slate-50 py-1 mb-[-0.5px]">คำแถลง (กรุณาระบุตามจริงเท่านั้น)</div>
-                        <div className="border-[0.5px] border-black px-3 space-y-0.5">
+                        <div className="border-[0.5px] border-black p-3 space-y-0.5">
                             <div className="flex gap-1 items-center flex-nowrap">
                                 <span className="w-5 shrink-0 relative top-[1px]">1.</span>
                                 <span className="whitespace-nowrap relative top-[1px]">ท่านสามารถปฏิบัติงานล่วงเวลาได้หรือไม่</span>
@@ -769,15 +769,15 @@ export default function PDFLayoutType2({ applicant }) {
                      {/* --- Referral --- */}
                      <div className="border-[0.5px] border-black px-2 pb-1 space-y-0.5">
                          <div className="flex items-end">
-                            <span className="relative top-[2px]">ข้าพเจ้ายื่นใบสมัครโดยการแนะนำของ</span>
+                            <span className="relative top-[-2px]">ข้าพเจ้ายื่นใบสมัครโดยการแนะนำของ</span>
                             <DottedLine value={ref.referred_by} className="flex-1 text-center relative top-2" />
-                            <span className="relative top-[2px]">ความสัมพันธ์</span>
+                            <span className="relative top-[-2px]">ความสัมพันธ์</span>
                             <DottedLine value={ref.referred_by_relationship} className="w-[40mm] text-center relative top-2" />
                          </div>
                          <div className="flex items-end">
-                            <span className="relative top-[2px]">บุคคลในองค์กรนี้ที่ข้าพเจ้ารู้จักคุ้นเคย</span>
+                            <span className="relative top-[-2px]">บุคคลในองค์กรนี้ที่ข้าพเจ้ารู้จักคุ้นเคย</span>
                             <DottedLine value={ref.acquaintance_name} className="flex-1 text-center relative top-2" />
-                            <span className="relative top-[2px]">ความสัมพันธ์</span>
+                            <span className="relative top-[-2px]">ความสัมพันธ์</span>
                             <DottedLine value={ref.acquaintance_relationship} className="w-[40mm] text-center relative top-2" />
                          </div>
                      </div>
