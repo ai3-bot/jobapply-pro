@@ -62,7 +62,7 @@ export default function PDFLayoutType2({ applicant }) {
         const footerBottom = pageNum === 2 ? 'bottom-[20mm]' : pageNum === 3 || pageNum === 4 ? 'bottom-[25mm]' : 'bottom-[10mm]';
         return (
             <div 
-                className="bg-white text-slate-900 p-[10mm] mx-auto relative font-sans mb-8 shadow-sm print:shadow-none print:mb-0"
+                className="bg-white text-slate-900 p-[10mm] mx-auto relative mb-8 shadow-sm print:shadow-none print:mb-0"
                 style={{ 
                     fontSize: '14px',
                     width: '210mm', 
@@ -104,7 +104,7 @@ export default function PDFLayoutType2({ applicant }) {
                  {/* --- Top Section --- */}
                 <div className="flex justify-between items-start mb-1">
                     {/* Top Left Box */}
-                    <div className="border-[0.5px] border-black p-2 w-[40mm] text-[15px] space-y-1">
+                    <div className="border-[0.5px] border-black p-2 w-[40mm] space-y-1">
                         <div className="relative pl-5 h-4 flex items-center">
                             <div className={`absolute left-0 top-0.5 w-3 h-3 border border-black rounded-[1px] bg-white flex items-center justify-center`}>
                                 {admin.hr_systems?.web_hr && <Check className="w-2.5 h-2.5" />}
