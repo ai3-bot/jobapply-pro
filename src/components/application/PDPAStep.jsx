@@ -61,11 +61,22 @@ export default function PDPAStep({ globalData, setGlobalData, onNext, onBack }) 
                 applicant_id: record.id,
                 pdf_type: 'PDPA',
                 data: {
-                    writtenAt: formData.writtenAt,
-                    writtenDate: formData.writtenDate,
-                    lineId: formData.lineId,
-                    signatureUrl: signatureUrl,
-                    signatureDate: signatureDate
+                    // Employee filled data
+                    employee_data: {
+                        writtenAt: formData.writtenAt,
+                        writtenDate: formData.writtenDate,
+                        lineId: formData.lineId,
+                        signatureUrl: signatureUrl,
+                        signatureDate: signatureDate,
+                        agreed: formData.agreed,
+                        accepted_date: new Date().toISOString()
+                    },
+                    // Applicant info for PDF generation
+                    applicant_info: {
+                        full_name: applicantData.full_name,
+                        id_card: globalData.personal_data.id_card,
+                        mobile_phone: globalData.personal_data.mobile_phone
+                    }
                 },
                 status: 'submitted',
                 submitted_date: new Date().toISOString()
