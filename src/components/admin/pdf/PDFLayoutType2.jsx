@@ -832,7 +832,7 @@ export default function PDFLayoutType2({ applicant }) {
                          </div>
 
                          {/* Mother - 3 lines */}
-                         <div className="flex flex-wrap items-end gap-1">
+                         <div className="flex flex-wrap items-end gap-1 pb-1">
                              <span>ชื่อ-สกุล มารดา</span>
                              <DottedLine value={par.mother?.name} className="w-[48mm] relative top-[3px]" />
                              <CheckBox label="ถึงแก่กรรม" checked={par.mother?.status === 'deceased'} width="w-[22mm]" textSize="text-[12px]" />
