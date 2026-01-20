@@ -724,7 +724,7 @@ export default function PDFLayoutType2({ applicant }) {
                                     <CheckBox label="สายตาไม่ปกติ ระบุ" checked={st.physical_conditions?.eyes === 'abnormal'} width="w-auto textSize=[12px]" />
                                     <span className="border-b border-dotted border-black min-w-[60px] px-1 pb-1 relative top-1">{st.physical_conditions?.eyes === 'abnormal' ? st.physical_conditions?.eyes_details : ''}</span>
                                 </div>
-                                <div className="flex items-center gap-1 ml-6 flex-wrap">
+                                <div className="flex items-center gap-1 flex-wrap">
                                     <CheckBox label="การฟังปกติ" checked={st.physical_conditions?.hearing === 'normal'} width="w-[80px] textSize=[12px]" />
                                     <CheckBox label="การฟังไม่ปกติ ระบุ" checked={st.physical_conditions?.hearing === 'abnormal'} width="w-auto textSize=[12px]" />
                                     <span className="border-b border-dotted border-black min-w-[60px] px-1 pb-1 relative top-1">{st.physical_conditions?.hearing === 'abnormal' ? st.physical_conditions?.hearing_details : ''}</span>
@@ -745,7 +745,7 @@ export default function PDFLayoutType2({ applicant }) {
                                     <CheckBox label="กู้ในระบบ บัตรเครดิต/สินเชื่อต่างๆ" checked={st.debt_status?.inside_system} width="w-auto textSize=[12px]" />
                                     <CheckBox label="ภาระการผ่อนส่งบ้าน/คอนโด" checked={st.debt_status?.house} width="w-auto textSize=[12px]" />
                                 </div>
-                                <div className="flex items-center ml-6 gap-0.1 flex-wrap">
+                                <div className="flex items-center gap-0.1 flex-wrap">
                                     <CheckBox label="ภาระการผ่อนส่งรถยนต์ / รถมอเตอร์ไซค์" checked={st.debt_status?.car} width="w-auto textSize=[12px]" />
                                     <CheckBox label="เงินกู้ยืมเพื่อการศึกษา กยศ." checked={st.debt_status?.student_loan} width="w-auto textSize=[12px]" />
                                     <CheckBox label="อื่นๆ ระบุ" checked={st.debt_status?.other} width="w-auto textSize=[12px]" />
