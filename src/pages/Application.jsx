@@ -12,6 +12,10 @@ import VideoInterviewStep from '@/components/application/VideoInterviewStep';
 
 export default function ApplicationPage() {
     const [mainStep, setMainStep] = useState(0); // 0: Agreement, 1: Photo, 2: Form, 3: PDPA, 4: Video
+    
+    React.useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, [mainStep]);
     // Get local date string in YYYY-MM-DD format
     const getLocalDate = () => {
         const d = new Date();

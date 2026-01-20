@@ -23,6 +23,7 @@ export default function DataFormWizard({ onComplete, globalData, setGlobalData }
     };
 
     const handleNext = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         if (step < 4) setStep(step + 1);
         else handleSubmitData();
     };
@@ -67,6 +68,7 @@ export default function DataFormWizard({ onComplete, globalData, setGlobalData }
     };
 
     const handleBack = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         if (step > 1) setStep(step - 1);
     };
 

@@ -35,6 +35,7 @@ export default function PDPAStep({ globalData, setGlobalData, onNext, onBack }) 
                 accepted_date: new Date().toISOString()
             }
         }));
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         onNext();
     };
 
