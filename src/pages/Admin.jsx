@@ -73,6 +73,14 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                 }
             });
 
+    const { data: pdpaDocuments = [] } = useQuery({
+        queryKey: ['pdpa_documents'],
+        queryFn: async () => {
+            const docs = await base44.entities.PdfBase.filter({ pdf_type: 'PDPA' });
+            return docs;
+        }
+    });
+
     const { data: sps103Documents = [] } = useQuery({
         queryKey: ['sps_103_documents'],
         queryFn: async () => {
@@ -121,6 +129,7 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
     const filteredEmploymentContract = employmentContractDocuments.filter(doc => doc.applicant_id === selectedApplicant.id && (doc.status === 'submitted' || doc.status === 'approved'));
     const filteredFMHRD30 = fmhrd30Documents.filter(doc => doc.applicant_id === selectedApplicant.id && (doc.status === 'submitted' || doc.status === 'approved'));
     const filteredFMHRD27 = fmhrd27Documents.filter(doc => doc.applicant_id === selectedApplicant.id && (doc.status === 'submitted' || doc.status === 'approved'));
+    const filteredPDPA = pdpaDocuments.filter(doc => doc.applicant_id === selectedApplicant.id && (doc.status === 'submitted' || doc.status === 'approved'));
     const filteredCriminalCheck = criminalCheckDocuments.filter(doc => doc.applicant_id === selectedApplicant.id && (doc.status === 'submitted' || doc.status === 'approved'));
     const filteredSPS103 = sps103Documents.filter(doc => doc.applicant_id === selectedApplicant.id && (doc.status === 'submitted' || doc.status === 'approved'));
     const filteredSPS902 = sps902Documents.filter(doc => doc.applicant_id === selectedApplicant.id && (doc.status === 'submitted' || doc.status === 'approved'));
@@ -154,6 +163,7 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                     submission_date: selectedApplicant.submission_date
                 },
                 nda_documents: filteredFMHRD27.map(doc => ({ id: doc.id, data: doc.data, status: doc.status })),
+                pdpa_documents: filteredPDPA.map(doc => ({ id: doc.id, data: doc.data, status: doc.status })),
                 fmhrd19_documents: filteredFMHRD19.map(doc => ({ id: doc.id, data: doc.data, status: doc.status })),
                 sps103_documents: filteredSPS103.map(doc => ({ id: doc.id, data: doc.data, status: doc.status })),
                 sps902_documents: filteredSPS902.map(doc => ({ id: doc.id, data: doc.data, status: doc.status })),
@@ -171,6 +181,7 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
             textSummary += `=`.repeat(50) + '\n\n';
             textSummary += `จำนวนเอกสารทั้งหมด:\n`;
             textSummary += `- NDA (FM-HRD-27): ${filteredFMHRD27.length} เอกสาร\n`;
+            textSummary += `- PDPA: ${filteredPDPA.length} เอกสาร\n`;
             textSummary += `- FM-HRD-19: ${filteredFMHRD19.length} เอกสาร\n`;
             textSummary += `- SPS 1-03: ${filteredSPS103.length} เอกสาร\n`;
             textSummary += `- SPS 9-02: ${filteredSPS902.length} เอกสาร\n`;
@@ -191,7 +202,7 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
             link.click();
             URL.revokeObjectURL(url);
             
-            alert(`ดาวน์โหลดข้อมูลเอกสารเรียบร้อยแล้ว\nรวม ${filteredFMHRD27.length + filteredFMHRD19.length + filteredSPS103.length + filteredSPS902.length + filteredInsurance.length + filteredEmploymentContract.length + filteredFMHRD30.length + filteredCriminalCheck.length} เอกสาร`);
+            alert(`ดาวน์โหลดข้อมูลเอกสารเรียบร้อยแล้ว\nรวม ${filteredFMHRD27.length + filteredPDPA.length + filteredFMHRD19.length + filteredSPS103.length + filteredSPS902.length + filteredInsurance.length + filteredEmploymentContract.length + filteredFMHRD30.length + filteredCriminalCheck.length} เอกสาร`);
             
         } catch (error) {
             console.error('Error downloading documents:', error);
@@ -233,6 +244,54 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                         )}
                     </Button>
                 </div>
+                {/* PDPA Documents */}
+                <div>
+                    <h2 className="text-2xl font-bold text-slate-800 mb-4">เอกสาร PDPA</h2>
+                    {filteredPDPA.length > 0 ? (
+                        <div className="grid grid-cols-1 gap-4">
+                            {filteredPDPA.map(doc => {
+                                const applicant = selectedApplicant;
+                                return (
+                                    <Card key={doc.id} className="hover:shadow-md transition-shadow">
+                                        <CardContent className="p-6">
+                                            <div className="flex items-center justify-between">
+                                                <div className="flex items-center gap-4 flex-1">
+                                                    <div className="w-12 h-12 rounded-full bg-teal-100 flex items-center justify-center">
+                                                        <FileCheck className="w-6 h-6 text-teal-600" />
+                                                    </div>
+                                                    <div className="flex-1">
+                                                        <h3 className="font-semibold text-lg">{applicant?.full_name || '-'}</h3>
+                                                        <p className="text-sm text-slate-500">
+                                                            สถานะ: {doc.status === 'approved' ? 'อนุมัติแล้ว' : doc.status === 'submitted' ? 'รอดำเนินการ' : 'แบบร่าง'}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div className="flex items-center gap-3">
+                                                    <Badge variant={doc.status === 'approved' ? 'success' : doc.status === 'submitted' ? 'default' : 'secondary'}>
+                                                        {doc.status === 'approved' ? 'อนุมัติแล้ว' : doc.status === 'submitted' ? 'รอดำเนินการ' : 'แบบร่าง'}
+                                                    </Badge>
+                                                    <Button 
+                                                        onClick={() => onReviewPDPA?.(applicant)}
+                                                        size="sm"
+                                                    >
+                                                        กรอกข้อมูลพยาน
+                                                    </Button>
+                                                </div>
+                                            </div>
+                                        </CardContent>
+                                    </Card>
+                                );
+                            })}
+                        </div>
+                    ) : (
+                        <Card>
+                            <CardContent className="p-8 text-center text-slate-500">
+                                ยังไม่มีเอกสารที่ส่งมา
+                            </CardContent>
+                        </Card>
+                    )}
+                </div>
+
                 {/* NDA Documents - FM-HRD-27 */}
                 <div>
                     <h2 className="text-2xl font-bold text-slate-800 mb-4">เอกสาร NDA (FM-HRD-27)</h2>
