@@ -7,7 +7,8 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import SignaturePad from '@/components/admin/SignaturePad';
 import PDPADocument from '@/components/application/pdf/PDPADocument';
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, Loader2 } from "lucide-react";
+import { base44 } from '@/api/base44Client';
 
 export default function PDPAStep({ globalData, setGlobalData, onNext, onBack }) {
     const [formData, setFormData] = useState({
@@ -19,24 +20,68 @@ export default function PDPAStep({ globalData, setGlobalData, onNext, onBack }) 
     const [signatureUrl, setSignatureUrl] = useState(globalData.signature_url || '');
     const [signatureDate, setSignatureDate] = useState(globalData.signature_date || new Date().toISOString().split('T')[0]);
 
-    const handleNext = () => {
+    const [isSubmitting, setIsSubmitting] = React.useState(false);
+
+    const handleNext = async () => {
         if (!formData.agreed || !signatureUrl) {
             alert('กรุณาอ่านและยอมรับนโยบายความเป็นส่วนตัว และลงนามก่อนดำเนินการต่อ');
             return;
         }
 
-        setGlobalData(prev => ({
-            ...prev,
-            signature_url: signatureUrl,
-            signature_date: signatureDate,
-            pdpa_data: {
-                ...formData,
-                status: 'accepted',
-                accepted_date: new Date().toISOString()
-            }
-        }));
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        onNext();
+        setIsSubmitting(true);
+        try {
+            // Prepare data including PDPA
+            const applicantData = {
+                full_name: `${globalData.personal_data.first_name} ${globalData.personal_data.last_name}`,
+                personal_data: globalData.personal_data,
+                family_data: globalData.family_data,
+                education_data: globalData.education_data,
+                skills_data: globalData.skills_data,
+                training_data: globalData.training_data,
+                health_data: globalData.health_data,
+                statement_data: globalData.statement_data,
+                experience_data: globalData.experience_data,
+                referral_data: globalData.referral_data,
+                parents_data: globalData.parents_data,
+                emergency_contacts: globalData.emergency_contacts,
+                attitude: globalData.attitude,
+                photo_url: globalData.photo_url,
+                signature_url: signatureUrl,
+                signature_date: signatureDate,
+                start_work_date: globalData.start_work_date,
+                submission_date: new Date().toISOString().split('T')[0],
+                status: 'pending_video'
+            };
+
+            // Create applicant record
+            const record = await base44.entities.Applicant.create(applicantData);
+
+            // Create PDPA document in PdfBase
+            await base44.entities.PdfBase.create({
+                applicant_id: record.id,
+                pdf_type: 'PDPA',
+                data: {
+                    writtenAt: formData.writtenAt,
+                    writtenDate: formData.writtenDate,
+                    lineId: formData.lineId,
+                    signatureUrl: signatureUrl,
+                    signatureDate: signatureDate
+                },
+                status: 'submitted',
+                submitted_date: new Date().toISOString()
+            });
+
+            // Save applicant ID for next step
+            setGlobalData(prev => ({ ...prev, applicant_id: record.id }));
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            onNext();
+        } catch (error) {
+            console.error("Failed to save data", error);
+            alert("ไม่สามารถบันทึกข้อมูลได้ กรุณาลองใหม่อีกครั้ง");
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -146,10 +191,19 @@ export default function PDPAStep({ globalData, setGlobalData, onNext, onBack }) 
                             <Button 
                                 onClick={handleNext}
                                 className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700"
-                                disabled={!formData.agreed || !signatureUrl}
+                                disabled={!formData.agreed || !signatureUrl || isSubmitting}
                             >
-                                ดำเนินการต่อ
-                                <ArrowRight className="w-4 h-4" />
+                                {isSubmitting ? (
+                                    <>
+                                        <Loader2 className="w-4 h-4 animate-spin" />
+                                        กำลังบันทึก...
+                                    </>
+                                ) : (
+                                    <>
+                                        บันทึกและดำเนินการต่อ
+                                        <ArrowRight className="w-4 h-4" />
+                                    </>
+                                )}
                             </Button>
                         </div>
                     </CardContent>

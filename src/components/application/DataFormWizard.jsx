@@ -25,7 +25,7 @@ export default function DataFormWizard({ onComplete, globalData, setGlobalData }
     const handleNext = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
         if (step < 4) setStep(step + 1);
-        else handleSubmitData();
+        else onComplete(); // Go to PDPA step instead of submitting
     };
 
     const handleSubmitData = async () => {
@@ -110,8 +110,7 @@ export default function DataFormWizard({ onComplete, globalData, setGlobalData }
                         <ChevronLeft className="w-4 h-4 mr-2" /> ย้อนกลับ
                     </Button>
                     <Button onClick={handleNext} disabled={isSubmitting} className="bg-indigo-600 hover:bg-indigo-700">
-                        {isSubmitting ? "กำลังบันทึก..." : (step === 4 ? "บันทึกและไปต่อ" : "ถัดไป")} 
-                        {!isSubmitting && <ChevronRight className="w-4 h-4 ml-2" />}
+                        ถัดไป <ChevronRight className="w-4 h-4 ml-2" />
                     </Button>
                 </div>
             </Card>
