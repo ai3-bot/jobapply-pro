@@ -719,15 +719,19 @@ export default function PDFLayoutType2({ applicant }) {
                                 </div>
                                 <div className="flex items-center gap-1 ml-6 flex-wrap">
                                     <CheckBox label="สายตาปกติ" checked={st.physical_conditions?.eyes === 'normal'} width="w-[110px] textSize=[12px]" />
-                                    <CheckBox label="สายตาไม่ปกติ ระบุ.........." checked={st.physical_conditions?.eyes === 'abnormal'} width="w-auto textSize=[12px]" />
+                                    <CheckBox label="สายตาไม่ปกติ ระบุ" checked={st.physical_conditions?.eyes === 'abnormal'} width="w-auto textSize=[12px]" />
+                                    <span className="border-b border-dotted border-black min-w-[80px] px-1 pb-1 relative top-1">{st.physical_conditions?.eyes === 'abnormal' ? st.physical_conditions?.eyes_details : ''}</span>
                                     <CheckBox label="การฟังปกติ" checked={st.physical_conditions?.hearing === 'normal'} width="w-[110px] textSize=[12px]" />
-                                    <CheckBox label="การฟังไม่ปกติ ระบุ.........." checked={st.physical_conditions?.hearing === 'abnormal'} width="w-auto textSize=[12px]" />
+                                    <CheckBox label="การฟังไม่ปกติ ระบุ" checked={st.physical_conditions?.hearing === 'abnormal'} width="w-auto textSize=[12px]" />
+                                    <span className="border-b border-dotted border-black min-w-[80px] px-1 pb-1 relative top-1">{st.physical_conditions?.hearing === 'abnormal' ? st.physical_conditions?.hearing_details : ''}</span>
                                 </div>
                                 <div className="flex items-center gap-1 ml-6 flex-wrap">
                                     <CheckBox label="การพูดปกติ" checked={st.physical_conditions?.speaking === 'normal'} width="w-[110px] textSize=[12px]" />
-                                    <CheckBox label="การพูดไม่ปกติ ระบุ................" checked={st.physical_conditions?.speaking === 'abnormal'} width="w-auto textSize=[12px]" />
+                                    <CheckBox label="การพูดไม่ปกติ ระบุ" checked={st.physical_conditions?.speaking === 'abnormal'} width="w-auto textSize=[12px]" />
+                                    <span className="border-b border-dotted border-black min-w-[100px] px-1 pb-1 relative top-1">{st.physical_conditions?.speaking === 'abnormal' ? st.physical_conditions?.speaking_details : ''}</span>
                                     <CheckBox label="การเคลื่อนไหวปกติ" checked={st.physical_conditions?.movement === 'normal'} width="w-[110px] textSize=[12px]" />
-                                    <CheckBox label="การเคลื่อนไหวไม่ปกติ ระบุ................" checked={st.physical_conditions?.movement === 'abnormal'} width="w-auto textSize=[12px]" />
+                                    <CheckBox label="การเคลื่อนไหวไม่ปกติ ระบุ" checked={st.physical_conditions?.movement === 'abnormal'} width="w-auto textSize=[12px]" />
+                                    <span className="border-b border-dotted border-black min-w-[80px] px-1 pb-1 relative top-1">{st.physical_conditions?.movement === 'abnormal' ? st.physical_conditions?.movement_details : ''}</span>
                                 </div>
                             </div>
 
