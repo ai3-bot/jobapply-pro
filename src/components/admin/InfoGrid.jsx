@@ -11,7 +11,7 @@ const RenderValue = ({ value, label }) => {
         try {
             const date = new Date(value);
             if (!isNaN(date.getTime())) {
-                return <span className="text-slate-700 break-words">{format(date, 'dd/MMM/yyyy')}</span>;
+                return <span className="text-slate-700 break-words">{format(date, 'dd MMM yyyy')}</span>;
             }
         } catch (e) {
             // Not a valid date, continue to other checks

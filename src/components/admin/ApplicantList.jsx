@@ -87,7 +87,7 @@ export default function ApplicantList({ onSelect, selectedId }) {
                                     </h3>
                                     <div className="flex items-center gap-2 mt-1">
                                         <Badge variant="secondary" className="text-[10px] px-1.5 h-5 font-normal bg-slate-100 text-slate-500">
-                                            {app.submission_date ? format(new Date(app.submission_date), 'dd/MMM/yyyy') : '-'}
+                                            {app.submission_date ? format(new Date(app.submission_date), 'dd MMM yyyy') : '-'}
                                         </Badge>
                                         <span className={`text-xs truncate ${selectedId === app.id ? 'text-indigo-600' : 'text-slate-500'}`}>
                                             {app.status}
