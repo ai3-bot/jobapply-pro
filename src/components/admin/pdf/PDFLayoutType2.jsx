@@ -691,7 +691,7 @@ export default function PDFLayoutType2({ applicant }) {
                                 <CheckBox label="แข็งแรงสมบูรณ์ดีทุกอย่าง" checked={st.health_status?.status === 'good'} width="w-auto textSize=[12px]" />
                                 <CheckBox label="ไม่มีโรคประจำตัว" checked={st.health_status?.status === 'no_disease'} width="w-[130px] textSize=[12px]" />
                                 <CheckBox label="มีโรคประจำตัว ระบุ" checked={st.health_status?.status === 'has_disease'} width="w-auto textSize=[12px]" />
-                                <span className="border-b border-dotted border-black flex-1 min-w-[100px] relative top-1">{st.health_status?.details}</span>
+                                <span className="border-b border-dotted border-black flex-1 min-w-[100px] pb-1 relative top-1">{st.health_status?.details}</span>
                             </div>
 
                             <div className="flex gap-1 items-center flex-wrap">
