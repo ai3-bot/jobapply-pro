@@ -15,19 +15,63 @@ import toast from 'react-hot-toast';
 export default function PDPAReviewModal({ applicant, isOpen, onClose }) {
     const queryClient = useQueryClient();
     const [generatingPdf, setGeneratingPdf] = useState(false);
+    const [pdpaDoc, setPdpaDoc] = useState(null);
     const [companyData, setCompanyData] = useState({
-        witnessName1: applicant?.pdpa_document?.company_data?.witnessName1 || '',
-        witness1Signature: applicant?.pdpa_document?.company_data?.witness1Signature || '',
-        witnessName2: applicant?.pdpa_document?.company_data?.witnessName2 || '',
-        witness2Signature: applicant?.pdpa_document?.company_data?.witness2Signature || ''
+        witnessName1: '',
+        witness1Signature: '',
+        witnessName2: '',
+        witness2Signature: ''
     });
+
+    // Fetch PDPA document from PdfBase
+    React.useEffect(() => {
+        const fetchPdpaDoc = async () => {
+            if (!applicant?.id) return;
+            try {
+                const docs = await base44.entities.PdfBase.filter({ 
+                    applicant_id: applicant.id, 
+                    pdf_type: 'PDPA' 
+                });
+                if (docs && docs.length > 0) {
+                    const doc = docs[0];
+                    setPdpaDoc(doc);
+                    // Load existing company data if available
+                    if (doc.data?.company_data) {
+                        setCompanyData({
+                            witnessName1: doc.data.company_data.witnessName1 || '',
+                            witness1Signature: doc.data.company_data.witness1Signature || '',
+                            witnessName2: doc.data.company_data.witnessName2 || '',
+                            witness2Signature: doc.data.company_data.witness2Signature || ''
+                        });
+                    }
+                }
+            } catch (error) {
+                console.error('Error fetching PDPA document:', error);
+            }
+        };
+        if (isOpen) {
+            fetchPdpaDoc();
+        }
+    }, [applicant?.id, isOpen]);
 
     const updateMutation = useMutation({
         mutationFn: async (data) => {
-            return await base44.entities.Applicant.update(applicant.id, data);
+            // Update PDPA document in PdfBase
+            if (pdpaDoc?.id) {
+                await base44.entities.PdfBase.update(pdpaDoc.id, {
+                    data: {
+                        ...pdpaDoc.data,
+                        company_data: data.companyData
+                    },
+                    status: 'approved',
+                    approved_date: new Date().toISOString()
+                });
+            }
+            return true;
         },
         onSuccess: () => {
             queryClient.invalidateQueries(['applicants']);
+            queryClient.invalidateQueries(['pdpa_documents']);
             toast.success('บันทึกข้อมูลเรียบร้อยแล้ว');
             onClose();
         },
@@ -37,15 +81,7 @@ export default function PDPAReviewModal({ applicant, isOpen, onClose }) {
     });
 
     const handleSave = () => {
-        const updatedData = {
-            pdpa_document: {
-                ...applicant.pdpa_document,
-                status: 'completed',
-                company_data: companyData,
-                completed_date: new Date().toISOString()
-            }
-        };
-        updateMutation.mutate(updatedData);
+        updateMutation.mutate({ companyData });
     };
 
     const handleGeneratePDF = async (action) => {
@@ -89,9 +125,9 @@ export default function PDPAReviewModal({ applicant, isOpen, onClose }) {
         }
     };
 
-    if (!applicant) return null;
+    if (!applicant || !pdpaDoc) return null;
 
-    const employeeData = applicant.pdpa_document?.employee_data || {};
+    const employeeData = pdpaDoc.data?.employee_data || {};
 
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
@@ -172,7 +208,11 @@ export default function PDPAReviewModal({ applicant, isOpen, onClose }) {
                                 applicant={applicant}
                                 signatureUrl={employeeData.signatureUrl}
                                 signatureDate={employeeData.signatureDate}
-                                formData={employeeData}
+                                formData={{
+                                    ...employeeData,
+                                    witnessName1: companyData.witnessName1,
+                                    witnessName2: companyData.witnessName2
+                                }}
                                 witness1Signature={companyData.witness1Signature}
                                 witness2Signature={companyData.witness2Signature}
                             />
