@@ -676,13 +676,15 @@ export default function PDFLayoutType2({ applicant }) {
                                 <CheckBox label="สูบบ้างบางครั้ง" checked={st.smoking_habit?.status === 'occasional'} width="w-[120px] textSize=[12px]" />
                             </div>
 
-                            <div className="flex gap-1 items-center flex-nowrap">
+                            <div className="flex gap-1 items-center flex-wrap">
                                 <span className="w-5 shrink-0 relative top-[1px]">5.</span>
                                 <span className="whitespace-nowrap relative top-[1px]">ท่านดื่มแอลกอฮอล์หรือไม่</span>
                                 <CheckBox label="ไม่ดื่ม" checked={st.alcohol_habit === 'no'} width="w-[60px] textSize=[12px]" />
                                 <CheckBox label="ดื่ม" checked={st.alcohol_habit === 'yes'} width="w-[50px] textSize=[12px]" />
                                 <CheckBox label="ดื่มบ้าง" checked={st.alcohol_habit === 'occasional'} width="w-[70px] textSize=[12px]" />
-                                <span className="whitespace-nowrap relative top-[1px]">ความถี่................วัน/ต่อสัปดาห์</span>
+                                <span className="whitespace-nowrap relative top-[1px]">ความถี่</span>
+                                <span className="border-b border-dotted border-black min-w-[60px] px-1 relative top-2">{st.alcohol_habit_frequency || ''}</span>
+                                <span className="whitespace-nowrap relative top-[1px]">วัน/ต่อสัปดาห์</span>
                             </div>
                             
                             <div className="flex gap-1 items-center flex-wrap">
@@ -719,15 +721,19 @@ export default function PDFLayoutType2({ applicant }) {
                                 </div>
                                 <div className="flex items-center gap-1 ml-6 flex-wrap">
                                     <CheckBox label="สายตาปกติ" checked={st.physical_conditions?.eyes === 'normal'} width="w-[110px] textSize=[12px]" />
-                                    <CheckBox label="สายตาไม่ปกติ ระบุ.........." checked={st.physical_conditions?.eyes === 'abnormal'} width="w-auto textSize=[12px]" />
+                                    <CheckBox label="สายตาไม่ปกติ ระบุ" checked={st.physical_conditions?.eyes === 'abnormal'} width="w-auto textSize=[12px]" />
+                                    <span className="border-b border-dotted border-black min-w-[80px] px-1 relative top-2">{st.physical_conditions?.eyes === 'abnormal' ? st.physical_conditions?.eyes_details : ''}</span>
                                     <CheckBox label="การฟังปกติ" checked={st.physical_conditions?.hearing === 'normal'} width="w-[110px] textSize=[12px]" />
-                                    <CheckBox label="การฟังไม่ปกติ ระบุ.........." checked={st.physical_conditions?.hearing === 'abnormal'} width="w-auto textSize=[12px]" />
+                                    <CheckBox label="การฟังไม่ปกติ ระบุ" checked={st.physical_conditions?.hearing === 'abnormal'} width="w-auto textSize=[12px]" />
+                                    <span className="border-b border-dotted border-black min-w-[80px] px-1 relative top-2">{st.physical_conditions?.hearing === 'abnormal' ? st.physical_conditions?.hearing_details : ''}</span>
                                 </div>
                                 <div className="flex items-center gap-1 ml-6 flex-wrap">
                                     <CheckBox label="การพูดปกติ" checked={st.physical_conditions?.speaking === 'normal'} width="w-[110px] textSize=[12px]" />
-                                    <CheckBox label="การพูดไม่ปกติ ระบุ............................" checked={st.physical_conditions?.speaking === 'abnormal'} width="w-auto textSize=[12px]" />
+                                    <CheckBox label="การพูดไม่ปกติ ระบุ" checked={st.physical_conditions?.speaking === 'abnormal'} width="w-auto textSize=[12px]" />
+                                    <span className="border-b border-dotted border-black min-w-[80px] px-1 relative top-2">{st.physical_conditions?.speaking === 'abnormal' ? st.physical_conditions?.speaking_details : ''}</span>
                                     <CheckBox label="การเคลื่อนไหวปกติ" checked={st.physical_conditions?.movement === 'normal'} width="w-[110px] textSize=[12px]" />
-                                    <CheckBox label="การเคลื่อนไหวไม่ปกติ ระบุ............." checked={st.physical_conditions?.movement === 'abnormal'} width="w-auto textSize=[12px]" />
+                                    <CheckBox label="การเคลื่อนไหวไม่ปกติ ระบุ" checked={st.physical_conditions?.movement === 'abnormal'} width="w-auto textSize=[12px]" />
+                                    <span className="border-b border-dotted border-black min-w-[80px] px-1 relative top-2">{st.physical_conditions?.movement === 'abnormal' ? st.physical_conditions?.movement_details : ''}</span>
                                 </div>
                             </div>
 
@@ -742,8 +748,11 @@ export default function PDFLayoutType2({ applicant }) {
                                 <div className="flex items-center ml-6 gap-1 flex-wrap">
                                     <CheckBox label="ภาระการผ่อนส่งรถยนต์ / รถมอเตอร์ไซค์" checked={st.debt_status?.car} width="w-auto textSize=[12px]" />
                                     <CheckBox label="เงินกู้ยืมเพื่อการศึกษา กยศ." checked={st.debt_status?.student_loan} width="w-auto textSize=[12px]" />
-                                    <CheckBox label="อื่นๆ ระบุ................" checked={st.debt_status?.other} width="w-auto textSize=[12px]" />
-                                    <span className="whitespace-nowrap relative top-[1px]">รวมภาระต่อเดือน.................บาท</span>
+                                    <CheckBox label="อื่นๆ ระบุ" checked={st.debt_status?.other} width="w-auto textSize=[12px]" />
+                                    <span className="border-b border-dotted border-black min-w-[80px] px-1 relative top-2">{st.debt_status?.other ? st.debt_status?.other_details : ''}</span>
+                                    <span className="whitespace-nowrap relative top-[1px]">รวมภาระต่อเดือน</span>
+                                    <span className="border-b border-dotted border-black min-w-[80px] px-1 relative top-2">{st.debt_status?.monthly_payment || ''}</span>
+                                    <span className="whitespace-nowrap relative top-[1px]">บาท</span>
                                 </div>
                             </div>
 
