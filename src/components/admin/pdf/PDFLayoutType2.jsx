@@ -643,7 +643,7 @@ export default function PDFLayoutType2({ applicant }) {
                                 <span className="border-b border-dotted border-black flex-1 min-w-0 px-1 pb-1 relative top-1">{st.can_work_overtime === 'no' ? st.can_work_overtime_reason : ''}</span>
                             </div>
 
-                            <div className="flex gap-1 items-center flex-wrap space-y-0.1">
+                            <div className="flex gap-1 items-center flex-wrap space-y-1">
                                 <span className="w-5 shrink-0 relative top-[1px]">2.</span>
                                 <span className="whitespace-nowrap relative top-[1px]">ท่านเคยเป็นผู้ต้องหาหรือต้องคำพิพากษาในคดีอาญา/แพ่งหรือไม่</span>
                                 <CheckBox label="ไม่เคย" checked={st.has_legal_cases === 'never'} width="w-[60px] textSize=[12px]" />
@@ -654,7 +654,7 @@ export default function PDFLayoutType2({ applicant }) {
                                 <span className="border-b border-dotted border-black min-w-[60px] px-1 pb-1 relative top-1">{st.has_legal_cases === 'ever' ? st.has_legal_cases_year : ''}</span>
                             </div>
 
-                            <div className="flex gap-1 items-center flex-wrap space-y-0.1">
+                            <div className="flex gap-1 items-center flex-wrap space-y-1">
                                 <span className="w-5 shrink-0 relative top-[1px]">3.</span>
                                 <span className="whitespace-nowrap relative top-[1px]">ท่านเคยเสพสารเสพติดหรือเคยรับการบำบัด</span>
                                 <CheckBox label="ไม่เคย" checked={st.has_drug_history === 'never'} width="w-[60px] textSize=[12px]" />
