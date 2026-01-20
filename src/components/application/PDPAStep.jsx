@@ -58,8 +58,12 @@ export default function PDPAStep({ globalData, setGlobalData, onNext, onBack }) 
                             <div className="flex flex-col items-center gap-8">
                                 <PDPADocument 
                                     applicant={{
-                                        full_name: `${globalData.personal_data?.first_name} ${globalData.personal_data?.last_name}`,
-                                        personal_data: globalData.personal_data
+                                        full_name: `${globalData.personal_data?.prefix || ''}${globalData.personal_data?.first_name || ''} ${globalData.personal_data?.last_name || ''}`.trim(),
+                                        personal_data: {
+                                            ...globalData.personal_data,
+                                            id_card: globalData.personal_data?.id_card || '',
+                                            mobile_phone: globalData.personal_data?.mobile_phone || ''
+                                        }
                                     }}
                                     signatureUrl={signatureUrl}
                                     signatureDate={signatureDate}
