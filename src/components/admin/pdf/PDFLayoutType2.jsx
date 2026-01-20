@@ -643,7 +643,7 @@ export default function PDFLayoutType2({ applicant }) {
                                 <span className="border-b border-dotted border-black flex-1 min-w-0 px-1 pb-1 relative top-1">{st.can_work_overtime === 'no' ? st.can_work_overtime_reason : ''}</span>
                             </div>
 
-                            <div className="flex gap-1 items-center flex-wrap">
+                            <div className="flex gap-1 items-center flex-wrap space-y-0.1">
                                 <span className="w-5 shrink-0 relative top-[1px]">2.</span>
                                 <span className="whitespace-nowrap relative top-[1px]">ท่านเคยเป็นผู้ต้องหาหรือต้องคำพิพากษาในคดีอาญา/แพ่งหรือไม่</span>
                                 <CheckBox label="ไม่เคย" checked={st.has_legal_cases === 'never'} width="w-[60px] textSize=[12px]" />
@@ -654,7 +654,7 @@ export default function PDFLayoutType2({ applicant }) {
                                 <span className="border-b border-dotted border-black min-w-[60px] px-1 pb-1 relative top-1">{st.has_legal_cases === 'ever' ? st.has_legal_cases_year : ''}</span>
                             </div>
 
-                            <div className="flex gap-1 items-center flex-wrap">
+                            <div className="flex gap-1 items-center flex-wrap space-y-0.1">
                                 <span className="w-5 shrink-0 relative top-[1px]">3.</span>
                                 <span className="whitespace-nowrap relative top-[1px]">ท่านเคยเสพสารเสพติดหรือเคยรับการบำบัด</span>
                                 <CheckBox label="ไม่เคย" checked={st.has_drug_history === 'never'} width="w-[60px] textSize=[12px]" />
@@ -667,7 +667,7 @@ export default function PDFLayoutType2({ applicant }) {
                                 <span className="border-b border-dotted border-black min-w-[60px] px-1 pb-1 relative top-1">{st.has_drug_history === 'ever' ? st.has_drug_history_year : ''}</span>
                             </div>
 
-                            <div className="flex gap-1 items-center flex-wrap">
+                            <div className="flex gap-1 items-center flex-wrap space-y-0.1">
                                 <span className="w-5 shrink-0 relative top-[1px]">4.</span>
                                 <span className="whitespace-nowrap relative top-[1px]">ในปัจจุบันท่านสูบบุหรี่หรือไม่</span>
                                 <CheckBox label="ไม่สูบ" checked={st.smoking_habit?.status === 'no'} width="w-[60px] textSize=[12px]" />
@@ -676,7 +676,7 @@ export default function PDFLayoutType2({ applicant }) {
                                 <CheckBox label="สูบบ้างบางครั้ง" checked={st.smoking_habit?.status === 'occasional'} width="w-[120px] textSize=[12px]" />
                             </div>
 
-                            <div className="flex gap-1 items-center flex-nowrap">
+                            <div className="flex gap-1 items-center flex-nowrap space-y-0.1">
                                 <span className="w-5 shrink-0 relative top-[1px]">5.</span>
                                 <span className="whitespace-nowrap relative top-[1px]">ท่านดื่มแอลกอฮอล์หรือไม่</span>
                                 <CheckBox label="ไม่ดื่ม" checked={st.alcohol_habit === 'no'} width="w-[60px] textSize=[12px]" />
@@ -685,7 +685,7 @@ export default function PDFLayoutType2({ applicant }) {
                                 <span className="whitespace-nowrap relative top-[1px]">ความถี่................วัน/ต่อสัปดาห์</span>
                             </div>
                             
-                            <div className="flex gap-1 items-center flex-wrap">
+                            <div className="flex gap-1 items-center flex-wrap space-y-0.1">
                                 <span className="w-5 shrink-0 relative top-[1px]">6.</span>
                                 <span className="whitespace-nowrap relative top-[1px]">สุขภาพของท่าน</span>
                                 <CheckBox label="แข็งแรงสมบูรณ์ดีทุกอย่าง" checked={st.health_status?.status === 'good'} width="w-auto textSize=[12px]" />
@@ -694,7 +694,7 @@ export default function PDFLayoutType2({ applicant }) {
                                 <span className="border-b border-dotted border-black flex-1 min-w-[100px] pb-1 relative top-1">{st.health_status?.details}</span>
                             </div>
 
-                            <div className="flex gap-1 items-center flex-wrap">
+                            <div className="flex gap-1 items-center flex-wrap space-y-0.1">
                                 <span className="w-5 shrink-0 relative top-[1px]">7.</span>
                                 <span className="whitespace-nowrap relative top-[1px]">ท่านเคยเจ็บป่วยมากกว่า 3 วันติดต่อกันในรอบ 12 เดือนที่ผ่านมาหรือไม่</span>
                                 <CheckBox label="ไม่เคย" checked={st.recent_major_illness === 'never'} width="w-[60px] textSize=[12px]" />
