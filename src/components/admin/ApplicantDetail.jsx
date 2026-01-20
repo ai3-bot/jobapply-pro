@@ -177,14 +177,7 @@ export default function ApplicantDetail({ applicant: initialApplicant }) {
                             ดูคำตอบ ({applicant.responses.length})
                         </Button>
                     )}
-                    <Button 
-                        variant="outline"
-                        onClick={() => window.open(`/application-preview?applicantId=${applicant.id}`, '_blank')}
-                        className="bg-blue-50 border-blue-200 hover:bg-blue-100"
-                    >
-                        <ExternalLink className="w-4 h-4 mr-2" />
-                        ดูใบสมัคร HTML
-                    </Button>
+
                     <div className="flex items-center gap-6 pl-4 border-l border-slate-200">
                         <div>
                             <label className="text-xs font-semibold text-slate-600 block mb-2">ผ่านการประเมิน</label>
