@@ -649,9 +649,9 @@ export default function PDFLayoutType2({ applicant }) {
                                 <CheckBox label="ไม่เคย" checked={st.has_legal_cases === 'never'} width="w-[60px] textSize=[12px]" />
                                 <CheckBox label="เคย" checked={st.has_legal_cases === 'ever'} width="w-[50px] textSize=[12px]" />
                                 <span className="relative top-[1px]">ด้วยคดี</span>
-                                <span className="border-b border-dotted border-black min-w-[150px] px-1 pb-1 relative top-1">{st.has_legal_cases === 'ever' ? st.has_legal_cases_details : ''}</span>
+                                <span className="border-b border-dotted border-black min-w-[150px] px-1 pb-1 relative top-1">{st.has_legal_cases === 'ever' ? st.has_legal_cases_details : '\u00A0'}</span>
                                 <span className="relative top-[1px]">เมื่อปี พ.ศ.</span>
-                                <span className="border-b border-dotted border-black min-w-[60px] px-1 pb-1 relative top-1">{st.has_legal_cases === 'ever' ? st.has_legal_cases_year : ''}</span>
+                                <span className="border-b border-dotted border-black min-w-[60px] px-1 pb-1 relative top-1">{st.has_legal_cases === 'ever' ? st.has_legal_cases_year : '\u00A0'}</span>
                             </div>
 
                             <div className="flex gap-1 items-center flex-wrap space-y-1">
@@ -660,11 +660,11 @@ export default function PDFLayoutType2({ applicant }) {
                                 <CheckBox label="ไม่เคย" checked={st.has_drug_history === 'never'} width="w-[60px] textSize=[12px]" />
                                 <CheckBox label="เคย" checked={st.has_drug_history === 'ever'} width="w-[50px] textSize=[12px]" />
                                 <span className="relative top-[1px]">ระบุประเภท</span>
-                                <span className="border-b border-dotted border-black min-w-[80px] px-1 pb-1 relative top-1">{st.has_drug_history === 'ever' ? st.has_drug_history_type : ''}</span>
+                                <span className="border-b border-dotted border-black min-w-[80px] px-1 pb-1 relative top-1">{st.has_drug_history === 'ever' ? st.has_drug_history_type : '\u00A0'}</span>
                                 <span className="relative top-[1px]">สถานที่บำบัด</span>
-                                <span className="border-b border-dotted border-black min-w-[80px] px-1 pb-1 relative top-1">{st.has_drug_history === 'ever' ? st.has_drug_history_place : ''}</span>
+                                <span className="border-b border-dotted border-black min-w-[80px] px-1 pb-1 relative top-1">{st.has_drug_history === 'ever' ? st.has_drug_history_place : '\u00A0'}</span>
                                 <span className="relative top-[1px]">เมื่อปี พ.ศ.</span>
-                                <span className="border-b border-dotted border-black min-w-[60px] px-1 pb-1 relative top-1">{st.has_drug_history === 'ever' ? st.has_drug_history_year : ''}</span>
+                                <span className="border-b border-dotted border-black min-w-[60px] px-1 pb-1 relative top-1">{st.has_drug_history === 'ever' ? st.has_drug_history_year : '\u00A0'}</span>
                             </div>
 
                             <div className="flex gap-0.2 items-center flex-wrap space-y-1">
