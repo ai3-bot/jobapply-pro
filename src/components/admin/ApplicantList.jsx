@@ -3,12 +3,13 @@ import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Search, Filter, User, ChevronDown } from "lucide-react";
+import { Search, Filter, User, ChevronDown, ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { format } from 'date-fns';
 
-export default function ApplicantList({ onSelect, selectedId }) {
+export default function ApplicantList({ onSelect, selectedId, onClear }) {
     const [filterDate, setFilterDate] = useState("");
     const [searchTerm, setSearchTerm] = useState("");
     const [filterPosition, setFilterPosition] = useState("all");
@@ -46,7 +47,20 @@ export default function ApplicantList({ onSelect, selectedId }) {
     return (
         <div className="flex flex-col h-full bg-white border-r border-slate-200 w-full md:w-80 lg:w-96 shrink-0">
             <div className="p-4 border-b border-slate-200 space-y-3 bg-slate-50/50">
-                <h2 className="font-bold text-slate-800">ผู้สมัคร ({filteredApplicants?.length || 0})</h2>
+                <div className="flex items-center justify-between">
+                    <h2 className="font-bold text-slate-800">ผู้สมัคร ({filteredApplicants?.length || 0})</h2>
+                    {selectedId && (
+                        <Button 
+                            variant="ghost" 
+                            size="sm" 
+                            onClick={onClear}
+                            className="text-slate-500 hover:text-slate-700 h-8 px-2"
+                        >
+                            <ArrowLeft className="w-4 h-4 mr-1" />
+                            กลับ
+                        </Button>
+                    )}
+                </div>
                 <div className="relative">
                     <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-slate-400" />
                     <Input 
