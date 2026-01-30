@@ -176,16 +176,16 @@ export default function FormStep1({ data, updateData, photo, errors = {} }) {
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
             <div className="space-y-1">
-                <Label>เชื้อชาติ</Label>
-                <Input className="h-9" value={data.race} onChange={(e) => updateData('personal_data', 'race', e.target.value)} />
+                <Label>เชื้อชาติ <span className="text-red-500">*</span></Label>
+                <Input className={`h-9 ${errors.race ? 'border-red-500 border-2' : ''}`} value={data.race} onChange={(e) => updateData('personal_data', 'race', e.target.value)} />
             </div>
             <div className="space-y-1">
-                <Label>สัญชาติ</Label>
-                <Input className="h-9" value={data.nationality} onChange={(e) => updateData('personal_data', 'nationality', e.target.value)} />
+                <Label>สัญชาติ <span className="text-red-500">*</span></Label>
+                <Input className={`h-9 ${errors.nationality ? 'border-red-500 border-2' : ''}`} value={data.nationality} onChange={(e) => updateData('personal_data', 'nationality', e.target.value)} />
             </div>
             <div className="space-y-1">
-                <Label>ศาสนา</Label>
-                <Input className="h-9" value={data.religion} onChange={(e) => updateData('personal_data', 'religion', e.target.value)} />
+                <Label>ศาสนา <span className="text-red-500">*</span></Label>
+                <Input className={`h-9 ${errors.religion ? 'border-red-500 border-2' : ''}`} value={data.religion} onChange={(e) => updateData('personal_data', 'religion', e.target.value)} />
             </div>
         </div>
 
