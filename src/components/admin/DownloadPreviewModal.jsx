@@ -63,30 +63,6 @@ export default function DownloadPreviewModal({
                     <DialogTitle className="text-lg font-semibold text-slate-800">
                         ตัวอย่างเอกสาร
                     </DialogTitle>
-                    <div className="flex items-center gap-2">
-                        <Button
-                            variant={previewMode ? "default" : "outline"}
-                            size="sm"
-                            onClick={() => setPreviewMode(!previewMode)}
-                            className={previewMode ? "bg-indigo-600" : ""}
-                        >
-                            <Eye className="w-4 h-4 mr-1" />
-                            Preview
-                        </Button>
-                        <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={onConfirmDownload}
-                            disabled={isDownloading || totalDocuments === 0}
-                        >
-                            {isDownloading ? (
-                                <Loader2 className="w-4 h-4 mr-1 animate-spin" />
-                            ) : (
-                                <Download className="w-4 h-4 mr-1" />
-                            )}
-                            ดาวน์โหลด
-                        </Button>
-                    </div>
                 </div>
 
                 {/* Content - PDF Preview */}
