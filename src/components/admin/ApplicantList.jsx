@@ -77,6 +77,7 @@ export default function ApplicantList({ onSelect, selectedId }) {
                             className="bg-white"
                             value={filterDate}
                             onChange={(e) => setFilterDate(e.target.value)}
+                            max={format(new Date(), 'yyyy-MM-dd')}
                         />
                     </div>
                 </div>
