@@ -193,7 +193,7 @@ export default function FormStep1({ data, updateData, photo, errors = {} }) {
             <div className="space-y-1">
                 <Label>(Email) อีเมล์ที่ติดต่อได้ <span className="text-red-500">*</span></Label>
                 <Input 
-                    className={`h-9 ${!validateEmail(data.email) && data.email ? 'border-red-300' : ''}`}
+                    className={`h-9 ${errors.email ? 'border-red-500 border-2' : (!validateEmail(data.email) && data.email ? 'border-red-300' : '')}`}
                     value={data.email} 
                     placeholder="example@email.com"
                     onChange={(e) => updateData('personal_data', 'email', e.target.value)} 
@@ -205,7 +205,7 @@ export default function FormStep1({ data, updateData, photo, errors = {} }) {
             <div className="space-y-1">
                 <Label>โทรศัพท์มือถือที่ติดต่อได้สะดวก <span className="text-red-500">*</span></Label>
                 <Input 
-                    className={`h-9 ${!validatePhone(data.mobile_phone) && data.mobile_phone ? 'border-red-300' : ''}`}
+                    className={`h-9 ${errors.mobile_phone ? 'border-red-500 border-2' : (!validatePhone(data.mobile_phone) && data.mobile_phone ? 'border-red-300' : '')}`}
                     value={data.mobile_phone} 
                     maxLength={10}
                     placeholder="ตัวเลข 10 หลัก"
