@@ -146,12 +146,7 @@ export default function ApplicantList({ onSelect, selectedId, onClear }) {
                                                             : 'bg-amber-100 text-amber-700'
                                             }`}
                                         >
-                                            {app.status === 'complete' ? 'สมบูรณ์' : 
-                                             app.status === 'pending' ? 'รอดำเนินการ' :
-                                             app.status === 'pending_video' ? 'รอวิดีโอ' :
-                                             app.status === 'accepted' ? 'ผ่าน' :
-                                             app.status === 'rejected' ? 'ไม่ผ่าน' :
-                                             app.status === 'interviewed' ? 'สัมภาษณ์แล้ว' : app.status}
+                                            {app.status}
                                         </Badge>
                                     </div>
                                 </div>
