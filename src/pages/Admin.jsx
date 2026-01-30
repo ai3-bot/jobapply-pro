@@ -247,23 +247,24 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                 <div className="flex justify-between items-center">
                     <h1 className="text-3xl font-bold text-slate-800">เอกสารของ {selectedApplicant.full_name}</h1>
                     <Button 
-                        onClick={handleDownloadAll}
-                        disabled={downloadingAll}
+                        onClick={() => setShowDownloadPreview(true)}
                         className="bg-indigo-600 hover:bg-indigo-700"
                     >
-                        {downloadingAll ? (
-                            <>
-                                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                                กำลังดาวน์โหลด...
-                            </>
-                        ) : (
-                            <>
-                                <Download className="w-4 h-4 mr-2" />
-                                ดาวน์โหลดทุกเอกสาร
-                            </>
-                        )}
+                        <Download className="w-4 h-4 mr-2" />
+                        ดาวน์โหลดทุกเอกสาร
                     </Button>
                 </div>
+
+                {/* Download Preview Modal */}
+                <DownloadPreviewModal 
+                    isOpen={showDownloadPreview}
+                    onClose={() => setShowDownloadPreview(false)}
+                    applicant={selectedApplicant}
+                    documents={documentsSummary}
+                    onConfirmDownload={handleDownloadAll}
+                    onPrint={handlePrintDocuments}
+                    isDownloading={downloadingAll}
+                />
                 {/* PDPA Documents */}
                 <div>
                     <h2 className="text-2xl font-bold text-slate-800 mb-4">เอกสาร PDPA</h2>
