@@ -252,6 +252,9 @@ export default function FormStep3({ data, experienceData, statementData, referra
                     </TableBody>
                 </Table>
             </div>
+            {errors.experience_history && (
+                <p className="text-sm text-red-500 mt-2">กรุณากรอกประวัติการทำงานอย่างน้อย 1 รายการ (วัน/เดือน/ปี, ชื่อสถานที่ทำงาน, ตำแหน่ง)</p>
+            )}
         </div>
 
         {/* Statement Section */}
