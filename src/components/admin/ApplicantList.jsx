@@ -134,9 +134,25 @@ export default function ApplicantList({ onSelect, selectedId, onClear }) {
                                         <Badge variant="secondary" className="text-[10px] px-1.5 h-5 font-normal bg-slate-100 text-slate-500">
                                             {app.submission_date ? format(new Date(app.submission_date), 'dd MMM yyyy') : '-'}
                                         </Badge>
-                                        <span className={`text-xs truncate ${selectedId === app.id ? 'text-indigo-600' : 'text-slate-500'}`}>
-                                            {app.status}
-                                        </span>
+                                        <Badge 
+                                            variant="secondary" 
+                                            className={`text-[10px] px-1.5 h-5 font-medium ${
+                                                app.status === 'complete' 
+                                                    ? 'bg-green-100 text-green-700' 
+                                                    : app.status === 'accepted' 
+                                                        ? 'bg-blue-100 text-blue-700'
+                                                        : app.status === 'rejected'
+                                                            ? 'bg-red-100 text-red-700'
+                                                            : 'bg-amber-100 text-amber-700'
+                                            }`}
+                                        >
+                                            {app.status === 'complete' ? 'สมบูรณ์' : 
+                                             app.status === 'pending' ? 'รอดำเนินการ' :
+                                             app.status === 'pending_video' ? 'รอวิดีโอ' :
+                                             app.status === 'accepted' ? 'ผ่าน' :
+                                             app.status === 'rejected' ? 'ไม่ผ่าน' :
+                                             app.status === 'interviewed' ? 'สัมภาษณ์แล้ว' : app.status}
+                                        </Badge>
                                     </div>
                                 </div>
                             </div>
