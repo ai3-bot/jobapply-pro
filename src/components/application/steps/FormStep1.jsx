@@ -221,19 +221,19 @@ export default function FormStep1({ data, updateData, photo, errors = {} }) {
         </div>
 
         {/* Registered Address */}
-        <div className="bg-slate-50 p-4 rounded-lg border space-y-3">
-            <Label className="font-semibold text-indigo-700">ที่อยู่ตามบัตรประชาชน</Label>
+        <div className={`bg-slate-50 p-4 rounded-lg border space-y-3 ${errors.registered_address ? 'border-red-500 border-2' : ''}`}>
+            <Label className="font-semibold text-indigo-700">ที่อยู่ตามบัตรประชาชน <span className="text-red-500">*</span></Label>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                <div className="col-span-1"><Input placeholder="เลขที่" value={data.registered_address?.number || ''} onChange={(e) => updateAddress('registered_address', 'number', e.target.value)} /></div>
+                <div className="col-span-1"><Input placeholder="เลขที่ *" value={data.registered_address?.number || ''} onChange={(e) => updateAddress('registered_address', 'number', e.target.value)} /></div>
                 <div className="col-span-1"><Input placeholder="หมู่" value={data.registered_address?.moo || ''} onChange={(e) => updateAddress('registered_address', 'moo', e.target.value)} /></div>
                 <div className="col-span-2"><Input placeholder="ถนน" value={data.registered_address?.road || ''} onChange={(e) => updateAddress('registered_address', 'road', e.target.value)} /></div>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                 <Input placeholder="ตำบล/แขวง" value={data.registered_address?.subdistrict || ''} onChange={(e) => updateAddress('registered_address', 'subdistrict', e.target.value)} />
-                 <Input placeholder="อำเภอ/เขต" value={data.registered_address?.district || ''} onChange={(e) => updateAddress('registered_address', 'district', e.target.value)} />
-                 <Input placeholder="จังหวัด" value={data.registered_address?.province || ''} onChange={(e) => updateAddress('registered_address', 'province', e.target.value)} />
+                 <Input placeholder="ตำบล/แขวง *" value={data.registered_address?.subdistrict || ''} onChange={(e) => updateAddress('registered_address', 'subdistrict', e.target.value)} />
+                 <Input placeholder="อำเภอ/เขต *" value={data.registered_address?.district || ''} onChange={(e) => updateAddress('registered_address', 'district', e.target.value)} />
+                 <Input placeholder="จังหวัด *" value={data.registered_address?.province || ''} onChange={(e) => updateAddress('registered_address', 'province', e.target.value)} />
                  <Input 
-                    placeholder="รหัสไปรษณีย์" 
+                    placeholder="รหัสไปรษณีย์ *" 
                     value={data.registered_address?.zipcode || ''} 
                     maxLength={5}
                     onChange={(e) => {
@@ -242,6 +242,9 @@ export default function FormStep1({ data, updateData, photo, errors = {} }) {
                     }} 
                  />
             </div>
+            {errors.registered_address && (
+                <p className="text-xs text-red-500">กรุณากรอกที่อยู่ให้ครบถ้วน (เลขที่, ตำบล/แขวง, อำเภอ/เขต, จังหวัด, รหัสไปรษณีย์)</p>
+            )}
         </div>
 
         {/* Current Address */}
