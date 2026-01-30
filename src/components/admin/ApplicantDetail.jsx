@@ -139,11 +139,18 @@ export default function ApplicantDetail({ applicant: initialApplicant }) {
                         <div className="flex items-center gap-3 mb-1">
                             <h1 className="text-2xl font-bold text-slate-900">{applicant.full_name}</h1>
                             <Badge className={`
+                                ${applicant.status === 'complete' ? 'bg-green-100 text-green-700 hover:bg-green-100' : ''}
                                 ${applicant.status === 'pending' ? 'bg-amber-100 text-amber-700 hover:bg-amber-100' : ''}
-                                ${applicant.status === 'accepted' ? 'bg-green-100 text-green-700 hover:bg-green-100' : ''}
+                                ${applicant.status === 'pending_video' ? 'bg-amber-100 text-amber-700 hover:bg-amber-100' : ''}
+                                ${applicant.status === 'accepted' ? 'bg-blue-100 text-blue-700 hover:bg-blue-100' : ''}
                                 ${applicant.status === 'rejected' ? 'bg-red-100 text-red-700 hover:bg-red-100' : ''}
                             `}>
-                                {applicant.status}
+                                {applicant.status === 'complete' ? 'สมบูรณ์' : 
+                                 applicant.status === 'pending' ? 'รอดำเนินการ' :
+                                 applicant.status === 'pending_video' ? 'รอวิดีโอ' :
+                                 applicant.status === 'accepted' ? 'ผ่าน' :
+                                 applicant.status === 'rejected' ? 'ไม่ผ่าน' :
+                                 applicant.status === 'interviewed' ? 'สัมภาษณ์แล้ว' : applicant.status}
                             </Badge>
                         </div>
                         <div className="flex flex-wrap gap-4 text-sm text-slate-500 mt-2">
@@ -183,8 +190,9 @@ export default function ApplicantDetail({ applicant: initialApplicant }) {
                             <label className="text-xs font-semibold text-slate-600 block mb-2">ผ่านการประเมิน</label>
                             <div 
                                 onClick={() => {
-                                    const newStatus = applicant.approval_status === 1 ? 0 : 1;
-                                    updateStatusMutation.mutate({ id: applicant.id, data: { approval_status: newStatus } });
+                                    const newApprovalStatus = applicant.approval_status === 1 ? 0 : 1;
+                                    const newMainStatus = (newApprovalStatus === 1 && applicant.data_completion_status === 1) ? 'complete' : 'pending';
+                                    updateStatusMutation.mutate({ id: applicant.id, data: { approval_status: newApprovalStatus, status: newMainStatus } });
                                 }}
                                 className={`flex items-center h-6 w-14 rounded-full cursor-pointer transition-colors ${
                                     applicant.approval_status === 1 ? 'bg-green-600' : applicant.approval_status === 0 ? 'bg-red-600' : 'bg-slate-300'
@@ -202,8 +210,9 @@ export default function ApplicantDetail({ applicant: initialApplicant }) {
                             <label className="text-xs font-semibold text-slate-600 block mb-2">กรอกข้อมูลเสร็จ</label>
                             <div 
                                 onClick={() => {
-                                    const newStatus = applicant.data_completion_status === 1 ? 0 : 1;
-                                    updateStatusMutation.mutate({ id: applicant.id, data: { data_completion_status: newStatus } });
+                                    const newCompletionStatus = applicant.data_completion_status === 1 ? 0 : 1;
+                                    const newMainStatus = (applicant.approval_status === 1 && newCompletionStatus === 1) ? 'complete' : 'pending';
+                                    updateStatusMutation.mutate({ id: applicant.id, data: { data_completion_status: newCompletionStatus, status: newMainStatus } });
                                 }}
                                 className={`flex items-center h-6 w-14 rounded-full cursor-pointer transition-colors ${
                                     applicant.data_completion_status === 1 ? 'bg-blue-600' : 'bg-slate-300'
