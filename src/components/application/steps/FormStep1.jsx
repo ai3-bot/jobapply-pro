@@ -157,11 +157,11 @@ export default function FormStep1({ data, updateData, photo, errors = {} }) {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
              <div className="space-y-1">
-                <Label>วัน/เดือน/ปีเกิด</Label>
-                <Input className="h-9" type="date" value={data.dob} onChange={handleDobChange} max={new Date().toISOString().split('T')[0]} />
+                <Label>วัน/เดือน/ปีเกิด <span className="text-red-500">*</span></Label>
+                <Input className={`h-9 ${errors.dob ? 'border-red-500 border-2' : ''}`} type="date" value={data.dob} onChange={handleDobChange} max={new Date().toISOString().split('T')[0]} />
             </div>
             <div className="space-y-1">
-                <Label>อายุ</Label>
+                <Label>อายุ <span className="text-red-500">*</span></Label>
                 <Input className="h-9 bg-slate-50" value={data.age} onChange={(e) => updateData('personal_data', 'age', e.target.value)} readOnly />
             </div>
             <div className="space-y-1">
