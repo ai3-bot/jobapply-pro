@@ -11,6 +11,7 @@ import { format } from 'date-fns';
 export default function ApplicantList({ onSelect, selectedId }) {
     const [filterDate, setFilterDate] = useState(format(new Date(), 'yyyy-MM-dd'));
     const [searchTerm, setSearchTerm] = useState("");
+    const [filterPosition, setFilterPosition] = useState("all");
 
     const { data: applicants, isLoading } = useQuery({
         queryKey: ['applicants_list'],
@@ -19,13 +20,27 @@ export default function ApplicantList({ onSelect, selectedId }) {
         }
     });
 
+    // ดึงรายการตำแหน่งทั้งหมดจากใบสมัคร (position_1 และ position_2)
+    const positionOptions = useMemo(() => {
+        if (!applicants) return [];
+        const positions = new Set();
+        applicants.forEach(app => {
+            if (app.personal_data?.position_1) positions.add(app.personal_data.position_1);
+            if (app.personal_data?.position_2) positions.add(app.personal_data.position_2);
+        });
+        return Array.from(positions).sort();
+    }, [applicants]);
+
     const filteredApplicants = applicants?.filter(app => {
         const matchesDate = filterDate ? app.submission_date === filterDate : true;
         const matchesSearch = searchTerm ? 
             app.full_name.toLowerCase().includes(searchTerm.toLowerCase()) || 
             app.personal_data?.email?.toLowerCase().includes(searchTerm.toLowerCase())
             : true;
-        return matchesDate && matchesSearch;
+        const matchesPosition = filterPosition === "all" ? true :
+            app.personal_data?.position_1 === filterPosition || 
+            app.personal_data?.position_2 === filterPosition;
+        return matchesDate && matchesSearch && matchesPosition;
     });
 
     return (
