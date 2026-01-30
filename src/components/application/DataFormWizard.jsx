@@ -11,6 +11,7 @@ import FormStep4 from './steps/FormStep4';
 export default function DataFormWizard({ onComplete, globalData, setGlobalData }) {
     const [step, setStep] = useState(1);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [step1Errors, setStep1Errors] = useState({});
     
     const updateData = (section, field, value) => {
         setGlobalData(prev => ({
@@ -20,9 +21,63 @@ export default function DataFormWizard({ onComplete, globalData, setGlobalData }
                 [field]: value
             }
         }));
+        // Clear error when user starts typing
+        if (section === 'personal_data' && step1Errors[field]) {
+            setStep1Errors(prev => ({ ...prev, [field]: false }));
+        }
+    };
+
+    // Validation for Step 1
+    const validateStep1 = () => {
+        const pd = globalData.personal_data || {};
+        const errors = {};
+        
+        // Required fields validation
+        if (!pd.position_1) errors.position_1 = true;
+        if (!pd.expected_salary) errors.expected_salary = true;
+        if (!pd.race) errors.race = true;
+        if (!pd.nationality) errors.nationality = true;
+        if (!pd.religion) errors.religion = true;
+        if (!pd.dob) errors.dob = true;
+        if (!pd.first_name) errors.first_name = true;
+        if (!pd.last_name) errors.last_name = true;
+        if (!pd.english_name) errors.english_name = true;
+        if (!pd.id_card || pd.id_card.length !== 13) errors.id_card = true;
+        if (!pd.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(pd.email)) errors.email = true;
+        if (!pd.mobile_phone || pd.mobile_phone.length !== 10) errors.mobile_phone = true;
+        
+        // Thai name validation
+        const thaiRegex = /[\u0E00-\u0E7F]/;
+        if (!thaiRegex.test(pd.first_name) || !thaiRegex.test(pd.last_name)) {
+            errors.first_name = true;
+            errors.last_name = true;
+        }
+        
+        // English name validation
+        const englishRegex = /^[a-zA-Z\s]+$/;
+        if (!pd.english_name || !englishRegex.test(pd.english_name) || !pd.english_name.trim().includes(' ')) {
+            errors.english_name = true;
+        }
+        
+        // Address validation
+        const addr = pd.registered_address || {};
+        if (!addr.number || !addr.subdistrict || !addr.district || !addr.province || !addr.zipcode) {
+            errors.registered_address = true;
+        }
+        
+        setStep1Errors(errors);
+        return Object.keys(errors).length === 0;
     };
 
     const handleNext = () => {
+        // Validate Step 1 before proceeding
+        if (step === 1) {
+            if (!validateStep1()) {
+                alert('กรุณากรอกข้อมูลที่จำเป็นให้ครบถ้วน');
+                return;
+            }
+        }
+        
         window.scrollTo({ top: 0, behavior: 'smooth' });
         if (step < 4) setStep(step + 1);
         else onComplete(); // Go to PDPA step instead of submitting
