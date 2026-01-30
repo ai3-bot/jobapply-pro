@@ -191,13 +191,21 @@ export default function FormStep1({ data, updateData, photo, errors = {} }) {
 
         <div className="grid md:grid-cols-2 gap-2">
             <div className="space-y-1">
-                <Label>(Email) อีเมล์ที่ติดต่อได้</Label>
-                <Input className="h-9" value={data.email} onChange={(e) => updateData('personal_data', 'email', e.target.value)} />
+                <Label>(Email) อีเมล์ที่ติดต่อได้ <span className="text-red-500">*</span></Label>
+                <Input 
+                    className={`h-9 ${!validateEmail(data.email) && data.email ? 'border-red-300' : ''}`}
+                    value={data.email} 
+                    placeholder="example@email.com"
+                    onChange={(e) => updateData('personal_data', 'email', e.target.value)} 
+                />
+                {data.email && !validateEmail(data.email) && (
+                    <p className="text-xs text-red-500">กรุณากรอกอีเมลให้ถูกต้อง (เช่น example@gmail.com)</p>
+                )}
             </div>
             <div className="space-y-1">
-                <Label>โทรศัพท์มือถือที่ติดต่อได้สะดวก</Label>
+                <Label>โทรศัพท์มือถือที่ติดต่อได้สะดวก <span className="text-red-500">*</span></Label>
                 <Input 
-                    className="h-9" 
+                    className={`h-9 ${!validatePhone(data.mobile_phone) && data.mobile_phone ? 'border-red-300' : ''}`}
                     value={data.mobile_phone} 
                     maxLength={10}
                     placeholder="ตัวเลข 10 หลัก"
@@ -206,6 +214,9 @@ export default function FormStep1({ data, updateData, photo, errors = {} }) {
                         updateData('personal_data', 'mobile_phone', val);
                     }} 
                 />
+                {data.mobile_phone && !validatePhone(data.mobile_phone) && (
+                    <p className="text-xs text-red-500">เบอร์โทรศัพท์ต้องมี 10 หลัก (ปัจจุบัน {data.mobile_phone.length} หลัก)</p>
+                )}
             </div>
         </div>
 
