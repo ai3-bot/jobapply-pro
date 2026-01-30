@@ -10,7 +10,7 @@ import SignatureCanvas from 'react-signature-canvas';
 import { Plus, Trash2, Upload, PenLine } from "lucide-react";
 import { base44 } from '@/api/base44Client';
 
-export default function FormStep4({ data, setGlobalData }) {
+export default function FormStep4({ data, setGlobalData, errors = {} }) {
     const sigCanvas = useRef({});
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [uploadFile, setUploadFile] = useState(null);
@@ -90,7 +90,7 @@ export default function FormStep4({ data, setGlobalData }) {
                     <p className="text-slate-500 text-sm mt-1">สามารถติดต่อบุคคลที่ข้าพเจ้าอ้างอิงได้ที่</p>
                 </div>
                 
-                <div className="border border-slate-300 rounded-md overflow-hidden">
+                <div className={`border rounded-md overflow-hidden ${errors.emergency_contacts ? 'border-red-500 border-2' : 'border-slate-300'}`}
                     <Table>
                         <TableHeader>
                             <TableRow>
@@ -172,6 +172,9 @@ export default function FormStep4({ data, setGlobalData }) {
                         </Button>
                     </div>
                 </div>
+                {errors.emergency_contacts && (
+                    <p className="text-sm text-red-500 mt-2">กรุณากรอกข้อมูลผู้ติดต่อฉุกเฉินอย่างน้อย 1 คน (ชื่อ-สกุล และ โทรศัพท์)</p>
+                )}
             </div>
 
             {/* Attitude */}

@@ -13,6 +13,7 @@ export default function DataFormWizard({ onComplete, globalData, setGlobalData }
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [step1Errors, setStep1Errors] = useState({});
     const [step3Errors, setStep3Errors] = useState({});
+    const [step4Errors, setStep4Errors] = useState({});
     
     const updateData = (section, field, value) => {
         setGlobalData(prev => ({
@@ -93,6 +94,25 @@ export default function DataFormWizard({ onComplete, globalData, setGlobalData }
         return Object.keys(errors).length === 0;
     };
 
+    // Validation for Step 4 (Emergency Contact)
+    const validateStep4 = () => {
+        const contacts = globalData.emergency_contacts || [];
+        const errors = {};
+        
+        // Must have at least 1 emergency contact with name and phone
+        if (contacts.length === 0) {
+            errors.emergency_contacts = true;
+        } else {
+            const hasValidContact = contacts.some(c => c.name && c.phone);
+            if (!hasValidContact) {
+                errors.emergency_contacts = true;
+            }
+        }
+        
+        setStep4Errors(errors);
+        return Object.keys(errors).length === 0;
+    };
+
     const handleNext = () => {
         // Validate Step 1 before proceeding
         if (step === 1) {
@@ -106,6 +126,14 @@ export default function DataFormWizard({ onComplete, globalData, setGlobalData }
         if (step === 3) {
             if (!validateStep3()) {
                 alert('กรุณากรอกประวัติการทำงาน');
+                return;
+            }
+        }
+        
+        // Validate Step 4 before proceeding
+        if (step === 4) {
+            if (!validateStep4()) {
+                alert('กรุณากรอกข้อมูลผู้ติดต่อฉุกเฉินอย่างน้อย 1 คน');
                 return;
             }
         }
@@ -191,6 +219,7 @@ export default function DataFormWizard({ onComplete, globalData, setGlobalData }
                     {step === 4 && <FormStep4 
                         data={globalData}
                         setGlobalData={setGlobalData}
+                        errors={step4Errors}
                     />}
                 </CardContent>
                 <div className="p-6 border-t flex justify-between bg-slate-50 rounded-b-xl">
