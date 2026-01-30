@@ -79,7 +79,7 @@ export default function FormStep3({ data, experienceData, statementData, referra
         {/* Work Experience Section - Moved from Step 4 */}
         <div className="space-y-4">
             <h3 className="text-lg font-bold text-slate-900 border-b pb-2">ประวัติการทำงาน (Work Experience)</h3>
-            <div className="border border-slate-300 rounded-md overflow-hidden">
+            <div className={`border rounded-md overflow-hidden ${errors.experience_history ? 'border-red-500 border-2' : 'border-slate-300'}`}>
                 <Table className="w-full border-collapse">
                     <TableHeader>
                         <TableRow>
