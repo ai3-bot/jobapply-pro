@@ -57,9 +57,9 @@ export default function FormStep1({ data, updateData, photo, errors = {} }) {
         <h3 className="text-xl font-bold text-slate-900 border-b pb-2 mb-3">ส่วนที่ 1: ประวัติส่วนตัว</h3>
 
         <div className="space-y-2 bg-slate-50 p-3 rounded-lg border">
-            <div className="space-y-2">
-                <Label>วันที่ยื่นใบสมัคร</Label>
-                <Input type="date" value={data.application_date} onChange={(e) => updateData('personal_data', 'application_date', e.target.value)} />
+            <div className="flex items-center gap-3">
+                <Label className="whitespace-nowrap">วันที่ยื่นใบสมัคร</Label>
+                <Input className="w-auto" type="date" value={data.application_date} onChange={(e) => updateData('personal_data', 'application_date', e.target.value)} max={new Date().toISOString().split('T')[0]} />
             </div>
             <div className="text-sm text-slate-600 leading-relaxed text-justify">
                 ใบสมัครงานฉบับนี้เป็นส่วนหนึ่งในการพิจารณา ในโอกาสที่ท่านมาสมัครเข้าทำงานที่บริษัทฯ ซึ่งใบสมัครนี้ท่าน ไม่ว่าจะ การพิจารณา รับเข้าทำงาน ข้อมูลในใบสมัครจะถูกเก็บไว้เป็นระยะเวลา 1 เดือน หากมีการพิจารณาเข้าเป็นพนักงาน ซึ่งท้ายหลังจากหมดระยะ อายุใบสมัครนี้ท่านสามาทำการสมัครงานใหม่ได้ ข้อมูลในใบสมัครจะถูกเก็บไว้สำหรับหน่วยงานบริษัทของบริษัท/ลูกจ้างของ บริษัทและผู้ประมวลผลข้อมูลของบริษัท/ลูกจ้างอีกทั้ง บริษัทจะไม่เปิดเผยข้อมูลส่วนบุคคลไปยังบุคคลภายนอก 2 ปี ท่านยินยอมที่ ต้องเป็นพนักงานประจำของการพิจารณาค่าตอบแทน หลักฐานทรัพย์สินผลตอบแทนการรับ อันมิอาจเปิดเผยข้อมูลดังกล่าวแก่บุคคล ภายนอกได้ อนึ่ง ตาม พ.ร.บ. คุ้มครอง ข้อมูล ส่วนบุคคล ปี 2562 เป็นเหตุเกิดอาจกระทบต่อสิทธิและเสรีภาพในความเป็นบุคคลของ ข้าน ตาม (PDPA) คุ้มข้อมูลส่วนบุคคลผู้ที่นำไปใช้ กรม.คุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 "การคุ้มครองข้อมูลส่วนบุคคล" และ "ข้อมูลส่วนบุคคลทั่วไปภายในสำนักงาน" ในแบบแบ่งปันข้อมูลการพิจารณาบุคคลภายนอกเปิดเผยข้อทำ
