@@ -37,7 +37,7 @@ export default function ApplicantList({ onSelect, selectedId }) {
             app.full_name.toLowerCase().includes(searchTerm.toLowerCase()) || 
             app.personal_data?.email?.toLowerCase().includes(searchTerm.toLowerCase())
             : true;
-        const matchesPosition = filterPosition === "all" ? true :
+        const matchesPosition = (filterPosition === "all" || !filterPosition) ? true :
             app.personal_data?.position_1 === filterPosition || 
             app.personal_data?.position_2 === filterPosition;
         return matchesDate && matchesSearch && matchesPosition;
