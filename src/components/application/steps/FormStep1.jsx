@@ -313,7 +313,7 @@ export default function FormStep1({ data, updateData, photo, errors = {} }) {
                         <SelectContent>
                             <SelectItem value="male">ชาย</SelectItem>
                             <SelectItem value="female">หญิง</SelectItem>
-                            <SelectItem value="other">อื่นๆ</SelectItem>
+                            <SelectItem value="other">ไม่ระบุ</SelectItem>
                         </SelectContent>
                     </Select>
                 </div>
