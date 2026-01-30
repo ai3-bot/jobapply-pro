@@ -45,6 +45,8 @@ export default function ApplicantDetail({ applicant: initialApplicant }) {
         mutationFn: ({ id, data }) => base44.entities.Applicant.update(id, data),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['applicants'] });
+            queryClient.invalidateQueries({ queryKey: ['applicants_list'] });
+            queryClient.invalidateQueries({ queryKey: ['applicants_detail', initialApplicant?.id] });
         }
     });
 
