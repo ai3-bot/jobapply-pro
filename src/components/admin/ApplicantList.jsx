@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Search, Filter, User } from "lucide-react";
+import { Search, Filter, User, Briefcase } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { format } from 'date-fns';
 
 export default function ApplicantList({ onSelect, selectedId }) {
