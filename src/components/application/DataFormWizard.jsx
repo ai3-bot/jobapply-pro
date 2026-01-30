@@ -105,7 +105,7 @@ export default function DataFormWizard({ onComplete, globalData, setGlobalData }
         // Validate Step 3 before proceeding
         if (step === 3) {
             if (!validateStep3()) {
-                alert('กรุณากรอกประวัติการทำงานอย่างน้อย 1 รายการ');
+                alert('กรุณากรอกประวัติการทำงาน');
                 return;
             }
         }
