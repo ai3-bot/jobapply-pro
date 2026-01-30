@@ -85,7 +85,7 @@ export default function FormStep1({ data, updateData, photo, errors = {} }) {
             <div className="flex-1 space-y-2">
                 <div className="grid md:grid-cols-2 gap-2">
                     <div className="space-y-2">
-                        <Label>ชื่อ-สกุล (ภาษาไทย)</Label>
+                        <Label>ชื่อ-สกุล (ภาษาไทย) <span className="text-red-500">*</span></Label>
                         <div className="flex gap-2">
                              <Select value={data.prefix} onValueChange={(v) => updateData('personal_data', 'prefix', v)}>
                                 <SelectTrigger className="w-[80px]"><SelectValue placeholder="คำนำ" /></SelectTrigger>
@@ -95,9 +95,22 @@ export default function FormStep1({ data, updateData, photo, errors = {} }) {
                                     <SelectItem value="นางสาว">น.ส.</SelectItem>
                                 </SelectContent>
                             </Select>
-                            <Input placeholder="ชื่อ" value={data.first_name} onChange={(e) => updateData('personal_data', 'first_name', e.target.value)} />
-                            <Input placeholder="สกุล" value={data.last_name} onChange={(e) => updateData('personal_data', 'last_name', e.target.value)} />
+                            <Input 
+                                placeholder="ชื่อ (ภาษาไทย)" 
+                                value={data.first_name} 
+                                onChange={(e) => updateData('personal_data', 'first_name', e.target.value)}
+                                className={!validateThaiName(data.first_name, data.last_name) && (data.first_name || data.last_name) ? 'border-red-300' : ''}
+                            />
+                            <Input 
+                                placeholder="สกุล (ภาษาไทย)" 
+                                value={data.last_name} 
+                                onChange={(e) => updateData('personal_data', 'last_name', e.target.value)}
+                                className={!validateThaiName(data.first_name, data.last_name) && (data.first_name || data.last_name) ? 'border-red-300' : ''}
+                            />
                         </div>
+                        {!validateThaiName(data.first_name, data.last_name) && (data.first_name || data.last_name) && (
+                            <p className="text-xs text-red-500">กรุณากรอกชื่อและนามสกุลเป็นภาษาไทย</p>
+                        )}
                     </div>
                     <div className="space-y-2">
                         <Label>ชื่อเล่น (ภาษาไทย)</Label>
@@ -106,11 +119,19 @@ export default function FormStep1({ data, updateData, photo, errors = {} }) {
                 </div>
 
                 <div className="space-y-2">
-                    <Label>Name in English</Label>
-                    <Input placeholder="Firstname Lastname" value={data.english_name} onChange={(e) => updateData('personal_data', 'english_name', e.target.value)} />
+                    <Label>Name in English <span className="text-red-500">*</span></Label>
+                    <Input 
+                        placeholder="Firstname Lastname" 
+                        value={data.english_name} 
+                        onChange={(e) => updateData('personal_data', 'english_name', e.target.value)}
+                        className={!validateEnglishName(data.english_name) && data.english_name ? 'border-red-300' : ''}
+                    />
+                    {!validateEnglishName(data.english_name) && data.english_name && (
+                        <p className="text-xs text-red-500">กรุณากรอกชื่อและนามสกุลเป็นภาษาอังกฤษ (เช่น John Smith)</p>
+                    )}
                 </div>
                 <div className="space-y-2">
-                    <Label>เลขประจำตัวประชาชน (Citizen ID)</Label>
+                    <Label>เลขประจำตัวประชาชน (Citizen ID) <span className="text-red-500">*</span></Label>
                     <Input 
                         placeholder="เลข 13 หลัก" 
                         value={data.id_card || ''} 
@@ -118,8 +139,12 @@ export default function FormStep1({ data, updateData, photo, errors = {} }) {
                         onChange={(e) => {
                             const val = e.target.value.replace(/\D/g, '');
                             updateData('personal_data', 'id_card', val);
-                        }} 
+                        }}
+                        className={!validateIdCard(data.id_card) && data.id_card ? 'border-red-300' : ''}
                     />
+                    {data.id_card && !validateIdCard(data.id_card) && (
+                        <p className="text-xs text-red-500">เลขประจำตัวประชาชนต้องมี 13 หลัก (ปัจจุบัน {data.id_card.length} หลัก)</p>
+                    )}
                 </div>
             </div>
             
