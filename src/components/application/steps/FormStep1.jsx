@@ -263,25 +263,42 @@ export default function FormStep1({ data, updateData, photo, errors = {} }) {
                 </Select>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                <div className="col-span-1"><Input placeholder="เลขที่" value={data.current_address?.number || ''} onChange={(e) => updateAddress('current_address', 'number', e.target.value)} /></div>
-                <div className="col-span-1"><Input placeholder="หมู่" value={data.current_address?.moo || ''} onChange={(e) => updateAddress('current_address', 'moo', e.target.value)} /></div>
-                <div className="col-span-2"><Input placeholder="ถนน" value={data.current_address?.road || ''} onChange={(e) => updateAddress('current_address', 'road', e.target.value)} /></div>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                 <Input placeholder="ตำบล/แขวง" value={data.current_address?.subdistrict || ''} onChange={(e) => updateAddress('current_address', 'subdistrict', e.target.value)} />
-                 <Input placeholder="อำเภอ/เขต" value={data.current_address?.district || ''} onChange={(e) => updateAddress('current_address', 'district', e.target.value)} />
-                 <Input placeholder="จังหวัด" value={data.current_address?.province || ''} onChange={(e) => updateAddress('current_address', 'province', e.target.value)} />
-                 <Input 
-                    placeholder="รหัสไปรษณีย์" 
-                    value={data.current_address?.zipcode || ''} 
-                    maxLength={5}
-                    onChange={(e) => {
-                        const val = e.target.value.replace(/\D/g, '');
-                        updateAddress('current_address', 'zipcode', val);
-                    }} 
-                 />
-            </div>
+            {data.current_address_type === 'same' ? (
+                <div className="text-sm text-slate-600 bg-slate-100 p-3 rounded">
+                    {data.registered_address?.number && `เลขที่ ${data.registered_address.number}`}
+                    {data.registered_address?.moo && ` หมู่ ${data.registered_address.moo}`}
+                    {data.registered_address?.road && ` ถนน${data.registered_address.road}`}
+                    {data.registered_address?.subdistrict && ` ตำบล/แขวง${data.registered_address.subdistrict}`}
+                    {data.registered_address?.district && ` อำเภอ/เขต${data.registered_address.district}`}
+                    {data.registered_address?.province && ` จังหวัด${data.registered_address.province}`}
+                    {data.registered_address?.zipcode && ` ${data.registered_address.zipcode}`}
+                    {!data.registered_address?.number && !data.registered_address?.subdistrict && (
+                        <span className="text-slate-400">กรุณากรอกที่อยู่ตามบัตรประชาชนด้านบนก่อน</span>
+                    )}
+                </div>
+            ) : (
+                <>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        <div className="col-span-1"><Input placeholder="เลขที่" value={data.current_address?.number || ''} onChange={(e) => updateAddress('current_address', 'number', e.target.value)} /></div>
+                        <div className="col-span-1"><Input placeholder="หมู่" value={data.current_address?.moo || ''} onChange={(e) => updateAddress('current_address', 'moo', e.target.value)} /></div>
+                        <div className="col-span-2"><Input placeholder="ถนน" value={data.current_address?.road || ''} onChange={(e) => updateAddress('current_address', 'road', e.target.value)} /></div>
+                    </div>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                         <Input placeholder="ตำบล/แขวง" value={data.current_address?.subdistrict || ''} onChange={(e) => updateAddress('current_address', 'subdistrict', e.target.value)} />
+                         <Input placeholder="อำเภอ/เขต" value={data.current_address?.district || ''} onChange={(e) => updateAddress('current_address', 'district', e.target.value)} />
+                         <Input placeholder="จังหวัด" value={data.current_address?.province || ''} onChange={(e) => updateAddress('current_address', 'province', e.target.value)} />
+                         <Input 
+                            placeholder="รหัสไปรษณีย์" 
+                            value={data.current_address?.zipcode || ''} 
+                            maxLength={5}
+                            onChange={(e) => {
+                                const val = e.target.value.replace(/\D/g, '');
+                                updateAddress('current_address', 'zipcode', val);
+                            }} 
+                         />
+                    </div>
+                </>
+            )}
         </div>
 
         <div className="space-y-4 pt-4 border-t">
