@@ -4,6 +4,14 @@ import { Button } from "@/components/ui/button";
 import { Download, Printer, Loader2 } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import PDPADocument from '@/components/application/pdf/PDPADocument';
+import NDADocument from '@/components/application/pdf/NDADocument';
+import FMH19Document from '@/components/application/pdf/FMH19Document';
+import EmploymentContractDocument from '@/components/application/pdf/EmploymentContractDocument';
+import FMHRD30Document from '@/components/application/pdf/FMHRD30Document';
+import CriminalCheckDocument from '@/components/application/pdf/CriminalCheckDocument';
+import SPS103Document from '@/components/application/pdf/SPS103Document';
+import SPS902Document from '@/components/application/pdf/SPS902Document';
+import InsuranceEnrollmentDocument from '@/components/application/pdf/InsuranceEnrollmentDocument';
 
 export default function DownloadPreviewModal({ 
     isOpen, 
