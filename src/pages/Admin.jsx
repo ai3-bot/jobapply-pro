@@ -149,6 +149,18 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
         a.criminal_check_document?.status === 'submitted' || a.criminal_check_document?.status === 'completed'
     );
 
+    const documentsSummary = {
+        nda: filteredFMHRD27,
+        pdpa: filteredPDPA,
+        fmhrd19: filteredFMHRD19,
+        sps103: filteredSPS103,
+        sps902: filteredSPS902,
+        insurance: filteredInsurance,
+        employmentContract: filteredEmploymentContract,
+        fmhrd30: filteredFMHRD30,
+        criminalCheck: filteredCriminalCheck,
+    };
+
     const handleDownloadAll = async () => {
         if (!selectedApplicant) return;
         
@@ -205,6 +217,7 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
             link.click();
             URL.revokeObjectURL(url);
             
+            setShowDownloadPreview(false);
             alert(`ดาวน์โหลดข้อมูลเอกสารเรียบร้อยแล้ว\nรวม ${filteredFMHRD27.length + filteredPDPA.length + filteredFMHRD19.length + filteredSPS103.length + filteredSPS902.length + filteredInsurance.length + filteredEmploymentContract.length + filteredFMHRD30.length + filteredCriminalCheck.length} เอกสาร`);
             
         } catch (error) {
@@ -213,6 +226,10 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
         } finally {
             setDownloadingAll(false);
         }
+    };
+
+    const handlePrintDocuments = () => {
+        window.print();
     };
 
     if (isLoading) {
