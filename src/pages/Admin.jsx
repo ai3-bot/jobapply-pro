@@ -920,7 +920,8 @@ export default function AdminPage() {
                     <div className="flex h-full">
                         <ApplicantList 
                             onSelect={setSelectedApplicant} 
-                            selectedId={selectedApplicant?.id} 
+                            selectedId={selectedApplicant?.id}
+                            onClear={() => setSelectedApplicant(null)}
                         />
                         <ApplicantDetail applicant={selectedApplicant} />
                     </div>
