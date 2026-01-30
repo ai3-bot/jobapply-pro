@@ -69,7 +69,7 @@ export default function DownloadPreviewModal({
                 </div>
 
                 {/* Content - PDF Preview */}
-                <ScrollArea className="h-[calc(90vh-140px)]">
+                <ScrollArea className="h-[calc(90vh-140px)]" type="always">
                     <div className="bg-slate-200 p-4 min-h-full" ref={previewRef}>
                         {totalDocuments === 0 ? (
                             <div className="flex items-center justify-center h-64 text-slate-500">
