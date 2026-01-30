@@ -28,10 +28,6 @@ export default function DownloadPreviewModal({
 
     const totalDocuments = Object.values(documents).reduce((sum, docs) => sum + (docs?.length || 0), 0);
 
-    // Get PDPA document data for preview
-    const pdpaDoc = documents.pdpa?.[0];
-    const pdpaFormData = pdpaDoc?.data || {};
-
     const handlePrint = () => {
         if (previewRef.current) {
             const printContent = previewRef.current.innerHTML;
