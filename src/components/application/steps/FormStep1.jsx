@@ -124,7 +124,7 @@ export default function FormStep1({ data, updateData, photo, errors = {} }) {
                         placeholder="Firstname Lastname" 
                         value={data.english_name} 
                         onChange={(e) => updateData('personal_data', 'english_name', e.target.value)}
-                        className={!validateEnglishName(data.english_name) && data.english_name ? 'border-red-300' : ''}
+                        className={errors.english_name ? 'border-red-500 border-2' : (!validateEnglishName(data.english_name) && data.english_name ? 'border-red-300' : '')}
                     />
                     {!validateEnglishName(data.english_name) && data.english_name && (
                         <p className="text-xs text-red-500">กรุณากรอกชื่อและนามสกุลเป็นภาษาอังกฤษ (เช่น John Smith)</p>
@@ -140,7 +140,7 @@ export default function FormStep1({ data, updateData, photo, errors = {} }) {
                             const val = e.target.value.replace(/\D/g, '');
                             updateData('personal_data', 'id_card', val);
                         }}
-                        className={!validateIdCard(data.id_card) && data.id_card ? 'border-red-300' : ''}
+                        className={errors.id_card ? 'border-red-500 border-2' : (!validateIdCard(data.id_card) && data.id_card ? 'border-red-300' : '')}
                     />
                     {data.id_card && !validateIdCard(data.id_card) && (
                         <p className="text-xs text-red-500">เลขประจำตัวประชาชนต้องมี 13 หลัก (ปัจจุบัน {data.id_card.length} หลัก)</p>
