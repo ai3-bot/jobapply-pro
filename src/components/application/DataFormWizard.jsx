@@ -70,6 +70,29 @@ export default function DataFormWizard({ onComplete, globalData, setGlobalData }
         return Object.keys(errors).length === 0;
     };
 
+    // Validation for Step 3 (Work Experience)
+    const validateStep3 = () => {
+        const expData = globalData.experience_data || {};
+        const errors = {};
+        
+        // If has experience, must have at least 1 entry with data
+        if (expData.has_experience === 'yes') {
+            const history = expData.history || [];
+            if (history.length === 0) {
+                errors.experience_history = true;
+            } else {
+                // Check if at least the first entry has required data
+                const firstEntry = history[0];
+                if (!firstEntry.period && !firstEntry.workplace && !firstEntry.position) {
+                    errors.experience_history = true;
+                }
+            }
+        }
+        
+        setStep3Errors(errors);
+        return Object.keys(errors).length === 0;
+    };
+
     const handleNext = () => {
         // Validate Step 1 before proceeding
         if (step === 1) {
