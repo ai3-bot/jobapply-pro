@@ -14,7 +14,6 @@ export default function DownloadPreviewModal({
     onPrint,
     isDownloading 
 }) {
-    const [previewMode, setPreviewMode] = useState(false);
     const previewRef = useRef(null);
 
     if (!applicant) return null;
