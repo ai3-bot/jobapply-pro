@@ -68,16 +68,16 @@ export default function FormStep1({ data, updateData, photo, errors = {} }) {
 
         <div className="grid md:grid-cols-3 gap-2">
             <div className="space-y-1">
-                <Label>สมัครงานในตำแหน่ง 1</Label>
-                <Input className="h-9" value={data.position_1} onChange={(e) => updateData('personal_data', 'position_1', e.target.value)} />
+                <Label>สมัครงานในตำแหน่ง 1 <span className="text-red-500">*</span></Label>
+                <Input className={`h-9 ${errors.position_1 ? 'border-red-500 border-2' : ''}`} value={data.position_1} onChange={(e) => updateData('personal_data', 'position_1', e.target.value)} />
             </div>
             <div className="space-y-1">
                 <Label>สมัครงานในตำแหน่ง 2</Label>
                 <Input className="h-9" value={data.position_2} onChange={(e) => updateData('personal_data', 'position_2', e.target.value)} />
             </div>
             <div className="space-y-1">
-                <Label>อัตราเงินเดือนที่ต้องการ</Label>
-                <Input className="h-9" value={data.expected_salary} onChange={(e) => updateData('personal_data', 'expected_salary', e.target.value)} />
+                <Label>อัตราเงินเดือนที่ต้องการ <span className="text-red-500">*</span></Label>
+                <Input className={`h-9 ${errors.expected_salary ? 'border-red-500 border-2' : ''}`} value={data.expected_salary} onChange={(e) => updateData('personal_data', 'expected_salary', e.target.value)} />
             </div>
         </div>
 
