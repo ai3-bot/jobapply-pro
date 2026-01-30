@@ -139,7 +139,7 @@ export default function DataFormWizard({ onComplete, globalData, setGlobalData }
                     </div>
                 </CardHeader>
                 <CardContent className="flex-1">
-                    {step === 1 && <FormStep1 data={globalData.personal_data} updateData={updateData} photo={globalData.photo_url} />}
+                    {step === 1 && <FormStep1 data={globalData.personal_data} updateData={updateData} photo={globalData.photo_url} errors={step1Errors} />}
                     {step === 2 && <FormStep2 
                         data={globalData.education_data} 
                         familyData={globalData.family_data} 
