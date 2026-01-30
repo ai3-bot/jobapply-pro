@@ -66,6 +66,18 @@ export default function ApplicantList({ onSelect, selectedId }) {
                         />
                     </div>
                 </div>
+                <Select value={filterPosition} onValueChange={setFilterPosition}>
+                    <SelectTrigger className="bg-white">
+                        <Briefcase className="w-4 h-4 mr-2 text-slate-400" />
+                        <SelectValue placeholder="เลือกตำแหน่ง" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem value="all">ทุกตำแหน่ง</SelectItem>
+                        {positionOptions.map(position => (
+                            <SelectItem key={position} value={position}>{position}</SelectItem>
+                        ))}
+                    </SelectContent>
+                </Select>
             </div>
 
             <div className="flex-1 overflow-y-auto p-2 space-y-2">
