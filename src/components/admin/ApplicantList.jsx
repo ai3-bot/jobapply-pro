@@ -51,10 +51,10 @@ export default function ApplicantList({ onSelect, selectedId, onClear }) {
                     <h2 className="font-bold text-slate-800">ผู้สมัคร ({filteredApplicants?.length || 0})</h2>
                     {selectedId && (
                         <Button 
-                            variant="ghost" 
+                            variant="outline" 
                             size="sm" 
                             onClick={onClear}
-                            className="text-slate-500 hover:text-slate-700 h-8 px-2"
+                            className="font-bold text-slate-800 h-8 px-3 border-slate-300"
                         >
                             <ArrowLeft className="w-4 h-4 mr-1" />
                             กลับ
