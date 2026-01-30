@@ -80,25 +80,99 @@ export default function DownloadPreviewModal({
                                 ไม่พบเอกสารที่จะแสดง
                             </div>
                         ) : (
-                            <div className="space-y-4">
+                            <div className="space-y-8">
                                 {/* PDPA Preview */}
-                                {documents.pdpa?.length > 0 && (
-                                    <PDPADocument 
-                                        applicant={applicant}
-                                        formData={pdpaFormData}
-                                        signatureUrl={pdpaFormData?.signatureUrl || applicant.signature_url}
-                                        witness1Signature={pdpaFormData?.witness1Signature}
-                                        witness2Signature={pdpaFormData?.witness2Signature}
-                                    />
-                                )}
-                                
-                                {/* Placeholder for other documents */}
-                                {documents.pdpa?.length === 0 && (
-                                    <div className="bg-white rounded-lg shadow p-8 text-center text-slate-500">
-                                        <p>กรุณาเลือกเอกสารเพื่อดูตัวอย่าง</p>
-                                        <p className="text-sm mt-2">รวมทั้งหมด {totalDocuments} เอกสาร</p>
+                                {documents.pdpa?.map((doc, idx) => (
+                                    <div key={`pdpa-${idx}`}>
+                                        <PDPADocument 
+                                            applicant={applicant}
+                                            formData={doc.data || {}}
+                                            signatureUrl={doc.data?.signatureUrl || applicant.signature_url}
+                                            witness1Signature={doc.data?.witness1Signature}
+                                            witness2Signature={doc.data?.witness2Signature}
+                                        />
                                     </div>
-                                )}
+                                ))}
+
+                                {/* NDA Preview */}
+                                {documents.nda?.map((doc, idx) => (
+                                    <div key={`nda-${idx}`}>
+                                        <NDADocument 
+                                            applicant={applicant}
+                                            formData={doc.data || {}}
+                                        />
+                                    </div>
+                                ))}
+
+                                {/* FM-HRD-19 Preview */}
+                                {documents.fmhrd19?.map((doc, idx) => (
+                                    <div key={`fmhrd19-${idx}`}>
+                                        <FMH19Document 
+                                            applicant={applicant}
+                                            formData={doc.data || {}}
+                                        />
+                                    </div>
+                                ))}
+
+                                {/* Employment Contract Preview */}
+                                {documents.employmentContract?.map((doc, idx) => (
+                                    <div key={`contract-${idx}`}>
+                                        <EmploymentContractDocument 
+                                            applicant={applicant}
+                                            formData={doc.data || {}}
+                                        />
+                                    </div>
+                                ))}
+
+                                {/* FM-HRD-30 Preview */}
+                                {documents.fmhrd30?.map((doc, idx) => (
+                                    <div key={`fmhrd30-${idx}`}>
+                                        <FMHRD30Document 
+                                            applicant={applicant}
+                                            formData={doc.data || {}}
+                                        />
+                                    </div>
+                                ))}
+
+                                {/* Criminal Check Preview */}
+                                {documents.criminalCheck?.map((doc, idx) => (
+                                    <div key={`criminal-${idx}`}>
+                                        <CriminalCheckDocument 
+                                            applicant={applicant}
+                                            formData={doc.data || {}}
+                                        />
+                                    </div>
+                                ))}
+
+                                {/* SPS 1-03 Preview */}
+                                {documents.sps103?.map((doc, idx) => (
+                                    <div key={`sps103-${idx}`}>
+                                        <SPS103Document 
+                                            applicant={applicant}
+                                            formData={doc.data || {}}
+                                        />
+                                    </div>
+                                ))}
+
+                                {/* SPS 9-02 Preview */}
+                                {documents.sps902?.map((doc, idx) => (
+                                    <div key={`sps902-${idx}`}>
+                                        <SPS902Document 
+                                            applicant={applicant}
+                                            formData={doc.data || {}}
+                                        />
+                                    </div>
+                                ))}
+
+                                {/* Insurance Enrollment Preview */}
+                                {documents.insurance?.map((doc, idx) => (
+                                    <div key={`insurance-${idx}`}>
+                                        <InsuranceEnrollmentDocument 
+                                            applicant={applicant}
+                                            formData={doc.data || {}}
+                                        />
+                                    </div>
+                                ))}
                             </div>
                         )}
                     </div>
