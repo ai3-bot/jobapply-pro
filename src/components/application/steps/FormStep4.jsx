@@ -90,7 +90,7 @@ export default function FormStep4({ data, setGlobalData, errors = {} }) {
                     <p className="text-slate-500 text-sm mt-1">สามารถติดต่อบุคคลที่ข้าพเจ้าอ้างอิงได้ที่</p>
                 </div>
                 
-                <div className={`border rounded-md overflow-hidden ${errors.emergency_contacts ? 'border-red-500 border-2' : 'border-slate-300'}`}
+                <div className={`border rounded-md overflow-hidden ${errors.emergency_contacts ? 'border-red-500 border-2' : 'border-slate-300'}`}>
                     <Table>
                         <TableHeader>
                             <TableRow>
