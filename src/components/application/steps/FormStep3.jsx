@@ -9,7 +9,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Plus, Trash2 } from "lucide-react";
 
-export default function FormStep3({ data, experienceData, statementData, referralData, parentsData, updateData }) {
+export default function FormStep3({ data, experienceData, statementData, referralData, parentsData, updateData, errors = {} }) {
     
     // Experience Logic
     const history = experienceData?.history || [];
