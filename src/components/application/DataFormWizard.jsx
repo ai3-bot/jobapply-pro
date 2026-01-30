@@ -12,6 +12,7 @@ export default function DataFormWizard({ onComplete, globalData, setGlobalData }
     const [step, setStep] = useState(1);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [step1Errors, setStep1Errors] = useState({});
+    const [step3Errors, setStep3Errors] = useState({});
     
     const updateData = (section, field, value) => {
         setGlobalData(prev => ({
