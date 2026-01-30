@@ -54,9 +54,8 @@ export default function Layout({ children }) {
   };
 
   const handleLogout = async () => {
-    await base44.auth.logout();
-    setUser(null);
-  };
+        await base44.auth.logout('/');
+      };
 
   const isApplicantPage = location.pathname.startsWith('/application');
   const isUserLoginOrDashboardPage = location.pathname.startsWith('/user-login') || location.pathname.startsWith('/user-dashboard');
