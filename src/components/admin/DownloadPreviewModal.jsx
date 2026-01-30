@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Eye, Download, Printer, X, Loader2 } from "lucide-react";
+import { Download, Printer, Loader2 } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import PDPADocument from '@/components/application/pdf/PDPADocument';
 
