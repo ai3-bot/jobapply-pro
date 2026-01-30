@@ -73,7 +73,7 @@ export default function ApplicantList({ onSelect, selectedId, onClear }) {
                 <div className="relative">
                     <ChevronDown className="absolute left-2.5 top-2.5 h-4 w-4 text-slate-400" />
                     <Select value={filterPosition} onValueChange={setFilterPosition}>
-                        <SelectTrigger className="bg-white pl-9 justify-start [&>svg]:hidden">
+                        <SelectTrigger className="bg-white pl-9 justify-start [&>svg]:hidden text-slate-500">
                             <SelectValue placeholder="ค้นหาตำแหน่ง..." />
                         </SelectTrigger>
                         <SelectContent>
