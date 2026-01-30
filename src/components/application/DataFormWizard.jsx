@@ -185,7 +185,8 @@ export default function DataFormWizard({ onComplete, globalData, setGlobalData }
                         statementData={globalData.statement_data}
                         referralData={globalData.referral_data}
                         parentsData={globalData.parents_data}
-                        updateData={updateData} 
+                        updateData={updateData}
+                        errors={step3Errors}
                     />}
                     {step === 4 && <FormStep4 
                         data={globalData}
