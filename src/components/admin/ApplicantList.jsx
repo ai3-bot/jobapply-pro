@@ -9,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { format } from 'date-fns';
 
 export default function ApplicantList({ onSelect, selectedId }) {
-    const [filterDate, setFilterDate] = useState(format(new Date(), 'yyyy-MM-dd'));
+    const [filterDate, setFilterDate] = useState("");
     const [searchTerm, setSearchTerm] = useState("");
     const [filterPosition, setFilterPosition] = useState("all");
 
