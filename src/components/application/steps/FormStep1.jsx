@@ -158,7 +158,7 @@ export default function FormStep1({ data, updateData, photo, errors = {} }) {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
              <div className="space-y-1">
                 <Label>วัน/เดือน/ปีเกิด</Label>
-                <Input className="h-9" type="date" value={data.dob} onChange={handleDobChange} />
+                <Input className="h-9" type="date" value={data.dob} onChange={handleDobChange} max={new Date().toISOString().split('T')[0]} />
             </div>
             <div className="space-y-1">
                 <Label>อายุ</Label>
