@@ -222,7 +222,7 @@ export default function FormStep1({ data, updateData, photo, errors = {} }) {
 
         {/* Registered Address */}
         <div className="bg-slate-50 p-4 rounded-lg border space-y-3">
-            <Label className="font-semibold text-indigo-700">ที่อยู่ตามทะเบียนบ้าน</Label>
+            <Label className="font-semibold text-indigo-700">ที่อยู่ตามบัตรประชาชน</Label>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 <div className="col-span-1"><Input placeholder="เลขที่" value={data.registered_address?.number || ''} onChange={(e) => updateAddress('registered_address', 'number', e.target.value)} /></div>
                 <div className="col-span-1"><Input placeholder="หมู่" value={data.registered_address?.moo || ''} onChange={(e) => updateAddress('registered_address', 'moo', e.target.value)} /></div>
