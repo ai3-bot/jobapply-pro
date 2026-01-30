@@ -99,13 +99,13 @@ export default function FormStep1({ data, updateData, photo, errors = {} }) {
                                 placeholder="ชื่อ (ภาษาไทย)" 
                                 value={data.first_name} 
                                 onChange={(e) => updateData('personal_data', 'first_name', e.target.value)}
-                                className={!validateThaiName(data.first_name, data.last_name) && (data.first_name || data.last_name) ? 'border-red-300' : ''}
+                                className={errors.first_name ? 'border-red-500 border-2' : (!validateThaiName(data.first_name, data.last_name) && (data.first_name || data.last_name) ? 'border-red-300' : '')}
                             />
                             <Input 
                                 placeholder="สกุล (ภาษาไทย)" 
                                 value={data.last_name} 
                                 onChange={(e) => updateData('personal_data', 'last_name', e.target.value)}
-                                className={!validateThaiName(data.first_name, data.last_name) && (data.first_name || data.last_name) ? 'border-red-300' : ''}
+                                className={errors.last_name ? 'border-red-500 border-2' : (!validateThaiName(data.first_name, data.last_name) && (data.first_name || data.last_name) ? 'border-red-300' : '')}
                             />
                         </div>
                         {!validateThaiName(data.first_name, data.last_name) && (data.first_name || data.last_name) && (
