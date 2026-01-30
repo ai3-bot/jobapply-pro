@@ -147,12 +147,7 @@ export default function ApplicantDetail({ applicant: initialApplicant }) {
                                 ${applicant.status === 'accepted' ? 'bg-blue-100 text-blue-700 hover:bg-blue-100' : ''}
                                 ${applicant.status === 'rejected' ? 'bg-red-100 text-red-700 hover:bg-red-100' : ''}
                             `}>
-                                {applicant.status === 'complete' ? 'สมบูรณ์' : 
-                                 applicant.status === 'pending' ? 'รอดำเนินการ' :
-                                 applicant.status === 'pending_video' ? 'รอวิดีโอ' :
-                                 applicant.status === 'accepted' ? 'ผ่าน' :
-                                 applicant.status === 'rejected' ? 'ไม่ผ่าน' :
-                                 applicant.status === 'interviewed' ? 'สัมภาษณ์แล้ว' : applicant.status}
+                                {applicant.status}
                             </Badge>
                         </div>
                         <div className="flex flex-wrap gap-4 text-sm text-slate-500 mt-2">
