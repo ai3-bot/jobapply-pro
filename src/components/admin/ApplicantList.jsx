@@ -56,6 +56,20 @@ export default function ApplicantList({ onSelect, selectedId }) {
                         onChange={(e) => setSearchTerm(e.target.value)}
                     />
                 </div>
+                <div className="relative">
+                    <Briefcase className="absolute left-2.5 top-2.5 h-4 w-4 text-slate-400" />
+                    <Select value={filterPosition} onValueChange={setFilterPosition}>
+                        <SelectTrigger className="bg-white pl-9 justify-start">
+                            <SelectValue placeholder="ค้นหาตำแหน่ง..." />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="all">ค้นหาตำแหน่ง...</SelectItem>
+                            {positionOptions.map(position => (
+                                <SelectItem key={position} value={position}>{position}</SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                </div>
                 <div className="flex items-center gap-2">
                     <div className="relative flex-1">
                         <Input 
@@ -66,18 +80,6 @@ export default function ApplicantList({ onSelect, selectedId }) {
                         />
                     </div>
                 </div>
-                <Select value={filterPosition} onValueChange={setFilterPosition}>
-                    <SelectTrigger className="bg-white">
-                        <Briefcase className="w-4 h-4 mr-2 text-slate-400" />
-                        <SelectValue placeholder="เลือกตำแหน่ง" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="all">ทุกตำแหน่ง</SelectItem>
-                        {positionOptions.map(position => (
-                            <SelectItem key={position} value={position}>{position}</SelectItem>
-                        ))}
-                    </SelectContent>
-                </Select>
             </div>
 
             <div className="flex-1 overflow-y-auto p-2 space-y-2">
