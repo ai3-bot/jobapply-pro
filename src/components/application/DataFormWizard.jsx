@@ -102,6 +102,14 @@ export default function DataFormWizard({ onComplete, globalData, setGlobalData }
             }
         }
         
+        // Validate Step 3 before proceeding
+        if (step === 3) {
+            if (!validateStep3()) {
+                alert('กรุณากรอกประวัติการทำงานอย่างน้อย 1 รายการ');
+                return;
+            }
+        }
+        
         window.scrollTo({ top: 0, behavior: 'smooth' });
         if (step < 4) setStep(step + 1);
         else onComplete(); // Go to PDPA step instead of submitting
