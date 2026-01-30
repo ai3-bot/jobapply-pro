@@ -6,8 +6,32 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 
-export default function FormStep1({ data, updateData, photo }) {
+export default function FormStep1({ data, updateData, photo, errors = {} }) {
     // Job positions query removed
+
+    // Validation helpers
+    const validatePhone = (phone) => {
+        return phone && phone.length === 10;
+    };
+
+    const validateEmail = (email) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return email && emailRegex.test(email);
+    };
+
+    const validateIdCard = (idCard) => {
+        return idCard && idCard.length === 13;
+    };
+
+    const validateThaiName = (firstName, lastName) => {
+        const thaiRegex = /[\u0E00-\u0E7F]/;
+        return firstName && lastName && thaiRegex.test(firstName) && thaiRegex.test(lastName);
+    };
+
+    const validateEnglishName = (englishName) => {
+        const englishRegex = /^[a-zA-Z\s]+$/;
+        return englishName && englishRegex.test(englishName) && englishName.trim().includes(' ');
+    };
 
     // Helper to update nested address fields
     const updateAddress = (type, field, value) => {
