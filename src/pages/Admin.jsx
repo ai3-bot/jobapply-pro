@@ -288,7 +288,7 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                                                     </div>
                                                 </div>
                                                 <div className="flex items-center gap-3">
-                                                    <Badge variant={doc.status === 'approved' ? 'success' : doc.status === 'submitted' ? 'default' : 'secondary'}>
+                                                    <Badge variant={doc.status === 'approved' ? 'success' : doc.status === 'submitted' ? 'warning' : 'secondary'}>
                                                         {doc.status === 'approved' ? 'อนุมัติแล้ว' : doc.status === 'submitted' ? 'รอดำเนินการ' : 'แบบร่าง'}
                                                     </Badge>
                                                     <Button 
@@ -336,7 +336,7 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                                                     </div>
                                                 </div>
                                                 <div className="flex items-center gap-3">
-                                                    <Badge variant={doc.status === 'approved' ? 'success' : doc.status === 'submitted' ? 'default' : 'secondary'}>
+                                                    <Badge variant={doc.status === 'approved' ? 'success' : doc.status === 'submitted' ? 'warning' : 'secondary'}>
                                                         {doc.status === 'approved' ? 'อนุมัติแล้ว' : doc.status === 'submitted' ? 'รอดำเนินการ' : 'แบบร่าง'}
                                                     </Badge>
                                                     <Button 
@@ -408,7 +408,7 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                                                     </div>
                                                 </div>
                                                 <div className="flex items-center gap-3">
-                                                    <Badge variant={doc.status === 'approved' ? 'success' : doc.status === 'submitted' ? 'default' : 'secondary'}>
+                                                    <Badge variant={doc.status === 'approved' ? 'success' : doc.status === 'submitted' ? 'warning' : 'secondary'}>
                                                         {doc.status === 'approved' ? 'อนุมัติแล้ว' : doc.status === 'submitted' ? 'รอดำเนินการ' : 'แบบร่าง'}
                                                     </Badge>
                                                     <Button 
@@ -469,7 +469,7 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                                                     </div>
                                                 </div>
                                                 <div className="flex items-center gap-3">
-                                                    <Badge variant={doc.status === 'approved' ? 'success' : doc.status === 'submitted' ? 'default' : 'secondary'}>
+                                                    <Badge variant={doc.status === 'approved' ? 'success' : doc.status === 'submitted' ? 'warning' : 'secondary'}>
                                                         {doc.status === 'approved' ? 'อนุมัติแล้ว' : doc.status === 'submitted' ? 'รอดำเนินการ' : 'แบบร่าง'}
                                                     </Badge>
                                                     <Button 
@@ -530,7 +530,7 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                                                     </div>
                                                 </div>
                                                 <div className="flex items-center gap-3">
-                                                    <Badge variant={doc.status === 'approved' ? 'success' : doc.status === 'submitted' ? 'default' : 'secondary'}>
+                                                    <Badge variant={doc.status === 'approved' ? 'success' : doc.status === 'submitted' ? 'warning' : 'secondary'}>
                                                         {doc.status === 'approved' ? 'อนุมัติแล้ว' : doc.status === 'submitted' ? 'รอดำเนินการ' : 'แบบร่าง'}
                                                     </Badge>
                                                     <Button 
@@ -591,7 +591,7 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                                                     </div>
                                                 </div>
                                                 <div className="flex items-center gap-3">
-                                                    <Badge variant={doc.status === 'approved' ? 'success' : doc.status === 'submitted' ? 'default' : 'secondary'}>
+                                                    <Badge variant={doc.status === 'approved' ? 'success' : doc.status === 'submitted' ? 'warning' : 'secondary'}>
                                                         {doc.status === 'approved' ? 'อนุมัติแล้ว' : doc.status === 'submitted' ? 'รอดำเนินการ' : 'แบบร่าง'}
                                                     </Badge>
                                                     <Button 
@@ -652,7 +652,7 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                                                     </div>
                                                 </div>
                                                 <div className="flex items-center gap-3">
-                                                    <Badge variant={doc.status === 'approved' ? 'success' : doc.status === 'submitted' ? 'default' : 'secondary'}>
+                                                    <Badge variant={doc.status === 'approved' ? 'success' : doc.status === 'submitted' ? 'warning' : 'secondary'}>
                                                         {doc.status === 'approved' ? 'อนุมัติแล้ว' : doc.status === 'submitted' ? 'รอดำเนินการ' : 'แบบร่าง'}
                                                     </Badge>
                                                     <Button 
@@ -713,7 +713,7 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                                                     </div>
                                                 </div>
                                                 <div className="flex items-center gap-3">
-                                                    <Badge variant={doc.status === 'approved' ? 'success' : doc.status === 'submitted' ? 'default' : 'secondary'}>
+                                                    <Badge variant={doc.status === 'approved' ? 'success' : doc.status === 'submitted' ? 'warning' : 'secondary'}>
                                                         {doc.status === 'approved' ? 'อนุมัติแล้ว' : doc.status === 'submitted' ? 'รอดำเนินการ' : 'แบบร่าง'}
                                                     </Badge>
                                                     <Button 
@@ -774,7 +774,7 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                                                      </div>
                                                  </div>
                                                  <div className="flex items-center gap-3">
-                                                     <Badge variant={doc.status === 'approved' ? 'success' : doc.status === 'submitted' ? 'default' : 'secondary'}>
+                                                     <Badge variant={doc.status === 'approved' ? 'success' : doc.status === 'submitted' ? 'warning' : 'secondary'}>
                                                          {doc.status === 'approved' ? 'อนุมัติแล้ว' : doc.status === 'submitted' ? 'รอดำเนินการ' : 'แบบร่าง'}
                                                      </Badge>
                                                      <Button 

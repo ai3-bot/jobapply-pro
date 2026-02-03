@@ -51,6 +51,7 @@ import Admin from './pages/Admin';
 import Application from './pages/Application';
 import Home from './pages/Home';
 import PDFPreview from './pages/PDFPreview';
+import UserManual from './pages/UserManual';
 import criminalCheckForm from './pages/criminal-check-form';
 import employmentContract from './pages/employment-contract';
 import fmHrd19 from './pages/fm-hrd-19';
@@ -61,7 +62,6 @@ import pdpaForm from './pages/pdpa-form';
 import spsForm from './pages/sps-form';
 import userDashboard from './pages/user-dashboard';
 import userLogin from './pages/user-login';
-import UserManual from './pages/UserManual';
 import __Layout from './Layout.jsx';
 
 
@@ -70,6 +70,7 @@ export const PAGES = {
     "Application": Application,
     "Home": Home,
     "PDFPreview": PDFPreview,
+    "UserManual": UserManual,
     "criminal-check-form": criminalCheckForm,
     "employment-contract": employmentContract,
     "fm-hrd-19": fmHrd19,
@@ -80,7 +81,6 @@ export const PAGES = {
     "sps-form": spsForm,
     "user-dashboard": userDashboard,
     "user-login": userLogin,
-    "UserManual": UserManual,
 }
 
 export const pagesConfig = {
