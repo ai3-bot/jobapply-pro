@@ -295,7 +295,7 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                                                         onClick={() => onReviewPDPA?.(applicant)}
                                                         size="sm"
                                                     >
-                                                        กรอกข้อมูลพยาน
+                                                        {doc.status === 'approved' ? 'ดูเอกสาร' : 'กรอกข้อมูลพยาน'}
                                                     </Button>
                                                 </div>
                                             </div>
@@ -343,7 +343,7 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                                                         onClick={() => onReviewFMHRD27?.(doc)}
                                                         size="sm"
                                                     >
-                                                        ดูและเซ็น
+                                                        {doc.status === 'approved' ? 'ดูเอกสาร' : 'กรอกข้อมูลพยาน'}
                                                     </Button>
                                                 </div>
                                             </div>
@@ -815,7 +815,7 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                                                     onClick={() => onReviewCriminalCheck(applicant)}
                                                     size="sm"
                                                 >
-                                                    กรอกข้อมูลและเซ็น
+                                                    {applicant.criminal_check_document?.status === 'completed' ? 'ดูเอกสาร' : 'กรอกข้อมูลพยาน'}
                                                 </Button>
                                             </div>
                                         </div>
