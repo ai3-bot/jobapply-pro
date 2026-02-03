@@ -223,7 +223,7 @@ export default function DataFormWizard({ onComplete, globalData, setGlobalData }
                     />}
                 </CardContent>
                 <div className="p-6 border-t flex justify-between bg-slate-50 rounded-b-xl">
-                    <Button variant="ghost" onClick={handleBack} disabled={step === 1 || isSubmitting}>
+                    <Button variant="outline" onClick={handleBack} disabled={step === 1 || isSubmitting}>
                         <ChevronLeft className="w-4 h-4 mr-2" /> ย้อนกลับ
                     </Button>
                     <Button onClick={handleNext} disabled={isSubmitting} className="bg-indigo-600 hover:bg-indigo-700">
