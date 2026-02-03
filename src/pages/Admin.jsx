@@ -808,7 +808,7 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                                                 </div>
                                             </div>
                                             <div className="flex items-center gap-3">
-                                                <Badge variant={applicant.criminal_check_document?.status === 'completed' ? 'success' : 'default'}>
+                                                <Badge variant={applicant.criminal_check_document?.status === 'completed' ? 'success' : 'warning'}>
                                                     {applicant.criminal_check_document?.status === 'completed' ? 'เสร็จสิ้น' : 'รอดำเนินการ'}
                                                 </Badge>
                                                 <Button 
