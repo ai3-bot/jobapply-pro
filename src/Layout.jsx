@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { base44 } from '@/api/base44Client';
 import { Button } from "@/components/ui/button";
-import { LogIn, UserCircle, LogOut, Book } from "lucide-react";
+import { LogIn, UserCircle, LogOut } from "lucide-react";
 
 import { useQuery } from '@tanstack/react-query';
 
@@ -79,11 +79,6 @@ export default function Layout({ children }) {
           </Link>
 
           <div className="flex items-center gap-4">
-            <Link to="/user-manual">
-              <Button variant="ghost" size="icon" title="คู่มือการใช้งาน">
-                <Book className="w-5 h-5 text-slate-500" />
-              </Button>
-            </Link>
             {!isEmployeeLoggedIn && user ? (
               <div className="flex items-center gap-3">
                 <Link to="/admin">

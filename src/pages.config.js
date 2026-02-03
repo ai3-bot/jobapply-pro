@@ -51,7 +51,6 @@ import Admin from './pages/Admin';
 import Application from './pages/Application';
 import Home from './pages/Home';
 import PDFPreview from './pages/PDFPreview';
-import UserManual from './pages/UserManual';
 import criminalCheckForm from './pages/criminal-check-form';
 import employmentContract from './pages/employment-contract';
 import fmHrd19 from './pages/fm-hrd-19';
@@ -70,7 +69,6 @@ export const PAGES = {
     "Application": Application,
     "Home": Home,
     "PDFPreview": PDFPreview,
-    "UserManual": UserManual,
     "criminal-check-form": criminalCheckForm,
     "employment-contract": employmentContract,
     "fm-hrd-19": fmHrd19,
