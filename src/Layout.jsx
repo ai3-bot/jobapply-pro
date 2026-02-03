@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { base44 } from '@/api/base44Client';
 import { Button } from "@/components/ui/button";
-import { LogIn, UserCircle, LogOut } from "lucide-react";
+import { LogIn, UserCircle, LogOut, Book } from "lucide-react";
 
 import { useQuery } from '@tanstack/react-query';
 
