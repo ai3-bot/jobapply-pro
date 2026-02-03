@@ -201,6 +201,10 @@ export default function UserDashboard() {
                                                             <CheckCircle className="w-3 h-3 mr-1" />
                                                             อนุมัติแล้ว
                                                         </Badge>
+                                                    ) : status === 'submitted' ? (
+                                                        <Badge variant="warning">
+                                                            ส่งเอกสารแล้ว
+                                                        </Badge>
                                                     ) : (
                                                         <Badge variant="outline" className="text-amber-600 border-amber-300">
                                                             {doc.link ? 'คลิกเพื่อดำเนินการ' : 'รอดำเนินการ'}
