@@ -190,22 +190,26 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                     for (let i = 0; i < pages.length; i++) {
                         const page = pages[i];
                         
-                        // Clone page and set exact A4 width
+                        // Clone page and set exact A4 dimensions
                         const clone = page.cloneNode(true);
                         clone.style.width = A4_WIDTH_PX + 'px';
                         clone.style.maxWidth = A4_WIDTH_PX + 'px';
                         clone.style.minWidth = A4_WIDTH_PX + 'px';
-                        clone.style.minHeight = A4_HEIGHT_PX + 'px';
                         clone.style.height = A4_HEIGHT_PX + 'px';
+                        clone.style.maxHeight = A4_HEIGHT_PX + 'px';
+                        clone.style.minHeight = A4_HEIGHT_PX + 'px';
+                        clone.style.overflow = 'hidden';
                         clone.style.position = 'absolute';
                         clone.style.left = '-9999px';
                         clone.style.top = '0';
                         clone.style.backgroundColor = '#ffffff';
                         clone.style.margin = '0';
                         clone.style.marginTop = '0';
+                        clone.style.padding = '20mm';
+                        clone.style.boxSizing = 'border-box';
                         document.body.appendChild(clone);
                         
-                        await new Promise(resolve => setTimeout(resolve, 50));
+                        await new Promise(resolve => setTimeout(resolve, 100));
                         
                         const canvas = await html2canvas(clone, {
                             scale: SCALE,
