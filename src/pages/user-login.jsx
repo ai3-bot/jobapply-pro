@@ -117,7 +117,7 @@ export default function UserLogin() {
                                                             </div>
                                                             <div className="text-xs text-slate-400 flex items-center gap-1 mt-1">
                                                                 <Calendar className="w-3 h-3" />
-                                                                {formatDayMonth(applicant.personal_data?.dob)}
+                                                                {formatDayMonth(applicant.personal_data?.application_date)}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -147,7 +147,7 @@ export default function UserLogin() {
                                         <div className="text-sm text-slate-600">{selectedApplicant.personal_data?.english_name}</div>
                                         <div className="text-xs text-slate-500 flex items-center gap-1 mt-1">
                                             <Calendar className="w-3 h-3" />
-                                            {formatDayMonth(selectedApplicant.personal_data?.dob)}
+                                            {formatDayMonth(selectedApplicant.personal_data?.application_date)}
                                         </div>
                                     </div>
                                     <Button 
