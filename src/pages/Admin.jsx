@@ -169,15 +169,39 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
             const zip = new JSZip();
             const documentsFolder = zip.folder(selectedApplicant.full_name);
             
-            // Helper function to convert HTML element to PDF blob
+            // Helper function to convert HTML element to PDF blob with A4 sizing
             const elementToPdfBlob = async (element) => {
-                const canvas = await html2canvas(element, {
+                // A4 dimensions: 210mm x 297mm
+                // At 96 DPI: 794px x 1123px
+                const A4_WIDTH_PX = 794;
+                const A4_HEIGHT_PX = 1123;
+                
+                // Clone element and set exact A4 width
+                const clone = element.cloneNode(true);
+                clone.style.width = A4_WIDTH_PX + 'px';
+                clone.style.maxWidth = A4_WIDTH_PX + 'px';
+                clone.style.minWidth = A4_WIDTH_PX + 'px';
+                clone.style.position = 'absolute';
+                clone.style.left = '-9999px';
+                clone.style.top = '0';
+                clone.style.backgroundColor = '#ffffff';
+                document.body.appendChild(clone);
+                
+                // Wait for styles to apply
+                await new Promise(resolve => setTimeout(resolve, 100));
+                
+                const canvas = await html2canvas(clone, {
                     scale: 2,
                     useCORS: true,
                     allowTaint: true,
                     logging: false,
-                    backgroundColor: '#ffffff'
+                    backgroundColor: '#ffffff',
+                    width: A4_WIDTH_PX,
+                    windowWidth: A4_WIDTH_PX
                 });
+                
+                // Remove clone
+                document.body.removeChild(clone);
                 
                 const imgData = canvas.toDataURL('image/png');
                 const pdf = new jsPDF('p', 'mm', 'a4');
@@ -195,8 +219,8 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                     // Single page - fit to full width
                     pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, scaledHeight);
                 } else {
-                    // Multi-page handling
-                    const pageHeightPx = pdfHeight / ratio;
+                    // Multi-page handling - split into exact A4 page heights
+                    const pageHeightPx = A4_HEIGHT_PX * 2; // scale 2
                     let position = 0;
                     let pageNum = 0;
                     
@@ -208,17 +232,19 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                         // Calculate how much of the image to show on this page
                         const remainingHeight = imgHeight - position;
                         const thisPageHeightPx = Math.min(pageHeightPx, remainingHeight);
-                        const thisPageHeightMm = thisPageHeightPx * ratio;
+                        const thisPageHeightMm = (thisPageHeightPx / 2) * (pdfWidth / A4_WIDTH_PX);
                         
                         // Create a canvas for this page section
                         const pageCanvas = document.createElement('canvas');
                         pageCanvas.width = imgWidth;
                         pageCanvas.height = thisPageHeightPx;
                         const ctx = pageCanvas.getContext('2d');
+                        ctx.fillStyle = '#ffffff';
+                        ctx.fillRect(0, 0, imgWidth, thisPageHeightPx);
                         ctx.drawImage(canvas, 0, position, imgWidth, thisPageHeightPx, 0, 0, imgWidth, thisPageHeightPx);
                         
                         const pageImgData = pageCanvas.toDataURL('image/png');
-                        pdf.addImage(pageImgData, 'PNG', 0, 0, pdfWidth, thisPageHeightMm);
+                        pdf.addImage(pageImgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
                         
                         position += pageHeightPx;
                         pageNum++;
