@@ -400,7 +400,7 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                                                     <div className="flex-1">
                                                         <h3 className="font-semibold text-lg">{applicant?.full_name || '-'}</h3>
                                                         <p className="text-sm text-slate-500">
-                                                            สถานะ: {doc.status === 'approved' ? 'อนุมัติแล้ว' : doc.status === 'submitted' ? 'รอดำเนินการ' : 'แบบร่าง'}
+                                                            วันที่ส่งเอกสาร: {doc.submitted_date ? format(new Date(doc.submitted_date), 'dd/MMM/yyyy') : '-'}
                                                         </p>
                                                     </div>
                                                 </div>
@@ -448,7 +448,7 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                                                     <div className="flex-1">
                                                         <h3 className="font-semibold text-lg">{applicant?.full_name || '-'}</h3>
                                                         <p className="text-sm text-slate-500">
-                                                            สถานะ: {doc.status === 'approved' ? 'อนุมัติแล้ว' : doc.status === 'submitted' ? 'รอดำเนินการ' : 'แบบร่าง'}
+                                                            วันที่ส่งเอกสาร: {doc.submitted_date ? format(new Date(doc.submitted_date), 'dd/MMM/yyyy') : '-'}
                                                         </p>
                                                     </div>
                                                 </div>
