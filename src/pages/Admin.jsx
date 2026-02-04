@@ -504,24 +504,9 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                                                     </div>
                                                     <div className="flex-1">
                                                         <h3 className="font-semibold text-lg">{applicant?.full_name || '-'}</h3>
-                                                        <div className="grid grid-cols-2 gap-4 mt-2 text-sm text-slate-600">
-                                                            <div>
-                                                                <p className="text-xs text-slate-500">วันที่เอกสาร</p>
-                                                                <p className="font-medium">{docData.document_date ? format(new Date(docData.document_date), 'dd/MMM/yyyy') : '-'}</p>
-                                                            </div>
-                                                            <div>
-                                                                <p className="text-xs text-slate-500">ตำแหน่ง / แผนก</p>
-                                                                <p className="font-medium">{docData.position || '-'} / {docData.department || '-'}</p>
-                                                            </div>
-                                                            <div>
-                                                                <p className="text-xs text-slate-500">วันฝึกอบรม</p>
-                                                                <p className="font-medium">{docData.training_start_date && docData.training_end_date ? `${format(new Date(docData.training_start_date), 'dd/MMM/yyyy')} - ${format(new Date(docData.training_end_date), 'dd/MMM/yyyy')}` : '-'}</p>
-                                                            </div>
-                                                            <div>
-                                                                <p className="text-xs text-slate-500">ID เอกสาร</p>
-                                                                <p className="font-medium text-xs">{doc.id.substring(0, 8)}...</p>
-                                                            </div>
-                                                        </div>
+                                                        <p className="text-sm text-slate-500 mt-1">
+                                                            วันที่ส่งเอกสาร: {doc.submitted_date ? format(new Date(doc.submitted_date), 'dd/MMM/yyyy') : '-'}
+                                                        </p>
                                                     </div>
                                                 </div>
                                                 <div className="flex items-center gap-3">
@@ -569,20 +554,9 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                                                     </div>
                                                     <div className="flex-1">
                                                         <h3 className="font-semibold text-lg">{applicant?.full_name || '-'}</h3>
-                                                        <div className="grid grid-cols-3 gap-4 mt-2 text-sm text-slate-600">
-                                                            <div>
-                                                                <p className="text-xs text-slate-500">ประเภทแบบฟอร์ม</p>
-                                                                <p className="font-medium">{doc.pdf_type}</p>
-                                                            </div>
-                                                            <div>
-                                                                <p className="text-xs text-slate-500">วันที่ส่ง</p>
-                                                                <p className="font-medium">{doc.submitted_date ? format(new Date(doc.submitted_date), 'dd/MMM/yyyy') : '-'}</p>
-                                                            </div>
-                                                            <div>
-                                                                <p className="text-xs text-slate-500">ID เอกสาร</p>
-                                                                <p className="font-medium text-xs">{doc.id.substring(0, 8)}...</p>
-                                                            </div>
-                                                        </div>
+                                                        <p className="text-sm text-slate-500 mt-1">
+                                                            วันที่ส่งเอกสาร: {doc.submitted_date ? format(new Date(doc.submitted_date), 'dd/MMM/yyyy') : '-'}
+                                                        </p>
                                                     </div>
                                                 </div>
                                                 <div className="flex items-center gap-3">
@@ -630,20 +604,9 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                                                     </div>
                                                     <div className="flex-1">
                                                         <h3 className="font-semibold text-lg">{applicant?.full_name || '-'}</h3>
-                                                        <div className="grid grid-cols-3 gap-4 mt-2 text-sm text-slate-600">
-                                                            <div>
-                                                                <p className="text-xs text-slate-500">ประเภทแบบฟอร์ม</p>
-                                                                <p className="font-medium">{doc.pdf_type}</p>
-                                                            </div>
-                                                            <div>
-                                                                <p className="text-xs text-slate-500">วันที่ส่ง</p>
-                                                                <p className="font-medium">{doc.submitted_date ? format(new Date(doc.submitted_date), 'dd/MMM/yyyy') : '-'}</p>
-                                                            </div>
-                                                            <div>
-                                                                <p className="text-xs text-slate-500">ID เอกสาร</p>
-                                                                <p className="font-medium text-xs">{doc.id.substring(0, 8)}...</p>
-                                                            </div>
-                                                        </div>
+                                                        <p className="text-sm text-slate-500 mt-1">
+                                                            วันที่ส่งเอกสาร: {doc.submitted_date ? format(new Date(doc.submitted_date), 'dd/MMM/yyyy') : '-'}
+                                                        </p>
                                                     </div>
                                                 </div>
                                                 <div className="flex items-center gap-3">
@@ -691,20 +654,9 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                                                     </div>
                                                     <div className="flex-1">
                                                         <h3 className="font-semibold text-lg">{applicant?.full_name || '-'}</h3>
-                                                        <div className="grid grid-cols-3 gap-4 mt-2 text-sm text-slate-600">
-                                                            <div>
-                                                                <p className="text-xs text-slate-500">บริษัท</p>
-                                                                <p className="font-medium">{docData.employerName || '-'}</p>
-                                                            </div>
-                                                            <div>
-                                                                <p className="text-xs text-slate-500">วันที่ส่ง</p>
-                                                                <p className="font-medium">{doc.submitted_date ? format(new Date(doc.submitted_date), 'dd/MMM/yyyy') : '-'}</p>
-                                                            </div>
-                                                            <div>
-                                                                <p className="text-xs text-slate-500">ID เอกสาร</p>
-                                                                <p className="font-medium text-xs">{doc.id.substring(0, 8)}...</p>
-                                                            </div>
-                                                        </div>
+                                                        <p className="text-sm text-slate-500 mt-1">
+                                                            วันที่ส่งเอกสาร: {doc.submitted_date ? format(new Date(doc.submitted_date), 'dd/MMM/yyyy') : '-'}
+                                                        </p>
                                                     </div>
                                                 </div>
                                                 <div className="flex items-center gap-3">
@@ -752,20 +704,9 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                                                     </div>
                                                     <div className="flex-1">
                                                         <h3 className="font-semibold text-lg">{applicant?.full_name || '-'}</h3>
-                                                        <div className="grid grid-cols-3 gap-4 mt-2 text-sm text-slate-600">
-                                                            <div>
-                                                                <p className="text-xs text-slate-500">ตำแหน่ง</p>
-                                                                <p className="font-medium">{docData.position || '-'}</p>
-                                                            </div>
-                                                            <div>
-                                                                <p className="text-xs text-slate-500">แผนก</p>
-                                                                <p className="font-medium">{docData.department || '-'}</p>
-                                                            </div>
-                                                            <div>
-                                                                <p className="text-xs text-slate-500">วันเริ่มงาน</p>
-                                                                <p className="font-medium">{docData.workStartDate ? format(new Date(docData.workStartDate), 'dd/MMM/yyyy') : '-'}</p>
-                                                            </div>
-                                                        </div>
+                                                        <p className="text-sm text-slate-500 mt-1">
+                                                            วันที่ส่งเอกสาร: {doc.submitted_date ? format(new Date(doc.submitted_date), 'dd/MMM/yyyy') : '-'}
+                                                        </p>
                                                     </div>
                                                 </div>
                                                 <div className="flex items-center gap-3">
@@ -813,20 +754,9 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                                                     </div>
                                                     <div className="flex-1">
                                                         <h3 className="font-semibold text-lg">{applicant?.full_name || '-'}</h3>
-                                                        <div className="grid grid-cols-2 gap-4 mt-2 text-sm text-slate-600">
-                                                            <div>
-                                                                <p className="text-xs text-slate-500">รหัสพนักงาน</p>
-                                                                <p className="font-medium">{docData.employeeId || '-'}</p>
-                                                            </div>
-                                                            <div>
-                                                                <p className="text-xs text-slate-500">ตำแหน่ง</p>
-                                                                <p className="font-medium">{docData.position || '-'}</p>
-                                                            </div>
-                                                            <div>
-                                                                <p className="text-xs text-slate-500">ID เอกสาร</p>
-                                                                <p className="font-medium text-xs">{doc.id.substring(0, 8)}...</p>
-                                                            </div>
-                                                        </div>
+                                                        <p className="text-sm text-slate-500 mt-1">
+                                                            วันที่ส่งเอกสาร: {doc.submitted_date ? format(new Date(doc.submitted_date), 'dd/MMM/yyyy') : '-'}
+                                                        </p>
                                                     </div>
                                                 </div>
                                                 <div className="flex items-center gap-3">
@@ -874,20 +804,9 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                                                      </div>
                                                      <div className="flex-1">
                                                          <h3 className="font-semibold text-lg">{applicant?.full_name || '-'}</h3>
-                                                         <div className="grid grid-cols-3 gap-4 mt-2 text-sm text-slate-600">
-                                                             <div>
-                                                                 <p className="text-xs text-slate-500">ชื่อบริษัท</p>
-                                                                 <p className="font-medium">{docData.companyName || '-'}</p>
-                                                             </div>
-                                                             <div>
-                                                                 <p className="text-xs text-slate-500">วัตถุประสงค์</p>
-                                                                 <p className="font-medium">{docData.purpose || '-'}</p>
-                                                             </div>
-                                                             <div>
-                                                                 <p className="text-xs text-slate-500">ID เอกสาร</p>
-                                                                 <p className="font-medium text-xs">{doc.id.substring(0, 8)}...</p>
-                                                             </div>
-                                                         </div>
+                                                         <p className="text-sm text-slate-500 mt-1">
+                                                             วันที่ส่งเอกสาร: {doc.submitted_date ? format(new Date(doc.submitted_date), 'dd/MMM/yyyy') : '-'}
+                                                         </p>
                                                      </div>
                                                  </div>
                                                  <div className="flex items-center gap-3">
