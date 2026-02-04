@@ -169,44 +169,93 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
             const zip = new JSZip();
             const documentsFolder = zip.folder(selectedApplicant.full_name);
             
-            // Collect all document data as JSON
-            const allDocuments = {
-                applicant_info: {
-                    full_name: selectedApplicant.full_name,
-                    email: selectedApplicant.personal_data?.email,
-                    phone: selectedApplicant.personal_data?.mobile_phone,
-                    submission_date: selectedApplicant.submission_date
-                },
-                nda_documents: filteredFMHRD27.map(doc => ({ id: doc.id, data: doc.data, status: doc.status })),
-                pdpa_documents: filteredPDPA.map(doc => ({ id: doc.id, data: doc.data, status: doc.status })),
-                fmhrd19_documents: filteredFMHRD19.map(doc => ({ id: doc.id, data: doc.data, status: doc.status })),
-                sps103_documents: filteredSPS103.map(doc => ({ id: doc.id, data: doc.data, status: doc.status })),
-                sps902_documents: filteredSPS902.map(doc => ({ id: doc.id, data: doc.data, status: doc.status })),
-                insurance_documents: filteredInsurance.map(doc => ({ id: doc.id, data: doc.data, status: doc.status })),
-                employment_contracts: filteredEmploymentContract.map(doc => ({ id: doc.id, data: doc.data, status: doc.status })),
-                fmhrd30_documents: filteredFMHRD30.map(doc => ({ id: doc.id, data: doc.data, status: doc.status })),
-                criminal_check_documents: filteredCriminalCheck.map(doc => ({ id: doc.id, data: doc.data, status: doc.status }))
+            // Helper function to convert HTML element to PDF blob
+            const elementToPdfBlob = async (element) => {
+                const canvas = await html2canvas(element, {
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: true,
+                    logging: false
+                });
+                
+                const imgData = canvas.toDataURL('image/png');
+                const pdf = new jsPDF('p', 'mm', 'a4');
+                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const pdfHeight = pdf.internal.pageSize.getHeight();
+                const imgWidth = canvas.width;
+                const imgHeight = canvas.height;
+                const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
+                const imgX = (pdfWidth - imgWidth * ratio) / 2;
+                const imgY = 0;
+                
+                // Handle multi-page PDF
+                const pageHeight = pdfHeight * (imgWidth / pdfWidth);
+                let heightLeft = imgHeight;
+                let position = 0;
+                
+                pdf.addImage(imgData, 'PNG', imgX, imgY, imgWidth * ratio, imgHeight * ratio);
+                heightLeft -= pageHeight;
+                
+                while (heightLeft > 0) {
+                    position = heightLeft - imgHeight;
+                    pdf.addPage();
+                    pdf.addImage(imgData, 'PNG', imgX, position * ratio, imgWidth * ratio, imgHeight * ratio);
+                    heightLeft -= pageHeight;
+                }
+                
+                return pdf.output('blob');
             };
             
-            // Add summary JSON
-            documentsFolder.file('summary.json', JSON.stringify(allDocuments, null, 2));
+            // Get the preview container elements
+            const previewContainer = document.querySelector('[data-download-preview]');
             
-            // Create a text summary
-            let textSummary = `สรุปเอกสารของ ${selectedApplicant.full_name}\n`;
-            textSummary += `=`.repeat(50) + '\n\n';
-            textSummary += `จำนวนเอกสารทั้งหมด:\n`;
-            textSummary += `- NDA (FM-HRD-27): ${filteredFMHRD27.length} เอกสาร\n`;
-            textSummary += `- PDPA: ${filteredPDPA.length} เอกสาร\n`;
-            textSummary += `- FM-HRD-19: ${filteredFMHRD19.length} เอกสาร\n`;
-            textSummary += `- SPS 1-03: ${filteredSPS103.length} เอกสาร\n`;
-            textSummary += `- SPS 9-02: ${filteredSPS902.length} เอกสาร\n`;
-            textSummary += `- ใบสมัครประกัน: ${filteredInsurance.length} เอกสาร\n`;
-            textSummary += `- สัญญาจ้างงาน: ${filteredEmploymentContract.length} เอกสาร\n`;
-            textSummary += `- FM-HRD-30: ${filteredFMHRD30.length} เอกสาร\n`;
-            textSummary += `- หนังสือมอบอำนาจ: ${filteredCriminalCheck.length} เอกสาร\n\n`;
-            textSummary += `หมายเหตุ: กรุณาเข้าระบบเพื่อดูและดาวน์โหลดเอกสาร PDF แต่ละฉบับ\n`;
-            
-            documentsFolder.file('README.txt', textSummary);
+            if (previewContainer) {
+                // Get all document sections
+                const docSections = previewContainer.querySelectorAll('[data-doc-type]');
+                
+                for (const section of docSections) {
+                    const docType = section.getAttribute('data-doc-type');
+                    const docIndex = section.getAttribute('data-doc-index') || '1';
+                    
+                    try {
+                        const pdfBlob = await elementToPdfBlob(section);
+                        documentsFolder.file(`${docType}_${docIndex}.pdf`, pdfBlob);
+                    } catch (err) {
+                        console.error(`Error generating PDF for ${docType}:`, err);
+                    }
+                }
+            } else {
+                // Fallback: Generate PDFs from preview modal content
+                const previewRef = document.querySelector('.bg-slate-200.p-4');
+                if (previewRef) {
+                    const children = previewRef.children;
+                    let docCounter = {
+                        pdpa: 0, nda: 0, fmhrd19: 0, fmhrd30: 0, 
+                        sps103: 0, sps902: 0, insurance: 0, 
+                        contract: 0, criminal: 0
+                    };
+                    
+                    // Generate individual PDFs for each document
+                    for (let i = 0; i < children.length; i++) {
+                        const child = children[i];
+                        if (child.querySelector('.pdpa-page')) {
+                            docCounter.pdpa++;
+                            const pdfBlob = await elementToPdfBlob(child);
+                            documentsFolder.file(`PDPA_${docCounter.pdpa}.pdf`, pdfBlob);
+                        } else if (child.querySelector('[class*="nda"]') || i < filteredFMHRD27.length + filteredPDPA.length && i >= filteredPDPA.length) {
+                            docCounter.nda++;
+                            const pdfBlob = await elementToPdfBlob(child);
+                            documentsFolder.file(`NDA_FM-HRD-27_${docCounter.nda}.pdf`, pdfBlob);
+                        }
+                    }
+                    
+                    // If no individual docs found, create one combined PDF
+                    if (Object.values(docCounter).every(c => c === 0)) {
+                        const pdfBlob = await elementToPdfBlob(previewRef);
+                        documentsFolder.file('All_Documents.pdf', pdfBlob);
+                    }
+                }
+            }
             
             // Generate and download ZIP
             const zipBlob = await zip.generateAsync({ type: 'blob' });
@@ -218,7 +267,7 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
             URL.revokeObjectURL(url);
             
             setShowDownloadPreview(false);
-            alert(`ดาวน์โหลดข้อมูลเอกสารเรียบร้อยแล้ว\nรวม ${filteredFMHRD27.length + filteredPDPA.length + filteredFMHRD19.length + filteredSPS103.length + filteredSPS902.length + filteredInsurance.length + filteredEmploymentContract.length + filteredFMHRD30.length + filteredCriminalCheck.length} เอกสาร`);
+            alert(`ดาวน์โหลดเอกสาร PDF เรียบร้อยแล้ว`);
             
         } catch (error) {
             console.error('Error downloading documents:', error);
