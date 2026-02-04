@@ -175,32 +175,54 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                     scale: 2,
                     useCORS: true,
                     allowTaint: true,
-                    logging: false
+                    logging: false,
+                    backgroundColor: '#ffffff'
                 });
                 
                 const imgData = canvas.toDataURL('image/png');
                 const pdf = new jsPDF('p', 'mm', 'a4');
-                const pdfWidth = pdf.internal.pageSize.getWidth();
-                const pdfHeight = pdf.internal.pageSize.getHeight();
+                const pdfWidth = pdf.internal.pageSize.getWidth(); // 210mm
+                const pdfHeight = pdf.internal.pageSize.getHeight(); // 297mm
                 const imgWidth = canvas.width;
                 const imgHeight = canvas.height;
-                const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
-                const imgX = (pdfWidth - imgWidth * ratio) / 2;
-                const imgY = 0;
                 
-                // Handle multi-page PDF
-                const pageHeight = pdfHeight * (imgWidth / pdfWidth);
-                let heightLeft = imgHeight;
-                let position = 0;
+                // Calculate ratio to fit width exactly to A4
+                const ratio = pdfWidth / imgWidth;
+                const scaledHeight = imgHeight * ratio;
                 
-                pdf.addImage(imgData, 'PNG', imgX, imgY, imgWidth * ratio, imgHeight * ratio);
-                heightLeft -= pageHeight;
-                
-                while (heightLeft > 0) {
-                    position = heightLeft - imgHeight;
-                    pdf.addPage();
-                    pdf.addImage(imgData, 'PNG', imgX, position * ratio, imgWidth * ratio, imgHeight * ratio);
-                    heightLeft -= pageHeight;
+                // Handle multi-page if content is taller than one page
+                if (scaledHeight <= pdfHeight) {
+                    // Single page - fit to full width
+                    pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, scaledHeight);
+                } else {
+                    // Multi-page handling
+                    const pageHeightPx = pdfHeight / ratio;
+                    let position = 0;
+                    let pageNum = 0;
+                    
+                    while (position < imgHeight) {
+                        if (pageNum > 0) {
+                            pdf.addPage();
+                        }
+                        
+                        // Calculate how much of the image to show on this page
+                        const remainingHeight = imgHeight - position;
+                        const thisPageHeightPx = Math.min(pageHeightPx, remainingHeight);
+                        const thisPageHeightMm = thisPageHeightPx * ratio;
+                        
+                        // Create a canvas for this page section
+                        const pageCanvas = document.createElement('canvas');
+                        pageCanvas.width = imgWidth;
+                        pageCanvas.height = thisPageHeightPx;
+                        const ctx = pageCanvas.getContext('2d');
+                        ctx.drawImage(canvas, 0, position, imgWidth, thisPageHeightPx, 0, 0, imgWidth, thisPageHeightPx);
+                        
+                        const pageImgData = pageCanvas.toDataURL('image/png');
+                        pdf.addImage(pageImgData, 'PNG', 0, 0, pdfWidth, thisPageHeightMm);
+                        
+                        position += pageHeightPx;
+                        pageNum++;
+                    }
                 }
                 
                 return pdf.output('blob');
