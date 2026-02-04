@@ -232,19 +232,24 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                         pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
                     }
                 } else {
-                    // Single page or continuous document - use original logic
+                    // Single page document
                     const targetElement = pages.length === 1 ? pages[0] : element;
                     
-                    // Clone element and set exact A4 width
+                    // Clone element and set exact A4 dimensions
                     const clone = targetElement.cloneNode(true);
                     clone.style.width = A4_WIDTH_PX + 'px';
                     clone.style.maxWidth = A4_WIDTH_PX + 'px';
                     clone.style.minWidth = A4_WIDTH_PX + 'px';
+                    clone.style.height = A4_HEIGHT_PX + 'px';
+                    clone.style.maxHeight = A4_HEIGHT_PX + 'px';
+                    clone.style.minHeight = A4_HEIGHT_PX + 'px';
+                    clone.style.overflow = 'hidden';
                     clone.style.position = 'absolute';
                     clone.style.left = '-9999px';
                     clone.style.top = '0';
                     clone.style.backgroundColor = '#ffffff';
                     clone.style.margin = '0';
+                    clone.style.boxSizing = 'border-box';
                     document.body.appendChild(clone);
                     
                     await new Promise(resolve => setTimeout(resolve, 100));
@@ -256,44 +261,14 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                         logging: false,
                         backgroundColor: '#ffffff',
                         width: A4_WIDTH_PX,
+                        height: A4_HEIGHT_PX,
                         windowWidth: A4_WIDTH_PX
                     });
                     
                     document.body.removeChild(clone);
                     
-                    const canvasWidth = canvas.width;
-                    const canvasHeight = canvas.height;
-                    const pageHeightPx = A4_HEIGHT_PX * SCALE;
-                    const totalPages = Math.ceil(canvasHeight / pageHeightPx);
-                    
-                    for (let pageNum = 0; pageNum < totalPages; pageNum++) {
-                        if (pageNum > 0) {
-                            pdf.addPage();
-                        }
-                        
-                        const yStart = pageNum * pageHeightPx;
-                        const remainingHeight = canvasHeight - yStart;
-                        const thisPageHeight = Math.min(pageHeightPx, remainingHeight);
-                        
-                        const pageCanvas = document.createElement('canvas');
-                        pageCanvas.width = canvasWidth;
-                        pageCanvas.height = pageHeightPx;
-                        const ctx = pageCanvas.getContext('2d');
-                        
-                        ctx.fillStyle = '#ffffff';
-                        ctx.fillRect(0, 0, canvasWidth, pageHeightPx);
-                        
-                        ctx.drawImage(
-                            canvas, 
-                            0, yStart,
-                            canvasWidth, thisPageHeight,
-                            0, 0,
-                            canvasWidth, thisPageHeight
-                        );
-                        
-                        const pageImgData = pageCanvas.toDataURL('image/png');
-                        pdf.addImage(pageImgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-                    }
+                    const imgData = canvas.toDataURL('image/png');
+                    pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
                 }
                 
                 return pdf.output('blob');
