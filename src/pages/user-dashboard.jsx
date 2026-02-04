@@ -123,7 +123,7 @@ export default function UserDashboard() {
                                 <h1 className="text-3xl font-bold text-slate-800 mb-2">{applicant.full_name}</h1>
                                 <p className="text-lg text-slate-600 mb-4">{personalData.english_name}</p>
                                 
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                                     <div className="flex items-center justify-center md:justify-start gap-2 text-slate-600">
                                         <Calendar className="w-5 h-5 text-indigo-500" />
                                         <div>
@@ -151,6 +151,24 @@ export default function UserDashboard() {
                                         <div>
                                             <div className="text-xs text-slate-500">ตำแหน่งที่สมัคร</div>
                                             <div className="font-semibold">{personalData.position_1 || '-'}</div>
+                                        </div>
+                                    </div>
+
+                                    <div className="flex items-center justify-center md:justify-start gap-2 text-slate-600">
+                                        <Calendar className="w-5 h-5 text-indigo-500" />
+                                        <div>
+                                            <div className="text-xs text-slate-500">วันที่สมัคร</div>
+                                            <div className="font-semibold">
+                                                {personalData.application_date ? new Date(personalData.application_date).toLocaleDateString('th-TH', { 
+                                                    year: 'numeric', 
+                                                    month: 'long', 
+                                                    day: 'numeric' 
+                                                }) : (applicant.submission_date ? new Date(applicant.submission_date).toLocaleDateString('th-TH', { 
+                                                    year: 'numeric', 
+                                                    month: 'long', 
+                                                    day: 'numeric' 
+                                                }) : '-')}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
