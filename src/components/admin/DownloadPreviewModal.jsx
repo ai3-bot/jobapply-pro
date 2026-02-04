@@ -76,10 +76,10 @@ export default function DownloadPreviewModal({
                                 ไม่พบเอกสารที่จะแสดง
                             </div>
                         ) : (
-                            <div className="space-y-8">
+                            <div className="space-y-8" data-download-preview>
                                 {/* PDPA Preview */}
                                 {documents.pdpa?.map((doc, idx) => (
-                                    <div key={`pdpa-${idx}`}>
+                                    <div key={`pdpa-${idx}`} data-doc-type="PDPA" data-doc-index={idx + 1}>
                                         <PDPADocument 
                                             applicant={applicant}
                                             formData={doc.data || {}}
@@ -92,7 +92,7 @@ export default function DownloadPreviewModal({
 
                                 {/* NDA Preview */}
                                 {documents.nda?.map((doc, idx) => (
-                                    <div key={`nda-${idx}`}>
+                                    <div key={`nda-${idx}`} data-doc-type="NDA_FM-HRD-27" data-doc-index={idx + 1}>
                                         <NDADocument 
                                             applicant={applicant}
                                             formData={doc.data || {}}
@@ -102,7 +102,7 @@ export default function DownloadPreviewModal({
 
                                 {/* FM-HRD-19 Preview */}
                                 {documents.fmhrd19?.map((doc, idx) => (
-                                    <div key={`fmhrd19-${idx}`}>
+                                    <div key={`fmhrd19-${idx}`} data-doc-type="FM-HRD-19" data-doc-index={idx + 1}>
                                         <FMH19Document 
                                             applicant={applicant}
                                             formData={doc.data || {}}
@@ -112,7 +112,7 @@ export default function DownloadPreviewModal({
 
                                 {/* Employment Contract Preview */}
                                 {documents.employmentContract?.map((doc, idx) => (
-                                    <div key={`contract-${idx}`}>
+                                    <div key={`contract-${idx}`} data-doc-type="Employment_Contract" data-doc-index={idx + 1}>
                                         <EmploymentContractDocument 
                                             applicant={applicant}
                                             formData={doc.data || {}}
@@ -122,7 +122,7 @@ export default function DownloadPreviewModal({
 
                                 {/* FM-HRD-30 Preview */}
                                 {documents.fmhrd30?.map((doc, idx) => (
-                                    <div key={`fmhrd30-${idx}`}>
+                                    <div key={`fmhrd30-${idx}`} data-doc-type="FM-HRD-30" data-doc-index={idx + 1}>
                                         <FMHRD30Document 
                                             applicant={applicant}
                                             formData={doc.data || {}}
@@ -132,7 +132,7 @@ export default function DownloadPreviewModal({
 
                                 {/* Criminal Check Preview */}
                                 {documents.criminalCheck?.map((doc, idx) => (
-                                    <div key={`criminal-${idx}`}>
+                                    <div key={`criminal-${idx}`} data-doc-type="Criminal_Check" data-doc-index={idx + 1}>
                                         <CriminalCheckDocument 
                                             applicant={applicant}
                                             formData={doc.data || {}}
@@ -142,7 +142,7 @@ export default function DownloadPreviewModal({
 
                                 {/* SPS 1-03 Preview */}
                                 {documents.sps103?.map((doc, idx) => (
-                                    <div key={`sps103-${idx}`}>
+                                    <div key={`sps103-${idx}`} data-doc-type="SPS_1-03" data-doc-index={idx + 1}>
                                         <SPS103Document 
                                             applicant={applicant}
                                             formData={doc.data || {}}
@@ -152,7 +152,7 @@ export default function DownloadPreviewModal({
 
                                 {/* SPS 9-02 Preview */}
                                 {documents.sps902?.map((doc, idx) => (
-                                    <div key={`sps902-${idx}`}>
+                                    <div key={`sps902-${idx}`} data-doc-type="SPS_9-02" data-doc-index={idx + 1}>
                                         <SPS902Document 
                                             applicant={applicant}
                                             formData={doc.data || {}}
@@ -162,7 +162,7 @@ export default function DownloadPreviewModal({
 
                                 {/* Insurance Enrollment Preview */}
                                 {documents.insurance?.map((doc, idx) => (
-                                    <div key={`insurance-${idx}`}>
+                                    <div key={`insurance-${idx}`} data-doc-type="Insurance_Enrollment" data-doc-index={idx + 1}>
                                         <InsuranceEnrollmentDocument 
                                             applicant={applicant}
                                             formData={doc.data || {}}
