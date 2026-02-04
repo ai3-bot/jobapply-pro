@@ -80,7 +80,7 @@ export default function UserLogin() {
                             <div className="relative">
                                 <Search className="absolute left-3 top-3 w-5 h-5 text-slate-400" />
                                 <Input 
-                                    placeholder="ค้นหาชื่อของคุณ (ชื่อไทยหรืออังกฤษ)"
+                                    placeholder="ค้นหาชื่อของคุณ"
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
                                     className="pl-10 h-12 text-lg"
