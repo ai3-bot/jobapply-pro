@@ -70,7 +70,7 @@ export default function UserLogin() {
         <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center p-4">
             <Card className="w-full max-w-2xl shadow-xl">
                 <CardHeader className="text-center pb-4">
-                    <CardTitle className="text-3xl font-bold text-slate-800">เข้าสู่ระบบพนักงานใหม่</CardTitle>
+                    <CardTitle className="text-3xl font-bold text-slate-800">เข้าสู่ระบบ</CardTitle>
                     <p className="text-slate-500 mt-2">กรุณาค้นหาชื่อของคุณและยืนยันตัวตน</p>
                 </CardHeader>
                 <CardContent className="space-y-6">
