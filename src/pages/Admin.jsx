@@ -170,6 +170,7 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
             const documentsFolder = zip.folder(selectedApplicant.full_name);
             
             // Helper function to convert HTML element to PDF blob with A4 sizing
+            // This handles multi-page documents by finding .pdpa-page elements
             const elementToPdfBlob = async (element) => {
                 // A4 dimensions: 210mm x 297mm
                 // At 96 DPI: 794px x 1123px
@@ -177,78 +178,118 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                 const A4_HEIGHT_PX = 1123;
                 const SCALE = 2;
                 
-                // Clone element and set exact A4 width
-                const clone = element.cloneNode(true);
-                clone.style.width = A4_WIDTH_PX + 'px';
-                clone.style.maxWidth = A4_WIDTH_PX + 'px';
-                clone.style.minWidth = A4_WIDTH_PX + 'px';
-                clone.style.position = 'absolute';
-                clone.style.left = '-9999px';
-                clone.style.top = '0';
-                clone.style.backgroundColor = '#ffffff';
-                document.body.appendChild(clone);
-                
-                // Wait for styles to apply
-                await new Promise(resolve => setTimeout(resolve, 100));
-                
-                const canvas = await html2canvas(clone, {
-                    scale: SCALE,
-                    useCORS: true,
-                    allowTaint: true,
-                    logging: false,
-                    backgroundColor: '#ffffff',
-                    width: A4_WIDTH_PX,
-                    windowWidth: A4_WIDTH_PX
-                });
-                
-                // Remove clone
-                document.body.removeChild(clone);
-                
                 const pdf = new jsPDF('p', 'mm', 'a4');
                 const pdfWidth = pdf.internal.pageSize.getWidth(); // 210mm
                 const pdfHeight = pdf.internal.pageSize.getHeight(); // 297mm
                 
-                // Canvas dimensions (scaled)
-                const canvasWidth = canvas.width; // A4_WIDTH_PX * SCALE
-                const canvasHeight = canvas.height;
+                // Check if element contains multiple .pdpa-page elements (multi-page document)
+                const pages = element.querySelectorAll('.pdpa-page');
                 
-                // Page height in canvas pixels
-                const pageHeightPx = A4_HEIGHT_PX * SCALE;
-                
-                // Calculate total pages needed
-                const totalPages = Math.ceil(canvasHeight / pageHeightPx);
-                
-                for (let pageNum = 0; pageNum < totalPages; pageNum++) {
-                    if (pageNum > 0) {
-                        pdf.addPage();
+                if (pages.length > 1) {
+                    // Multi-page document - render each page separately
+                    for (let i = 0; i < pages.length; i++) {
+                        const page = pages[i];
+                        
+                        // Clone page and set exact A4 width
+                        const clone = page.cloneNode(true);
+                        clone.style.width = A4_WIDTH_PX + 'px';
+                        clone.style.maxWidth = A4_WIDTH_PX + 'px';
+                        clone.style.minWidth = A4_WIDTH_PX + 'px';
+                        clone.style.minHeight = A4_HEIGHT_PX + 'px';
+                        clone.style.height = A4_HEIGHT_PX + 'px';
+                        clone.style.position = 'absolute';
+                        clone.style.left = '-9999px';
+                        clone.style.top = '0';
+                        clone.style.backgroundColor = '#ffffff';
+                        clone.style.margin = '0';
+                        clone.style.marginTop = '0';
+                        document.body.appendChild(clone);
+                        
+                        await new Promise(resolve => setTimeout(resolve, 50));
+                        
+                        const canvas = await html2canvas(clone, {
+                            scale: SCALE,
+                            useCORS: true,
+                            allowTaint: true,
+                            logging: false,
+                            backgroundColor: '#ffffff',
+                            width: A4_WIDTH_PX,
+                            height: A4_HEIGHT_PX,
+                            windowWidth: A4_WIDTH_PX
+                        });
+                        
+                        document.body.removeChild(clone);
+                        
+                        if (i > 0) {
+                            pdf.addPage();
+                        }
+                        
+                        const imgData = canvas.toDataURL('image/png');
+                        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
                     }
+                } else {
+                    // Single page or continuous document - use original logic
+                    const targetElement = pages.length === 1 ? pages[0] : element;
                     
-                    // Calculate the portion of the canvas for this page
-                    const yStart = pageNum * pageHeightPx;
-                    const remainingHeight = canvasHeight - yStart;
-                    const thisPageHeight = Math.min(pageHeightPx, remainingHeight);
+                    // Clone element and set exact A4 width
+                    const clone = targetElement.cloneNode(true);
+                    clone.style.width = A4_WIDTH_PX + 'px';
+                    clone.style.maxWidth = A4_WIDTH_PX + 'px';
+                    clone.style.minWidth = A4_WIDTH_PX + 'px';
+                    clone.style.position = 'absolute';
+                    clone.style.left = '-9999px';
+                    clone.style.top = '0';
+                    clone.style.backgroundColor = '#ffffff';
+                    clone.style.margin = '0';
+                    document.body.appendChild(clone);
                     
-                    // Create a canvas for this page section
-                    const pageCanvas = document.createElement('canvas');
-                    pageCanvas.width = canvasWidth;
-                    pageCanvas.height = pageHeightPx; // Always full A4 height
-                    const ctx = pageCanvas.getContext('2d');
+                    await new Promise(resolve => setTimeout(resolve, 100));
                     
-                    // Fill with white background
-                    ctx.fillStyle = '#ffffff';
-                    ctx.fillRect(0, 0, canvasWidth, pageHeightPx);
+                    const canvas = await html2canvas(clone, {
+                        scale: SCALE,
+                        useCORS: true,
+                        allowTaint: true,
+                        logging: false,
+                        backgroundColor: '#ffffff',
+                        width: A4_WIDTH_PX,
+                        windowWidth: A4_WIDTH_PX
+                    });
                     
-                    // Draw the portion of the original canvas
-                    ctx.drawImage(
-                        canvas, 
-                        0, yStart,           // Source x, y
-                        canvasWidth, thisPageHeight,  // Source width, height
-                        0, 0,                // Destination x, y
-                        canvasWidth, thisPageHeight   // Destination width, height
-                    );
+                    document.body.removeChild(clone);
                     
-                    const pageImgData = pageCanvas.toDataURL('image/png');
-                    pdf.addImage(pageImgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+                    const canvasWidth = canvas.width;
+                    const canvasHeight = canvas.height;
+                    const pageHeightPx = A4_HEIGHT_PX * SCALE;
+                    const totalPages = Math.ceil(canvasHeight / pageHeightPx);
+                    
+                    for (let pageNum = 0; pageNum < totalPages; pageNum++) {
+                        if (pageNum > 0) {
+                            pdf.addPage();
+                        }
+                        
+                        const yStart = pageNum * pageHeightPx;
+                        const remainingHeight = canvasHeight - yStart;
+                        const thisPageHeight = Math.min(pageHeightPx, remainingHeight);
+                        
+                        const pageCanvas = document.createElement('canvas');
+                        pageCanvas.width = canvasWidth;
+                        pageCanvas.height = pageHeightPx;
+                        const ctx = pageCanvas.getContext('2d');
+                        
+                        ctx.fillStyle = '#ffffff';
+                        ctx.fillRect(0, 0, canvasWidth, pageHeightPx);
+                        
+                        ctx.drawImage(
+                            canvas, 
+                            0, yStart,
+                            canvasWidth, thisPageHeight,
+                            0, 0,
+                            canvasWidth, thisPageHeight
+                        );
+                        
+                        const pageImgData = pageCanvas.toDataURL('image/png');
+                        pdf.addImage(pageImgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+                    }
                 }
                 
                 return pdf.output('blob');
