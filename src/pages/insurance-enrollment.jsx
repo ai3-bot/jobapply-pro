@@ -276,7 +276,6 @@ export default function InsuranceEnrollmentPage() {
                                             type="date"
                                             value={formData.dateOfBirth}
                                             onChange={(e) => setFormData({ ...formData, dateOfBirth: e.target.value })}
-                                            max={new Date().toISOString().split('T')[0]}
                                             className="w-full px-3 py-2 border border-slate-300 rounded-md"
                                         />
                                     </div>
@@ -288,7 +287,6 @@ export default function InsuranceEnrollmentPage() {
                                                 type="date"
                                                 value={formData.employmentDate}
                                                 onChange={(e) => setFormData({ ...formData, employmentDate: e.target.value })}
-                                                max={new Date().toISOString().split('T')[0]}
                                                 className="w-full px-3 py-2 border border-slate-300 rounded-md"
                                             />
                                         </div>
@@ -298,7 +296,6 @@ export default function InsuranceEnrollmentPage() {
                                                 type="date"
                                                 value={formData.signatureDate}
                                                 onChange={(e) => setFormData({ ...formData, signatureDate: e.target.value })}
-                                                max={new Date().toISOString().split('T')[0]}
                                                 className="w-full px-3 py-2 border border-slate-300 rounded-md"
                                             />
                                         </div>

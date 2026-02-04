@@ -269,7 +269,6 @@ export default function CriminalCheckFormPage() {
                                                 type="date"
                                                 value={formData.poaDate}
                                                 onChange={(e) => setFormData({ ...formData, poaDate: e.target.value })}
-                                                max={new Date().toISOString().split('T')[0]}
                                                 className="w-full px-3 py-2 border border-slate-300 rounded-md"
                                             />
                                         </div>
@@ -279,7 +278,6 @@ export default function CriminalCheckFormPage() {
                                                 type="date"
                                                 value={formData.consentDate}
                                                 onChange={(e) => setFormData({ ...formData, consentDate: e.target.value })}
-                                                max={new Date().toISOString().split('T')[0]}
                                                 className="w-full px-3 py-2 border border-slate-300 rounded-md"
                                             />
                                         </div>
@@ -308,7 +306,6 @@ export default function CriminalCheckFormPage() {
                                                 type="date"
                                                 value={formData.effectiveDate}
                                                 onChange={(e) => setFormData({ ...formData, effectiveDate: e.target.value })}
-                                                max={new Date().toISOString().split('T')[0]}
                                                 className="w-full px-3 py-2 border border-slate-300 rounded-md"
                                             />
                                         </div>

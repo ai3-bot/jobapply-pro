@@ -398,7 +398,6 @@ export default function SPSFormPage() {
                                                         type="date"
                                                         value={formData.signatureDate}
                                                         onChange={(e) => setFormData({ ...formData, signatureDate: e.target.value })}
-                                                        max={new Date().toISOString().split('T')[0]}
                                                     />
                                                 </div>
                                             </div>
@@ -575,7 +574,6 @@ export default function SPSFormPage() {
                                                             type="date"
                                                             value={formData.receiptDate}
                                                             onChange={(e) => setFormData({ ...formData, receiptDate: e.target.value })}
-                                                            max={new Date().toISOString().split('T')[0]}
                                                         />
                                                     </div>
                                                     <div>
@@ -790,7 +788,6 @@ export default function SPSFormPage() {
                                                 type="date"
                                                 value={formData.signatureDate}
                                                 onChange={(e) => setFormData({ ...formData, signatureDate: e.target.value })}
-                                                max={new Date().toISOString().split('T')[0]}
                                             />
                                         </div>
 
@@ -1027,7 +1024,6 @@ export default function SPSFormPage() {
                                                         type="date"
                                                         value={formData.declarationSignatureDate}
                                                         onChange={(e) => setFormData({ ...formData, declarationSignatureDate: e.target.value })}
-                                                        max={new Date().toISOString().split('T')[0]}
                                                     />
                                                 </div>
                                             </div>

@@ -274,7 +274,6 @@ export default function FMHRD30Page() {
                                             type="date"
                                             value={formData.proclamationDate}
                                             onChange={(e) => setFormData({ ...formData, proclamationDate: e.target.value })}
-                                            max={new Date().toISOString().split('T')[0]}
                                             className="w-full px-3 py-2 border border-slate-300 rounded-md"
                                         />
                                     </div>
@@ -284,7 +283,6 @@ export default function FMHRD30Page() {
                                             type="date"
                                             value={formData.consentLetterDate}
                                             onChange={(e) => setFormData({ ...formData, consentLetterDate: e.target.value })}
-                                            max={new Date().toISOString().split('T')[0]}
                                             className="w-full px-3 py-2 border border-slate-300 rounded-md"
                                         />
                                     </div>
@@ -294,7 +292,6 @@ export default function FMHRD30Page() {
                                             type="date"
                                             value={formData.criminalCheckDate}
                                             onChange={(e) => setFormData({ ...formData, criminalCheckDate: e.target.value })}
-                                            max={new Date().toISOString().split('T')[0]}
                                             className="w-full px-3 py-2 border border-slate-300 rounded-md"
                                         />
                                     </div>
@@ -309,7 +306,6 @@ export default function FMHRD30Page() {
                                         type="date"
                                         value={formData.signatureDate}
                                         onChange={(e) => setFormData({ ...formData, signatureDate: e.target.value })}
-                                        max={new Date().toISOString().split('T')[0]}
                                         className="w-full px-3 py-2 border border-slate-300 rounded-md"
                                     />
                                 </div>
