@@ -175,6 +175,7 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                 // At 96 DPI: 794px x 1123px
                 const A4_WIDTH_PX = 794;
                 const A4_HEIGHT_PX = 1123;
+                const SCALE = 2;
                 
                 // Clone element and set exact A4 width
                 const clone = element.cloneNode(true);
@@ -191,7 +192,7 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                 await new Promise(resolve => setTimeout(resolve, 100));
                 
                 const canvas = await html2canvas(clone, {
-                    scale: 2,
+                    scale: SCALE,
                     useCORS: true,
                     allowTaint: true,
                     logging: false,
@@ -203,52 +204,51 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                 // Remove clone
                 document.body.removeChild(clone);
                 
-                const imgData = canvas.toDataURL('image/png');
                 const pdf = new jsPDF('p', 'mm', 'a4');
                 const pdfWidth = pdf.internal.pageSize.getWidth(); // 210mm
                 const pdfHeight = pdf.internal.pageSize.getHeight(); // 297mm
-                const imgWidth = canvas.width;
-                const imgHeight = canvas.height;
                 
-                // Calculate ratio to fit width exactly to A4
-                const ratio = pdfWidth / imgWidth;
-                const scaledHeight = imgHeight * ratio;
+                // Canvas dimensions (scaled)
+                const canvasWidth = canvas.width; // A4_WIDTH_PX * SCALE
+                const canvasHeight = canvas.height;
                 
-                // Handle multi-page if content is taller than one page
-                if (scaledHeight <= pdfHeight) {
-                    // Single page - fit to full width
-                    pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, scaledHeight);
-                } else {
-                    // Multi-page handling - split into exact A4 page heights
-                    const pageHeightPx = A4_HEIGHT_PX * 2; // scale 2
-                    let position = 0;
-                    let pageNum = 0;
-                    
-                    while (position < imgHeight) {
-                        if (pageNum > 0) {
-                            pdf.addPage();
-                        }
-                        
-                        // Calculate how much of the image to show on this page
-                        const remainingHeight = imgHeight - position;
-                        const thisPageHeightPx = Math.min(pageHeightPx, remainingHeight);
-                        const thisPageHeightMm = (thisPageHeightPx / 2) * (pdfWidth / A4_WIDTH_PX);
-                        
-                        // Create a canvas for this page section
-                        const pageCanvas = document.createElement('canvas');
-                        pageCanvas.width = imgWidth;
-                        pageCanvas.height = thisPageHeightPx;
-                        const ctx = pageCanvas.getContext('2d');
-                        ctx.fillStyle = '#ffffff';
-                        ctx.fillRect(0, 0, imgWidth, thisPageHeightPx);
-                        ctx.drawImage(canvas, 0, position, imgWidth, thisPageHeightPx, 0, 0, imgWidth, thisPageHeightPx);
-                        
-                        const pageImgData = pageCanvas.toDataURL('image/png');
-                        pdf.addImage(pageImgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-                        
-                        position += pageHeightPx;
-                        pageNum++;
+                // Page height in canvas pixels
+                const pageHeightPx = A4_HEIGHT_PX * SCALE;
+                
+                // Calculate total pages needed
+                const totalPages = Math.ceil(canvasHeight / pageHeightPx);
+                
+                for (let pageNum = 0; pageNum < totalPages; pageNum++) {
+                    if (pageNum > 0) {
+                        pdf.addPage();
                     }
+                    
+                    // Calculate the portion of the canvas for this page
+                    const yStart = pageNum * pageHeightPx;
+                    const remainingHeight = canvasHeight - yStart;
+                    const thisPageHeight = Math.min(pageHeightPx, remainingHeight);
+                    
+                    // Create a canvas for this page section
+                    const pageCanvas = document.createElement('canvas');
+                    pageCanvas.width = canvasWidth;
+                    pageCanvas.height = pageHeightPx; // Always full A4 height
+                    const ctx = pageCanvas.getContext('2d');
+                    
+                    // Fill with white background
+                    ctx.fillStyle = '#ffffff';
+                    ctx.fillRect(0, 0, canvasWidth, pageHeightPx);
+                    
+                    // Draw the portion of the original canvas
+                    ctx.drawImage(
+                        canvas, 
+                        0, yStart,           // Source x, y
+                        canvasWidth, thisPageHeight,  // Source width, height
+                        0, 0,                // Destination x, y
+                        canvasWidth, thisPageHeight   // Destination width, height
+                    );
+                    
+                    const pageImgData = pageCanvas.toDataURL('image/png');
+                    pdf.addImage(pageImgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
                 }
                 
                 return pdf.output('blob');
