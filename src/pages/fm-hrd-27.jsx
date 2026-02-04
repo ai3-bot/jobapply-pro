@@ -244,6 +244,7 @@ export default function FMHRD27Page() {
                                         type="date"
                                         value={formData.contractDate}
                                         onChange={(e) => setFormData({ ...formData, contractDate: e.target.value })}
+                                        max={new Date().toISOString().split('T')[0]}
                                         className="w-full px-3 py-2 border border-slate-300 rounded-md"
                                     />
                                 </div>
@@ -254,6 +255,7 @@ export default function FMHRD27Page() {
                                         type="date"
                                         value={formData.employeeSignDate}
                                         onChange={(e) => setFormData({ ...formData, employeeSignDate: e.target.value })}
+                                        max={new Date().toISOString().split('T')[0]}
                                         className="w-full px-3 py-2 border border-slate-300 rounded-md"
                                     />
                                 </div>
