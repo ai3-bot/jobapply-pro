@@ -201,7 +201,7 @@ export default function DownloadPreviewModal({
                             ) : (
                                 <>
                                     <Download className="w-4 h-4 mr-2" />
-                                    บันทึกและดาวน์โหลดเอกสาร
+                                    ดาวน์โหลดทุกเอกสาร
                                 </>
                             )}
                         </Button>
