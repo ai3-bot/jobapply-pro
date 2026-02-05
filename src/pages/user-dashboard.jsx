@@ -75,13 +75,14 @@ export default function UserDashboard() {
         : { id: 6, name: 'แบบสปส. 9-02', description: 'แบบฟอร์มประกันสังคม (ยังไม่มีประกัน)', link: `/sps-form?type=9-02`, pdfType: 'SPS-9-02' };
 
     const documents = [
-        { id: 1, name: 'FM-HRD-19', description: 'แบบฟอร์มการเข้าทำงาน', link: '/fm-hrd-19', pdfType: 'FM-HRD-19' },
-        { id: 2, name: 'สัญญาจ้าง', description: 'สัญญาจ้างงาน', link: '/employment-contract', pdfType: 'Employment-Contract' },
-        { id: 3, name: 'FM-HRD-27', description: 'สัญญา NDA (ไม่เปิดเผยข้อมูล)', link: '/fm-hrd-27', pdfType: 'NDA' },
-        { id: 4, name: 'FM-HRD-30', description: 'การตรวจประวัติอาชญากรรม', link: '/fm-hrd-30', pdfType: 'FM-HRD-30' },
-        { id: 5, name: 'หนังสือมอบอำนาจในการตรวจประวัติอาชญากรรม', description: 'หนังสือมอบอำนาจตรวจประวัติ', link: '/criminal-check-form', pdfType: 'Criminal-Check' },
-        spsDocument,
-        { id: 7, name: 'ใบขอเอาประกัน', description: 'แบบฟอร์มประกันภัยพนักงาน', link: '/insurance-enrollment', pdfType: 'Insurance-Enrollment' }
+        { id: 1, name: 'PDPA', description: 'หนังสือยินยอมเปิดเผยข้อมูลส่วนบุคคล', link: '/pdpa-form', pdfType: 'PDPA', isFromApplication: true },
+        { id: 2, name: 'FM-HRD-19', description: 'แบบฟอร์มการเข้าทำงาน', link: '/fm-hrd-19', pdfType: 'FM-HRD-19' },
+        { id: 3, name: 'สัญญาจ้าง', description: 'สัญญาจ้างงาน', link: '/employment-contract', pdfType: 'Employment-Contract' },
+        { id: 4, name: 'FM-HRD-27', description: 'สัญญา NDA (ไม่เปิดเผยข้อมูล)', link: '/fm-hrd-27', pdfType: 'NDA' },
+        { id: 5, name: 'FM-HRD-30', description: 'การตรวจประวัติอาชญากรรม', link: '/fm-hrd-30', pdfType: 'FM-HRD-30' },
+        { id: 6, name: 'หนังสือมอบอำนาจในการตรวจประวัติอาชญากรรม', description: 'หนังสือมอบอำนาจตรวจประวัติ', link: '/criminal-check-form', pdfType: 'Criminal-Check' },
+        { ...spsDocument, id: 7 },
+        { id: 8, name: 'ใบขอเอาประกัน', description: 'แบบฟอร์มประกันภัยพนักงาน', link: '/insurance-enrollment', pdfType: 'Insurance-Enrollment' }
     ];
 
     const getDocumentStatus = (pdfType) => {
