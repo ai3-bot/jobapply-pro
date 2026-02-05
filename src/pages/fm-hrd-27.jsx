@@ -189,32 +189,22 @@ export default function FMHRD27Page() {
                         <ArrowLeft className="w-4 h-4" />
                         กลับ
                     </Button>
-                    <div className="flex gap-2">
-                        {!isApproved && (
+                    {!isApproved && (
+                        <div className="flex gap-2">
                             <Button 
                                 onClick={() => setShowForm(true)}
                                 className="bg-indigo-600 hover:bg-indigo-700"
                             >
                                 กรอกเอกสาร
                             </Button>
-                        )}
-                        <Button 
-                            variant="outline"
-                            onClick={() => handleGeneratePDF('preview')}
-                            disabled={generatingPdf}
-                        >
-                            {generatingPdf ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Eye className="w-4 h-4 mr-2" />}
-                            Preview
-                        </Button>
-                        <Button 
-                            variant="outline"
-                            onClick={() => handleGeneratePDF('download')}
-                            disabled={generatingPdf}
-                        >
-                            <FileDown className="w-4 h-4 mr-2" />
-                            ดาวน์โหลด
-                        </Button>
-                        {!isApproved && (
+                            <Button 
+                                variant="outline"
+                                onClick={() => handleGeneratePDF('preview')}
+                                disabled={generatingPdf}
+                            >
+                                {generatingPdf ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Eye className="w-4 h-4 mr-2" />}
+                                Preview
+                            </Button>
                             <Button 
                                 onClick={handleSubmit}
                                 disabled={submitMutation.isPending}
@@ -223,15 +213,9 @@ export default function FMHRD27Page() {
                                 {submitMutation.isPending ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Send className="w-4 h-4 mr-2" />}
                                 ส่งเอกสาร
                             </Button>
-                        )}
-                    </div>
+                        </div>
+                    )}
                 </div>
-                
-                {isApproved && (
-                    <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
-                        <p className="text-sm text-green-800 font-medium">✓ เอกสารนี้ได้รับการอนุมัติแล้ว</p>
-                    </div>
-                )}
 
                 {/* Document Preview Card */}
                 <Card className="shadow-xl">
