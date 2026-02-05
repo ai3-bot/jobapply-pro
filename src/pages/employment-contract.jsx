@@ -124,15 +124,25 @@ export default function EmploymentContractPage() {
         saveMutation.mutate(pdfData);
     };
 
-    const handleSubmit = () => {
-        const contractData = {
-            employment_contract_document: {
-                status: 'submitted',
-                employee_data: formData,
-                submitted_date: new Date().toISOString()
-            }
+    const handleSubmit = async () => {
+        // Save or update PdfBase with submitted status
+        const pdfData = {
+            applicant_id: applicantId,
+            pdf_type: 'Employment-Contract',
+            data: formData,
+            status: 'submitted',
+            submitted_date: new Date().toISOString()
         };
-        submitMutation.mutate(contractData);
+        
+        if (existingPdf) {
+            await base44.entities.PdfBase.update(existingPdf.id, pdfData);
+        } else {
+            await base44.entities.PdfBase.create(pdfData);
+        }
+        
+        queryClient.invalidateQueries(['employment_pdf', applicantId]);
+        toast.success('ส่งเอกสารเรียบร้อยแล้ว');
+        navigate('/user-dashboard');
     };
 
     const handleGeneratePDF = async (action) => {
