@@ -219,10 +219,10 @@ export default function EmploymentContractPage() {
                         </Button>
                         <Button 
                             onClick={handleSubmit}
-                            disabled={submitMutation.isPending}
+                            disabled={isSubmitting}
                             className="bg-green-600 hover:bg-green-700"
                         >
-                            {submitMutation.isPending ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Send className="w-4 h-4 mr-2" />}
+                            {isSubmitting ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Send className="w-4 h-4 mr-2" />}
                             ส่งเอกสาร
                         </Button>
                     </div>
