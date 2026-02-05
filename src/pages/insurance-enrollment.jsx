@@ -150,6 +150,8 @@ export default function InsuranceEnrollmentPage() {
         submitMutation.mutate();
     };
 
+    const isApproved = insuranceData?.status === 'approved';
+
     if (!applicant) {
         return (
             <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
@@ -172,12 +174,14 @@ export default function InsuranceEnrollmentPage() {
                         กลับ
                     </Button>
                     <div className="flex gap-2">
-                        <Button 
-                            onClick={() => setShowForm(true)}
-                            className="bg-indigo-600 hover:bg-indigo-700"
-                        >
-                            กรอกเอกสาร
-                        </Button>
+                        {!isApproved && (
+                            <Button 
+                                onClick={() => setShowForm(true)}
+                                className="bg-indigo-600 hover:bg-indigo-700"
+                            >
+                                กรอกเอกสาร
+                            </Button>
+                        )}
                         <Button 
                             variant="outline"
                             onClick={() => handleGeneratePDF('preview')}
@@ -187,15 +191,31 @@ export default function InsuranceEnrollmentPage() {
                             Preview
                         </Button>
                         <Button 
-                            onClick={handleSubmit}
-                            disabled={submitMutation.isPending}
-                            className="bg-green-600 hover:bg-green-700"
+                            variant="outline"
+                            onClick={() => handleGeneratePDF('download')}
+                            disabled={generatingPdf}
                         >
-                            {submitMutation.isPending ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Send className="w-4 h-4 mr-2" />}
-                            ส่งเอกสาร
+                            <FileDown className="w-4 h-4 mr-2" />
+                            ดาวน์โหลด
                         </Button>
+                        {!isApproved && (
+                            <Button 
+                                onClick={handleSubmit}
+                                disabled={submitMutation.isPending}
+                                className="bg-green-600 hover:bg-green-700"
+                            >
+                                {submitMutation.isPending ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Send className="w-4 h-4 mr-2" />}
+                                ส่งเอกสาร
+                            </Button>
+                        )}
                     </div>
                 </div>
+                
+                {isApproved && (
+                    <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
+                        <p className="text-sm text-green-800 font-medium">✓ เอกสารนี้ได้รับการอนุมัติแล้ว</p>
+                    </div>
+                )}
 
                 {/* Document Preview Card */}
                 <Card className="shadow-xl">
