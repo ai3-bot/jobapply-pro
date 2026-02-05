@@ -99,19 +99,7 @@ export default function EmploymentContractPage() {
         }
     });
 
-    const submitMutation = useMutation({
-        mutationFn: async (data) => {
-            return await base44.entities.Applicant.update(applicantId, data);
-        },
-        onSuccess: () => {
-            queryClient.invalidateQueries(['user_applicant', applicantId]);
-            toast.success('ส่งเอกสารเรียบร้อยแล้ว');
-            navigate('/user-dashboard');
-        },
-        onError: () => {
-            toast.error('เกิดข้อผิดพลาดในการส่งเอกสาร');
-        }
-    });
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleSave = () => {
         const pdfData = {
