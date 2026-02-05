@@ -113,24 +113,31 @@ export default function EmploymentContractPage() {
     };
 
     const handleSubmit = async () => {
-        // Save or update PdfBase with submitted status
-        const pdfData = {
-            applicant_id: applicantId,
-            pdf_type: 'Employment-Contract',
-            data: formData,
-            status: 'submitted',
-            submitted_date: new Date().toISOString()
-        };
-        
-        if (existingPdf) {
-            await base44.entities.PdfBase.update(existingPdf.id, pdfData);
-        } else {
-            await base44.entities.PdfBase.create(pdfData);
+        setIsSubmitting(true);
+        try {
+            // Save or update PdfBase with submitted status
+            const pdfData = {
+                applicant_id: applicantId,
+                pdf_type: 'Employment-Contract',
+                data: formData,
+                status: 'submitted',
+                submitted_date: new Date().toISOString()
+            };
+            
+            if (existingPdf) {
+                await base44.entities.PdfBase.update(existingPdf.id, pdfData);
+            } else {
+                await base44.entities.PdfBase.create(pdfData);
+            }
+            
+            queryClient.invalidateQueries(['employment_pdf', applicantId]);
+            toast.success('ส่งเอกสารเรียบร้อยแล้ว');
+            navigate('/user-dashboard');
+        } catch (error) {
+            toast.error('เกิดข้อผิดพลาดในการส่งเอกสาร');
+        } finally {
+            setIsSubmitting(false);
         }
-        
-        queryClient.invalidateQueries(['employment_pdf', applicantId]);
-        toast.success('ส่งเอกสารเรียบร้อยแล้ว');
-        navigate('/user-dashboard');
     };
 
     const handleGeneratePDF = async (action) => {
