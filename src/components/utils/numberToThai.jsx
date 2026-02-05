@@ -87,6 +87,8 @@ export const numberToThai = (num) => {
     
     if (satang > 0) {
         result += convertToThai(satang) + 'สตางค์';
+    } else {
+        result += 'ถ้วน';
     }
     
     return result;
