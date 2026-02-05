@@ -71,8 +71,8 @@ export default function UserDashboard() {
 
     const spsFormType = applicant?.admin_data?.sps_form_type || '1-03';
     const spsDocument = spsFormType === '1-03' 
-        ? { id: 7, name: 'แบบสปส. 1-03', description: 'แบบฟอร์มประกันสังคม (มีประกันอยู่แล้ว)', link: `/sps-form?type=1-03`, pdfType: 'SPS-1-03' }
-        : { id: 7, name: 'แบบสปส. 9-02', description: 'แบบฟอร์มประกันสังคม (ยังไม่มีประกัน)', link: `/sps-form?type=9-02`, pdfType: 'SPS-9-02' };
+        ? { id: 6, name: 'แบบสปส. 1-03', description: 'แบบฟอร์มประกันสังคม (มีประกันอยู่แล้ว)', link: `/sps-form?type=1-03`, pdfType: 'SPS-1-03' }
+        : { id: 6, name: 'แบบสปส. 9-02', description: 'แบบฟอร์มประกันสังคม (ยังไม่มีประกัน)', link: `/sps-form?type=9-02`, pdfType: 'SPS-9-02' };
 
     const documents = [
         { id: 1, name: 'FM-HRD-19', description: 'แบบฟอร์มการเข้าทำงาน', link: '/fm-hrd-19', pdfType: 'FM-HRD-19' },
