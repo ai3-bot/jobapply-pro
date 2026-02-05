@@ -242,7 +242,13 @@ export default function FMHRD27Page() {
                         <div className="overflow-auto max-h-[800px] bg-slate-100 p-8 flex justify-center">
                             <div id="nda-content">
                                 <NDADocument 
-                                    applicant={applicant}
+                                    applicant={{
+                                        ...applicant,
+                                        nda_document: {
+                                            ...applicant?.nda_document,
+                                            company_data: existingPdfDoc?.data?.company_data || applicant?.nda_document?.company_data || {}
+                                        }
+                                    }}
                                     formData={formData}
                                 />
                             </div>

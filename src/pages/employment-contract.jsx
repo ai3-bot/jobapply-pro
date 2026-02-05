@@ -259,6 +259,7 @@ export default function EmploymentContractPage() {
                                 <EmploymentContractDocument 
                                     applicant={applicant}
                                     formData={formData}
+                                    companyData={existingPdf?.data?.company_data || {}}
                                 />
                             </div>
                         </div>

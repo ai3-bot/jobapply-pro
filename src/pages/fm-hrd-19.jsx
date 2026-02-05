@@ -244,6 +244,8 @@ export default function FMHRD19Form() {
                                     signatureUrl={signatureUrl}
                                     signatureDate={signatureDate}
                                     formData={formData}
+                                    companyData={fmhrd19Doc?.data?.company_data || {}}
+                                    companySignature={fmhrd19Doc?.data?.company_data?.authorized_signature || ''}
                                     witness1Signature={fmhrd19Doc?.data?.company_data?.witness_signature_1 || ''}
                                     witness2Signature={fmhrd19Doc?.data?.company_data?.witness_signature_2 || ''}
                                 />
