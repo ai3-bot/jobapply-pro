@@ -71,7 +71,7 @@ const convertToThai = (num) => {
     return result;
 };
 
-export const numberToThai = (num) => {
+export const numberToThai = (num, includeCurrency = true) => {
     if (!num || num === '' || num === 0) return '';
     
     const numStr = String(num).trim();
@@ -83,12 +83,14 @@ export const numberToThai = (num) => {
 
     let result = convertToThai(baht);
     if (!result) result = 'ศูนย์';
-    result += 'บาท';
     
-    if (satang > 0) {
-        result += convertToThai(satang) + 'สตางค์';
-    } else {
-        result += 'ถ้วน';
+    if (includeCurrency) {
+        result += 'บาท';
+        if (satang > 0) {
+            result += convertToThai(satang) + 'สตางค์';
+        } else {
+            result += 'ถ้วน';
+        }
     }
     
     return result;

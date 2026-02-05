@@ -466,7 +466,7 @@ export default function EmploymentContractPage() {
                                                 <input
                                                     type="text"
                                                     value={formData.dailyRate}
-                                                    onChange={(e) => setFormData({ ...formData, dailyRate: e.target.value, dailyRateText: numberToThai(e.target.value) })}
+                                                    onChange={(e) => setFormData({ ...formData, dailyRate: e.target.value, dailyRateText: numberToThai(e.target.value, false) })}
                                                     className="w-full px-3 py-2 border border-slate-300 rounded-md"
                                                     placeholder="เช่น 300"
                                                 />
@@ -485,7 +485,7 @@ export default function EmploymentContractPage() {
                                                 <input
                                                     type="text"
                                                     value={formData.monthlyRate}
-                                                    onChange={(e) => setFormData({ ...formData, monthlyRate: e.target.value, monthlyRateText: numberToThai(e.target.value) })}
+                                                    onChange={(e) => setFormData({ ...formData, monthlyRate: e.target.value, monthlyRateText: numberToThai(e.target.value, false) })}
                                                     className="w-full px-3 py-2 border border-slate-300 rounded-md"
                                                     placeholder="เช่น 15000"
                                                 />
