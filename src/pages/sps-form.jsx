@@ -4,7 +4,7 @@ import { base44 } from '@/api/base44Client';
 import { useQueryClient, useQuery, useMutation } from '@tanstack/react-query';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowLeft, Eye, Loader2, Send } from "lucide-react";
+import { ArrowLeft, Eye, Loader2, Send, FileDown } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import SPS103Document from '@/components/application/pdf/SPS103Document';

@@ -4,7 +4,7 @@ import { base44 } from '@/api/base44Client';
 import { useQueryClient, useQuery, useMutation } from '@tanstack/react-query';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowLeft, Eye, Loader2, Send, Save } from "lucide-react";
+import { ArrowLeft, Eye, Loader2, Send, Save, FileDown } from "lucide-react";
 import InsuranceEnrollmentDocument from '@/components/application/pdf/InsuranceEnrollmentDocument';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
