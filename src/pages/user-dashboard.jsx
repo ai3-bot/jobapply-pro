@@ -190,17 +190,14 @@ export default function UserDashboard() {
                             {documents.map((doc) => {
                                 const status = getDocumentStatus(doc.pdfType);
                                 const isApproved = status === 'approved';
-                                const isDisabled = isApproved;
 
                                 return (
                                     <div 
                                         key={doc.id}
-                                        onClick={() => !isDisabled && doc.link && navigate(doc.link)}
+                                        onClick={() => doc.link && navigate(doc.link)}
                                         className={`border border-slate-200 rounded-lg p-4 transition-all ${
-                                            isDisabled
-                                                ? 'opacity-60 cursor-not-allowed bg-slate-50'
-                                                : doc.link ? 'cursor-pointer hover:shadow-md hover:border-indigo-300' : 'cursor-default opacity-60'
-                                        }`}
+                                            doc.link ? 'cursor-pointer hover:shadow-md hover:border-indigo-300' : 'cursor-default opacity-60'
+                                        } ${isApproved ? 'bg-green-50 border-green-200' : ''}`}
                                     >
                                         <div className="flex items-start gap-3">
                                             <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 font-bold ${
