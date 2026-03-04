@@ -861,6 +861,51 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                         </div>
                     )}
                 </div>
+
+                {/* Additional Documents */}
+                <div>
+                    <h2 className="text-2xl font-bold text-slate-800 mb-4">เอกสารเพิ่มเติม</h2>
+                    {selectedApplicant?.additional_documents && selectedApplicant.additional_documents.length > 0 ? (
+                        <div className="grid grid-cols-1 gap-4">
+                            {selectedApplicant.additional_documents.map((doc, index) => (
+                                <Card key={index} className="hover:shadow-md transition-shadow">
+                                    <CardContent className="p-6">
+                                        <div className="flex items-center justify-between">
+                                            <div className="flex items-center gap-4 flex-1">
+                                                <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center">
+                                                    <FileCheck className="w-6 h-6 text-slate-600" />
+                                                </div>
+                                                <div className="flex-1">
+                                                    <h3 className="font-semibold text-lg">{doc.name}</h3>
+                                                    <p className="text-sm text-slate-500 mt-1">
+                                                        อัพโหลดเมื่อ: {doc.uploaded_at ? format(new Date(doc.uploaded_at), 'dd/MMM/yyyy HH:mm') : '-'}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div className="flex items-center gap-3">
+                                                <a 
+                                                    href={doc.url} 
+                                                    target="_blank" 
+                                                    rel="noopener noreferrer"
+                                                >
+                                                    <Button size="sm">
+                                                        ดูเอกสาร
+                                                    </Button>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            ))}
+                        </div>
+                    ) : (
+                        <Card>
+                            <CardContent className="p-8 text-center text-slate-500">
+                                ยังไม่มีเอกสารเพิ่มเติม
+                            </CardContent>
+                        </Card>
+                    )}
+                </div>
             </div>
         </div>
     );
