@@ -7,7 +7,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import SignatureCanvas from 'react-signature-canvas';
-import { Plus, Trash2, Upload, PenLine } from "lucide-react";
+import { Plus, Trash2, Upload, PenLine, FileText, X, Loader2 } from "lucide-react";
 import { base44 } from '@/api/base44Client';
 
 export default function FormStep4({ data, setGlobalData, errors = {} }) {
@@ -15,6 +15,7 @@ export default function FormStep4({ data, setGlobalData, errors = {} }) {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [uploadFile, setUploadFile] = useState(null);
     const [isUploading, setIsUploading] = useState(false);
+    const [isUploadingDoc, setIsUploadingDoc] = useState(false);
     
     // Emergency Contact Handlers
     const contacts = data.emergency_contacts || [];
@@ -74,6 +75,35 @@ export default function FormStep4({ data, setGlobalData, errors = {} }) {
         } finally {
             setIsUploading(false);
         }
+    };
+
+    // Additional Documents Handlers
+    const additionalDocs = data.additional_documents || [];
+
+    const handleUploadAdditionalDoc = async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        setIsUploadingDoc(true);
+        try {
+            const { file_url } = await base44.integrations.Core.UploadFile({ file });
+            setGlobalData(prev => ({
+                ...prev,
+                additional_documents: [...(prev.additional_documents || []), { name: file.name, url: file_url }]
+            }));
+        } catch (error) {
+            console.error("Upload failed", error);
+            alert("ไม่สามารถอัพโหลดเอกสารได้");
+        } finally {
+            setIsUploadingDoc(false);
+            e.target.value = '';
+        }
+    };
+
+    const handleRemoveAdditionalDoc = (index) => {
+        setGlobalData(prev => ({
+            ...prev,
+            additional_documents: additionalDocs.filter((_, i) => i !== index)
+        }));
     };
 
     // Table Styles
@@ -231,6 +261,64 @@ export default function FormStep4({ data, setGlobalData, errors = {} }) {
                                 />
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Additional Documents */}
+            <div className="space-y-4">
+                <div className="border-b pb-2">
+                    <h3 className="text-lg font-bold text-slate-900">เอกสารเพิ่มเติม (ถ้ามี)</h3>
+                    <p className="text-slate-500 text-sm mt-1">อัพโหลดเอกสารประกอบอื่นๆ เช่น ใบรับรองการทำงาน, ใบประกาศนียบัตร, เอกสารอื่นๆ</p>
+                </div>
+                
+                <div className="border rounded-lg p-4 bg-slate-50">
+                    {additionalDocs.length > 0 && (
+                        <div className="space-y-2 mb-4">
+                            {additionalDocs.map((doc, index) => (
+                                <div key={index} className="flex items-center justify-between bg-white p-3 rounded-lg border">
+                                    <div className="flex items-center gap-3">
+                                        <FileText className="w-5 h-5 text-indigo-600" />
+                                        <a href={doc.url} target="_blank" rel="noopener noreferrer" className="text-sm text-slate-700 hover:text-indigo-600 hover:underline">
+                                            {doc.name}
+                                        </a>
+                                    </div>
+                                    <Button 
+                                        variant="ghost" 
+                                        size="icon" 
+                                        className="h-8 w-8 text-red-500 hover:text-red-700 hover:bg-red-50"
+                                        onClick={() => handleRemoveAdditionalDoc(index)}
+                                    >
+                                        <X className="w-4 h-4" />
+                                    </Button>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                    
+                    <div className="flex items-center justify-center">
+                        <label className="cursor-pointer">
+                            <input 
+                                type="file" 
+                                className="hidden"
+                                accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"
+                                onChange={handleUploadAdditionalDoc}
+                                disabled={isUploadingDoc}
+                            />
+                            <div className="flex items-center gap-2 px-4 py-2 bg-white border border-indigo-200 rounded-lg text-indigo-600 hover:bg-indigo-50 transition-colors">
+                                {isUploadingDoc ? (
+                                    <>
+                                        <Loader2 className="w-4 h-4 animate-spin" />
+                                        <span>กำลังอัพโหลด...</span>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Upload className="w-4 h-4" />
+                                        <span>เพิ่มเอกสาร</span>
+                                    </>
+                                )}
+                            </div>
+                        </label>
                     </div>
                 </div>
             </div>
