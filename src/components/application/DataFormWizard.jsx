@@ -159,7 +159,6 @@ export default function DataFormWizard({ onComplete, globalData, setGlobalData }
                 referral_data: globalData.referral_data,
                 parents_data: globalData.parents_data,
                 emergency_contacts: globalData.emergency_contacts,
-                additional_documents: globalData.additional_documents,
                 attitude: globalData.attitude,
                 photo_url: globalData.photo_url,
                 signature_url: globalData.signature_url,
