@@ -4,12 +4,16 @@ import { useQuery } from '@tanstack/react-query';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { User, Calendar, Briefcase, FileText, CheckCircle, LogOut } from "lucide-react";
+import { User, Calendar, Briefcase, FileText, CheckCircle, LogOut, Upload, Loader2, Trash2 } from "lucide-react";
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
 export default function UserDashboard() {
     const navigate = useNavigate();
+    const queryClient = useQueryClient();
     const [applicantId, setApplicantId] = useState(null);
+    const [uploadingFile, setUploadingFile] = useState(false);
 
     useEffect(() => {
         const id = localStorage.getItem('user_applicant_id');
@@ -46,6 +50,45 @@ export default function UserDashboard() {
     const handleLogout = () => {
         localStorage.removeItem('user_applicant_id');
         navigate('/user-login');
+    };
+
+    const handleFileUpload = async (e) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+
+        setUploadingFile(true);
+        try {
+            const { file_url } = await base44.integrations.Core.UploadFile({ file });
+            const currentDocs = applicant.additional_documents || [];
+            await base44.entities.Applicant.update(applicantId, {
+                additional_documents: [...currentDocs, { 
+                    name: file.name, 
+                    url: file_url, 
+                    uploaded_at: new Date().toISOString() 
+                }]
+            });
+            queryClient.invalidateQueries(['user_applicant', applicantId]);
+            toast.success('อัพโหลดเอกสารเรียบร้อยแล้ว');
+        } catch (error) {
+            toast.error('เกิดข้อผิดพลาดในการอัพโหลด');
+        } finally {
+            setUploadingFile(false);
+            e.target.value = '';
+        }
+    };
+
+    const handleDeleteDocument = async (index) => {
+        try {
+            const currentDocs = applicant.additional_documents || [];
+            const newDocs = currentDocs.filter((_, i) => i !== index);
+            await base44.entities.Applicant.update(applicantId, {
+                additional_documents: newDocs
+            });
+            queryClient.invalidateQueries(['user_applicant', applicantId]);
+            toast.success('ลบเอกสารเรียบร้อยแล้ว');
+        } catch (error) {
+            toast.error('เกิดข้อผิดพลาดในการลบ');
+        }
     };
 
     if (!applicant) {
@@ -237,6 +280,85 @@ export default function UserDashboard() {
                             <p className="text-sm text-blue-800">
                                 <strong>หมายเหตุ:</strong> กรุณาอ่านและกรอกข้อมูลในเอกสารทั้งหมดให้ครบถ้วน
                             </p>
+                        </div>
+                    </CardContent>
+                </Card>
+
+                {/* Additional Documents Section */}
+                <Card className="shadow-xl">
+                    <CardHeader className="border-b bg-slate-50">
+                        <CardTitle className="flex items-center gap-2">
+                            <Upload className="w-6 h-6 text-indigo-600" />
+                            เอกสารเพิ่มเติม
+                        </CardTitle>
+                    </CardHeader>
+                    <CardContent className="p-6">
+                        <div className="space-y-4">
+                            {/* Upload Button */}
+                            <div className="flex items-center gap-4">
+                                <label className="cursor-pointer">
+                                    <input
+                                        type="file"
+                                        className="hidden"
+                                        onChange={handleFileUpload}
+                                        accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"
+                                        disabled={uploadingFile}
+                                    />
+                                    <div className={`flex items-center gap-2 px-4 py-2 border-2 border-dashed border-indigo-300 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 transition-all ${uploadingFile ? 'opacity-50 cursor-not-allowed' : ''}`}>
+                                        {uploadingFile ? (
+                                            <Loader2 className="w-5 h-5 animate-spin text-indigo-600" />
+                                        ) : (
+                                            <Upload className="w-5 h-5 text-indigo-600" />
+                                        )}
+                                        <span className="text-indigo-600 font-medium">
+                                            {uploadingFile ? 'กำลังอัพโหลด...' : 'อัพโหลดเอกสาร'}
+                                        </span>
+                                    </div>
+                                </label>
+                                <span className="text-sm text-slate-500">รองรับไฟล์ PDF, รูปภาพ, Word</span>
+                            </div>
+
+                            {/* Uploaded Documents List */}
+                            {applicant.additional_documents && applicant.additional_documents.length > 0 ? (
+                                <div className="space-y-2">
+                                    {applicant.additional_documents.map((doc, index) => (
+                                        <div key={index} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg border border-slate-200">
+                                            <div className="flex items-center gap-3">
+                                                <FileText className="w-5 h-5 text-indigo-500" />
+                                                <div>
+                                                    <a 
+                                                        href={doc.url} 
+                                                        target="_blank" 
+                                                        rel="noopener noreferrer"
+                                                        className="text-sm font-medium text-indigo-600 hover:underline"
+                                                    >
+                                                        {doc.name}
+                                                    </a>
+                                                    <p className="text-xs text-slate-500">
+                                                        อัพโหลดเมื่อ: {new Date(doc.uploaded_at).toLocaleDateString('th-TH', { 
+                                                            year: 'numeric', 
+                                                            month: 'short', 
+                                                            day: 'numeric',
+                                                            hour: '2-digit',
+                                                            minute: '2-digit'
+                                                        })}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <Button 
+                                                variant="ghost" 
+                                                size="sm"
+                                                onClick={() => handleDeleteDocument(index)}
+                                                className="text-red-500 hover:text-red-700 hover:bg-red-50"
+                                            >
+                                                <Trash2 className="w-4 h-4" />
+                                            </Button>
+                                        </div>
+                                    ))}
+                                </div>
+                            ) : (
+                                <p className="text-sm text-slate-500 text-center py-4">ยังไม่มีเอกสารเพิ่มเติม</p>
+                            )}
                         </div>
                     </CardContent>
                 </Card>
