@@ -124,7 +124,8 @@ export default function UserDashboard() {
         spsFormType === '1-03' 
             ? { id: 7, name: 'แบบสปส. 1-03', description: 'แบบฟอร์มประกันสังคม (มีประกันอยู่แล้ว)', link: `/sps-form?type=1-03`, pdfType: 'SPS-1-03' }
             : { id: 7, name: 'แบบสปส. 9-02', description: 'แบบฟอร์มประกันสังคม (ยังไม่มีประกัน)', link: `/sps-form?type=9-02`, pdfType: 'SPS-9-02' },
-        { id: 8, name: 'ใบขอเอาประกัน', description: 'แบบฟอร์มประกันภัยพนักงาน', link: '/insurance-enrollment', pdfType: 'Insurance-Enrollment' }
+        { id: 8, name: 'ใบขอเอาประกัน', description: 'แบบฟอร์มประกันภัยพนักงาน', link: '/insurance-enrollment', pdfType: 'Insurance-Enrollment' },
+        { id: 9, name: 'เอกสารเพิ่มเติม', description: 'อัพโหลดเอกสารอื่นๆ เช่น สำเนาบัตรประชาชน, ทะเบียนบ้าน', link: null, pdfType: 'Additional', isUpload: true }
     ];
 
     const getDocumentStatus = (pdfType) => {
