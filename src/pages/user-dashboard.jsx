@@ -234,6 +234,84 @@ export default function UserDashboard() {
                             {documents.map((doc) => {
                                 const status = getDocumentStatus(doc.pdfType);
                                 const isApproved = status === 'approved';
+                                const hasAdditionalDocs = applicant.additional_documents && applicant.additional_documents.length > 0;
+
+                                // Special handling for upload document type
+                                if (doc.isUpload) {
+                                    return (
+                                        <div 
+                                            key={doc.id}
+                                            className="border border-slate-200 rounded-lg p-4 transition-all"
+                                        >
+                                            <div className="flex items-start gap-3">
+                                                <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 font-bold ${
+                                                    hasAdditionalDocs 
+                                                        ? 'bg-green-100 text-green-600' 
+                                                        : 'bg-indigo-100 text-indigo-600'
+                                                }`}>
+                                                    {hasAdditionalDocs ? <CheckCircle className="w-5 h-5" /> : doc.id}
+                                                </div>
+                                                <div className="flex-1">
+                                                    <h3 className="font-semibold text-slate-800 mb-1">{doc.name}</h3>
+                                                    <p className="text-sm text-slate-500 mb-3">{doc.description}</p>
+                                                    
+                                                    {/* Upload Button */}
+                                                    <label className="cursor-pointer inline-block mb-3">
+                                                        <input
+                                                            type="file"
+                                                            className="hidden"
+                                                            onChange={handleFileUpload}
+                                                            accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"
+                                                            disabled={uploadingFile}
+                                                        />
+                                                        <Badge 
+                                                            variant="outline" 
+                                                            className={`text-amber-600 border-amber-300 cursor-pointer hover:bg-amber-50 ${uploadingFile ? 'opacity-50' : ''}`}
+                                                        >
+                                                            {uploadingFile ? (
+                                                                <>
+                                                                    <Loader2 className="w-3 h-3 mr-1 animate-spin" />
+                                                                    กำลังอัพโหลด...
+                                                                </>
+                                                            ) : (
+                                                                <>
+                                                                    <Upload className="w-3 h-3 mr-1" />
+                                                                    คลิกเพื่ออัพโหลด
+                                                                </>
+                                                            )}
+                                                        </Badge>
+                                                    </label>
+
+                                                    {/* Uploaded Documents List */}
+                                                    {hasAdditionalDocs && (
+                                                        <div className="space-y-2 mt-2">
+                                                            {applicant.additional_documents.map((file, index) => (
+                                                                <div key={index} className="flex items-center justify-between p-2 bg-slate-50 rounded border border-slate-200">
+                                                                    <a 
+                                                                        href={file.url} 
+                                                                        target="_blank" 
+                                                                        rel="noopener noreferrer"
+                                                                        className="text-xs text-indigo-600 hover:underline truncate flex-1"
+                                                                    >
+                                                                        {file.name}
+                                                                    </a>
+                                                                    <Button 
+                                                                        variant="ghost" 
+                                                                        size="sm"
+                                                                        onClick={() => handleDeleteDocument(index)}
+                                                                        className="text-red-500 hover:text-red-700 hover:bg-red-50 h-6 w-6 p-0"
+                                                                    >
+                                                                        <Trash2 className="w-3 h-3" />
+                                                                    </Button>
+                                                                </div>
+                                                            ))}
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    );
+                                }
 
                                 return (
                                     <div 
