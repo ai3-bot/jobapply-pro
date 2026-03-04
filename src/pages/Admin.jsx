@@ -885,15 +885,12 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                                                 </div>
                                             </div>
                                             <div className="flex items-center gap-3">
-                                                <a 
-                                                    href={doc.url} 
-                                                    target="_blank" 
-                                                    rel="noopener noreferrer"
+                                                <Button 
+                                                    size="sm"
+                                                    onClick={() => setPreviewingAdditionalDoc(doc)}
                                                 >
-                                                    <Button size="sm">
-                                                        ดูเอกสาร
-                                                    </Button>
-                                                </a>
+                                                    ดูเอกสาร
+                                                </Button>
                                             </div>
                                         </div>
                                     </CardContent>
@@ -908,6 +905,13 @@ function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewF
                         </Card>
                     )}
                 </div>
+
+                {/* Additional Document Preview Modal */}
+                <AdditionalDocPreviewModal 
+                    isOpen={!!previewingAdditionalDoc}
+                    onClose={() => setPreviewingAdditionalDoc(null)}
+                    document={previewingAdditionalDoc}
+                />
             </div>
         </div>
     );
