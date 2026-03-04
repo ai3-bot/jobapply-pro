@@ -31,6 +31,7 @@ import AdditionalDocPreviewModal from '@/components/admin/AdditionalDocPreviewMo
 function DocumentsView({ selectedApplicant, onReviewNDA, onReviewPDPA, onReviewFMHRD19, onReviewCriminalCheck, onReviewEmploymentContract, onSelectApplicant, onReviewFMHRD27, onReviewFMHRD30, onSetCriminalCheckDoc, onReviewSPS103, onReviewSPS902, onReviewInsurance }) {
     const [downloadingAll, setDownloadingAll] = useState(false);
     const [showDownloadPreview, setShowDownloadPreview] = useState(false);
+    const [previewingAdditionalDoc, setPreviewingAdditionalDoc] = useState(null);
     
     const { data: applicants = [], isLoading } = useQuery({
         queryKey: ['applicants'],
